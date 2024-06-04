@@ -1,92 +1,54 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+nav {
+  position: absolute; /* or 'absolute' depending on your layout needs */
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  backdrop-filter: blur;
+  z-index: 100; /* Ensure this is higher than any other z-index values in your layout */
+  padding: -1rem -1rem; /* Optional: add padding for better appearance */
+   /* Semi-transparent background */
+}
 
+.nav__logo img {
+  max-width: 100px;
+}
 
-/* Color of the links AFTER scroll */
-:root {
-    --primary-color: #5fa8d3;
-    --primary-color-dark: #cae9ff;
-    --text-dark: #0f172a;
-    --text-light: #64748b;
-    --extra-light: #f1f5f9;
-    --white: #ffffff;
-    --max-width: 1200px;
-  }
-  
-  * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
-  
-  .section__container {
-    max-width: var(--max-width);
-    margin: auto;
-    padding: 5rem 1rem;
-  }
-  
-  .section__header {
-    font-size: 2.5rem;
-    font-weight: 600;
-    line-height: 3rem;
-    color: var(--text-dark);
-  }
-  
-  .btn {
-    padding: 0.75rem 2rem;
-    outline: none;
-    border: none;
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--white);
-    background-color: #5fa8d3;
-    border-radius: 2rem;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  
-  .btn:hover {
-    background-color:#cae9ff;
-  }
-  
-  a {
-    text-decoration: none;
-  }
-  
-  img {
-    width: 100%;
-    display: flex;
-  }
-  
-  nav {
-    max-width: var(--max-width);
-    margin: auto;
-    padding-top: 1rem;
-    padding-right: 3rem;
-    padding-left: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-  }
-  
-  .nav__logo {
-    height: 70px;
-    width: 70px;
-  }
-  
-  .nav__links {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-  }
-  
-  .link a {
-    font-weight: 500;
-    color: var(--text-light);
-    transition: 0.3s;
-  }
-  
-  .link a:hover {
-    color: #3d9fdc;
-  }
+.nav__links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.link a {
+  text-decoration: none;
+  font-weight: 600;
+  color: white;
+}
+
+.login {
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 600;
+  color: white;
+  background-color: rgba(0, 96, 95, 0.7); /* Semi-transparent background */
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login:hover {
+  background-color: rgba(1, 116, 121, 0.7);
+}
+
+/* Ensure the header image or video does not overlap the nav bar */
+.header__image__container,
+.header__video__container {
+  margin-top: 5rem; /* Adjust this value as needed to avoid overlap */
+}
