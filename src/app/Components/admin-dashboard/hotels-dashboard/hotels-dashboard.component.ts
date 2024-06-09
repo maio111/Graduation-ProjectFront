@@ -5,6 +5,7 @@ import { Hotel } from '../../../models/Hotel';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { error } from 'console';
 @Component({
   selector: 'app-hotels-dashboard',
   standalone: true,
@@ -47,11 +48,16 @@ export class HotelsDashboardComponent {
 
   deleteHotel(id: number) {
     this.currentHotelId = id;
-    this.hotelService.deleteHotel(this.currentHotelId).subscribe((res) => {
-      console.log(res);
-    });
+    this.hotelService.deleteHotel(this.currentHotelId).subscribe({
+      next: (res) => {console.log(res.data)},
+      error: (res) => { console.log(res.error) },
+      complete: () => {console.log("complete")}
+    })
     this.router.navigate(['dashboard/adminsDashboard']);
     //window.location.reload();
   }
 
+  goToAddPage() {
+    this.router.navigate(['dashboard/addHotel']);
+  }
 }

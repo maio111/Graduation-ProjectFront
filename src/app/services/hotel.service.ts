@@ -17,8 +17,8 @@ export class HotelService {
   getHotelById(id:number): Observable<any>{
     return this.httpclient.get<any[]>(`${this.baseUrl}/api/Hotel/${id}`);
   }
-  addHotel(hotel: Hotel): Observable<Hotel> {
-    return this.httpclient.post<Hotel>(`${this.baseUrl}/api/Hotel`, hotel);
+  addHotel(hotel: any): Observable<any> {
+    return this.httpclient.post<any>(`${this.baseUrl}/api/Hotel`, hotel);
   }
   deleteHotel(id: number): Observable<any> {
     return this.httpclient.delete<any[]>(`${this.baseUrl}/api/Hotel/${id}`);
