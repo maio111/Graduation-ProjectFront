@@ -1,4 +1,5 @@
 export interface Hotel {
+    id: number;
     name: string;
     description: string;
     rating: number;
@@ -7,5 +8,4 @@ export interface Hotel {
     websiteURL: string;
     latitude: number;
     longitude: number;
-    cityID: number;
 }

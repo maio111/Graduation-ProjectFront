@@ -1,0 +1,33 @@
+<h2>Section title</h2>
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Email</th>
+                <th scope="col">URL</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of hotels let i = index">
+                <td>{{i+1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.description}}</td>
+                <td>{{item.rating}}</td>
+                <td>{{item.phoneNumber}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.websiteURL}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" (click)="navigateToEdit(item.id)">Edit</button>
+                    <button type="button" class="btn btn-primary" (click)="navigateToDetails(item.id)">Details</button>
+                    <button type="button" class="btn btn-primary" (click)="deleteHotel(item.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
