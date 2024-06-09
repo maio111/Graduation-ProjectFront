@@ -290,6 +290,23 @@
     }
   
   }
+  @media (max-width: 800px) {
+    .nav__links {
+      display: none;
+    }
+  
+    .header__container {
+      padding-bottom: 25rem;
+    }
+  
+    .booking__container {
+      flex-direction: column;
+      bottom: -25rem;
+    }
+  
+    .booking__container form {
+      grid-template-columns: repeat(1, 1fr);
+    }}
   
   @media (max-width: 600px) {
     .nav__links {
