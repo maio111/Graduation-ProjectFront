@@ -20,8 +20,8 @@ export const routes: Routes = [
             { path: '', component: AdminsDashboardComponent },
             { path: 'adminsDashboard', component: AdminsDashboardComponent },
             { path: 'addHotel', component: AddHotelComponent },
-            { path: 'editHotel', component: EditHotelComponent },
-            { path: 'detailsHotel', component: DetailsHotelComponent },
+            { path: 'editHotel/:Id', component: EditHotelComponent },
+            { path: 'detailsHotel/:Id', component: DetailsHotelComponent },
             {path: 'hotelsDashboard', component: HotelsDashboardComponent},
             { path: 'countriesDashboard', component: CountriesDashboardComponent },
         ]

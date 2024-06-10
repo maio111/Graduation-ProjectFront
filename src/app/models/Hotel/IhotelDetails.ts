@@ -1,4 +1,4 @@
-export interface Hotel {
+export interface IhotelDetails {
     id: number;
     name: string;
     description: string;

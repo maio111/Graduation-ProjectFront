@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Hotel } from '../../../models/Hotel';
+import { Ihotel } from '../../../models/Hotel/Ihotel';
 import { HotelService } from '../../../services/hotel.service';
 import { NgLocalization } from '@angular/common';
 

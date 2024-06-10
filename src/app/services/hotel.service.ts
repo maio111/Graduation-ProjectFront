@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Hotel } from '../models/Hotel';
+import { Ihotel } from '../models/Hotel/Ihotel';
 import {environment} from '../../environments/environment'
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class HotelService {
   getAllHotels(): Observable<any[]> {
     return this.httpclient.get<any[]>(`${this.baseUrl}/api/Hotel`);
   }
-  getHotelById(id:number): Observable<any>{
+  getHotelById(id: number): Observable<any> {
     return this.httpclient.get<any[]>(`${this.baseUrl}/api/Hotel/${id}`);
   }
   addHotel(hotel: any): Observable<any> {
@@ -23,7 +23,7 @@ export class HotelService {
   deleteHotel(id: number): Observable<any> {
     return this.httpclient.delete<any[]>(`${this.baseUrl}/api/Hotel/${id}`);
   }
-  updateHotel(id: number, hotel: Hotel): Observable<any> {
+  updateHotel(id: number, hotel: Ihotel): Observable<any> {
     return this.httpclient.patch<any[]>(`${this.baseUrl}/api/Hotel/${id}`, hotel);
   }
 }

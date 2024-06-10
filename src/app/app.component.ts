@@ -9,7 +9,6 @@ import { RouterModule} from '@angular/router';
 import { AdminsDashboardComponent } from './Components/admin-dashboard/admins-dashboard/admins-dashboard.component';
 import { HotelsDashboardComponent } from './Components/admin-dashboard/hotels-dashboard/hotels-dashboard.component';
 import { CountriesDashboardComponent } from './Components/admin-dashboard/countries-dashboard/countries-dashboard.component';
-
 @Component({
     selector: 'app-root',
     standalone: true,
@@ -26,7 +25,7 @@ import { CountriesDashboardComponent } from './Components/admin-dashboard/countr
     FooterComponent,
     AdminsDashboardComponent,
     HotelsDashboardComponent,
-    CountriesDashboardComponent
+    CountriesDashboardComponent,
   ]
 })
 export class AppComponent {
