@@ -10,7 +10,6 @@ nav {
   backdrop-filter: blur;
   z-index: 100; /* Ensure this is higher than any other z-index values in your layout */
   padding: -1rem -1rem; /* Optional: add padding for better appearance */
-   /* Semi-transparent background */
 }
 
 .nav__logo img {
