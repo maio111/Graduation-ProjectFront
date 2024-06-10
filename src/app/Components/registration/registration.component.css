@@ -1,123 +1,151 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+* { box-sizing: border-box; }
+@import url('https://fonts.googleapis.com/css?family=Rubik:400,500&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-*:focus,
-*:active {
-    outline: none !important;
-    -webkit-tap-highlight-color: transparent;
-}
-
-html,
 body {
-    display: grid;
-    height: 100%;
-    width: 100%;
-    font-family: "Poppins", sans-serif;
-    place-items: center;
-    background: linear-gradient(315deg, #ffffff, #d7e1ec);
+  font-family: 'Rubik', sans-serif;
 }
 
-.wrapper {
-    display: inline-flex;
-    list-style: none;
+.container {
+  display: flex;
+  height: 100vh;
+  margin-right: 5px;
+ 
+}
+.left {
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  animation-name: left;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-delay: 1s;
+ 
 }
 
-.wrapper .icon {
-    position: relative;
-    background: #ffffff;
-    border-radius: 50%;
-    padding: 15px;
-    margin: 10px;
-    width: 50px;
-    height: 50px;
-    font-size: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+
+.right {
+  flex: 1;
+  background-color: black;
+  transition: 1s;
+  background-image: url("../../../assets/img/hotel3.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.wrapper .icon span i {
-    color: black; /* Ensure the icons are black */
+  
+
+.header > h2 {
+  margin: 0;
+  color: rgba(1, 116, 121, 0.7);
 }
 
-.wrapper .tooltip {
-    position: absolute;
-    top: 0;
-    font-size: 14px;
-    background: #ffffff;
-    color: #ffffff;
-    padding: 5px 8px;
-    border-radius: 5px;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+.header > h4 {
+  margin-top: 10px;
+  font-weight: normal;
+  font-size: 15px;
+  color: rgba(0,0,0,.4);
+}
+
+.form {
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form > p {
+  text-align: right;
+}
+
+.form > p > a {
+  color: #000;
+  font-size: 14px;
+}
+
+.form-field {
+  height: 46px;
+  padding: 0 16px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-family: 'Rubik', sans-serif;
+  outline: 0;
+  transition: .2s;
+  margin-top: 20px;
+}
+
+.form-field:focus {
+  border-color: #0f7ef1;
+}
+
+.form > button {
+  padding: 12px 10px;
+  border: 0;
+  background: rgba(1, 116, 121, 0.7); 
+  border-radius: 3px;
+  margin-top: 10px;
+  color: #fff;
+  letter-spacing: 1px;
+  font-family: 'Rubik', sans-serif;
+}
+
+.animation {
+  animation-name: move;
+  animation-duration: .4s;
+  animation-fill-mode: both;
+  animation-delay: 2s;
+}
+
+.a1 {
+  animation-delay: 2s;
+}
+
+.a2 {
+  animation-delay: 2.1s;
+}
+
+.a3 {
+  animation-delay: 2.2s;
+}
+
+.a4 {
+  animation-delay: 2.3s;
+}
+
+.a5 {
+  animation-delay: 2.4s;
+}
+
+.a6 {
+  animation-delay: 2.5s;
+}
+
+@keyframes move {
+  0% {
     opacity: 0;
-    pointer-events: none;
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
+    visibility: hidden;
+    transform: translateY(-40px);
+  }
 
-.wrapper .tooltip::before {
-    position: absolute;
-    content: "";
-    height: 8px;
-    width: 8px;
-    background: #ffffff;
-    bottom: -3px;
-    left: 50%;
-    transform: translate(-50%) rotate(45deg);
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.wrapper .icon:hover .tooltip {
-    top: -45px;
+  100% {
     opacity: 1;
     visibility: visible;
-    pointer-events: auto;
+    transform: translateY(0);
+  }
 }
 
-.wrapper .icon:hover span,
-.wrapper .icon:hover .tooltip {
-    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
-}
+@keyframes left {
+  0% {
+    opacity: 0;
+    width: 0;
+  }
 
-.wrapper .facebook:hover,
-.wrapper .facebook:hover .tooltip,
-.wrapper .facebook:hover .tooltip::before {
-    background: #1877F2;
-    color: #ffffff;
-}
-
-.wrapper .twitter:hover,
-.wrapper .twitter:hover .tooltip,
-.wrapper .twitter:hover .tooltip::before {
-    background: #1DA1F2;
-    color: #ffffff;
-}
-
-.wrapper .instagram:hover,
-.wrapper .instagram:hover .tooltip,
-.wrapper .instagram:hover .tooltip::before {
-    background: #E4405F;
-    color: #ffffff;
-}
-
-.wrapper .github:hover,
-.wrapper .github:hover .tooltip,
-.wrapper .github:hover .tooltip::before {
-    background: #333333;
-    color: #ffffff;
-}
-
-.wrapper .youtube:hover,
-.wrapper .youtube:hover .tooltip,
-.wrapper .youtube:hover .tooltip::before {
-    background: #CD201F;
-    color: #ffffff;
+  100% {
+    opacity: 1;
+    padding: 20px 40px;
+    width: 440px;
+  }
 }

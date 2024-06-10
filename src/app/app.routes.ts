@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+<<<<<<< HEAD
 import { HotelBookingComponent } from './Components/hotel-booking/hotel-booking.component';
 import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
 import { AdminsDashboardComponent } from './Components/admin-dashboard/admins-dashboard/admins-dashboard.component';
@@ -29,3 +30,15 @@ export const routes: Routes = [
     { path: '**', component: PageNotFoundComponent },
 
 ];
+=======
+import { HomeComponent } from './Components/home/home.component';
+import { CarRentalComponent } from './Components/car-rental/car-rental.component';
+import { HotelBookingComponent } from './Components/hotel-booking/hotel-booking.component';
+
+export const routes: Routes = [
+    {"path":"",component:HomeComponent},
+    {"path":"home",component:HomeComponent},
+    {"path":"car",component:CarRentalComponent},
+    {"path":"hotel",component:HotelBookingComponent}
+];
+>>>>>>> 7083f9023aad2c9e752a09b5ff05907c13215893
