@@ -55,6 +55,10 @@ export class HotelsDashboardComponent {
     this.currentHotelId = id;
     this.router.navigate(['dashboard/detailsHotel', this.currentHotelId]);
   }
+  navigateToRooms(id: number) {
+    this.currentHotelId = id;
+    this.router.navigate(['dashboard/roomsDashboard', this.currentHotelId]);
+  }
 
   deleteHotel(id: number) {
     this.currentHotelId = id;

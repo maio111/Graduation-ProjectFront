@@ -1,4 +1,5 @@
-export interface RoomType {
+export interface IRoomType {
+    id: number;
     name: string;
     pricePerNight: number;
 }
