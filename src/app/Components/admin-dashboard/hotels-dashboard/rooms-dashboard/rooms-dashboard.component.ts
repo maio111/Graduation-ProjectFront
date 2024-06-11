@@ -5,6 +5,8 @@ import { RoomService } from '../../../../services/room.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HotelService } from '../../../../services/hotel.service';
+import { Ihotel } from '../../../../models/Hotel/Ihotel';
+import { AddRoomDTO } from '../../../../models/Room/AddRoomDTO';
 
 @Component({
   selector: 'app-rooms-dashboard',
@@ -27,15 +29,17 @@ export class RoomsDashboardComponent {
   hotelId!: number;
   currentRoomId!: number;
   rooms!: RoomsViewDTO[];
-  constructor(private router: Router, private roomService: RoomService,private hotelService:HotelService, private route: ActivatedRoute) { }
+  hotel!: Ihotel;
+  constructor(private router: Router, private roomService: RoomService, private hotelService: HotelService, private route: ActivatedRoute) { 
+    
+  }
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.hotelId = params['Id'];
     });
-
     this.hotelService.getHotelById(this.hotelId).subscribe((res) => {
+      this.hotel = res.data;
       console.log(res.data)
-      res.data.Id = this.hotelId;
     });
     this.getallRooms();
   }
@@ -72,6 +76,6 @@ export class RoomsDashboardComponent {
   }
 
   goToAddPage() {
-    this.router.navigate(['dashboard/addRoom',this.hotelId]);
+    this.router.navigate(['/dashboard/addRoom',this.hotelId]);
   }
 }

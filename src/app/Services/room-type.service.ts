@@ -12,8 +12,8 @@ export class RoomTypeService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getRoomTypes(): Observable<any[]> {
-    return this.httpClient.get<any[]>(`${this.baseUrl}/api/RoomType`);
+  getRoomTypes(): Observable<any> {
+    return this.httpClient.get<any>(`${this.baseUrl}/api/RoomType`);
   }
 
   getRoomTypeById(id: number): Observable<any> {
