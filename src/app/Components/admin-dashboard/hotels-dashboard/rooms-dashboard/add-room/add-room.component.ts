@@ -1,20 +1,21 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { IRoom } from '../../../../../models/IRoom';
 import { AddRoomDTO } from '../../../../../models/Room/AddRoomDTO';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RoomService } from '../../../../../services/room.service';
 import { HotelService } from '../../../../../services/hotel.service';
+import { RoomTypeService } from '../../../../../services/room-type.service';
+import { IRoomType } from '../../../../../models/IRoomType';
 
 @Component({
   selector: 'app-add-room',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './add-room.component.html',
   styleUrl: './add-room.component.css'
 })
-export class AddRoomComponent {
+export class AddRoomComponent implements OnInit{
   room: AddRoomDTO = {
     availabilityStatus: false,
     capacity: 0,
@@ -24,24 +25,35 @@ export class AddRoomComponent {
     isBooked: false
   };
   hotelId!: number;
-  constructor(private router: Router, private roomService: RoomService,private hotelService:HotelService, private route: ActivatedRoute) { 
+  roomTypes!: IRoomType[];
+  selectedRoomType!: number;
+  constructor(private router: Router, private roomService: RoomService, private hotelService: HotelService, private roomTypeService: RoomTypeService, private route: ActivatedRoute) {
     this.route.params.subscribe((params) => {
-      this.hotelId = params['Id'];
+      this.hotelId = params['hotelId'];
     });
-
-    this.hotelService.getHotelById(this.hotelId).subscribe((res) => {
-      console.log(res.data)
-    });
-    this.hotelId = this.hotelId;
-    this.room.hotelId = this.hotelId;
+  }
+  ngOnInit(): void {
+    this.getRoomTypes();
+    this.selectedRoomType = this.roomTypes[0]?.id;
+  }
+  getRoomTypes() {
+    this.roomTypeService.getRoomTypes().subscribe({
+      next: (res) => {
+        console.log(res.data)
+        this.roomTypes = res.data;
+      },
+      error: (err) => console.log(err)
+    })
   }
 
   onSubmit() {
+    this.room.roomTypeId = this.selectedRoomType;
+    this.room.hotelId = this.hotelId;
     this.roomService.addRoom(this.room).subscribe(
       {
         next: (res) => {
           console.log(res);
-          this.router.navigate(['/dashboard/roomsDashboard']);
+          this.router.navigate(['/dashboard/roomsDashboard', this.hotelId]);
         },
         error: (error) => {
           console.error('Error adding hotel:', error);
@@ -51,6 +63,6 @@ export class AddRoomComponent {
   }
 
   back(): void {
-    this.router.navigate(['/dashboard/roomsDashboard',this.hotelId]);
+    this.router.navigate(['dashboard/roomsDashboard/', this.hotelId]);
   }
 }

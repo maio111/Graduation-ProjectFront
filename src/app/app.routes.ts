@@ -28,7 +28,7 @@ export const routes: Routes = [
             { path: 'hotelsDashboard', component: HotelsDashboardComponent},
             { path: 'countriesDashboard', component: CountryDashboardComponent },
             { path: 'roomsDashboard/:Id', component: RoomsDashboardComponent },
-            { path: 'addRoom/:Id', component: AddRoomComponent },
+            { path: 'addRoom/:hotelId', component: AddRoomComponent },
             { path: 'editRoom/:Id', component: EditRoomComponent }
         ]
     },
