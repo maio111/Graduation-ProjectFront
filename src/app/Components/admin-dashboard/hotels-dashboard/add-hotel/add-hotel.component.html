@@ -41,17 +41,19 @@
                             <div class="invalid-feedback">Please enter valid URL.</div>
                         </div>
                         <div class="mb-3">
+                            <app-hotel-map [hotel]="hotel" (coordinatesChange)="onCoordinatesChange($event)"></app-hotel-map>
+                        </div>
+                        <div class="mb-3">
                             <label for="latitude" class="form-label">Latitude:</label>
-                            <input type="number" id="latitude" name="latitude" [(ngModel)]="hotel.latitude"
-                                class="form-control" required>
+                            <input type="number" id="latitude" name="latitude" [(ngModel)]="hotel.latitude" class="form-control" required>
                             <div class="invalid-feedback">Please enter valid latitude.</div>
                         </div>
                         <div class="mb-3">
-                            <label for="longitude" class="form-label">longitude:</label>
-                            <input type="number" id="longitude" name="longitude" [(ngModel)]="hotel.longitude"
-                                class="form-control" required>
+                            <label for="longitude" class="form-label">Longitude:</label>
+                            <input type="number" id="longitude" name="longitude" [(ngModel)]="hotel.longitude" class="form-control" required>
                             <div class="invalid-feedback">Please enter valid longitude.</div>
                         </div>
+
                     </div>
                 </div>
                 <div class="row justify-content-center">

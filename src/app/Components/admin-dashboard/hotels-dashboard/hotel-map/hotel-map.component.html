@@ -1,0 +1,7 @@
+<div class="mb-3">
+    <div class="map-container">
+        <google-map height="400px" width="100%" [center]="center" [zoom]="zoom" (mapClick)="onMapClick($event)">
+            <map-marker [position]="markerPosition" *ngIf="markerPosition"></map-marker>
+        </google-map>
+    </div>
+</div>
