@@ -1,71 +1,104 @@
-<div class="container mt-5">
-    <div class="row" class="row justify-content-center">
-        <div class="col-md-6">
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
             <form (ngSubmit)="onSubmit()" #hotelForm="ngForm" class="needs-validation" novalidate>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="mb-3">
                             <label for="name" class="form-label">Name:</label>
-                            <input type="text" id="name" name="name" [(ngModel)]="hotel.name"
-                                class="form-control" required>
-                            <div class="invalid-feedback">Please enter the hotel name.</div>
+                            <input type="text" id="name" name="name" [(ngModel)]="hotel.name" class="form-control"
+                                required>
+                            <div class="invalid-feedback"
+                                *ngIf="hotelForm.controls['name'].invalid && (hotelForm.controls['name'].dirty || hotelForm.controls['name'].touched)">
+                                Please enter the hotel name.
+                            </div>
                         </div>
+
+                        <div class="mb-3">
+                            <label for="latitude" class="form-label">Latitude:</label>
+                            <input type="number" id="latitude" name="latitude" [(ngModel)]="hotel.latitude"
+                                class="form-control" required>
+                            <div class="invalid-feedback"
+                                *ngIf="hotelForm.controls['latitude'].invalid && (hotelForm.controls['latitude'].dirty || hotelForm.controls['latitude'].touched)">
+                                Please enter a valid latitude.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="longitude" class="form-label">Longitude:</label>
+                            <input type="number" id="longitude" name="longitude" [(ngModel)]="hotel.longitude"
+                                class="form-control" required>
+                            <div class="invalid-feedback"
+                                *ngIf="hotelForm.controls['longitude'].invalid && (hotelForm.controls['longitude'].dirty || hotelForm.controls['longitude'].touched)">
+                                Please enter a valid longitude.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
                         <div class="mb-3">
                             <label for="email" class="form-label">Email:</label>
                             <input type="email" id="email" name="email" [(ngModel)]="hotel.email" class="form-control"
                                 required>
-                            <div class="invalid-feedback">Please enter valid Email.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="description" class="form-label">Description:</label>
-                            <input type="text" id="description" name="description" [(ngModel)]="hotel.description"
-                                class="form-control" required>
-                            <div class="invalid-feedback">Please enter Invalid description.</div>
+                            <div class="invalid-feedback"
+                                *ngIf="hotelForm.controls['email'].invalid && (hotelForm.controls['email'].dirty || hotelForm.controls['email'].touched)">
+                                Please enter a valid email.
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label for="rating" class="form-label">Rate:</label>
                             <input type="number" id="rating" name="rating" [(ngModel)]="hotel.rating"
-                                class="form-control" required>
-                            <div class="invalid-feedback">Please enter valid Rate.</div>
+                                class="form-control" required min="0" max="5">
+                            <div class="invalid-feedback"
+                                *ngIf="hotelForm.controls['rating'].invalid && (hotelForm.controls['rating'].dirty || hotelForm.controls['rating'].touched)">
+                                Please enter a valid rate between 0 and 5.
+                            </div>
                         </div>
+
+                    </div>
+                    <div class="col-md-4">
                         <div class="mb-3">
                             <label for="phoneNumber" class="form-label">Phone Number:</label>
                             <input type="text" id="phoneNumber" name="phoneNumber" [(ngModel)]="hotel.phoneNumber"
                                 class="form-control" required>
-                            <div class="invalid-feedback">Please enter valid Phone Number.</div>
+                            <div class="invalid-feedback"
+                                *ngIf="hotelForm.controls['phoneNumber'].invalid && (hotelForm.controls['phoneNumber'].dirty || hotelForm.controls['phoneNumber'].touched)">
+                                Please enter a valid phone number.
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label for="websiteURL" class="form-label">Website URL:</label>
-                            <input type="text" id="websiteURL" name="websiteURL" [(ngModel)]="hotel.websiteURL"
+                            <input type="url" id="websiteURL" name="websiteURL" [(ngModel)]="hotel.webSiteURL"
                                 class="form-control" required>
-                            <div class="invalid-feedback">Please enter valid URL.</div>
+                            <div class="invalid-feedback"
+                                *ngIf="hotelForm.controls['websiteURL'].invalid && (hotelForm.controls['websiteURL'].dirty || hotelForm.controls['websiteURL'].touched)">
+                                Please enter a valid URL.
+                            </div>
                         </div>
+                    </div>
+                    <div class="col-md-12">
                         <div class="mb-3">
-                            <app-hotel-map [hotel]="hotel" (coordinatesChange)="onCoordinatesChange($event)"></app-hotel-map>
+                            <label for="description" class="form-label">Description:</label>
+                            <textarea id="description" name="description" [(ngModel)]="hotel.description"
+                                class="form-control" rows="3" required></textarea>
+                            <div class="invalid-feedback"
+                                *ngIf="hotelForm.controls['description'].invalid && (hotelForm.controls['description'].dirty || hotelForm.controls['description'].touched)">
+                                Please enter a description.
+                            </div>
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
                         <div class="mb-3">
-                            <label for="latitude" class="form-label">Latitude:</label>
-                            <input type="number" id="latitude" name="latitude" [(ngModel)]="hotel.latitude" class="form-control" required>
-                            <div class="invalid-feedback">Please enter valid latitude.</div>
+                            <app-hotel-map [hotel]="hotel"
+                                (coordinatesChange)="onCoordinatesChange($event)"></app-hotel-map>
                         </div>
-                        <div class="mb-3">
-                            <label for="longitude" class="form-label">Longitude:</label>
-                            <input type="number" id="longitude" name="longitude" [(ngModel)]="hotel.longitude" class="form-control" required>
-                            <div class="invalid-feedback">Please enter valid longitude.</div>
-                        </div>
-
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-2">
+                    <div class="col-md-3">
                         <button type="submit" [disabled]="hotelForm.invalid"
-                            class="btn bsb-btn-xl btn-outline-primary rounded-pill m-2">Add</button>
+                            class="btn bsb-btn-xl btn-outline-primary m-2">Add Hotel</button>
                     </div>
-                    <div class="col-2">
-                        <a class="btn bsb-btn-xl btn-outline-danger rounded-pill m-2" (click)="back()">Back</a>
+                    <div class="col-md-3">
+                        <a class="btn bsb-btn-xl btn-outline-danger m-2" (click)="back()">Back</a>
                     </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>

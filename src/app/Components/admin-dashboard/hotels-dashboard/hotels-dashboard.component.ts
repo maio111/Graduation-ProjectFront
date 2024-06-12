@@ -4,7 +4,6 @@ import { HotelService } from '../../../services/hotel.service';
 import { Ihotel } from '../../../models/Hotel/Ihotel';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-// import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -18,13 +17,11 @@ export class HotelsDashboardComponent {
   hotels!: Ihotel[];
   deletedItemId!: number;
   currentHotelId!: number;
-  // modalRef?: BsModalRef;
   message?: string;
 
   constructor(
     private hotelService: HotelService,
     private router: Router,
-    // private modalService: BsModalService
   ) { }
 
   ngOnInit(): void {
@@ -46,9 +43,11 @@ export class HotelsDashboardComponent {
     });
   }
 
-  navigateToEdit(Id: number) {
+  navigateToEdit(Id: number, hotel:Ihotel) {
     this.currentHotelId = Id;
-    this.router.navigate(['dashboard/editHotel', this.currentHotelId]);
+    this.router.navigate(['dashboard/editHotel', this.currentHotelId], {
+      queryParams: { hotel: JSON.stringify(hotel) }
+    });
   }
 
   navigateToDetails(id: number) {
@@ -58,6 +57,14 @@ export class HotelsDashboardComponent {
   navigateToRooms(id: number) {
     this.currentHotelId = id;
     this.router.navigate(['dashboard/roomsDashboard', this.currentHotelId]);
+  }
+  navigateToFeatures(id: number) {
+    this.currentHotelId = id;
+    this.router.navigate(['dashboard/featuresDashboard', this.currentHotelId]);
+  }
+  navigateToPhotos(id: number) {
+    this.currentHotelId = id;
+    this.router.navigate(['dashboard/photosDashboard', this.currentHotelId]);
   }
 
   deleteHotel(id: number) {
@@ -75,19 +82,5 @@ export class HotelsDashboardComponent {
     this.router.navigate(['dashboard/addHotel']);
   }
 
-  // openModal(template: TemplateRef<void>, id: number) {
-  //   this.deletedItemId = id;
-  //   this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
-  // }
 
-  // confirm(): void {
-  //   this.message = 'Confirmed!';
-  //   this.deleteHotel(this.deletedItemId);
-  //   this.modalRef?.hide();
-  // }
-
-  // decline(): void {
-  //   this.message = 'Declined!';
-  //   this.modalRef?.hide();
-  // }
 }

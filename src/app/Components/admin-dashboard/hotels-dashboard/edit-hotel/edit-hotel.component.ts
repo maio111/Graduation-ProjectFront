@@ -4,12 +4,13 @@ import { HotelService } from '../../../../services/hotel.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HotelMapComponent } from "../hotel-map/hotel-map.component";
 @Component({
-  selector: 'app-edit-hotel',
-  standalone: true,
-  imports: [FormsModule, CommonModule],
-  templateUrl: './edit-hotel.component.html',
-  styleUrl: './edit-hotel.component.css'
+    selector: 'app-edit-hotel',
+    standalone: true,
+    templateUrl: './edit-hotel.component.html',
+    styleUrl: './edit-hotel.component.css',
+    imports: [FormsModule, CommonModule, HotelMapComponent]
 })
 export class EditHotelComponent {
   hotel: Ihotel = {
@@ -19,7 +20,7 @@ export class EditHotelComponent {
     rating: 0,
     phoneNumber: '',
     email: '',
-    websiteURL: '',
+    webSiteURL: '',
     latitude: 0,
     longitude: 0
   };
@@ -28,13 +29,10 @@ export class EditHotelComponent {
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.hotelId = params['Id'];
+      this.route.queryParams.subscribe(params => {
+        this.hotel = JSON.parse(params['hotel']);
+      });
     });
-
-    this.hotelService.getHotelById(this.hotelId).subscribe((res) => {
-      console.log(res.data)
-      this.hotel = res;
-    });
-    this.hotel.id = this.hotelId;
   }
 
   onSubmit() {
@@ -55,5 +53,9 @@ export class EditHotelComponent {
 
   back(): void {
     this.router.navigate(['/dashboard/hotelsDashboard']);
+  }
+  onCoordinatesChange(newCoordinates: { latitude: number; longitude: number }) {
+    this.hotel.latitude = newCoordinates.latitude;
+    this.hotel.longitude = newCoordinates.longitude;
   }
 }

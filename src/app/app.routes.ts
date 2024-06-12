@@ -12,6 +12,12 @@ import { CountryDashboardComponent } from './Components/admin-dashboard/country-
 import { RoomsDashboardComponent } from './Components/admin-dashboard/hotels-dashboard/rooms-dashboard/rooms-dashboard.component';
 import { AddRoomComponent } from './Components/admin-dashboard/hotels-dashboard/rooms-dashboard/add-room/add-room.component';
 import { EditRoomComponent } from './Components/admin-dashboard/hotels-dashboard/rooms-dashboard/edit-room/edit-room.component';
+import { FeaturesDashboardComponent } from './Components/admin-dashboard/hotels-dashboard/features-dashboard/features-dashboard.component';
+import { PhotosDashboardComponent } from './Components/admin-dashboard/hotels-dashboard/photos-dashboard/photos-dashboard.component';
+import { AddFeatureComponent } from './Components/admin-dashboard/hotels-dashboard/features-dashboard/add-feature/add-feature.component';
+import { EditFeatureComponent } from './Components/admin-dashboard/hotels-dashboard/features-dashboard/edit-feature/edit-feature.component';
+import { AddPhotoComponent } from './Components/admin-dashboard/hotels-dashboard/photos-dashboard/add-photo/add-photo.component';
+import { EditPhotoComponent } from './Components/admin-dashboard/hotels-dashboard/photos-dashboard/edit-photo/edit-photo.component';
 
 export const routes: Routes = [
     { path: '', component: HotelBookingComponent }, 
@@ -22,14 +28,21 @@ export const routes: Routes = [
         children: [
             { path: '', component: AdminsDashboardComponent },
             { path: 'adminsDashboard', component: AdminsDashboardComponent },
+            { path: 'hotelsDashboard', component: HotelsDashboardComponent },
             { path: 'addHotel', component: AddHotelComponent },
             { path: 'editHotel/:Id', component: EditHotelComponent },
             { path: 'detailsHotel/:Id', component: DetailsHotelComponent },
-            { path: 'hotelsDashboard', component: HotelsDashboardComponent},
             { path: 'countriesDashboard', component: CountryDashboardComponent },
             { path: 'roomsDashboard/:Id', component: RoomsDashboardComponent },
             { path: 'addRoom/:hotelId', component: AddRoomComponent },
-            { path: 'editRoom/:Id', component: EditRoomComponent }
+            { path: 'editRoom/:Id', component: EditRoomComponent },
+            { path: 'featuresDashboard/:Id', component: FeaturesDashboardComponent },
+            { path: 'addFeature/:Id', component: AddFeatureComponent },
+            { path: 'editFeature/:Id', component: EditFeatureComponent },
+            { path: 'photosDashboard/:Id', component: PhotosDashboardComponent },
+            { path: 'addPhoto/:Id', component: AddPhotoComponent },
+            { path: 'editPhoto/:Id', component: EditPhotoComponent },
+
         ]
     },
     { path: '**', component: PageNotFoundComponent },

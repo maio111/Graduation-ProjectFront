@@ -21,7 +21,7 @@ export class AddHotelComponent {
     rating: 0,
     phoneNumber: '',
     email: '',
-    websiteURL: '',
+    webSiteURL: '',
     latitude: 0,
     longitude: 0
   };

@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
-import { GoogleMap, GoogleMapsModule, MapMarker } from '@angular/google-maps';
+import { GoogleMap, GoogleMapsModule} from '@angular/google-maps';
 
 @Component({
   selector: 'app-hotel-map',
   standalone: true,
-  imports: [GoogleMap, GoogleMapsModule, MapMarker],
+  imports: [GoogleMap, GoogleMapsModule],
   templateUrl: './hotel-map.component.html',
   styleUrls: ['./hotel-map.component.css']
 })
