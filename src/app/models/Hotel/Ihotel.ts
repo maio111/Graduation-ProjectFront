@@ -5,7 +5,7 @@ export interface Ihotel {
     rating: number;
     phoneNumber: string;
     email: string;
-    websiteURL: string;
+    webSiteURL: string;
     latitude: number;
     longitude: number;
 }

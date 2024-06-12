@@ -12,6 +12,8 @@ import { LoginService } from './Services/Login/login.service';
 import { FooterComponent } from './Components/footer/footer.component';
 import { AdminsDashboardComponent } from './Components/admin-dashboard/admins-dashboard/admins-dashboard.component';
 import { CountryDashboardComponent } from './Components/admin-dashboard/country-dashboard/country-dashboard.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @Component({
     selector: 'app-root',
@@ -30,6 +32,7 @@ import { CountryDashboardComponent } from './Components/admin-dashboard/country-
     AdminsDashboardComponent,
     HotelBookingComponent,
     CountryDashboardComponent,
+    GoogleMapsModule
   ]
 })
 export class AppComponent {
