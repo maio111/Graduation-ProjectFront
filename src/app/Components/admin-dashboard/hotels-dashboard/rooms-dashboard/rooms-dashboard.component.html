@@ -1,0 +1,45 @@
+<div class="container mt-2">
+    <h2 class="mb-4 text-center">Room Management</h2>
+    <div class="btn-toolbar mb-3 justify-content-end">
+        <div class="btn-group">
+            <button class="btn btn-outline-primary" (click)="goToAddPage()">Add New Room</button>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Type Name</th>
+                    <th scope="col">Hotel Name</th>
+                    <th scope="col">Capacity</th>
+                    <th scope="col">Price Per Night</th>
+                    <th scope="col">View</th>
+                    <th scope="col">Availability Status</th>
+                    <th scope="col">Is Booked</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of rooms; let i = index">
+                    <td>{{i + 1}}</td>
+                    <td>{{item.typeName}}</td>
+                    <td>{{item.hotelName}}</td>
+                    <td>{{item.capacity}}</td>
+                    <td>{{item.pricePerNight}}</td>
+                    <td>{{item.view}}</td>
+                    <td>{{item.availabilityStatus}}</td>
+                    <td>{{item.isBooked}}</td>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-primary"
+                                (click)="navigateToEdit(item.id)">Edit</button>
+                            <button type="button" class="btn btn-sm btn-outline-danger"
+                                (click)="deleteRoom(item.id)">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

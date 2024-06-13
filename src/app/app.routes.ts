@@ -9,8 +9,20 @@ import { AddHotelComponent } from './Components/admin-dashboard/hotels-dashboard
 import { EditHotelComponent } from './Components/admin-dashboard/hotels-dashboard/edit-hotel/edit-hotel.component';
 import { DetailsHotelComponent } from './Components/admin-dashboard/hotels-dashboard/details-hotel/details-hotel.component';
 import { CountryDashboardComponent } from './Components/admin-dashboard/country-dashboard/country-dashboard.component';
+<<<<<<< HEAD
 import { EditCountryComponent } from './Components/admin-dashboard/country-dashboard/edit-country/edit-country.component';
 import { AddCountryComponent } from './Components/admin-dashboard/country-dashboard/add-country/add-country.component';
+=======
+import { RoomsDashboardComponent } from './Components/admin-dashboard/hotels-dashboard/rooms-dashboard/rooms-dashboard.component';
+import { AddRoomComponent } from './Components/admin-dashboard/hotels-dashboard/rooms-dashboard/add-room/add-room.component';
+import { EditRoomComponent } from './Components/admin-dashboard/hotels-dashboard/rooms-dashboard/edit-room/edit-room.component';
+import { FeaturesDashboardComponent } from './Components/admin-dashboard/hotels-dashboard/features-dashboard/features-dashboard.component';
+import { PhotosDashboardComponent } from './Components/admin-dashboard/hotels-dashboard/photos-dashboard/photos-dashboard.component';
+import { AddFeatureComponent } from './Components/admin-dashboard/hotels-dashboard/features-dashboard/add-feature/add-feature.component';
+import { EditFeatureComponent } from './Components/admin-dashboard/hotels-dashboard/features-dashboard/edit-feature/edit-feature.component';
+import { AddPhotoComponent } from './Components/admin-dashboard/hotels-dashboard/photos-dashboard/add-photo/add-photo.component';
+import { EditPhotoComponent } from './Components/admin-dashboard/hotels-dashboard/photos-dashboard/edit-photo/edit-photo.component';
+>>>>>>> 48ed88fc2d2c331f084af9ba5cbc1a277d6edfc2
 
 export const routes: Routes = [
     { path: '', component: HotelBookingComponent }, 
@@ -21,13 +33,26 @@ export const routes: Routes = [
         children: [
             { path: '', component: AdminsDashboardComponent },
             { path: 'adminsDashboard', component: AdminsDashboardComponent },
+            { path: 'hotelsDashboard', component: HotelsDashboardComponent },
             { path: 'addHotel', component: AddHotelComponent },
             { path: 'editHotel/:Id', component: EditHotelComponent },
             { path: 'detailsHotel/:Id', component: DetailsHotelComponent },
-            {path: 'hotelsDashboard', component: HotelsDashboardComponent},
             { path: 'countriesDashboard', component: CountryDashboardComponent },
+<<<<<<< HEAD
             { path: 'addCountry', component: AddCountryComponent },
             {path:'editCountry/:Id',component:EditCountryComponent }
+=======
+            { path: 'roomsDashboard/:Id', component: RoomsDashboardComponent },
+            { path: 'addRoom/:hotelId', component: AddRoomComponent },
+            { path: 'editRoom/:Id', component: EditRoomComponent },
+            { path: 'featuresDashboard/:Id', component: FeaturesDashboardComponent },
+            { path: 'addFeature/:hotelId', component: AddFeatureComponent },
+            { path: 'editFeature/:hotelId', component: EditFeatureComponent },
+            { path: 'photosDashboard/:Id', component: PhotosDashboardComponent },
+            { path: 'addPhoto/:hotelId', component: AddPhotoComponent },
+            { path: 'editPhoto/:hotelId', component: EditPhotoComponent },
+
+>>>>>>> 48ed88fc2d2c331f084af9ba5cbc1a277d6edfc2
         ]
     },
     { path: '**', component: PageNotFoundComponent },

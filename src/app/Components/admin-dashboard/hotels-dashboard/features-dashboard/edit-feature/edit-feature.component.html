@@ -1,0 +1,28 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form (ngSubmit)="onSubmit()" #hotelForm="ngForm" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Feature Name:</label>
+                    <input type="text" id="name" name="name" [(ngModel)]="feature.name" #name="ngModel"
+                        class="form-control" required />
+                    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="invalid-feedback">
+                        Please enter the feature name.
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-3">
+                        <button type="submit" [disabled]="hotelForm.invalid" class="btn btn-outline-primary m-2">
+                            Update Feature
+                        </button>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-outline-danger m-2" (click)="back()">
+                            Back
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

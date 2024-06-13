@@ -1,0 +1,57 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form (ngSubmit)="onSubmit()" #hotelForm="ngForm" class="needs-validation" novalidate>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="mb-3">
+                            <label for="capacity" class="form-label">Capacity:</label>
+                            <input type="number" id="capacity" name="capacity" [(ngModel)]="room.capacity"
+                                class="form-control" required>
+                            <div class="invalid-feedback">Please enter a valid Capacity.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="view" class="form-label">View:</label>
+                            <input type="number" id="view" name="view" [(ngModel)]="room.view" class="form-control"
+                                required>
+                            <div class="invalid-feedback">Please enter a valid View.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="roomType" class="form-label">Room Type:</label>
+                            <select id="roomType" name="roomType" [(ngModel)]="selectedRoomType" class="form-select"
+                                required>
+                                <option *ngFor="let roomType of roomTypes" [value]="roomType.id">{{ roomType.name }}
+                                </option>
+                            </select>
+                            <div class="invalid-feedback">Please select a valid Room Type.</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" id="isBooked" name="isBooked" [(ngModel)]="room.isBooked"
+                                class="form-check-input">
+                            <label class="form-check-label" for="isBooked">Is Booked?</label>
+                            <div class="invalid-feedback">Please select the Booking Status.</div>
+                        </div>
+
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" id="availabilityStatus" [(ngModel)]="room.availabilityStatus"
+                                name="availabilityStatus" class="form-check-input">
+                            <label class="form-check-label" for="availabilityStatus">Availability Status?</label>
+                            <div class="invalid-feedback">Please select the Availability Status.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-4">
+                        <button type="submit" [disabled]="hotelForm.invalid"
+                            class="btn bsb-btn-xl btn-outline-primary rounded-pill m-2">Add Room</button>
+                    </div>
+                    <div class="col-4">
+                        <a class="btn bsb-btn-xl btn-outline-danger rounded-pill m-2" (click)="back()">Back</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
