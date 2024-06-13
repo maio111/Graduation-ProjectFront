@@ -9,6 +9,8 @@ import { AddHotelComponent } from './Components/admin-dashboard/hotels-dashboard
 import { EditHotelComponent } from './Components/admin-dashboard/hotels-dashboard/edit-hotel/edit-hotel.component';
 import { DetailsHotelComponent } from './Components/admin-dashboard/hotels-dashboard/details-hotel/details-hotel.component';
 import { CountryDashboardComponent } from './Components/admin-dashboard/country-dashboard/country-dashboard.component';
+import { EditCountryComponent } from './Components/admin-dashboard/country-dashboard/edit-country/edit-country.component';
+import { AddCountryComponent } from './Components/admin-dashboard/country-dashboard/add-country/add-country.component';
 
 export const routes: Routes = [
     { path: '', component: HotelBookingComponent }, 
@@ -24,6 +26,8 @@ export const routes: Routes = [
             { path: 'detailsHotel/:Id', component: DetailsHotelComponent },
             {path: 'hotelsDashboard', component: HotelsDashboardComponent},
             { path: 'countriesDashboard', component: CountryDashboardComponent },
+            { path: 'addCountry', component: AddCountryComponent },
+            {path:'editCountry/:Id',component:EditCountryComponent }
         ]
     },
     { path: '**', component: PageNotFoundComponent },

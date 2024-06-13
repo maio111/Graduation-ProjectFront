@@ -1,0 +1,25 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form (ngSubmit)="onSubmit()" #countryForm="ngForm" class="needs-validation" novalidate>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name:</label>
+                            <input type="text" id="name" name="name" [(ngModel)]="country.name" class="form-control" required>
+                            <div class="invalid-feedback">Please enter the country name.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-2">
+                        <button type="submit" [disabled]="countryForm.invalid" class="btn bsb-btn-xl btn-outline-primary rounded-pill m-2">Update</button>
+                    </div>
+                    <div class="col-2">
+                        <a class="btn bsb-btn-xl btn-outline-danger rounded-pill m-2" (click)="back()">Back</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
