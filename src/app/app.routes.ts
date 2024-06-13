@@ -37,11 +37,11 @@ export const routes: Routes = [
             { path: 'addRoom/:hotelId', component: AddRoomComponent },
             { path: 'editRoom/:Id', component: EditRoomComponent },
             { path: 'featuresDashboard/:Id', component: FeaturesDashboardComponent },
-            { path: 'addFeature/:Id', component: AddFeatureComponent },
-            { path: 'editFeature/:Id', component: EditFeatureComponent },
+            { path: 'addFeature/:hotelId', component: AddFeatureComponent },
+            { path: 'editFeature/:hotelId', component: EditFeatureComponent },
             { path: 'photosDashboard/:Id', component: PhotosDashboardComponent },
-            { path: 'addPhoto/:Id', component: AddPhotoComponent },
-            { path: 'editPhoto/:Id', component: EditPhotoComponent },
+            { path: 'addPhoto/:hotelId', component: AddPhotoComponent },
+            { path: 'editPhoto/:hotelId', component: EditPhotoComponent },
 
         ]
     },
