@@ -1,10 +1,10 @@
 export interface User {
-    fName: string;
-    lname: string;
+    userName: string;
+    firstName: string;
+    lastName: string;
     email: string;
-    phone: string;
+    password: string;
+    confirmPassword: string;
     address: string;
-    gender: string;
-    photoURL: string;
-    birthDate: Date;
+    birthDate: string;
 }

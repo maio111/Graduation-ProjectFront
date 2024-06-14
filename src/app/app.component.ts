@@ -6,14 +6,17 @@ import { RegistrationComponent } from "./Components/registration/registration.co
 import { HotelBookingComponent } from "./Components/hotel-booking/hotel-booking.component";
 import { HomeComponent } from "./Components/home/home.component";
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormControl, NgForm} from '@angular/forms';
 import { NgModule } from '@angular/core';
+import {FormsModule} from '@angular/forms';
 import { LoginService } from './Services/Login/login.service';
 import { FooterComponent } from './Components/footer/footer.component';
 import { AdminsDashboardComponent } from './Components/admin-dashboard/admins-dashboard/admins-dashboard.component';
 import { CountryDashboardComponent } from './Components/admin-dashboard/country-dashboard/country-dashboard.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-root',
@@ -32,7 +35,12 @@ import { GoogleMapsModule } from '@angular/google-maps';
     AdminsDashboardComponent,
     HotelBookingComponent,
     CountryDashboardComponent,
-    GoogleMapsModule
+    GoogleMapsModule,
+    ReactiveFormsModule,
+    FormsModule,
+    CommonModule,
+    
+
   ]
 })
 export class AppComponent {
