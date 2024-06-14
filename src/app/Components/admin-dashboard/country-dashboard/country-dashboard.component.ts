@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { ICountry } from '../../../models/ICountry';
-import { CountryService } from '../../../Services/country.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { CountryService } from '../../../services/country.service';
 
 @Component({
   selector: 'app-country-dashboard',
@@ -59,7 +59,7 @@ export class CountryDashboardComponent {
       error: (res) => { console.log(res.error); },
       complete: () => { console.log("complete"); }
     });
-    this.router.navigate(['dashboard/countryDashboard']);
+    this.router.navigate(['dashboard/countriesDashboard']);
     window.location.reload();
   }
 
@@ -68,4 +68,3 @@ export class CountryDashboardComponent {
   }
 }
 
-// Export the CountryDashboardComponent class
