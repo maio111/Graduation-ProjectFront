@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeleteCountryComponent } from './delete-country.component';
+import { AddCityComponent } from './add-city.component';
 
-describe('DeleteCountryComponent', () => {
-  let component: DeleteCountryComponent;
-  let fixture: ComponentFixture<DeleteCountryComponent>;
+describe('AddCityComponent', () => {
+  let component: AddCityComponent;
+  let fixture: ComponentFixture<AddCityComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DeleteCountryComponent]
+      imports: [AddCityComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(DeleteCountryComponent);
+    fixture = TestBed.createComponent(AddCityComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

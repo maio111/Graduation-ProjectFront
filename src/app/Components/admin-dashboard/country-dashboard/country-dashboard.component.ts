@@ -51,6 +51,10 @@ export class CountryDashboardComponent {
     this.currentCountryId = id;
     this.router.navigate(['dashboard/detailsCountry', this.currentCountryId]);
   }
+  navigateToCities(id: number) {
+    this.currentCountryId = id;
+    this.router.navigate(['dashboard/citiesDashboard', this.currentCountryId]);
+  }
 
   deleteCountry(id: number) {
     this.currentCountryId = id;
