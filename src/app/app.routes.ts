@@ -20,6 +20,9 @@ import { AddPhotoComponent } from './Components/admin-dashboard/hotels-dashboard
 import { EditPhotoComponent } from './Components/admin-dashboard/hotels-dashboard/photos-dashboard/edit-photo/edit-photo.component';
 import { AddCountryComponent } from './Components/admin-dashboard/country-dashboard/add-country/add-country.component';
 import { EditCountryComponent } from './Components/admin-dashboard/country-dashboard/edit-country/edit-country.component';
+import { RoomtypesDashboardComponent } from './Components/admin-dashboard/roomtypes-dashboard/roomtypes-dashboard.component';
+import { EditRoomTypeComponent } from './Components/admin-dashboard/roomtypes-dashboard/edit-room-type/edit-room-type.component';
+import { AddRoomTypeComponent } from './Components/admin-dashboard/roomtypes-dashboard/add-room-type/add-room-type.component';
 
 export const routes: Routes = [
     { path: '', component: HotelBookingComponent }, 
@@ -46,6 +49,10 @@ export const routes: Routes = [
             { path: 'photosDashboard/:Id', component: PhotosDashboardComponent },
             { path: 'addPhoto/:hotelId', component: AddPhotoComponent },
             { path: 'editPhoto/:hotelId', component: EditPhotoComponent },
+            { path: 'roomTypesDashboard', component: RoomtypesDashboardComponent },
+            { path: 'addRoomType', component: AddRoomTypeComponent },
+            { path: 'editRoomType/:Id', component: EditRoomTypeComponent },
+            { path: 'featuresDashboard', component: FeaturesDashboardComponent },
 
         ]
     },
