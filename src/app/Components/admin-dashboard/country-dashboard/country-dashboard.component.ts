@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ICountry } from '../../../models/ICountry';
-import { CountryService } from '../../../services/country.service';
+import { CountryService } from '../../../Services/country.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -8,36 +8,64 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-country-dashboard',
   standalone: true,
-  imports: [FormsModule,CommonModule
-  ],
+  imports: [FormsModule, CommonModule],
   templateUrl: './country-dashboard.component.html',
   styleUrl: './country-dashboard.component.css'
 })
 export class CountryDashboardComponent {
-  country: ICountry =
-{
-  name: '',
-  latitude: 0,
-  longitude: 0
+  countries!: ICountry[];
+  deletedItemId!: number;
+  currentCountryId!: number;
+  message?: string;
 
-    };
-  constructor(private router: Router, private countryService: CountryService) { }
+  constructor(
+    private countryService: CountryService,
+    private router: Router
+  ) { }
 
-  onSubmit() {
-    this.countryService.addCountry(this.country).subscribe({
-      next: (res) => {
-        console.log(this.country);
+  ngOnInit(): void {
+    this.getAllCountries();
+  }
+
+  getAllCountries() {
+    this.countryService.getAllCountries().subscribe({
+      next: (res: any) => {
         console.log(res);
-        this.router.navigate(['/dashboard/countriesDashboard']); // Adjust the path as necessary
+        this.countries = res.data;
       },
       error: (error) => {
-        console.error('Error adding country:', error);
+        console.error('Error fetching countries:', error);
+      },
+      complete: () => {
+        console.log('Country fetching completed.');
       }
     });
   }
 
-  back(): void {
-    this.router.navigate(['/dashboard/countriesDashboard']); // Adjust the path as necessary
+  navigateToEdit(id: number) {
+    this.currentCountryId = id;
+    this.router.navigate(['dashboard/editCountry', this.currentCountryId]);
   }
 
-};
+  navigateToDetails(id: number) {
+    this.currentCountryId = id;
+    this.router.navigate(['dashboard/detailsCountry', this.currentCountryId]);
+  }
+
+  deleteCountry(id: number) {
+    this.currentCountryId = id;
+    this.countryService.deleteCountry(this.currentCountryId).subscribe({
+      next: (res) => { console.log(res.data); },
+      error: (res) => { console.log(res.error); },
+      complete: () => { console.log("complete"); }
+    });
+    this.router.navigate(['dashboard/countryDashboard']);
+    window.location.reload();
+  }
+
+  goToAddPage() {
+    this.router.navigate(['dashboard/addCountry']);
+  }
+}
+
+// Export the CountryDashboardComponent class
