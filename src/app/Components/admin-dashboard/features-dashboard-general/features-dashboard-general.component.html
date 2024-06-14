@@ -1,0 +1,32 @@
+<div class="container mt-2">
+    <h2 class="mb-4 text-center">Features Dashboard</h2>
+    <div class="btn-toolbar mb-3 justify-content-end">
+        <div class="btn-group">
+            <button class="btn btn-outline-primary" (click)="goToAddPage()">Add New Feature</button>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of features; let i = index">
+                    <td>{{i + 1}}</td>
+                    <td>{{item.name}}</td>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-primary mx-2"
+                                (click)="navigateToEdit(item.id, item)">Edit</button>
+                            <button type="button" class="btn btn-sm btn-outline-danger mx-2"
+                                (click)="deleteFeature(item.id)">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

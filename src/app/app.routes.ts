@@ -23,6 +23,12 @@ import { EditCountryComponent } from './Components/admin-dashboard/country-dashb
 import { RoomtypesDashboardComponent } from './Components/admin-dashboard/roomtypes-dashboard/roomtypes-dashboard.component';
 import { EditRoomTypeComponent } from './Components/admin-dashboard/roomtypes-dashboard/edit-room-type/edit-room-type.component';
 import { AddRoomTypeComponent } from './Components/admin-dashboard/roomtypes-dashboard/add-room-type/add-room-type.component';
+import { FeaturesDashboardGeneralComponent } from './Components/admin-dashboard/features-dashboard-general/features-dashboard-general.component';
+import { AddFeatureGeneralComponent } from './Components/admin-dashboard/features-dashboard-general/add-feature-general/add-feature-general.component';
+import { EditFeatureGeneralComponent } from './Components/admin-dashboard/features-dashboard-general/edit-feature-general/edit-feature-general.component';
+import { CityDashboardComponent } from './Components/admin-dashboard/country-dashboard/city-dashboard/city-dashboard.component';
+import { AddCityComponent } from './Components/admin-dashboard/country-dashboard/city-dashboard/add-city/add-city.component';
+import { EditCityComponent } from './Components/admin-dashboard/country-dashboard/city-dashboard/edit-city/edit-city.component';
 
 export const routes: Routes = [
     { path: '', component: HotelBookingComponent }, 
@@ -40,6 +46,9 @@ export const routes: Routes = [
             { path: 'countriesDashboard', component: CountryDashboardComponent },
             { path: 'addCountry', component: AddCountryComponent },
             { path: 'editCountry/:Id', component: EditCountryComponent },
+            { path: 'citiesDashboard/:Id', component: CityDashboardComponent },
+            { path: 'addCity/:Id', component: AddCityComponent },
+            { path: 'editCity/:Id', component: EditCityComponent },
             { path: 'roomsDashboard/:Id', component: RoomsDashboardComponent },
             { path: 'addRoom/:hotelId', component: AddRoomComponent },
             { path: 'editRoom/:Id', component: EditRoomComponent },
@@ -52,7 +61,9 @@ export const routes: Routes = [
             { path: 'roomTypesDashboard', component: RoomtypesDashboardComponent },
             { path: 'addRoomType', component: AddRoomTypeComponent },
             { path: 'editRoomType/:Id', component: EditRoomTypeComponent },
-            { path: 'featuresDashboard', component: FeaturesDashboardComponent },
+            { path: 'featuresDashboardGeneral', component: FeaturesDashboardGeneralComponent },
+            { path: 'addFeatureGeneral', component: AddFeatureGeneralComponent },
+            { path: 'editFeatureGeneral/:Id', component: EditFeatureGeneralComponent },
 
         ]
     },

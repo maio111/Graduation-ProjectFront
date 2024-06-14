@@ -30,7 +30,7 @@ export class AddRoomTypeComponent {
           this.router.navigate(['/dashboard/roomTypesDashboard']);
         },
         error: (error) => {
-          console.error('Error adding hotel:', error);
+          console.error('Error adding room type:', error);
         }
       }
     );
