@@ -1,0 +1,30 @@
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <form (ngSubmit)="onSubmit()" #typeForm="ngForm" class="needs-validation" novalidate>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name:</label>
+                            <input type="text" id="name" name="name" [(ngModel)]="feature.name" class="form-control"
+                                required>
+                            <div class="invalid-feedback"
+                                *ngIf="typeForm.controls['name']?.invalid && (typeForm.controls['name']?.dirty || typeForm.controls['name']?.touched)">
+                                Please enter the room type name.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-3">
+                        <button type="submit" [disabled]="typeForm.invalid" class="btn btn-outline-primary m-2">Update
+                            Feature</button>
+                    </div>
+                    <div class="col-md-3">
+                        <a class="btn btn-outline-danger m-2" (click)="back()">Back</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
