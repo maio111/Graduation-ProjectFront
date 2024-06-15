@@ -29,10 +29,12 @@ import { EditFeatureGeneralComponent } from './Components/admin-dashboard/featur
 import { CityDashboardComponent } from './Components/admin-dashboard/country-dashboard/city-dashboard/city-dashboard.component';
 import { AddCityComponent } from './Components/admin-dashboard/country-dashboard/city-dashboard/add-city/add-city.component';
 import { EditCityComponent } from './Components/admin-dashboard/country-dashboard/city-dashboard/edit-city/edit-city.component';
+import { RegistrationComponent } from './Components/registration/registration.component';
 
 export const routes: Routes = [
     { path: '', component: HotelBookingComponent }, 
     { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegistrationComponent },
     {
         path: 'dashboard',
         component: DashboardLayoutComponent,
