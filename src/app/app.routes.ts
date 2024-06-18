@@ -57,7 +57,7 @@ export const routes: Routes = [
             { path: 'featuresDashboard/:Id', component: FeaturesDashboardComponent },
             { path: 'addFeature/:hotelId', component: AddFeatureComponent },
             { path: 'editFeature/:hotelId', component: EditFeatureComponent },
-            { path: 'photosDashboard/:Id', component: PhotosDashboardComponent },
+            { path: 'photosDashboard/:hotelId', component: PhotosDashboardComponent },
             { path: 'addPhoto/:hotelId', component: AddPhotoComponent },
             { path: 'editPhoto/:hotelId', component: EditPhotoComponent },
             { path: 'roomTypesDashboard', component: RoomtypesDashboardComponent },
