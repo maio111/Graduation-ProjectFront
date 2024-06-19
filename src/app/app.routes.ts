@@ -29,10 +29,12 @@ import { EditFeatureGeneralComponent } from './Components/admin-dashboard/featur
 import { CityDashboardComponent } from './Components/admin-dashboard/country-dashboard/city-dashboard/city-dashboard.component';
 import { AddCityComponent } from './Components/admin-dashboard/country-dashboard/city-dashboard/add-city/add-city.component';
 import { EditCityComponent } from './Components/admin-dashboard/country-dashboard/city-dashboard/edit-city/edit-city.component';
+import { RegistrationComponent } from './Components/registration/registration.component';
 
 export const routes: Routes = [
     { path: '', component: HotelBookingComponent }, 
     { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegistrationComponent },
     {
         path: 'dashboard',
         component: DashboardLayoutComponent,
@@ -55,7 +57,7 @@ export const routes: Routes = [
             { path: 'featuresDashboard/:Id', component: FeaturesDashboardComponent },
             { path: 'addFeature/:hotelId', component: AddFeatureComponent },
             { path: 'editFeature/:hotelId', component: EditFeatureComponent },
-            { path: 'photosDashboard/:Id', component: PhotosDashboardComponent },
+            { path: 'photosDashboard/:hotelId', component: PhotosDashboardComponent },
             { path: 'addPhoto/:hotelId', component: AddPhotoComponent },
             { path: 'editPhoto/:hotelId', component: EditPhotoComponent },
             { path: 'roomTypesDashboard', component: RoomtypesDashboardComponent },

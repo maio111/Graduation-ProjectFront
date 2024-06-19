@@ -1,1 +1,47 @@
-<p>edit-photo works!</p>
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form (ngSubmit)="onSubmit()" #photoForm="ngForm" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="name" class="form-label" style="font-size: 20px; font-weight: bold;">Name:</label>
+                    <input type="text" id="name" name="name" [(ngModel)]="hotelPhoto.name" class="form-control"
+                        required>
+                    <div class="invalid-feedback"
+                        *ngIf="photoForm.controls['name'].invalid && (photoForm.controls['name'].dirty || photoForm.controls['name'].touched)">
+                        Please enter the photo name.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label"
+                        style="font-size: 20px; font-weight: bold;">Description:</label>
+                    <textarea id="description" name="description" [(ngModel)]="hotelPhoto.description"
+                        class="form-control" rows="3" required></textarea>
+                    <div class="invalid-feedback"
+                        *ngIf="photoForm.controls['description'].invalid && (photoForm.controls['description'].dirty || photoForm.controls['description'].touched)">
+                        Please enter a description.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="photo" class="form-label" style="font-size: 20px; font-weight: bold;">Photo:</label><br>
+                    <input type="file" id="photo" name="photo" (change)="onFileSelected($event)"
+                        class="form-control-file visually-hidden" required>
+                    <label for="photo" class="btn btn-secondary">
+                        Choose Photo
+                    </label>
+                    <div class="invalid-feedback"
+                        *ngIf="photoForm.controls['photo'].invalid && (photoForm.controls['photo'].dirty || photoForm.controls['photo'].touched)">
+                        Please select a photo.
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-4">
+                        <button type="submit" [disabled]="photoForm.invalid" class="btn btn-primary">Update Photo</button>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-danger" (click)="back()">Back</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

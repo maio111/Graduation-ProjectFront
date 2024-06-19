@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 interface LoginDTO {
   userName: string;
   password: string;
@@ -11,8 +12,9 @@ interface LoginDTO {
 })
 export class LoginService {
 
+  private baseUrl: string = environment.baseUrl;
 
-  private apiUrl = 'http://localhost:42836/api/Account/login'; 
+  private apiUrl = `${this.baseUrl}/api/Account/login`; 
 
   constructor(private http: HttpClient) {}
 
