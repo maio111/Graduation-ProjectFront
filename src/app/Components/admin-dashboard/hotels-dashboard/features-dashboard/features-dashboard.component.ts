@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HotelService } from '../../../../services/hotel.service';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-features-dashboard',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule ,NgxPaginationModule],
   templateUrl: './features-dashboard.component.html',
   styleUrl: './features-dashboard.component.css'
 })
@@ -16,6 +17,8 @@ export class FeaturesDashboardComponent implements OnInit {
   Features!: IHotelFeature[];
   currentHotelId!: number;
   currentFeature!: IHotelFeature;
+  page:any;
+  total:any;
 
   constructor(private router: Router, private hotelService: HotelService, private route: ActivatedRoute) {
     this.route.params.subscribe((params) => {
@@ -50,5 +53,9 @@ export class FeaturesDashboardComponent implements OnInit {
       error: (error) => console.log(error)
     })
     window.location.reload();
+  }
+  changePage(event:any){
+    this.page=event
+    this.getAllFeatures()
   }
 }
