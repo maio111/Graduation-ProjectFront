@@ -30,6 +30,7 @@
     "express": "^4.18.2",
     "leaflet": "^1.9.4",
     "ngx-bootstrap": "^12.0.0",
+    "ngx-pagination": "^6.0.3",
     "primeng": "^17.18.0",
     "rxjs": "~7.8.0",
     "scrollreveal": "^4.0.9",

@@ -15,7 +15,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of Features; let i = index">
+                <tr *ngFor="let item of Features | paginate: { id: 'foo',
+                itemsPerPage: 4,
+                currentPage: page,
+                totalItems: total }; let i = index">
                     <td>{{i + 1}}</td>
                     <td>{{item.name}}</td>
                     <td>
@@ -29,5 +32,8 @@
                 </tr>
             </tbody>
         </table>
+        <div>
+            <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+        </div>
     </div>
 </div>

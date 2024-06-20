@@ -7,11 +7,12 @@ import { CommonModule } from '@angular/common';
 import { HotelService } from '../../../../services/hotel.service';
 import { Ihotel } from '../../../../models/Hotel/Ihotel';
 import { AddRoomDTO } from '../../../../models/Room/AddRoomDTO';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-rooms-dashboard',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, NgxPaginationModule],
   templateUrl: './rooms-dashboard.component.html',
   styleUrl: './rooms-dashboard.component.css'
 })
@@ -30,25 +31,30 @@ export class RoomsDashboardComponent {
   currentRoomId!: number;
   rooms!: RoomsViewDTO[];
   hotel!: Ihotel;
+  page: number = 1; // initialize page to 1
+  total: number = 0; // initialize total to 0
+
   constructor(private router: Router, private roomService: RoomService, private hotelService: HotelService, private route: ActivatedRoute) { 
-    
   }
+
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.hotelId = params['Id'];
     });
     this.hotelService.getHotelById(this.hotelId).subscribe((res) => {
       this.hotel = res.data;
+      
       console.log(res.data)
     });
     this.getallRooms();
   }
 
   getallRooms() {
-    this.roomService.getHotelRooms(this.hotelId,["RoomType","Hotel"]).subscribe({
+    this.roomService.getHotelRooms(this.hotelId, ["RoomType", "Hotel"]).subscribe({
       next: (res: any) => {
         console.log(res);
         this.rooms = res.data;
+        this.total = res.totalItems; // update total with the total number of items
       },
       error: (error) => {
         console.error('Error fetching hotels:', error);
@@ -76,6 +82,12 @@ export class RoomsDashboardComponent {
   }
 
   goToAddPage() {
-    this.router.navigate(['/dashboard/addRoom',this.hotelId]);
+    this.router.navigate(['/dashboard/addRoom', this.hotelId]);
+  }
+
+  changePage(event: any) {
+    this.page = event;
+    console.log('Total items:', this.total);
+    this.getallRooms();
   }
 }
