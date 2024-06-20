@@ -15,20 +15,26 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of cities; let i = index">
+                <tr *ngFor="let item of cities | paginate: { id: 'city',
+                itemsPerPage: 3,
+                currentPage: page,
+                totalItems: total }; let i = index">
                     <td>{{i + 1}}</td>
                     <td>{{item.name}}</td>
                     <td>{{item.code}}</td>
                     <td>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-primary"
+                            <button type="button" class="btn btn-sm btn-outline-secondary mx-2"
                                 (click)="navigateToEdit(item.id,item)">Edit</button>
-                            <button type="button" class="btn btn-sm btn-outline-danger"
+                            <button type="button" class="btn btn-sm btn-outline-danger "
                                 (click)="deleteCity(item.id)">Delete</button>
                         </div>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <div class="d-flex justify-content-centre">
+            <pagination-controls (pageChange)="changePage($event)" id="city"></pagination-controls>
+        </div>
     </div>
 </div>

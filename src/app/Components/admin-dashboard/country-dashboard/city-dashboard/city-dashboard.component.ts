@@ -4,11 +4,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CityService } from '../../../../services/city.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-city-dashboard',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,NgxPaginationModule],
   templateUrl: './city-dashboard.component.html',
   styleUrl: './city-dashboard.component.css'
 })
@@ -16,6 +17,8 @@ export class CityDashboardComponent {
   countryId!: number;
   currentCityId!: number;
   cities: ICity[] = [] as ICity[];
+  page:any;
+  total:any;
   constructor(private router: Router, private cityService: CityService, private route: ActivatedRoute) {
 
   }
@@ -31,6 +34,7 @@ export class CityDashboardComponent {
       next: (res: any) => {
         console.log(res);
         this.cities = res.data;
+        this.total=res.totalItems
       },
       error: (error) => {
         console.error('Error fetching Cities:', error);
@@ -60,5 +64,8 @@ export class CityDashboardComponent {
 
   goToAddPage() {
     this.router.navigate(['/dashboard/addCity', this.countryId]);
+  }
+  changePage(event:any){
+    this.page=event
   }
 }

@@ -5,11 +5,12 @@ import { Ihotel } from '../../../models/Hotel/Ihotel';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-hotels-dashboard',
   standalone: true,
-  imports: [EditHotelComponent, FormsModule, CommonModule],
+  imports: [EditHotelComponent, FormsModule, CommonModule ,NgxPaginationModule],
   templateUrl: './hotels-dashboard.component.html',
   styleUrls: ['./hotels-dashboard.component.css']
 })
@@ -18,6 +19,8 @@ export class HotelsDashboardComponent {
   deletedItemId!: number;
   currentHotelId!: number;
   message?: string;
+  page:any
+  total:any
 
   constructor(
     private hotelService: HotelService,
@@ -33,6 +36,7 @@ export class HotelsDashboardComponent {
       next: (res: any) => {
         console.log(res);
         this.hotels = res.data;
+        this.total=res.totalItems;
       },
       error: (error) => {
         console.error('Error fetching hotels:', error);
@@ -82,5 +86,7 @@ export class HotelsDashboardComponent {
     this.router.navigate(['dashboard/addHotel']);
   }
 
-
+  changePage(event:any){
+    this.page=event
+  }
 }
