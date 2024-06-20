@@ -49,5 +49,6 @@ export class FeaturesDashboardComponent implements OnInit {
       next: (res) => console.log(res),
       error: (error) => console.log(error)
     })
+    window.location.reload();
   }
 }

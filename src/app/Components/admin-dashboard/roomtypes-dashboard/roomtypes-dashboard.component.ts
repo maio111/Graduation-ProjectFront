@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IRoomType } from '../../../models/IRoomType';
 import { Router } from '@angular/router';
-import { RoomTypeService } from '../../../services/room-type.service';
+import { RoomTypeService } from '../../../Services/room-type.service';
 
 @Component({
   selector: 'app-roomtypes-dashboard',

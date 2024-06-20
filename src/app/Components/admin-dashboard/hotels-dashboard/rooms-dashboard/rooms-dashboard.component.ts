@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { RoomsViewDTO } from '../../../../models/Room/RoomsViewDTO';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RoomService } from '../../../../services/room.service';
+import { RoomService } from '../../../../Services/room.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HotelService } from '../../../../services/hotel.service';
 import { Ihotel } from '../../../../models/Hotel/Ihotel';
 import { AddRoomDTO } from '../../../../models/Room/AddRoomDTO';
+import { getViewLabel, getViewsValues } from '../../../../utilities/getViews';
+import { View } from '../../../../models/Enums/View';
 
 @Component({
   selector: 'app-rooms-dashboard',
@@ -16,20 +18,12 @@ import { AddRoomDTO } from '../../../../models/Room/AddRoomDTO';
   styleUrl: './rooms-dashboard.component.css'
 })
 export class RoomsDashboardComponent {
-  room: RoomsViewDTO = {
-    id: 0,
-    availabilityStatus: false,
-    capacity: 0,
-    view: 0,
-    hotelName: "",
-    typeName: "",
-    pricePerNight: 0,
-    isBooked: false,
-  };
+  room: RoomsViewDTO = {} as RoomsViewDTO;
   hotelId!: number;
   currentRoomId!: number;
   rooms!: RoomsViewDTO[];
   hotel!: Ihotel;
+  viewEnum = View;
   constructor(private router: Router, private roomService: RoomService, private hotelService: HotelService, private route: ActivatedRoute) { 
     
   }
@@ -39,7 +33,6 @@ export class RoomsDashboardComponent {
     });
     this.hotelService.getHotelById(this.hotelId).subscribe((res) => {
       this.hotel = res.data;
-      console.log(res.data)
     });
     this.getallRooms();
   }
@@ -47,7 +40,6 @@ export class RoomsDashboardComponent {
   getallRooms() {
     this.roomService.getHotelRooms(this.hotelId,["RoomType","Hotel"]).subscribe({
       next: (res: any) => {
-        console.log(res);
         this.rooms = res.data;
       },
       error: (error) => {
@@ -77,5 +69,8 @@ export class RoomsDashboardComponent {
 
   goToAddPage() {
     this.router.navigate(['/dashboard/addRoom',this.hotelId]);
+  }
+  getViewLabel(value: number): string {
+    return getViewLabel(value);
   }
 }

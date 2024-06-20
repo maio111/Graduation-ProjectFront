@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IRoomType } from '../../../../models/IRoomType';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RoomTypeService } from '../../../../services/room-type.service';
+import { RoomTypeService } from '../../../../Services/room-type.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 

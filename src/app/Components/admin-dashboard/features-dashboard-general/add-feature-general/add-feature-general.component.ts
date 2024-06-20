@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IFeature } from '../../../../models/IFeature';
 import { IfStmt } from '@angular/compiler';
 import { Router } from '@angular/router';
-import { FeaturesService } from '../../../../services/features.service';
+import { FeaturesService } from '../../../../Services/features.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 

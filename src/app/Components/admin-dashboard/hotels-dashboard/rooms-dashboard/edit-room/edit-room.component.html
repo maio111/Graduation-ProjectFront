@@ -7,14 +7,15 @@
                         <div class="mb-3">
                             <label for="capacity" class="form-label">Capacity:</label>
                             <input type="number" id="capacity" name="capacity" [(ngModel)]="room.capacity"
-                                class="form-control" required>
+                                class="form-control" required min="1" max="8">
                             <div class="invalid-feedback">Please enter a valid Capacity.</div>
                         </div>
                         <div class="mb-3">
                             <label for="view" class="form-label">View:</label>
-                            <input type="number" id="view" name="view" [(ngModel)]="room.view" class="form-control"
-                                required>
-                            <div class="invalid-feedback">Please enter a valid View.</div>
+                            <select id="view" name="view" [(ngModel)]="room.view" class="form-control" class="form-select" required>
+                                <option *ngFor="let view of views" [value]="view.value">{{ view.label }}</option>
+                            </select>
+                            <div class="invalid-feedback">Please select a valid view.</div>
                         </div>
                         <div class="mb-3">
                             <label for="roomType" class="form-label">Room Type:</label>
