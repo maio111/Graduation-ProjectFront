@@ -7,12 +7,8 @@ import { CommonModule } from '@angular/common';
 import { HotelService } from '../../../../services/hotel.service';
 import { Ihotel } from '../../../../models/Hotel/Ihotel';
 import { AddRoomDTO } from '../../../../models/Room/AddRoomDTO';
-<<<<<<< HEAD
-import { getViewLabel, getViewsValues } from '../../../../utilities/getViews';
-import { View } from '../../../../models/Enums/View';
-=======
 import { NgxPaginationModule } from 'ngx-pagination';
->>>>>>> 0d6cb45fd0e2c8ef5a6e397abce9e654abfe394d
+import { getViewLabel } from '../../../../utilities/getViews';
 
 @Component({
   selector: 'app-rooms-dashboard',
@@ -27,13 +23,9 @@ export class RoomsDashboardComponent {
   currentRoomId!: number;
   rooms!: RoomsViewDTO[];
   hotel!: Ihotel;
-<<<<<<< HEAD
-  viewEnum = View;
-=======
   page: number = 1; // initialize page to 1
   total: number = 0; // initialize total to 0
 
->>>>>>> 0d6cb45fd0e2c8ef5a6e397abce9e654abfe394d
   constructor(private router: Router, private roomService: RoomService, private hotelService: HotelService, private route: ActivatedRoute) { 
   }
 
@@ -43,11 +35,7 @@ export class RoomsDashboardComponent {
     });
     this.hotelService.getHotelById(this.hotelId).subscribe((res) => {
       this.hotel = res.data;
-<<<<<<< HEAD
-=======
-      
       console.log(res.data)
->>>>>>> 0d6cb45fd0e2c8ef5a6e397abce9e654abfe394d
     });
     this.getallRooms();
   }
@@ -86,17 +74,12 @@ export class RoomsDashboardComponent {
   goToAddPage() {
     this.router.navigate(['/dashboard/addRoom', this.hotelId]);
   }
-<<<<<<< HEAD
   getViewLabel(value: number): string {
     return getViewLabel(value);
   }
-}
-=======
-
   changePage(event: any) {
     this.page = event;
     console.log('Total items:', this.total);
     this.getallRooms();
   }
 }
->>>>>>> 0d6cb45fd0e2c8ef5a6e397abce9e654abfe394d
