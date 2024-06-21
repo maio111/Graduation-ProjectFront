@@ -54,8 +54,8 @@ export class FeaturesDashboardComponent implements OnInit {
     })
     window.location.reload();
   }
-  changePage(event:any){
-    this.page=event
-    this.getAllFeatures()
+  changePage(event: any) {
+    this.page = event;
+    this.getAllFeatures();
   }
 }

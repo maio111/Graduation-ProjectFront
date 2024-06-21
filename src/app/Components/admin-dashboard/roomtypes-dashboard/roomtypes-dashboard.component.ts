@@ -4,17 +4,20 @@ import { FormsModule } from '@angular/forms';
 import { IRoomType } from '../../../models/IRoomType';
 import { Router } from '@angular/router';
 import { RoomTypeService } from '../../../Services/room-type.service';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-roomtypes-dashboard',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,NgxPaginationModule],
   templateUrl: './roomtypes-dashboard.component.html',
   styleUrl: './roomtypes-dashboard.component.css'
 })
 export class RoomtypesDashboardComponent implements OnInit{
   roomTypes!: IRoomType[];
   currentTypeId!: number;
+  page: any
+  total: any
   constructor(private router: Router, private roomTypeService: RoomTypeService) {
     this.getAllRoomTypes();
   }
@@ -49,5 +52,8 @@ export class RoomtypesDashboardComponent implements OnInit{
 
   goToAddPage() {
     this.router.navigate(['dashboard/addRoomType']);
+  }
+  changePage(event: any) {
+    this.page = event
   }
 }

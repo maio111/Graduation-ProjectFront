@@ -4,17 +4,20 @@ import { Router } from '@angular/router';
 import { FeaturesService } from '../../../Services/features.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-features-dashboard-general',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule, NgxPaginationModule],
   templateUrl: './features-dashboard-general.component.html',
   styleUrl: './features-dashboard-general.component.css'
 })
 export class FeaturesDashboardGeneralComponent {
   features: IFeature[] = [] as IFeature[]
   currentFeatureId!: number;
+  page: any
+  total: any
   constructor(private router: Router, private featureService: FeaturesService) {
 
   }
@@ -49,5 +52,8 @@ export class FeaturesDashboardGeneralComponent {
 
   goToAddPage() {
     this.router.navigate(['dashboard/addFeatureGeneral']);
+  }
+  changePage(event: any) {
+    this.page = event
   }
 }
