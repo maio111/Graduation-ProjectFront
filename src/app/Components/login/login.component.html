@@ -19,6 +19,8 @@
 		/>
 		<p class="animation a5"><a href="#">Forgot Password</a></p>
 		<button class="animation a6" (click)="onLogin()">Login</button>
+		<p class="animation a7">Don't have an account? <a (click)="navigateToRegister()">Register here</a></p>
+
 		<br>
 		<p   class="animation a5" *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
 	  </div>

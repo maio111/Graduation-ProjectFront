@@ -1,0 +1,8 @@
+/* Add this to your global styles.css or component-specific stylesheet */
+/* Add this to your global styles.css or component-specific stylesheet */
+.invalid-feedback {
+  display: block;
+  color: red;
+  font-size: 0.875rem; /* Adjust font size as needed */
+  margin-top: 0.25rem; /* Add spacing between input and error message */
+}

@@ -7,6 +7,7 @@ import { error } from 'console';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { addPhoto } from '../../../../../models/addPhoto';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-photo',
@@ -19,6 +20,7 @@ export class AddPhotoComponent implements OnInit {
   hotelId!: number;
   hotelPhoto: addPhoto = {} as addPhoto;
   selectedFile: File | null = null;
+  fileValidationError: boolean = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private hotelPhotoService: HotelPhotoService) { }
 
@@ -28,24 +30,26 @@ export class AddPhotoComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    if (this.selectedFile) {
+  onSubmit(photoForm: NgForm) {
+    if (photoForm.valid && this.selectedFile) {
       const formData = new FormData();
       formData.append('name', this.hotelPhoto.name);
       formData.append('description', this.hotelPhoto.description);
-      formData.append('photo', new Blob([this.selectedFile], { type: 'application/octet-stream' }));
+      formData.append('photo', this.selectedFile);
 
       this.addHotelPhoto(formData);
-      this.router.navigate(["dashboard/photosDashboard", this.hotelId]);
-
     } else {
-      console.error('No file selected.');
+      console.error('Form is invalid or no file selected.');
+      photoForm.form.markAllAsTouched(); // Mark all fields as touched to trigger validation messages
+
+      if (!this.selectedFile) {
+        this.fileValidationError = true;
+      }
     }
   }
 
   addHotelPhoto(formData: FormData) {
-    console.log(formData);
-    this.hotelPhotoService.addHotelPhoto(this.hotelId, formData).subscribe((response) => {
+    this.hotelPhotoService.addHotelPhoto(this.hotelId, formData).subscribe(response => {
       if (response.success) {
         console.log('Photo added successfully');
         this.router.navigate(['dashboard/photosDashboard/', this.hotelId]);
@@ -56,10 +60,16 @@ export class AddPhotoComponent implements OnInit {
   }
 
   onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
-  }
-  back() {
-    this.router.navigate(["dashboard/photosDashboard", this.hotelId]);
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+      this.fileValidationError = false; // Reset the validation error when a file is selected
+    } else {
+      this.fileValidationError = true;
+    }
   }
 
+  back() {
+    this.router.navigate(['dashboard/photosDashboard', this.hotelId]);
+  }
 }

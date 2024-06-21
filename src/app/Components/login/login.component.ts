@@ -29,7 +29,7 @@ export class LoginComponent {
         response => {
           if (response.ispass) {
             localStorage.setItem('token', response.token);
-            this.router.navigate(['/home']); 
+            this.router.navigate(['/hotelBooking']); 
           } else {
             this.errorMessage = response.message;
           }
@@ -38,5 +38,8 @@ export class LoginComponent {
           this.errorMessage = 'Invalid username or password';
         }
       );
+    }
+    navigateToRegister() {
+      this.router.navigate(['/register']) ;debugger 
     }
 }

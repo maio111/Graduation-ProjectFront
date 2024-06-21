@@ -14,7 +14,7 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { AdminsDashboardComponent } from './Components/admin-dashboard/admins-dashboard/admins-dashboard.component';
 import { CountryDashboardComponent } from './Components/admin-dashboard/country-dashboard/country-dashboard.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { GoogleMapsModule } from '@angular/google-maps';
+import { GoogleMapsModule,GoogleMap } from '@angular/google-maps';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -40,6 +40,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HotelBookingComponent,
     CountryDashboardComponent,
     GoogleMapsModule,
+    GoogleMap,
     ReactiveFormsModule,
     FormsModule,
     CommonModule,

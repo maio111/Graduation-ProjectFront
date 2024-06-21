@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { UpdateRoomDTO } from '../../../../../models/Room/UpdateRoomDTO';
 import { IRoomType } from '../../../../../models/IRoomType';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -7,6 +7,7 @@ import { HotelService } from '../../../../../services/hotel.service';
 import { RoomTypeService } from '../../../../../services/room-type.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-room',
@@ -16,6 +17,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./edit-room.component.css']
 })
 export class EditRoomComponent implements OnInit {
+  @ViewChild('hotelForm') hotelForm!: NgForm;
   room!: UpdateRoomDTO;
   roomId!: number;
   roomTypes: IRoomType[] = [];
@@ -59,16 +61,19 @@ export class EditRoomComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.room.roomTypeId = this.selectedRoomType;
-    this.roomService.updateRoom(this.roomId, this.room).subscribe({
-      next: (res) => {
-        console.log(res);
-        this.router.navigate(['/dashboard/roomsDashboard', this.room.hotelId]);
-      },
-      error: (error) => {
-        console.error('Error updating room:', error);
-      }
-    });
+    if (this.hotelForm.valid) {
+      this.room.roomTypeId = this.selectedRoomType;
+      this.roomService.updateRoom(this.roomId, this.room).subscribe({
+        next: (res) => {
+          this.router.navigate(['/dashboard/roomsDashboard', this.room.hotelId]);
+        },
+        error: (error) => {
+          console.error('Error updating room:', error);
+        }
+      });
+    } else {
+      this.hotelForm.form.markAllAsTouched();
+    }
   }
 
   back(): void {

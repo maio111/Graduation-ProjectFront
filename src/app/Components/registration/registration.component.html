@@ -55,6 +55,10 @@
 
       <button (click)="register()" class="animation a6" [disabled]="registrationForm.invalid">Sign Up</button>
     </div>
+    <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ successMessage }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
   </div>
   <div class="right"></div>
 </div>

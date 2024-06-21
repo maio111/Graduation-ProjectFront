@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RoomTypeService } from '../../../../services/room-type.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-room-type',
@@ -13,13 +14,12 @@ import { CommonModule } from '@angular/common';
   styleUrl: './edit-room-type.component.css'
 })
 export class EditRoomTypeComponent implements OnInit{
-  roomType!: IRoomType;
+  roomType: IRoomType = {
+    id: 0,
+    name: "",
+    pricePerNight: 0
+  };
   constructor(private router: Router,private route:ActivatedRoute, private roomTypesService: RoomTypeService) {
-    this.roomType = {
-      id: 0,
-      name: "",
-      pricePerNight: 0
-    }
   }
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -30,18 +30,18 @@ export class EditRoomTypeComponent implements OnInit{
     });
   }
 
-  onSubmit() {
-    this.roomTypesService.updateRoomType(this.roomType.id,this.roomType).subscribe(
-      {
+  onSubmit(roomform: NgForm) {
+    if (roomform.valid) {
+      this.roomTypesService.updateRoomType(this.roomType.id, this.roomType).subscribe({
         next: (res) => {
           console.log(res);
           this.router.navigate(['/dashboard/roomTypesDashboard']);
         },
         error: (error) => {
-          console.error('Error Updating hotel:', error);
+          console.error('Error updating room type:', error);
         }
-      }
-    );
+      });
+    }
   }
 
   back(): void {

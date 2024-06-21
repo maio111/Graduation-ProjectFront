@@ -1,4 +1,5 @@
 import { Component, TemplateRef } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Ihotel } from '../../../../models/Hotel/Ihotel';
 import { HotelService } from '../../../../services/hotel.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -25,7 +26,9 @@ export class EditHotelComponent {
     longitude: 0
   };
   hotelId!: number;
+
   constructor(private router: Router, private hotelService: HotelService, private route: ActivatedRoute) { }
+
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.hotelId = params['Id'];
@@ -35,25 +38,26 @@ export class EditHotelComponent {
     });
   }
 
-  onSubmit() {
-    this.hotelService.updateHotel(this.hotelId, this.hotel).subscribe(
-      {
+  onSubmit(hotelForm: NgForm) {
+    if (hotelForm.valid) {
+      this.hotelService.updateHotel(this.hotelId, this.hotel).subscribe({
         next: (res) => {
           console.log(this.hotel);
           console.log(res);
           this.router.navigate(['dashboard/hotelsDashboard']);
         },
         error: (error) => {
-          console.log(this.hotel)
+          console.log(this.hotel);
           console.error('Error adding hotel:', error);
         }
-      }
-    );
+      });
+    }
   }
 
   back(): void {
     this.router.navigate(['/dashboard/hotelsDashboard']);
   }
+
   onCoordinatesChange(newCoordinates: { latitude: number; longitude: number }) {
     this.hotel.latitude = newCoordinates.latitude;
     this.hotel.longitude = newCoordinates.longitude;

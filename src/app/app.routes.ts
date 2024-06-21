@@ -33,7 +33,8 @@ import { RegistrationComponent } from './Components/registration/registration.co
 
 export const routes: Routes = [
     { path: '', component: HotelBookingComponent }, 
-    { path: 'login', component: LoginComponent },
+    {path:'hotelBooking',component:HotelBookingComponent},
+    { path: 'login', component: LoginComponent ,pathMatch: 'full'},
     { path: 'register', component: RegistrationComponent },
     {
         path: 'dashboard',

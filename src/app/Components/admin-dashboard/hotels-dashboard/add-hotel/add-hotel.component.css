@@ -10,6 +10,7 @@ form h2 {
 
 .form-group {
     position: relative;
+    margin-bottom: 1.5rem;
 }
 
 .form-label {
@@ -21,6 +22,8 @@ input,
 textarea {
     border-radius: 0.375rem;
     border: 1px solid #ced4da;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
 }
 
 input:focus,
@@ -34,7 +37,10 @@ button {
 }
 
 .invalid-feedback {
-    position: absolute;
-    bottom: -20px;
-    left: 0;
+    color: red;
+    display: none;
 }
+.needs-validation .ng-invalid.ng-touched ~ .invalid-feedback {
+    display: block;
+}
+

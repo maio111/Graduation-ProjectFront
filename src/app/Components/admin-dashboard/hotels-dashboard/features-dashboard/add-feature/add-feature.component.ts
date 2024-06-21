@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HotelService } from '../../../../../services/hotel.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-feature',
@@ -31,12 +32,28 @@ export class AddFeatureComponent {
     );
   }
 
-  onSubmit() {
-    this.addFeature();
+  onSubmit(featureform:NgForm) {
+    if(featureform.valid)
+      {
+        this.addFeature();
     this.router.navigate(['/dashboard/featuresDashboard', this.hotelId]);
+      }
+      else
+      {
+        this.markFormGroupTouched(featureform);
+      }
+    
   }
 
   back(): void {
     this.router.navigate(['/dashboard/featuresDashboard',this.hotelId]);
+  }
+  private markFormGroupTouched(formGroup: NgForm) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.control.get(field);
+      if (control) {
+        control.markAsTouched({ onlySelf: true });
+      }
+    });
   }
 }

@@ -19,6 +19,7 @@ import { User } from '../../models/user';
 export class RegistrationComponent {
   
   registrationForm: FormGroup;
+  successMessage: string | null = null;
 
   constructor(private fb: FormBuilder, private registrationService: RegistrationService, private router: Router) {
     this.registrationForm = this.fb.group({
@@ -42,8 +43,12 @@ export class RegistrationComponent {
       const user: User = this.registrationForm.value;
       this.registrationService.register(user).subscribe(
         response => {
-          console.log(response);
-          this.router.navigate(['/home']);
+          console.log(response.data);
+          this.successMessage = 'Registration successful!';
+          setTimeout(() => {
+            this.successMessage = null;
+           // Navigate to home after registration success
+          }, 5000); // Navigate to home after 3 seconds
         },
         error => {
           console.error(error);
