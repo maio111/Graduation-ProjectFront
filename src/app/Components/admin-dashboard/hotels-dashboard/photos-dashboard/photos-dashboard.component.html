@@ -17,7 +17,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let photo of hotelPhotos; let i = index">
+                <tr *ngFor="let photo of hotelPhotos | paginate: { id: 'ho',
+                itemsPerPage: 3,
+                currentPage: page,
+                totalItems: total }; let i = index">
                     <td>{{i + 1}}</td>
                     <td>{{photo.name}}</td>
                     <td>{{photo.description}}</td>
@@ -34,5 +37,8 @@
                 </tr>
             </tbody>
         </table>
+        <div class="d-flex justify-content-centre">
+            <pagination-controls (pageChange)="changePage($event)" id="coun"></pagination-controls>
+        </div>
     </div>
 </div>

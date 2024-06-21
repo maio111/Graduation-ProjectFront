@@ -6,17 +6,20 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Base64ToImagePipe } from '../../../../../Pipes/base64-to-image.pipe';
 import { environment } from '../../../../../environments/environment';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-photos-dashboard',
   standalone: true,
-  imports: [FormsModule,CommonModule,Base64ToImagePipe],
+  imports: [FormsModule,CommonModule,Base64ToImagePipe , NgxPaginationModule],
   templateUrl: './photos-dashboard.component.html',
   styleUrl: './photos-dashboard.component.css'
 })
 export class PhotosDashboardComponent implements OnInit{
   hotelPhotos: IHotelPhoto[] = [];
   hotelId!: number;
+  page:any;
+  total:any
   env:string = environment.baseUrl
   constructor(
     private route: ActivatedRoute,
@@ -32,13 +35,21 @@ export class PhotosDashboardComponent implements OnInit{
 
   loadHotelPhotos() {
     this.hotelPhotoService.getHotelPhotos(this.hotelId).subscribe({
-      next: (res) => {
-        this.hotelPhotos = res.data 
-        console.log(res)
+      next: (res:any) => {
+        console.log(res);
+        this.hotelPhotos = res.data;
+        this.total=res.totalItems
+        
       },
-      error: (err) => console.log(err)
+      error: (err) => {
+        console.error('Error fetching hotel photos:', err);
+      },
+      complete: () => {
+        console.log('Hotel photos fetched successfully.');
+      }
     });
   }
+  
 
   deletePhoto(photoId: number) {
     this.hotelPhotoService.deleteHotelPhoto(photoId).subscribe({
@@ -55,5 +66,8 @@ export class PhotosDashboardComponent implements OnInit{
     this.router.navigate(["dashboard/editPhoto", this.hotelId], {
       queryParams: { photo: JSON.stringify(photo) }
     });
+  }
+  changePage(event:any){
+    this.page=event
   }
 }
