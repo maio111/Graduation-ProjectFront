@@ -1,18 +1,30 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
+<<<<<<< HEAD
             <form (ngSubmit)="onSubmit(hotelForm)" #hotelForm="ngForm" class="needs-validation" novalidate>
                 <div class="mb-3">
                     <label for="name" class="form-label">Feature Name:</label>
                     <input type="text" id="name" name="name" [(ngModel)]="feature.name" #name="ngModel"
                         class="form-control" required (blur)="name.control.markAsTouched()"/>
+=======
+            <form (ngSubmit)="onSubmit()" #featureForm="ngForm" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Feature Name:</label>
+                    <select id="name" name="name" [(ngModel)]="selectedFeatureID"
+                        #name="ngModel" class="form-control" required>
+                        <option *ngFor="let featureOption of features" [value]="featureOption.id">
+                            {{ featureOption.name }}
+                        </option>
+                    </select>
+>>>>>>> 1c87d5de527f9de3cb73461a742acf2e73673e98
                     <div *ngIf="name.invalid && (name.dirty || name.touched)" class="invalid-feedback">
-                        Please enter the feature name.
+                        Please select a feature name.
                     </div>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-md-3">
-                        <button type="submit" [disabled]="hotelForm.invalid" class="btn btn-outline-primary m-2">
+                        <button type="submit" [disabled]="featureForm.invalid" class="btn btn-outline-primary m-2">
                             Add Feature
                         </button>
                     </div>

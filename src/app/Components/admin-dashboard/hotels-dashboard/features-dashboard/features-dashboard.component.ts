@@ -52,9 +52,10 @@ export class FeaturesDashboardComponent implements OnInit {
       next: (res) => console.log(res),
       error: (error) => console.log(error)
     })
+    window.location.reload();
   }
-  changePage(event:any){
-    this.page=event
-    this.getAllFeatures()
+  changePage(event: any) {
+    this.page = event;
+    this.getAllFeatures();
   }
 }

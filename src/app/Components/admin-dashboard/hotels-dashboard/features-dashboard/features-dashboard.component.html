@@ -15,16 +15,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of Features | paginate: { id: 'foo',
-                itemsPerPage: 4,
+                <tr *ngFor="let item of Features | paginate: { id: 'ho',
+                itemsPerPage: 3,
                 currentPage: page,
                 totalItems: total }; let i = index">
                     <td>{{i + 1}}</td>
                     <td>{{item.name}}</td>
                     <td>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-primary"
-                                (click)="navigateToEdit(item.id, item)">Edit</button>
                             <button type="button" class="btn btn-sm btn-outline-danger"
                                 (click)="deleteFeature(item.id)">Delete</button>
                         </div>
@@ -32,8 +30,8 @@
                 </tr>
             </tbody>
         </table>
-        <div>
-            <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+        <div class="d-flex justify-content-center">
+            <pagination-controls (pageChange)="changePage($event)" id="ho"></pagination-controls>
         </div>
     </div>
 </div>

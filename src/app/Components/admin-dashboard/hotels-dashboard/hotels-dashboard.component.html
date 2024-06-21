@@ -35,8 +35,8 @@
                         <div class="btn-group">
                             <button type="button" class="btn btn-sm btn-outline-primary"
                                 (click)="navigateToEdit(item.id, item)">Edit</button>
-                            <button type="button" class="btn btn-sm btn-outline-info"
-                                (click)="navigateToDetails(item.id)">Details</button>
+                            <!-- <button type="button" class="btn btn-sm btn-outline-info"
+                                (click)="navigateToDetails(item.id)">Details</button> -->
                             <button type="button" class="btn btn-sm btn-outline-danger"
                                 (click)="deleteHotel(item.id)">Delete</button>
                             <button type="button" class="btn btn-sm btn-outline-secondary"
@@ -50,7 +50,7 @@
                 </tr>
             </tbody>
         </table>
-        <div class="d-flex justify-content-centre">
+        <div class="d-flex justify-content-center">
             <pagination-controls (pageChange)="changePage($event)" id="ho"></pagination-controls>
         </div>
     </div>
