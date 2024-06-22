@@ -7,16 +7,6 @@
                         <div class="mb-3">
                             <label for="capacity" class="form-label">Capacity:</label>
                             <input type="number" id="capacity" name="capacity" [(ngModel)]="room.capacity"
-<<<<<<< HEAD
-                                class="form-control" required #capacity="ngModel">
-                            <div *ngIf="capacity.invalid && capacity.touched" class="invalid-feedback">Please enter a valid Capacity.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="view" class="form-label">View:</label>
-                            <input type="number" id="view" name="view" [(ngModel)]="room.view" class="form-control"
-                                required #view="ngModel">
-                            <div *ngIf="view.invalid && view.touched" class="invalid-feedback">Please enter a valid View.</div>
-=======
                                 class="form-control" required min="1" max="8">
                             <div class="invalid-feedback">Please enter a valid Capacity.</div>
                         </div>
@@ -26,7 +16,6 @@
                                 <option *ngFor="let view of views" [value]="view.value">{{ view.label }}</option>
                             </select>
                             <div class="invalid-feedback">Please select a valid view.</div>
->>>>>>> 1c87d5de527f9de3cb73461a742acf2e73673e98
                         </div>
                         <div class="mb-3">
                             <label for="roomType" class="form-label">Room Type:</label>

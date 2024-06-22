@@ -5,13 +5,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RoomService } from '../../../../../Services/room.service';
 import { HotelService } from '../../../../../services/hotel.service';
 import { RoomTypeService } from '../../../../../Services/room-type.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-<<<<<<< HEAD
-import { NgForm } from '@angular/forms';
-=======
 import { getViewsValues } from '../../../../../utilities/getViews';
->>>>>>> 1c87d5de527f9de3cb73461a742acf2e73673e98
 
 @Component({
   selector: 'app-edit-room',
@@ -65,21 +61,6 @@ export class EditRoomComponent implements OnInit {
   }
 
   onSubmit(): void {
-<<<<<<< HEAD
-    if (this.hotelForm.valid) {
-      this.room.roomTypeId = this.selectedRoomType;
-      this.roomService.updateRoom(this.roomId, this.room).subscribe({
-        next: (res) => {
-          this.router.navigate(['/dashboard/roomsDashboard', this.room.hotelId]);
-        },
-        error: (error) => {
-          console.error('Error updating room:', error);
-        }
-      });
-    } else {
-      this.hotelForm.form.markAllAsTouched();
-    }
-=======
     this.room.roomTypeId = this.selectedRoomType;
     this.room.view = Number(this.room.view);
     this.roomService.updateRoom(this.roomId, this.room).subscribe({
@@ -90,7 +71,6 @@ export class EditRoomComponent implements OnInit {
         console.error('Error updating room:', error);
       }
     });
->>>>>>> 1c87d5de527f9de3cb73461a742acf2e73673e98
   }
 
   back(): void {

@@ -2,13 +2,8 @@ import { Component } from '@angular/core';
 import { IFeature } from '../../../../models/IFeature';
 import { IfStmt } from '@angular/compiler';
 import { Router } from '@angular/router';
-<<<<<<< HEAD
-import { FeaturesService } from '../../../../services/features.service';
-import { FormsModule, NgForm } from '@angular/forms';
-=======
 import { FeaturesService } from '../../../../Services/features.service';
-import { FormsModule } from '@angular/forms';
->>>>>>> 1c87d5de527f9de3cb73461a742acf2e73673e98
+import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({

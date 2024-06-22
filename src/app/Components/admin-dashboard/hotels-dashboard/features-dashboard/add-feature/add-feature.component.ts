@@ -2,13 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { IHotelFeature } from '../../../../../models/IHotelFeature';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HotelService } from '../../../../../services/hotel.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-<<<<<<< HEAD
-import { NgForm } from '@angular/forms';
-=======
 import { FeaturesService } from '../../../../../Services/features.service';
->>>>>>> 1c87d5de527f9de3cb73461a742acf2e73673e98
 
 @Component({
   selector: 'app-add-feature',
@@ -17,7 +13,7 @@ import { FeaturesService } from '../../../../../Services/features.service';
   templateUrl: './add-feature.component.html',
   styleUrls: ['./add-feature.component.css'] // Corrected here
 })
-export class AddFeatureComponent implements OnInit{
+export class AddFeatureComponent implements OnInit {
   selectedFeatureID!: number;
   feature: IHotelFeature = { id: 0, name: "" };
   features: IHotelFeature[] = [] as IHotelFeature[];
@@ -43,13 +39,6 @@ export class AddFeatureComponent implements OnInit{
       }
     );
   }
-
-<<<<<<< HEAD
-  onSubmit(featureform:NgForm) {
-    if(featureform.valid)
-      {
-        this.addFeature();
-=======
   getFeatures() {
     this.featureService.getFeatures().subscribe({
       next: (res) => {
@@ -58,28 +47,26 @@ export class AddFeatureComponent implements OnInit{
       error: (err) => console.log(err)
     })
   }
-  // getFeatureById() {
-  //   this.featureService.getFeatureById(this.selectedFeatureID).subscribe({
-  //     next: (res) => { this.feature = res.data; console.log(res) },
-  //     error: (err) => console.log(err)
-  //   })
-  // }
+  getFeatureById() {
+    this.featureService.getFeatureById(this.selectedFeatureID).subscribe({
+      next: (res) => { this.feature = res.data; console.log(res) },
+      error: (err) => console.log(err)
+    })
+  }
+  onSubmit(featureform: NgForm) {
+    if (featureform.valid) {
+      this.feature.id = this.selectedFeatureID;
+      this.addFeature();
+      this.router.navigate(['/dashboard/featuresDashboard', this.hotelId]);
+    }
+    else {
+      this.markFormGroupTouched(featureform);
+    }
 
-  onSubmit() {
-    this.feature.id = this.selectedFeatureID;
-    this.addFeature();
->>>>>>> 1c87d5de527f9de3cb73461a742acf2e73673e98
-    this.router.navigate(['/dashboard/featuresDashboard', this.hotelId]);
-      }
-      else
-      {
-        this.markFormGroupTouched(featureform);
-      }
-    
   }
 
   back(): void {
-    this.router.navigate(['/dashboard/featuresDashboard',this.hotelId]);
+    this.router.navigate(['/dashboard/featuresDashboard', this.hotelId]);
   }
   private markFormGroupTouched(formGroup: NgForm) {
     Object.keys(formGroup.controls).forEach(field => {
