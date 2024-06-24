@@ -30,6 +30,7 @@ import { CityDashboardComponent } from './Components/admin-dashboard/country-das
 import { AddCityComponent } from './Components/admin-dashboard/country-dashboard/city-dashboard/add-city/add-city.component';
 import { EditCityComponent } from './Components/admin-dashboard/country-dashboard/city-dashboard/edit-city/edit-city.component';
 import { RegistrationComponent } from './Components/registration/registration.component';
+import { AllcomponenetComponent } from './Components/admin-dashboard/HotelBooking-dashboard/allcomponenet/allcomponenet.component';
 
 export const routes: Routes = [
     { path: '', component: HotelBookingComponent }, 
@@ -67,6 +68,7 @@ export const routes: Routes = [
             { path: 'featuresDashboardGeneral', component: FeaturesDashboardGeneralComponent },
             { path: 'addFeatureGeneral', component: AddFeatureGeneralComponent },
             { path: 'editFeatureGeneral/:Id', component: EditFeatureGeneralComponent },
+            {path:'hotelbooking', component:AllcomponenetComponent}
 
         ]
     },
