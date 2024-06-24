@@ -20,7 +20,6 @@
           <td>{{ booking.checkOut | date:'yyyy-MM-dd' }}</td>
           <td>{{ booking.totalPrice }}</td>
           <td>
-            <button (click)="navigateToEdit(booking.id)" class="btn btn-sm btn-outline-primary mx-2">Edit</button>
             <button (click)="deletebooking(booking.id)" class="btn btn-sm btn-outline-danger mx-2">Delete</button>
           </td>
         </tr>

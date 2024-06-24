@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -8,29 +8,25 @@ import { HotelBookingService } from '../../../../Services/hotel-booing.service';
 @Component({
   selector: 'app-country-dashboard',
   standalone: true,
-  imports: [FormsModule, CommonModule , NgxPaginationModule],
+  imports: [FormsModule, CommonModule, NgxPaginationModule],
   templateUrl: './Allcomponenet.component.html',
-  styleUrl: './Allcomponenet.component.css'
+  styleUrls: ['./Allcomponenet.component.css'] 
 })
-export class AllcomponenetComponent
-{
-  
+export class AllcomponenetComponent implements OnInit {
   deletedItemId!: number;
   currenthotelId!: number;
   message?: string;
-
-  hotelData: any[] = []; 
-  pagedItems: any[] = []; 
-  currentPage: number = 1; 
-  itemsPerPage: number = 10; 
-  dataService: any;
-  page:any;
-  total:any;
+  hotelData: any[] = [];
+  pagedItems: any[] = [];
+  currentPage: number = 1;
+  itemsPerPage: number = 10;
+  page: any;
+  total: any;
 
   constructor(
     private hotelBooking: HotelBookingService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.getAllCountries();
@@ -41,48 +37,39 @@ export class AllcomponenetComponent
       next: (res: any) => {
         console.log(res);
         this.hotelData = res;
-        console.log(this.hotelData)
-        this.total=res.totalItems
+        console.log(this.hotelData);
+        this.total = res.totalItems;
       },
       error: (error) => {
-        console.error('Error fetching booking:', error);
+        console.error('Error fetching booking:', error); 
+        if (error.error) {
+          console.error('Error details:', error.error);
+        }
       },
       complete: () => {
-        console.log('booking fetching completed.');
+        console.log('Booking fetching completed.');
       }
     });
   }
 
-  navigateToEdit(id: number) {
-    this.currenthotelId = id;
-    this.router.navigate(['', this.currenthotelId]);
-  }
 
-  navigateToDetails(id: number) {
-    this.currenthotelId = id;
-    this.router.navigate(['', this.currenthotelId]);
-  }
-  navigateToCities(id: number) {
-    this.currenthotelId= id;
-    this.router.navigate(['', this.currenthotelId]);
-  }
+
 
   deletebooking(id: number) {
     this.currenthotelId = id;
     this.hotelBooking.deleteBooking(this.currenthotelId).subscribe({
-      next: (res) => { console.log(res); },
-      error: (res) => { console.log(res.error); },
-      complete: () => { console.log("complete"); }
+      next: (res) => {
+      },
+      error: (res) => {
+        console.log(res.error);
+      },
+      complete: () => {
+        console.log('Complete');
+      }
     });
-    window.location.reload();
   }
 
-  goToAddPage() {
-    this.router.navigate(['']);
-  }
+ 
 
-  changePage(event:any){
-    this.page=event
-  }
+ 
 }
-
