@@ -14,7 +14,7 @@
                 <div class="form__group">
                     <div class="input__group">
                         <input type="text" name="cityId" formControlName="cityId" (focus)="onCityFocus()" (blur)="onCityBlur()"
-                            (input)="onCityInput()" />
+                            (input)="onCityInput()"/>
                         <label [class.filled]="bookingForm.get('cityId')?.value">Location</label>
                         <i class="fa-solid fa-location-dot"></i>
                         <ul *ngIf="showDropdown" class="autocomplete-list">
@@ -28,7 +28,7 @@
                 <div class="form__group">
                     <div class="input__group">
                         <input type="text" id="checkin" formControlName="checkInDate" (focus)="onFocus($event)"
-                            (blur)="onBlur($event)" />
+                            (blur)="onBlur($event)" [(ngModel)]="parmas.checkInDate"/>
                         <label [class.filled]="bookingForm.get('checkInDate')?.value">Check In</label>
                     </div>
                     <p *ngIf="bookingForm.get('checkInDate')?.hasError('invalidCheckInDate')">Check-in date cannot be in
@@ -38,7 +38,7 @@
                 <div class="form__group">
                     <div class="input__group">
                         <input type="text" id="checkout" formControlName="checkOutDate" (focus)="onFocus($event)"
-                            (blur)="onBlur($event)" />
+                            (blur)="onBlur($event)" [(ngModel)]="parmas.checkOutDate"/>
                         <label [class.filled]="bookingForm.get('checkOutDate')?.value">Check Out</label>
                     </div>
                     <p *ngIf="bookingForm.get('checkOutDate')?.hasError('invalidCheckOutDate')">Check-out date must be
@@ -48,7 +48,7 @@
                 <div class="form__group">
                     <div class="input__group">
                         <input type="number" name="roomCapacity" formControlName="roomCapacity"
-                            (focus)="onFocus($event)" (blur)="onBlur($event)" min="1" max="10" />
+                            (focus)="onFocus($event)" (blur)="onBlur($event)" min="1" max="10" [(ngModel)]="parmas.roomCapacity"/>
                         <label [class.filled]="bookingForm.get('roomCapacity')?.value">Guests</label>
                     </div>
                     <p *ngIf="bookingForm.get('roomCapacity')?.hasError('min')">Minimum number of guests is 1.</p>

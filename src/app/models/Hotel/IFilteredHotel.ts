@@ -7,4 +7,5 @@ export interface IFilteredHotel {
     rating: number;
     City: string;
     photos: IHotelPhotoF[];
+    price: number;
 }

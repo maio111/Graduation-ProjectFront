@@ -5,7 +5,7 @@ export interface IHotelFilteredParams {
     roomTypeId?: number;
     minPrice?: number;
     maxPrice?: number;
-    roomView?: string;
+    roomView?: number;
     roomCapacity?: number;
     featureIds?: number[];
 }

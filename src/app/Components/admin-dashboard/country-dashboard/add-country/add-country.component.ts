@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ICountry } from '../../../../models/ICountry';
 import { Router } from '@angular/router';
-import { CountryService } from '../../../../services/country.service';
+import { CountryService } from '../../../../Services/country.service';
 
 @Component({
   selector: 'app-add-country',
