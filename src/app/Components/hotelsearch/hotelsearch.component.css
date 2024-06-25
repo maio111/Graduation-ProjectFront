@@ -1,0 +1,293 @@
+
+
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+  
+  .slider:hover {
+    opacity: 1;
+  }
+  
+
+  
+  .slider:hover::-webkit-slider-thumb,
+  .slider:focus::-webkit-slider-thumb {
+    box-shadow: inset 0 0 0 6px #00a5dd;
+  }
+.sidebar {
+    width: 300px;
+    background-color: #fff;
+    padding: 20px;
+    margin-right: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.budget-slider {
+    margin-bottom: 20px;
+  }
+  
+.filters label {
+    display: block;
+    margin-bottom: 10px;
+}
+  
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.hotel-card {
+    display: flex;
+    background-color: #fff;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative; /* Positioning context for the like button */
+    padding-right: 60px;
+}
+
+.hotel-card img {
+    width: 350px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.hotel-info {
+    padding: 20px;
+    flex: 1;
+}
+
+.hotel-info h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.hotel-info p {
+    margin: 5px 0;
+}
+
+.hotel-info .rating {
+    font-weight: bold;
+}
+
+.hotel-info .comfort {
+    font-weight: bold;
+}
+
+.hotel-info .price {
+    font-size: 20px;
+    color: #d9534f;
+    font-weight: bold;
+}
+
+button {
+    background-color: #17a2b8;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0e7c8d;
+}
+.wrapper {
+    width: 250px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px 25px 40px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+  }
+  
+  header h2 {
+    font-size: 24px;
+    font-weight: 600;
+  }
+  
+  header p {
+    margin-top: 5px;
+    font-size: 16px;
+  }
+  
+  .price-input {
+    width: 100%;
+    display: flex;
+    margin: 25px 0 30px;
+  }
+  
+  .price-input .field {
+    display: flex;
+    width: 100%;
+    height: 45px;
+    align-items: center;
+  }
+  
+  .field input {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    font-size: 19px;
+    margin-left: 12px;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid #999;
+  }
+  
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+  
+  .price-input .separator {
+    width: 130px;
+    display: flex;
+    font-size: 19px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .slider {
+    height: 5px;
+    position: relative;
+    background: #ddd;
+    border-radius: 5px;
+  }
+  
+  .slider .progress {
+    height: 100%;
+    position: absolute;
+    border-radius: 5px;
+    background: #17a2b8;
+  }
+  
+  .range-input {
+    position: relative;
+  }
+  
+  .range-input input {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    top: -5px;
+    background: none;
+    pointer-events: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  
+  input[type="range"]::-webkit-slider-thumb {
+    height: 17px;
+    width: 17px;
+    border-radius: 50%;
+    background: #17a2b8;
+    pointer-events: auto;
+    -webkit-appearance: none;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  input[type="range"]::-moz-range-thumb {
+    height: 17px;
+    width: 17px;
+    border: none;
+    border-radius: 50%;
+    background: #17a2b8;
+    pointer-events: auto;
+    -moz-appearance: none;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+  }
+  .con-like {
+    --red: rgb(255, 50, 50);
+    right: 10px; /* Changed from left to right */
+    position: absolute;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+   
+    cursor: pointer;
+}
+
+.con-like .like {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 20;
+    cursor: pointer;
+}
+
+.con-like .checkmark {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.con-like .outline,
+.con-like .filled {
+    fill: var(--red);
+    position: absolute;
+}
+
+.con-like .filled {
+    animation: kfr-filled 0.5s;
+    display: none;
+}
+
+.con-like .celebrate {
+    position: absolute;
+    animation: kfr-celebrate 0.5s;
+    animation-fill-mode: forwards;
+    display: none;
+}
+
+.con-like .poly {
+    stroke: var(--red);
+    fill: var(--red);
+}
+
+.con-like .like:checked ~ .checkmark .filled {
+    display: block;
+}
+
+.con-like .like:checked ~ .checkmark .celebrate {
+    display: block;
+}
+
+@keyframes kfr-filled {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes kfr-celebrate {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1.2);
+        opacity: 0;
+        display: none;
+    }
+}
+
+
+ 

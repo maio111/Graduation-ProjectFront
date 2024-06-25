@@ -18,6 +18,9 @@ import { GoogleMapsModule,GoogleMap } from '@angular/google-maps';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { HotelsearchComponent } from "./Components/hotelsearch/hotelsearch.component";
+import { MatSliderModule } from '@angular/material/slider'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -27,28 +30,24 @@ import { NgxPaginationModule } from 'ngx-pagination';
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-  imports: [RouterModule,
-    RouterOutlet,
-    RouterLink,
-    RouterLinkActive,
-    LoginComponent,
-    NavBarComponent,
-    RegistrationComponent,
-    HotelBookingComponent,
-    FooterComponent,
-    AdminsDashboardComponent,
-    HotelBookingComponent,
-    CountryDashboardComponent,
-    GoogleMapsModule,
-    GoogleMap,
-    ReactiveFormsModule,
-    FormsModule,
-    CommonModule,
-   NgxPaginationModule
-   
-    
-
-  ]
+    imports: [RouterModule,
+        RouterOutlet,
+        RouterLink,
+        RouterLinkActive,
+        LoginComponent,
+        NavBarComponent,
+        RegistrationComponent,
+        HotelBookingComponent,
+        FooterComponent,
+        AdminsDashboardComponent,
+        HotelBookingComponent,
+        CountryDashboardComponent,
+        GoogleMapsModule,
+        GoogleMap,
+        ReactiveFormsModule,
+        FormsModule,
+        CommonModule,
+        NgxPaginationModule, HotelsearchComponent,]
 })
 export class AppComponent {
   title = 'Booking Boo';
