@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ICity } from '../../../../models/City/ICity';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CityService } from '../../../../services/city.service';
+import { CityService } from '../../../../Services/city.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';

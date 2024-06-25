@@ -1,5 +1,6 @@
 /* General Styles */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
 body, html {
   margin: 0;
   padding: 0;
@@ -555,3 +556,23 @@ nav {
     grid-template-columns: 1fr;
   }
 }
+/* ahmed */
+ .autocomplete-list {
+   position: absolute;
+   border: 1px solid #ccc;
+   max-height: 200px;
+   overflow-y: auto;
+   background-color: white;
+   z-index: 1000;
+   width: 100%;
+   list-style: none;
+ }
+
+ .autocomplete-list li {
+   padding: 8px;
+   cursor: pointer;
+ }
+
+ .autocomplete-list li:hover {
+   background-color: #f0f0f0;
+ }

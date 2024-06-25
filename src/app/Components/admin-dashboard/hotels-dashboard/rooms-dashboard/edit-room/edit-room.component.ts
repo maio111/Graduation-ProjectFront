@@ -3,7 +3,7 @@ import { UpdateRoomDTO } from '../../../../../models/Room/UpdateRoomDTO';
 import { IRoomType } from '../../../../../models/IRoomType';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RoomService } from '../../../../../Services/room.service';
-import { HotelService } from '../../../../../services/hotel.service';
+import { HotelService } from '../../../../../Services/hotel.service';
 import { RoomTypeService } from '../../../../../Services/room-type.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';

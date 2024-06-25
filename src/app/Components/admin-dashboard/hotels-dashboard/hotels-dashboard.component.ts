@@ -1,6 +1,6 @@
 import { Component, TemplateRef } from '@angular/core';
 import { EditHotelComponent } from './edit-hotel/edit-hotel.component';
-import { HotelService } from '../../../services/hotel.service';
+import { HotelService } from '../../../Services/hotel.service';
 import { Ihotel } from '../../../models/Hotel/Ihotel';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
