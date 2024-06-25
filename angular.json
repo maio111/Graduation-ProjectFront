@@ -32,6 +32,7 @@
               "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+               "node_modules/flatpickr/dist/flatpickr.min.css",
               "src/styles.css"
             ],
             "scripts": [ 
