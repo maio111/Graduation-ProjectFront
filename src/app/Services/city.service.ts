@@ -32,4 +32,7 @@ export class CityService {
   updateCity(id: number, city: ICity): Observable<any> {
     return this.httpclient.patch<any>(`${this.baseUrl}/api/City/${id}`, city);
   }
+  getAllCities(): Observable<any> {
+    return this.httpclient.get<any>(`${this.baseUrl}/api/City`);
+  }
 }

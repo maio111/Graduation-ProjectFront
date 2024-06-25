@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IHotelFeature } from '../../../../../models/IHotelFeature';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HotelService } from '../../../../../services/hotel.service';
+import { HotelService } from '../../../../../Services/hotel.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 

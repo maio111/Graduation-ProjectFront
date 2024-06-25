@@ -1,7 +1,7 @@
 import { Component, TemplateRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Ihotel } from '../../../../models/Hotel/Ihotel';
-import { HotelService } from '../../../../services/hotel.service';
+import { HotelService } from '../../../../Services/hotel.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
