@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IHotelPhoto } from '../../../../../models/IHotelPhoto';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HotelPhotoService } from '../../../../../services/hotel-photo.service';
+import { HotelPhotoService } from '../../../../../Services/hotel-photo.service';
 import { GeneralResponse } from '../../../../../models/GeneralResponse';
 import { error } from 'console';
 import { FormsModule } from '@angular/forms';

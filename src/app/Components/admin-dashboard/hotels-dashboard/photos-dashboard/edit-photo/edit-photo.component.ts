@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { addPhoto } from '../../../../../models/addPhoto';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HotelPhotoService } from '../../../../../services/hotel-photo.service';
+import { HotelPhotoService } from '../../../../../Services/hotel-photo.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { IHotelPhoto } from '../../../../../models/IHotelPhoto';

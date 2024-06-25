@@ -1,0 +1,29 @@
+<div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Hotel Name</th>
+          <th>User Name</th>
+          <th>Room Number</th>
+          <th>Check-In</th>
+          <th>Check-Out</th>
+          <th>Total Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let booking of hotelData">
+          <td>{{ booking.hotelName }}</td>
+          <td>{{ booking.userFirstName }} {{ booking.userLastName }}</td>
+          <td>{{ booking.roomNumber }}</td>
+          <td>{{ booking.checkIn | date:'yyyy-MM-dd' }}</td>
+          <td>{{ booking.checkOut | date:'yyyy-MM-dd' }}</td>
+          <td>{{ booking.totalPrice }}</td>
+          <td>
+            <button (click)="deletebooking(booking.id)" class="btn btn-sm btn-outline-danger mx-2">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

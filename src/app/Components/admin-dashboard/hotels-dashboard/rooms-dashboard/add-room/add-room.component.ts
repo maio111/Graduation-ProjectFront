@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AddRoomDTO } from '../../../../../models/Room/AddRoomDTO';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RoomService } from '../../../../../Services/room.service';
-import { HotelService } from '../../../../../services/hotel.service';
+import { HotelService } from '../../../../../Services/hotel.service';
 import { RoomTypeService } from '../../../../../Services/room-type.service';
 import { IRoomType } from '../../../../../models/IRoomType';
 import { getViewsValues } from '../../../../../utilities/getViews';

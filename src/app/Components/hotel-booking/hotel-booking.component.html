@@ -1,7 +1,4 @@
-<link
-href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
-rel="stylesheet"
-/>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <header class="section__container header__container">
     <div class="header__image__container">
@@ -9,57 +6,74 @@ rel="stylesheet"
             <source src="../../../assets/img/hotelvideo1.1.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-      <div class="header__content">
-        <h1>Enjoy Your Dream Vacation</h1>
-      </div>
-     <!-- booking.component.html -->
-<!-- booking.component.html -->
-<div class="booking__container">
-  <form>
-    <div class="form__group">
-      <div class="input__group">
-        <input type="text" [(ngModel)]="location" (focus)="onFocus($event)" (blur)="onBlur($event)" />
-        <label [class.filled]="location">Location</label>
-        <i class="fa-solid fa-location-dot"></i>
-      </div>
-      <p>Where are you going?</p>
-    </div>
-    <div class="form__group">
-      <div class="input__group">
-        <input type="text" id="checkin" [(ngModel)]="checkin" (focus)="onFocus($event)" (blur)="onBlur($event)" />
-        <label [class.filled]="checkin">Check In</label>
-      </div>
-      <p>Add date</p>
-    </div>
-    <div class="form__group">
-      <div class="input__group">
-        <input type="text" id="checkout" [(ngModel)]="checkout" (focus)="onFocus($event)" (blur)="onBlur($event)" />
-        <label [class.filled]="checkout">Check Out</label>
-      </div>
-      <p>Add date</p>
-    </div>
-    <div class="form__group">
-      <div class="input__group">
-        <input type="text" [(ngModel)]="guests" (focus)="onFocus($event)" (blur)="onBlur($event)" />
-        <label [class.filled]="guests">Guests</label>
-      </div>
-      <p>Add Number of guests</p>
-    </div>
-  </form>
-  <button class="btn"><i class="ri-search-line"></i></button>
-</div>
+        <div class="header__content">
+            <h1>Enjoy Your Dream Vacation</h1>
+        </div>
+        <div class="booking__container">
+            <form [formGroup]="bookingForm">
+                <div class="form__group">
+                    <div class="input__group">
+                        <input type="text" name="cityId" formControlName="cityId" (focus)="onCityFocus()" (blur)="onCityBlur()"
+                            (input)="onCityInput()" />
+                        <label [class.filled]="bookingForm.get('cityId')?.value">Location</label>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <ul *ngIf="showDropdown" class="autocomplete-list">
+                            <li *ngFor="let city of filteredCities$ | async" (click)="selectCity(city)">
+                                {{ city.name }}
+                            </li>
+                        </ul>
+                    </div>
+                    <p>Where are you going?</p>
+                </div>
+                <div class="form__group">
+                    <div class="input__group">
+                        <input type="text" id="checkin" formControlName="checkInDate" (focus)="onFocus($event)"
+                            (blur)="onBlur($event)" />
+                        <label [class.filled]="bookingForm.get('checkInDate')?.value">Check In</label>
+                    </div>
+                    <p *ngIf="bookingForm.get('checkInDate')?.hasError('invalidCheckInDate')">Check-in date cannot be in
+                        the past.
+                    </p>
+                </div>
+                <div class="form__group">
+                    <div class="input__group">
+                        <input type="text" id="checkout" formControlName="checkOutDate" (focus)="onFocus($event)"
+                            (blur)="onBlur($event)" />
+                        <label [class.filled]="bookingForm.get('checkOutDate')?.value">Check Out</label>
+                    </div>
+                    <p *ngIf="bookingForm.get('checkOutDate')?.hasError('invalidCheckOutDate')">Check-out date must be
+                        after
+                        check-in date.</p>
+                </div>
+                <div class="form__group">
+                    <div class="input__group">
+                        <input type="number" name="roomCapacity" formControlName="roomCapacity"
+                            (focus)="onFocus($event)" (blur)="onBlur($event)" min="1" max="10" />
+                        <label [class.filled]="bookingForm.get('roomCapacity')?.value">Guests</label>
+                    </div>
+                    <p *ngIf="bookingForm.get('roomCapacity')?.hasError('min')">Minimum number of guests is 1.</p>
+                    <p *ngIf="bookingForm.get('roomCapacity')?.hasError('max')">Maximum number of guests is 10.</p>
+                    <p *ngIf="bookingForm.get('roomCapacity')?.hasError('required')">Number of guests is required.</p>
+                </div>
+            </form>
+
+            <button class="btn" (click)="onSearch()"><i class="ri-search-line"></i></button>
+        </div>
 
 
+
     </div>
-  </header>
-  <section class="destinations">
+</header>
+<section class="destinations">
     <h4 class="label"> Best Destinations</h4>
     <div class="container">
         <div class="container-box">
-          <h2 class="heading">City escape and  <br><br> nature retreats</h2>
+            <h2 class="heading">City escape and <br><br> nature retreats</h2>
 
             <div class="content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero culpa pariatur iusto sequi, ut expedita soluta nihil est quaerat itaque corporis maiores in, at id officiis tempore. Harum vitae fugit itaque expedita asperiores vero delectus?</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero culpa pariatur iusto sequi, ut
+                    expedita soluta nihil est quaerat itaque corporis maiores in, at id officiis tempore. Harum vitae
+                    fugit itaque expedita asperiores vero delectus?</p>
                 <a href="#">explore more <i class="fa fa-arrow-right"></i></a>
             </div>
         </div>
@@ -97,129 +111,131 @@ rel="stylesheet"
         </div>
     </div>
 </section>
- <!-- travel.component.html -->
+<!-- travel.component.html -->
 
- <section class="travel">
-  <div class="container">
-      <div class="box box1">
-          <img src="../../../assets/img/planning.png" alt="">
-          <div class="content">
-              <h4>seamless travel planning</h4>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam fugiat deleniti magni, consequuntur necessitatibus doloremque. Ratione sunt debitis unde ullam.</p>
-          </div>
-      </div>
-      <div class="box box2">
-          <img src="../../../assets/img/map.png" alt="">
-          <div class="content">
-              <h4>toilored experiences</h4>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam fugiat deleniti magni, consequuntur necessitatibus doloremque. Ratione sunt debitis unde ullam.</p>
-          </div>
-      </div>
-      <div class="box box3">
-          <img src="../../../assets/img/trust.png" alt="">
-          <div class="content">
-              <h4>reliable and trustworthy</h4>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam fugiat deleniti magni, consequuntur necessitatibus doloremque. Ratione sunt debitis unde ullam.</p>
-          </div>
-      </div>
-  </div>
+<section class="travel">
+    <div class="container">
+        <div class="box box1">
+            <img src="../../../assets/img/planning.png" alt="">
+            <div class="content">
+                <h4>seamless travel planning</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam fugiat deleniti magni, consequuntur
+                    necessitatibus doloremque. Ratione sunt debitis unde ullam.</p>
+            </div>
+        </div>
+        <div class="box box2">
+            <img src="../../../assets/img/map.png" alt="">
+            <div class="content">
+                <h4>toilored experiences</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam fugiat deleniti magni, consequuntur
+                    necessitatibus doloremque. Ratione sunt debitis unde ullam.</p>
+            </div>
+        </div>
+        <div class="box box3">
+            <img src="../../../assets/img/trust.png" alt="">
+            <div class="content">
+                <h4>reliable and trustworthy</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam fugiat deleniti magni, consequuntur
+                    necessitatibus doloremque. Ratione sunt debitis unde ullam.</p>
+            </div>
+        </div>
+    </div>
 </section>
 <section class="feedback">
-  <div class="container">
-      <h4 class="label">adventure's voices</h4>
-      <h2 class="heading">adventurer's voices</h2>
-      <p class="paragraph">
-          real stories from our sdenturours community
-      </p>
-  </div>
+    <div class="container">
+        <h4 class="label">adventure's voices</h4>
+        <h2 class="heading">adventurer's voices</h2>
+        <p class="paragraph">
+            real stories from our sdenturours community
+        </p>
+    </div>
 
-  <div class="voices">
-      <div class="voice box1">
-          <div class="profile">
-              <img src="../../../assets/img/photo1.jpg" alt="">
-              <div class="detail">
-                  <li>marvin davin</li>
-                  <li>traveler</li>
-              </div>
-          </div>
-          <p>"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat repellat iusto sunt, ducimus aliquam laboriosam placeat eligendi, dignissimos facere ratione deserunt. Voluptatum ratione saepe dolor!"</p>
-      </div>
-      <div class="voice box2">
-          <div class="profile">
-              <img src="../../../assets/img/photo2.jpg" alt="">
-              <div class="detail">
-                  <li>marvin davin</li>
-                  <li>traveler</li>
-              </div>
-          </div>
-          <p>"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat repellat iusto sunt, ducimus aliquam laboriosam placeat eligendi, dignissimos facere ratione deserunt. Voluptatum ratione saepe dolor!"</p>
-      </div>
-      <div class="voice box3">
-          <div class="profile">
-              <img src="../../../assets/img/photo3.jpg" alt="">
-              <div class="detail">
-                  <li>marvin davin</li>
-                  <li>traveler</li>
-              </div>
-          </div>
-          <p>"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat repellat iusto sunt, ducimus aliquam laboriosam placeat eligendi, dignissimos facere ratione deserunt. Voluptatum ratione saepe dolor!"</p>
-      </div>
-  </div>
+    <div class="voices">
+        <div class="voice box1">
+            <div class="profile">
+                <img src="../../../assets/img/photo1.jpg" alt="">
+                <div class="detail">
+                    <li>marvin davin</li>
+                    <li>traveler</li>
+                </div>
+            </div>
+            <p>"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat repellat iusto sunt, ducimus aliquam
+                laboriosam placeat eligendi, dignissimos facere ratione deserunt. Voluptatum ratione saepe dolor!"</p>
+        </div>
+        <div class="voice box2">
+            <div class="profile">
+                <img src="../../../assets/img/photo2.jpg" alt="">
+                <div class="detail">
+                    <li>marvin davin</li>
+                    <li>traveler</li>
+                </div>
+            </div>
+            <p>"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat repellat iusto sunt, ducimus aliquam
+                laboriosam placeat eligendi, dignissimos facere ratione deserunt. Voluptatum ratione saepe dolor!"</p>
+        </div>
+        <div class="voice box3">
+            <div class="profile">
+                <img src="../../../assets/img/photo3.jpg" alt="">
+                <div class="detail">
+                    <li>marvin davin</li>
+                    <li>traveler</li>
+                </div>
+            </div>
+            <p>"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat repellat iusto sunt, ducimus aliquam
+                laboriosam placeat eligendi, dignissimos facere ratione deserunt. Voluptatum ratione saepe dolor!"</p>
+        </div>
+    </div>
 </section>
 <section class="article">
-  <h4 class="label">Resources</h4>
-  <h2 class="heading">Latest Article</h2>
-  <div class="container">
-      <div class="latest-article">
-          <img src="../../../assets/img/festivals.jpg" alt="">
-          <p>Destination Discovery</p>
-          <h3>6 best Places in Japan </h3>
-          <div class="author">
-              <img src="../../../assets/img/person4.jpg" alt="">
-              <p>sandy aldiansyah </p>
-          </div>
-      </div>
-      <div class="more-article">
-          <div class="box box1">
-              <div class="image">
-                  <img src="../../../assets/img/fes2.jpg" alt="">
-              </div>
-              <div class="text">
-                  <h3>Descover Holi festivals in India</h3>
-                  <li>family events</li>
-              </div>
-          </div>
-          <div class="box box2">
-              <div class="image">
-                  <img src="../../../assets/img/fes3.jpg" alt="">
-              </div>
-              <div class="text">
-                  <h3>6 magical Christmas experiences in London</h3>
-                  <li>Christmas</li>
-              </div>
-          </div>
-          <div class="box box3">
-              <div class="image">
-                  <img src="../../../assets/img/fes4.jpg" alt="">
-              </div>
-              <div class="text">
-                  <h3>Discover best summer music festivals in South Korea</h3>
-                  <li>music festivals</li>
-              </div>
-          </div>
-          <div class="box box4">
-              <div class="image">
-                  <img src="../../../assets/img/fes5.jpg" alt="">
-              </div>
-              <div class="text">
-                  <h3> 7 experiences you haven’t had in Vietnam </h3>
-                  <li>travel tips </li>
-              </div>
-          </div>
-      </div>
-  </div>
+    <h4 class="label">Resources</h4>
+    <h2 class="heading">Latest Article</h2>
+    <div class="container">
+        <div class="latest-article">
+            <img src="../../../assets/img/festivals.jpg" alt="">
+            <p>Destination Discovery</p>
+            <h3>6 best Places in Japan </h3>
+            <div class="author">
+                <img src="../../../assets/img/person4.jpg" alt="">
+                <p>sandy aldiansyah </p>
+            </div>
+        </div>
+        <div class="more-article">
+            <div class="box box1">
+                <div class="image">
+                    <img src="../../../assets/img/fes2.jpg" alt="">
+                </div>
+                <div class="text">
+                    <h3>Descover Holi festivals in India</h3>
+                    <li>family events</li>
+                </div>
+            </div>
+            <div class="box box2">
+                <div class="image">
+                    <img src="../../../assets/img/fes3.jpg" alt="">
+                </div>
+                <div class="text">
+                    <h3>6 magical Christmas experiences in London</h3>
+                    <li>Christmas</li>
+                </div>
+            </div>
+            <div class="box box3">
+                <div class="image">
+                    <img src="../../../assets/img/fes4.jpg" alt="">
+                </div>
+                <div class="text">
+                    <h3>Discover best summer music festivals in South Korea</h3>
+                    <li>music festivals</li>
+                </div>
+            </div>
+            <div class="box box4">
+                <div class="image">
+                    <img src="../../../assets/img/fes5.jpg" alt="">
+                </div>
+                <div class="text">
+                    <h3> 7 experiences you haven’t had in Vietnam </h3>
+                    <li>travel tips </li>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
-
-
-
-  

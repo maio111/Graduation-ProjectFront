@@ -1,5 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { HotelPhotoService } from '../../../../services/hotel-photo.service';
+import { HotelPhotoService } from '../../../../Services/hotel-photo.service';
 import { IHotelPhoto } from '../../../../models/IHotelPhoto';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';

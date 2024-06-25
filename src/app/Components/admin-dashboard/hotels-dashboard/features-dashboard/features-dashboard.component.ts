@@ -3,7 +3,7 @@ import { IHotelFeature } from '../../../../models/IHotelFeature';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HotelService } from '../../../../services/hotel.service';
+import { HotelService } from '../../../../Services/hotel.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({

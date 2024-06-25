@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Ihotel } from '../../../../models/Hotel/Ihotel';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { HotelService } from '../../../../services/hotel.service';
+import { HotelService } from '../../../../Services/hotel.service';
 import { HotelMapComponent } from "../hotel-map/hotel-map.component";
 
 @Component({

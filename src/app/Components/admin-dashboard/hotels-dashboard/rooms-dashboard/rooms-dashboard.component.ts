@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RoomService } from '../../../../Services/room.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HotelService } from '../../../../services/hotel.service';
+import { HotelService } from '../../../../Services/hotel.service';
 import { Ihotel } from '../../../../models/Hotel/Ihotel';
 import { AddRoomDTO } from '../../../../models/Room/AddRoomDTO';
 import { NgxPaginationModule } from 'ngx-pagination';

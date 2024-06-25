@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IHotelFeature } from '../../../../../models/IHotelFeature';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HotelService } from '../../../../../services/hotel.service';
+import { HotelService } from '../../../../../Services/hotel.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FeaturesService } from '../../../../../Services/features.service';
