@@ -21,6 +21,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { HotelsearchComponent } from "./Components/hotelsearch/hotelsearch.component";
 import { MatSliderModule } from '@angular/material/slider'; 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HoteldetailsComponent } from "./Components/hoteldetails/hoteldetails.component";
+import { HoteldetailsimgComponent } from './Components/hoteldetailsimg/hoteldetailsimg.component';
 
 
 
@@ -47,7 +49,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         ReactiveFormsModule,
         FormsModule,
         CommonModule,
-        NgxPaginationModule, HotelsearchComponent,]
+        NgxPaginationModule, HotelsearchComponent, HoteldetailsComponent,HoteldetailsimgComponent]
 })
 export class AppComponent {
   title = 'Booking Boo';
