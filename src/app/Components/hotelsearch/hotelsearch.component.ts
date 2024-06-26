@@ -5,7 +5,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { SliderModule } from 'primeng/slider';
 import { InputTextModule } from 'primeng/inputtext';
 import { IFilteredHotel } from '../../models/Hotel/IFilteredHotel';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IHotelFilteredParams } from '../../models/Hotel/IHotelFilteredParams';
 import { IRoomType } from '../../models/IRoomType';
 import { RoomTypeService } from '../../Services/room-type.service';
@@ -13,6 +13,9 @@ import { getViewsValues } from '../../utilities/getViews';
 import { FeaturesService } from '../../Services/features.service';
 import { IFeature } from '../../models/IFeature';
 import { HotelService } from '../../Services/hotel.service';
+import { environment } from '../../../environments/environment';
+import { IHotelPhotoF } from '../../models/Hotel/IHotelPhotoF';
+
 declare var $: any;
 @Component({
   selector: 'app-hotelsearch',
@@ -30,22 +33,15 @@ export class HotelsearchComponent implements OnInit {
   selectedRoomTypeId!: number;
   minPriceVal: number = 0;
   maxPriceVal: number = 0;
- selectedFeatureIds: number[] = [];
-
+  selectedFeatureIds: number[] = [];
+  baseUrl: string = environment.baseUrl;
 
   constructor(private route: ActivatedRoute,
     private roomTypeService: RoomTypeService,
     private featuresService: FeaturesService,
-    private hotelService: HotelService
+    private hotelService: HotelService,
+    private router: Router
   ) { }
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   if ('selectedRoomTypeId' in changes || 'selectedFeatureId' in changes) {
-  //     this.filterParams.roomTypeId = this.selectedRoomTypeId;
-  //     this.updateFilteredHotel();
-  //     console.log(this.filteredHotels)
-  //   }
-  // }
-
   ngOnInit(): void {
     this.selectedRoomTypeId = this.roomTypes[0]?.id;
     this.getRoomTypes();
@@ -171,8 +167,6 @@ export class HotelsearchComponent implements OnInit {
       error: (error) => console.log(error)
     });
   }
-////////////////////////////////////////////////////////////
-
   addToSelectedFeatures(featureId: number): void {
     if (!this.selectedFeatureIds.includes(featureId)) {
       this.selectedFeatureIds.push(featureId);
@@ -205,6 +199,15 @@ export class HotelsearchComponent implements OnInit {
     }
   }
 
+  getMainPhoto(hotel: IFilteredHotel) {
+    return hotel.photos.find((photo: IHotelPhotoF) => photo.category === 1);
+  }
 
-
+  goHotelDetails(hotel: IFilteredHotel) {
+    const filterHotel = JSON.stringify(hotel);
+    this.router.navigate(['hoteldetails'],
+      { queryParams: { filterHotel: filterHotel }
+  })
+  }
 }
+  

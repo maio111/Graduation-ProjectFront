@@ -1,77 +1,112 @@
 <main class="main">
-    <div class="details">
-      <div class="header">
-        <h1>Helambu Spiritual Hike</h1>
-        <div class="price-container">
-          <p class="price">$320/Person</p>
-          <div class="con-like">
-            <input class="like" type="checkbox" title="like">
-            <div class="checkmark">
-              <svg xmlns="http://www.w3.org/2000/svg" class="outline" viewBox="0 0 24 24">
-                <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z"></path>
-              </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" class="filled" viewBox="0 0 24 24">
-                <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z"></path>
-              </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" height="100" width="100" class="celebrate">
-                <polygon class="poly" points="10,10 20,20"></polygon>
-                <polygon class="poly" points="10,50 20,50"></polygon>
-                <polygon class="poly" points="20,80 30,70"></polygon>
-                <polygon class="poly" points="90,10 80,20"></polygon>
-                <polygon class="poly" points="90,50 80,50"></polygon>
-                <polygon class="poly" points="80,80 70,70"></polygon>
-              </svg>
-            </div>
+  <div class="details">
+    <div class="header">
+      <h1>{{filteredHotel.name}}</h1>
+      <div class="price-container">
+        <!-- <p class="price">$320/Person</p> -->
+        <div class="con-like">
+          <input class="like" type="checkbox" title="like">
+          <div class="checkmark">
+            <svg xmlns="http://www.w3.org/2000/svg" class="outline" viewBox="0 0 24 24">
+              <path
+                d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z">
+              </path>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="filled" viewBox="0 0 24 24">
+              <path
+                d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z">
+              </path>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="100" width="100" class="celebrate">
+              <polygon class="poly" points="10,10 20,20"></polygon>
+              <polygon class="poly" points="10,50 20,50"></polygon>
+              <polygon class="poly" points="20,80 30,70"></polygon>
+              <polygon class="poly" points="90,10 80,20"></polygon>
+              <polygon class="poly" points="90,50 80,50"></polygon>
+              <polygon class="poly" points="80,80 70,70"></polygon>
+            </svg>
           </div>
         </div>
       </div>
-      <p class="location">Kathmandu, Nepal <span class="rating">★★★★☆</span></p>
+    </div>
+    <p class="location">
+      {{filteredHotel.cityName}}
+      <span class="rating">
+        <ng-container *ngFor="let star of getStars(filteredHotel.rating)">
+          {{star}}
+        </ng-container>
+      </span>
+    </p>
   </div>
-    <section class="hero">
-      <div class="images">
-        <img src="../../../assets/img/hotel4.jpg" alt="Image 1" (click)="openModal('../../../assets/img/hotel4.jpg')">
-        <img src="../../../assets/img/hotel3.jpg" alt="Image 2" (click)="openModal('../../../assets/img/hotel3.jpg')">
-        <img src="../../../assets/img/hotel1.jpg" alt="Image 3" (click)="openModal('../../../assets/img/hotel1.jpg')">
-        <img src="../../../assets/img/hotel2.jpg" alt="Image 4" (click)="openModal('../../../assets/img/hotel2.jpg')">
-        <img src="../../../assets/img/hotel5.jpg" alt="Image 3" (click)="openModal('../../../assets/img/hotel5.jpg')">
-      </div>
-      <div class="main-image">
-        <img src="../../../assets/img/hotel5.jpg" alt="Main Image">
-      </div>
-    </section>
-    <section class="details">
-     
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <div class="tags">
-              <span><i class="fa-solid fa-warehouse"></i> Capacity: 2</span>
-              <span><i class="fa-solid fa-eye"></i> View: sea</span>
-              <span> <i class="fa-solid fa-people-roof"></i> Room Type :single</span>
-              <div class="info">
-                <div><span>Includes: Food, Tickets, Transportation, Equipment</span></div>
-                <div><span>Duration: 4 Days</span> </div>
+  <section class="hero">
+    <div class="images">
+      <ng-container *ngFor="let photo of getCategory2Photos()">
+        <img [src]="baseUrl + photo.photoUrl" [alt]="filteredHotel.name" (click)="openModal(baseUrl + photo.photoUrl)">
+      </ng-container>
+    </div>
+    <div class="main-image" *ngIf="getMainPhoto(filteredHotel) as mainPhoto">
+      <img [src]="baseUrl+mainPhoto.photoUrl" [alt]="filteredHotel.name">
+    </div>
+  </section>
+  <section class="details">
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="tags">
+            <div class="features">
+              <span *ngFor="let feature of filteredHotel.features">
+                <i class="fa-solid" [ngClass]="featureIcons[feature.name]"></i> {{ feature.name }}
+              </span>
+            </div>
+            <div class="info">
+              <div><span>Includes: Food, Tickets, Transportation, Equipment</span></div>
+              <div><span>Duration: 4 Days</span>
               </div>
             </div>
           </div>
-          <div class="col">
-            <div class="description">
-              <h3>Description</h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, qui! Ratione iure cumque facilis enim nisi provident eos, nemo veniam facere aliquam officia nam odio, quidem, praesentium modi reiciendis voluptate?</p>
-              <button class="check-dates">Reserve</button>
-            </div>
+        </div>
+        <div class="col">
+          <div class="description">
+            <h3>Description</h3>
+            <p>{{filteredHotel.description}}</p>
           </div>
         </div>
+        <div class="col">
+          <app-hotel-map [hotel]="hotelCoordinates"></app-hotel-map>
+        </div>
       </div>
-      
-    </section>
-    <app-hoteldetailsimg [imageSrc]="modalImageSrc"></app-hoteldetailsimg>
-  
-    <section class="feedback">
-      <div class="container">
-        <h2 class="label">Guests Review</h2>
     </div>
-  <div class="allrev">
+
+  </section>
+  <app-hoteldetailsimg [imageSrc]="modalImageSrc"></app-hoteldetailsimg>
+  <table class="table">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col"><span><i class="fa-solid fa-warehouse"></i> Capacity</span></th>
+        <th scope="col"><span><i class="fa-solid fa-eye"></i> View</span></th>
+        <th scope="col"><span> <i class="fa-solid fa-people-roof"></i> Room Type</span></th>
+        <th scope="col"><span> <i class="fa-solid fa-dollar-sign"></i> Price Per Night</span></th>
+        <th scope="col"><span><i class="fa-solid fa-calendar-alt"></i> Reservation</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let room of filteredHotel.rooms">
+        <td>{{ room.capacity }}</td>
+        <td>{{ getViewLabel(room.view) }}</td>
+        <td>{{ room.typeName }}</td>
+        <td>${{ room.pricePerNight }}</td>
+        <td><button class="check-dates">Reserve</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <section class="feedback">
+    <div class="container">
+      <h2 class="label">Guests Review</h2>
+    </div>
+    <!-- <div class="allrev">
     <div>
       <h5>Comfort</h5>
       <p-knob [(ngModel)]="value1" valueColor="#1B4965" rangeColor="gray" />
@@ -93,54 +128,58 @@
         Value for money</h5>
       <p-knob [(ngModel)]="value5" valueColor="#1B4965" rangeColor="gray" />
      </div>
-  </div>
-      
-      <div class="voices">
-          <div class="voice box1">
-              <div class="profile">
-                  <div class="detail">
-                      <li>marvin davin </li>
-                      <li class="city">city</li>
-                      <span class="rating">★★★★☆</span>
-                  </div>
-              </div>
-              <p>"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat repellat iusto sunt, ducimus aliquam laboriosam placeat eligendi, dignissimos facere ratione deserunt. Voluptatum ratione saepe dolor!"</p>
+  </div> -->
+
+    <div class="voices">
+      <div class="voice box1">
+        <div class="profile">
+          <div class="detail">
+            <li>marvin davin </li>
+            <li class="city">city</li>
+            <span class="rating">★★★★☆</span>
           </div>
-          <div class="voice box2">
-              <div class="profile">
-                
-                  <div class="detail">
-                      <li>marvin davin</li>
-                      <li class="city">city</li>
-                      <span class="rating">★★★★☆</span>
-                     
-                  </div>
-              </div>
-              <p>"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat repellat iusto sunt, ducimus aliquam laboriosam placeat eligendi, dignissimos facere ratione deserunt. Voluptatum ratione saepe dolor!"</p>
-          </div>
-          <div class="voice box3">
-              <div class="profile">
-                  
-                  <div class="detail">
-                      <li>marvin davin</li>
-                      <li class="city">city</li>
-                      <span class="rating">★★★★☆</span>
-                  </div>
-              </div>
-              <p>"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat repellat iusto sunt, ducimus aliquam laboriosam placeat eligendi, dignissimos facere ratione deserunt. Voluptatum ratione saepe dolor!"</p>
-          </div>
-          <div class="voice box4">
-              <div class="profile">
-                       <div class="detail">
-                      <li>marvin davin</li><li class="city">city</li>
-                      <span class="rating">★★★★☆</span>
-                  </div>
-              </div>
-              <p>"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat repellat iusto sunt, ducimus aliquam laboriosam placeat eligendi, dignissimos facere ratione deserunt. Voluptatum ratione saepe dolor!"</p>
-          </div>
-  
-  
+        </div>
+        <p>"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat repellat iusto sunt, ducimus aliquam
+          laboriosam placeat eligendi, dignissimos facere ratione deserunt. Voluptatum ratione saepe dolor!"</p>
       </div>
+      <div class="voice box2">
+        <div class="profile">
+
+          <div class="detail">
+            <li>marvin davin</li>
+            <li class="city">city</li>
+            <span class="rating">★★★★☆</span>
+
+          </div>
+        </div>
+        <p>"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat repellat iusto sunt, ducimus aliquam
+          laboriosam placeat eligendi, dignissimos facere ratione deserunt. Voluptatum ratione saepe dolor!"</p>
+      </div>
+      <div class="voice box3">
+        <div class="profile">
+
+          <div class="detail">
+            <li>marvin davin</li>
+            <li class="city">city</li>
+            <span class="rating">★★★★☆</span>
+          </div>
+        </div>
+        <p>"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat repellat iusto sunt, ducimus aliquam
+          laboriosam placeat eligendi, dignissimos facere ratione deserunt. Voluptatum ratione saepe dolor!"</p>
+      </div>
+      <div class="voice box4">
+        <div class="profile">
+          <div class="detail">
+            <li>marvin davin</li>
+            <li class="city">city</li>
+            <span class="rating">★★★★☆</span>
+          </div>
+        </div>
+        <p>"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat repellat iusto sunt, ducimus aliquam
+          laboriosam placeat eligendi, dignissimos facere ratione deserunt. Voluptatum ratione saepe dolor!"</p>
+      </div>
+
+
+    </div>
   </section>
-  </main>
-  
+</main>

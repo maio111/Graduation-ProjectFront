@@ -1,3 +1,5 @@
+import { IFeature } from "../IFeature";
+import { IFilteredRoomHotel } from "./IFilteredRoomHotel";
 import { IHotelPhotoF } from "./IHotelPhotoF";
 
 export interface IFilteredHotel {
@@ -5,7 +7,12 @@ export interface IFilteredHotel {
     name: string;
     description: string;
     rating: number;
-    City: string;
-    photos: IHotelPhotoF[];
+    cityName: string;
     price: number;
+    longitude: number;
+    latitude: number;
+    photos: IHotelPhotoF[];
+    rooms: IFilteredRoomHotel[];
+    features: IFeature[];
+
 }
