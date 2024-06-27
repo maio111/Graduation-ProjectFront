@@ -1,0 +1,12 @@
+<div class="confirmation-container">
+    <div *ngIf="isLoading" class="loading-spinner">
+      Loading...
+    </div>
+    <div *ngIf="!isLoading" [ngClass]="{'confirmation-message': true, 'success': isSuccess, 'error': !isSuccess}">
+      {{ message }}
+      <br/>
+      <a *ngIf="isSuccess" routerLink = "/login" class="login-link">Go to Login</a>
+      <a *ngIf="!isSuccess" routerLink="/register" class="login-link">Go to Register</a>
+    </div>
+  </div>
+  

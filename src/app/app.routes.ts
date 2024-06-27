@@ -33,6 +33,7 @@ import { RegistrationComponent } from './Components/registration/registration.co
 import { AllcomponenetComponent } from './Components/admin-dashboard/HotelBooking-dashboard/allcomponenet/allcomponenet.component';
 import { HotelsearchComponent } from './Components/hotelsearch/hotelsearch.component';
 import { HoteldetailsComponent } from './Components/hoteldetails/hoteldetails.component';
+import { ConfirmEmailComponent } from './Components/confirm-email/confirm-email.component';
 
 export const routes: Routes = [
     { path: '', component: HotelBookingComponent }, 
@@ -41,6 +42,7 @@ export const routes: Routes = [
     { path: 'hoteldetails', component:HoteldetailsComponent},
     { path: 'login', component: LoginComponent ,pathMatch: 'full'},
     { path: 'register', component: RegistrationComponent },
+    { path: 'confirm-email', component: ConfirmEmailComponent },
     {
         path: 'dashboard',
         component: DashboardLayoutComponent,
