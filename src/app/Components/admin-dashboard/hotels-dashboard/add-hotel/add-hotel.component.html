@@ -66,6 +66,9 @@
                   Please enter a description.
                 </div>
               </div>
+              <select [(ngModel)]="hotel.id">
+                <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
+              </select>
             </div>
           </div>
           <div class="row">

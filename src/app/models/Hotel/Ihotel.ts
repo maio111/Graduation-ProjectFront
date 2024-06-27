@@ -8,4 +8,5 @@ export interface Ihotel {
     webSiteURL: string;
     latitude: number;
     longitude: number;
+    cityId:number;
 }

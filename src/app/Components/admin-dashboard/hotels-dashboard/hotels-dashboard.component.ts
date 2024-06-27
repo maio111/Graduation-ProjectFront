@@ -70,6 +70,11 @@ export class HotelsDashboardComponent {
     this.currentHotelId = id;
     this.router.navigate(['dashboard/photosDashboard', this.currentHotelId]);
   }
+  navigateToCountries(id: number) {
+    this.currentHotelId = id;
+    this.router.navigate(['dashboard/countriesDashboard', this.currentHotelId]);
+  }
+  
 
   deleteHotel(id: number) {
     this.currentHotelId = id;

@@ -23,7 +23,8 @@ export class EditHotelComponent {
     email: '',
     webSiteURL: '',
     latitude: 0,
-    longitude: 0
+    longitude: 0,
+    cityId:0
   };
   hotelId!: number;
 

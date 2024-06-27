@@ -53,6 +53,7 @@ export const routes: Routes = [
             { path: 'detailsHotel/:Id', component: DetailsHotelComponent },
             { path: 'countriesDashboard', component: CountryDashboardComponent },
             { path: 'addCountry', component: AddCountryComponent },
+            { path: 'addCountry/:hotelId', component: AddCountryComponent },
             { path: 'editCountry/:Id', component: EditCountryComponent },
             { path: 'citiesDashboard/:Id', component: CityDashboardComponent },
             { path: 'addCity/:Id', component: AddCityComponent },

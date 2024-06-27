@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { HotelService } from '../../../../Services/hotel.service';
 import { HotelMapComponent } from "../hotel-map/hotel-map.component";
+import { CityService } from '../../../../Services/city.service';
+import { ICity } from '../../../../models/City/ICity';
+
 
 @Component({
     selector: 'app-add-hotel',
@@ -24,11 +27,21 @@ export class AddHotelComponent {
     email: '',
     webSiteURL: '',
     latitude: 0,
-    longitude: 0
+    longitude: 0,
+    cityId:0
+    
   };
 
-  constructor(private router: Router, private hotelService: HotelService) { }
+  cities :ICity[]= []  as ICity [] 
 
+
+
+  constructor(private router: Router, private hotelService: HotelService  , private cityService :CityService) { }
+
+  ngOnInit(): void {
+   this.getCities()
+   console.log(this.cities)
+  }
   onSubmit(hotelForm: NgForm) {
     if (hotelForm.valid) {
       this.hotelService.addHotel(this.hotel).subscribe({
@@ -51,5 +64,21 @@ export class AddHotelComponent {
   onCoordinatesChange(newCoordinates: { latitude: number; longitude: number }) {
     this.hotel.latitude = newCoordinates.latitude;
     this.hotel.longitude = newCoordinates.longitude;
+  }
+  getCities(){
+    this.cityService.getAllCities().subscribe({
+      next:(res)=>{this.cities=res.data;
+        console.log(res)
+      },
+      
+      
+      error: error => {
+        console.error('Error', error);
+      }
+
+        })
+  
+  
+
   }
 }
