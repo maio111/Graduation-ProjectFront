@@ -30,7 +30,7 @@ export class AdminDashboardComponent implements OnInit {
 
   getAllAdmins() {
     this.adminService.getAllAdmins().subscribe({
-      next: (res) => {console.log(res)},//this.admins = res.data,
+      next: (res) => this.admins = res.data,
       error: (err) => console.log(err)
     });
   }

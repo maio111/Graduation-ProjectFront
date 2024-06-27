@@ -11,12 +11,8 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">User Name</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Gender</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Birth Date</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
@@ -24,12 +20,8 @@
                 <tr *ngFor="let item of admins | paginate: { id: 'ad', itemsPerPage: 3, currentPage: page, totalItems: total }; let i = index">
                     <td>{{i + 1}}</td>
                     <td>{{item.userName}}</td>
-                    <td>{{item.firstName}}</td>
-                    <td>{{item.lastName}}</td>
                     <td>{{item.email}}</td>
                     <td>{{item.gender}}</td>
-                    <td>{{item.address}}</td>
-                    <td>{{item.birthDate}}</td>
                     <td>
                         <div class="btn-group">
                             <button type="button" class="btn btn-sm btn-outline-primary mx-2" (click)="navigateToEdit(item.email, item)">Edit</button>

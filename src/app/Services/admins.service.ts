@@ -13,8 +13,11 @@ export class AdminsService {
   private baseUrl: string = environment.baseUrl;
   constructor(private httpclient: HttpClient) { }
 
-  getAllAdmins(): Observable<any[]> {
-    return this.httpclient.get<any[]>(`${this.baseUrl}/api/Admin/GetAllAdmins`);
+  // getAllAdmins(): Observable<any[]> {
+  //   return this.httpclient.get<any[]>(`${this.baseUrl}/api/Admin/GetAllAdmins`);
+  // }
+  getAllAdmins(): Observable<{ data: IAdminDTO[] }> {
+    return this.httpclient.get<{ data: IAdminDTO[] }>(`${this.baseUrl}/api/Admin/GetAllAdmins`);
   }
 
   
