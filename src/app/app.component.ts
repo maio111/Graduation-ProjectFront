@@ -25,9 +25,6 @@ import { HoteldetailsComponent } from "./Components/hoteldetails/hoteldetails.co
 import { HoteldetailsimgComponent } from './Components/hoteldetailsimg/hoteldetailsimg.component';
 import { HotelMapComponent } from './Components/admin-dashboard/hotels-dashboard/hotel-map/hotel-map.component';
 
-
-
-
 @Component({
   selector: 'app-root',
   standalone: true,
