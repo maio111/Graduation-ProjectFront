@@ -1,0 +1,66 @@
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <form (ngSubmit)="onSubmit(adminForm)" #adminForm="ngForm" class="needs-validation" novalidate>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label for="userName" class="form-label">User Name:</label>
+                            <input type="text" id="userName" name="userName" [(ngModel)]="admin.userName" #userName="ngModel" class="form-control" required>
+                            <div class="invalid-feedback" *ngIf="userName.invalid && (userName.dirty || userName.touched)">
+                                Please enter the user name.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="firstName" class="form-label">First Name:</label>
+                            <input type="text" id="firstName" name="firstName" [(ngModel)]="admin.firstName" #firstName="ngModel" class="form-control" required>
+                            <div class="invalid-feedback" *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+                                Please enter the first name.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="lastName" class="form-label">Last Name:</label>
+                            <input type="text" id="lastName" name="lastName" [(ngModel)]="admin.lastName" #lastName="ngModel" class="form-control" required>
+                            <div class="invalid-feedback" *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+                                Please enter the last name.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email:</label>
+                            <input type="email" id="email" name="email" [(ngModel)]="admin.email" #email="ngModel" class="form-control" required readonly>
+                            <div class="invalid-feedback" *ngIf="email.invalid && (email.dirty || email.touched)">
+                                Please enter a valid email.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="gender" class="form-label">Gender:</label>
+                            <select id="gender" name="gender" [(ngModel)]="admin.gender" #gender="ngModel" class="form-control" required>
+                                <option value="" disabled>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                            <div class="invalid-feedback" *ngIf="gender.invalid && (gender.dirty || gender.touched)">
+                                Please select a gender.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="birthDate" class="form-label">Birth Date:</label>
+                            <input type="date" id="birthDate" name="birthDate" [(ngModel)]="admin.birthDate" #birthDate="ngModel" class="form-control" required>
+                            <div class="invalid-feedback" *ngIf="birthDate.invalid && (birthDate.dirty || birthDate.touched)">
+                                Please enter a valid birth date.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-3">
+                        <button type="submit" [disabled]="adminForm.invalid" class="btn btn-outline-primary m-2">Update Admin</button>
+                    </div>
+                    <div class="col-md-3">
+                        <a class="btn btn-outline-danger m-2" (click)="back()">Back</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
