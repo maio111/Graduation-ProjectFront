@@ -33,6 +33,8 @@ import { RegistrationComponent } from './Components/registration/registration.co
 import { AllcomponenetComponent } from './Components/admin-dashboard/HotelBooking-dashboard/allcomponenet/allcomponenet.component';
 import { HotelsearchComponent } from './Components/hotelsearch/hotelsearch.component';
 import { HoteldetailsComponent } from './Components/hoteldetails/hoteldetails.component';
+import { PaymentComponent } from './Components/payment/payment.component';
+import { HotelReservationComponent } from './Components/hotel-reservation/hotel-reservation.component';
 
 export const routes: Routes = [
     { path: '', component: HotelBookingComponent }, 
@@ -76,6 +78,7 @@ export const routes: Routes = [
 
         ]
     },
+    { path: 'payment', component: PaymentComponent },
+    { path: 'hotelreservation', component: HotelReservationComponent },
     { path: '**', component: PageNotFoundComponent },
-
 ];

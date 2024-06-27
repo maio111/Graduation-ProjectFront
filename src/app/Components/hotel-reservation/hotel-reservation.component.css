@@ -1,0 +1,18 @@
+.payment-method-toggle {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.payment-method-toggle .form-check-label {
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+.dropin-container {
+    margin-top: 20px;
+}
+
+button {
+    margin-top: 20px;
+}
