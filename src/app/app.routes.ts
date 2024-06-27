@@ -34,6 +34,9 @@ import { AllcomponenetComponent } from './Components/admin-dashboard/HotelBookin
 import { HotelsearchComponent } from './Components/hotelsearch/hotelsearch.component';
 import { HoteldetailsComponent } from './Components/hoteldetails/hoteldetails.component';
 import { ConfirmEmailComponent } from './Components/confirm-email/confirm-email.component';
+import { AdminDashboardComponent } from './Components/admin-dashboard/admin-dashboard/admin-dashboard.component';
+import { AddAdminComponent } from './Components/admin-dashboard/admin-dashboard/add-admin/add-admin.component';
+import { EditAdminComponent } from './Components/admin-dashboard/admin-dashboard/edit-admin/edit-admin.component';
 
 export const routes: Routes = [
     { path: '', component: HotelBookingComponent }, 
@@ -48,7 +51,9 @@ export const routes: Routes = [
         component: DashboardLayoutComponent,
         children: [
             { path: '', component: AdminsDashboardComponent },
-            { path: 'adminsDashboard', component: AdminsDashboardComponent },
+            { path: 'adminDashboard', component: AdminDashboardComponent },
+            { path: 'addAdmin', component: AddAdminComponent },
+            { path: 'editAdmin', component: EditAdminComponent },
             { path: 'hotelsDashboard', component: HotelsDashboardComponent },
             { path: 'addHotel', component: AddHotelComponent },
             { path: 'editHotel/:Id', component: EditHotelComponent },
