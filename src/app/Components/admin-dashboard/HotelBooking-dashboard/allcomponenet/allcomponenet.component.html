@@ -12,7 +12,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let booking of hotelData">
+        
+        <tr *ngFor="let booking of hotelData | paginate: { id: 'coun', itemsPerPage: 3, currentPage: page, totalItems: total }; let i = index">
+
           <td>{{ booking.hotelName }}</td>
           <td>{{ booking.userFirstName }} {{ booking.userLastName }}</td>
           <td>{{ booking.roomNumber }}</td>
@@ -26,4 +28,7 @@
       </tbody>
     </table>
   </div>
+  <div class="d-flex justify-content-center">
+    <pagination-controls (pageChange)="changePage($event)" id="coun"></pagination-controls>
+</div>
   

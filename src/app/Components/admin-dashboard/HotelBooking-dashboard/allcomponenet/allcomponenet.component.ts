@@ -17,7 +17,6 @@ export class AllcomponenetComponent implements OnInit {
   currenthotelId!: number;
   message?: string;
   hotelData: any[] = [];
-  pagedItems: any[] = [];
   currentPage: number = 1;
   itemsPerPage: number = 10;
   page: any;
@@ -29,10 +28,10 @@ export class AllcomponenetComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getAllCountries();
+    this.getAllBooking();
   }
 
-  getAllCountries() {
+  getAllBooking() {
     this.hotelBooking.getAllBookings().subscribe({
       next: (res: any) => {
         console.log(res);
@@ -70,6 +69,8 @@ export class AllcomponenetComponent implements OnInit {
   }
 
  
-
+  changePage(event:any){
+    this.page=event
+  }
  
 }

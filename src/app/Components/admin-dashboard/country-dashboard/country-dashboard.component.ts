@@ -3,8 +3,8 @@ import { ICountry } from '../../../models/ICountry';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { CountryService } from '../../../services/country.service';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CountryService } from '../../../Services/country.service';
 
 @Component({
   selector: 'app-country-dashboard',

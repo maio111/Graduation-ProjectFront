@@ -40,9 +40,7 @@
 
       <select class="form-select form-field animation a4" formControlName="address">
         <option value="" disabled selected hidden>Select a City</option>
-        <option value="One">One</option>
-        <option value="Two">Two</option>
-        <option value="Three">Three</option>
+        <option value= "{{city.name}}" *ngFor="let city of cities">{{city.name}}</option>
       </select>
       <div *ngIf="registrationForm.get('address')?.invalid && (registrationForm.get('address')?.dirty || registrationForm.get('address')?.touched)">
         <small *ngIf="registrationForm.get('address')?.errors?.['required']">City is required</small>

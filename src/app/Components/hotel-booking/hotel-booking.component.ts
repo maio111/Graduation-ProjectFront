@@ -9,7 +9,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CityService } from '../../Services/city.service';
 import { ICity } from '../../models/City/ICity';
 import { HotelService } from '../../Services/hotel.service';
-import { IFilteredHotel } from '../../models/IPhoto';
+import { IFilteredHotel } from '../../models/Hotel/IFilteredHotel';
 import { IHotelFilteredParams } from '../../models/Hotel/IHotelFilteredParams';
 import { CommonModule } from '@angular/common';
 import { checkInDateValidator, checkOutDateValidator } from '../../Validators/date';
@@ -17,6 +17,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Observable, map, of, startWith } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { json } from 'stream/consumers';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -40,13 +42,14 @@ export class HotelBookingComponent {
   cities: ICity[] = [] as ICity[];
   filteredCities$: Observable<ICity[]> | undefined;
   showDropdown: boolean = false;
-  filteredHotels: IFilteredHotel[] = [] as IFilteredHotel[];
+  filteredHotels: IFilteredHotel [] = [] as IFilteredHotel[];
   bookingForm!: FormGroup;
   parmas: IHotelFilteredParams = {} as IHotelFilteredParams;
   constructor(
     private citiesService: CityService,
     private hotelService: HotelService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {
   }
   onFocus(event: Event): void {
@@ -112,6 +115,7 @@ export class HotelBookingComponent {
   }
   selectCity(city: ICity): void {
     this.bookingForm.get('cityId')!.setValue(city.name);
+    this.parmas.cityId = city.id;
     this.showDropdown = false;
   }
 
@@ -198,7 +202,13 @@ export class HotelBookingComponent {
       this.hotelService.getFilteredHotels(this.parmas).subscribe({
         next: (res) => {
           this.filteredHotels = res.data
-          console.log(res.data);
+          console.log(res.data)
+          
+          const filteredHotels = JSON.stringify(this.filteredHotels);
+          const filterParams = JSON.stringify(this.parmas);
+          this.router.navigate(['filterhotels'], {
+            queryParams: { filterParams: filterParams, filteredHotels: filteredHotels }
+          });
         },
         error: (error) => console.log(error)
       });

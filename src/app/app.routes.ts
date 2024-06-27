@@ -31,10 +31,14 @@ import { AddCityComponent } from './Components/admin-dashboard/country-dashboard
 import { EditCityComponent } from './Components/admin-dashboard/country-dashboard/city-dashboard/edit-city/edit-city.component';
 import { RegistrationComponent } from './Components/registration/registration.component';
 import { AllcomponenetComponent } from './Components/admin-dashboard/HotelBooking-dashboard/allcomponenet/allcomponenet.component';
+import { HotelsearchComponent } from './Components/hotelsearch/hotelsearch.component';
+import { HoteldetailsComponent } from './Components/hoteldetails/hoteldetails.component';
 
 export const routes: Routes = [
     { path: '', component: HotelBookingComponent }, 
-    {path:'hotelBooking',component:HotelBookingComponent},
+    { path:'hotelBooking',component:HotelBookingComponent},
+    { path: 'filterhotels', component:HotelsearchComponent},
+    { path: 'hoteldetails', component:HoteldetailsComponent},
     { path: 'login', component: LoginComponent ,pathMatch: 'full'},
     { path: 'register', component: RegistrationComponent },
     {

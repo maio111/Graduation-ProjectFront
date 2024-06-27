@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormsModule, NgForm, NgModel} from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators ,ReactiveFormsModule } from '@angular/forms';
@@ -6,6 +6,8 @@ import { RegistrationService } from '../../Services/Registration/registration.se
 import { CommonModule, NgFor } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { User } from '../../models/user';
+import { CityService } from '../../Services/city.service';
+import { ICity } from '../../models/City/ICity';
 
 
 
@@ -16,12 +18,17 @@ import { User } from '../../models/user';
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.css'
 })
-export class RegistrationComponent {
-  
+export class RegistrationComponent implements OnInit{
+  cities: ICity[] = [] as ICity[];
   registrationForm: FormGroup;
   successMessage: string | null = null;
 
-  constructor(private fb: FormBuilder, private registrationService: RegistrationService, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private registrationService: RegistrationService,
+    private router: Router,
+    private citiesService:CityService
+  ) {
     this.registrationForm = this.fb.group({
       userName: ['', [Validators.required, Validators.minLength(3)]],
       firstName: ['', Validators.required],
@@ -32,6 +39,12 @@ export class RegistrationComponent {
       address: ['', Validators.required],
       birthDate: ['', Validators.required]
     }, { validator: this.passwordMatchValidator });
+  }
+  ngOnInit(): void {
+    this.citiesService.getAllCities().subscribe({
+      next: (res) => this.cities = res.data,
+      error: (err) => console.log(err)
+    })
   }
 
   passwordMatchValidator(form: FormGroup) {

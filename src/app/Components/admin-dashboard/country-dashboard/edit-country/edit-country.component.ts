@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ICountry } from '../../../../models/ICountry';
-import { CountryService } from '../../../../services/country.service';
+import { CountryService } from '../../../../Services/country.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
