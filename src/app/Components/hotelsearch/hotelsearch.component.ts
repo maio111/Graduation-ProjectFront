@@ -1,9 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, NgModule, ViewChild, ElementRef, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatSliderModule } from '@angular/material/slider';
-import { SliderModule } from 'primeng/slider';
-import { InputTextModule } from 'primeng/inputtext';
 import { IFilteredHotel } from '../../models/Hotel/IFilteredHotel';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IHotelFilteredParams } from '../../models/Hotel/IHotelFilteredParams';
