@@ -5,13 +5,14 @@ import { FormsModule } from '@angular/forms';
 
 import { UserService } from '../../../Services/user.service';
 import { IUser } from '../../../models/iuser';
+import { NavBarComponent } from "../../nav-bar/nav-bar.component";
 
 @Component({
-  selector: 'app-admins-dashboard',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './admins-dashboard.component.html',
-  styleUrls: ['./admins-dashboard.component.css']
+    selector: 'app-admins-dashboard',
+    standalone: true,
+    templateUrl: './admins-dashboard.component.html',
+    styleUrls: ['./admins-dashboard.component.css'],
+    imports: [CommonModule, FormsModule, NavBarComponent]
 })
 export class AdminsDashboardComponent implements OnInit {
   users!: IUser[];

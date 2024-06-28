@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HotelBookingService } from '../../../../Services/hotel-booing.service';
+import { NavBarComponent } from '../../../nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-country-dashboard',
   standalone: true,
-  imports: [FormsModule, CommonModule, NgxPaginationModule],
+  imports: [FormsModule, CommonModule, NgxPaginationModule,NavBarComponent],
   templateUrl: './Allcomponenet.component.html',
   styleUrls: ['./Allcomponenet.component.css'] 
 })

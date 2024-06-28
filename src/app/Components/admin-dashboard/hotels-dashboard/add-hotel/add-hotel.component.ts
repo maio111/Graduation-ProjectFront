@@ -6,13 +6,14 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { HotelService } from '../../../../Services/hotel.service';
 import { HotelMapComponent } from "../hotel-map/hotel-map.component";
+import { NavBarComponent } from "../../../nav-bar/nav-bar.component";
 
 @Component({
     selector: 'app-add-hotel',
     standalone: true,
     templateUrl: './add-hotel.component.html',
     styleUrls: ['./add-hotel.component.css'],
-    imports: [FormsModule, CommonModule, HotelMapComponent]
+    imports: [FormsModule, CommonModule, HotelMapComponent, NavBarComponent]
 })
 export class AddHotelComponent {
   hotel: Ihotel = {

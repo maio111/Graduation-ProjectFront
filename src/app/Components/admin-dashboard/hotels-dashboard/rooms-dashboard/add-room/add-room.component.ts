@@ -8,13 +8,14 @@ import { HotelService } from '../../../../../Services/hotel.service';
 import { RoomTypeService } from '../../../../../Services/room-type.service';
 import { IRoomType } from '../../../../../models/IRoomType';
 import { getViewsValues } from '../../../../../utilities/getViews';
+import { NavBarComponent } from "../../../../nav-bar/nav-bar.component";
 
 @Component({
-  selector: 'app-add-room',
-  standalone: true,
-  imports: [FormsModule, CommonModule],
-  templateUrl: './add-room.component.html',
-  styleUrl: './add-room.component.css'
+    selector: 'app-add-room',
+    standalone: true,
+    templateUrl: './add-room.component.html',
+    styleUrl: './add-room.component.css',
+    imports: [FormsModule, CommonModule, NavBarComponent]
 })
 export class AddRoomComponent implements OnInit{
   room: AddRoomDTO = {

@@ -8,13 +8,14 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { addPhoto } from '../../../../../models/addPhoto';
 import { NgForm } from '@angular/forms';
+import { NavBarComponent } from "../../../../nav-bar/nav-bar.component";
 
 @Component({
-  selector: 'app-add-photo',
-  standalone: true,
-  imports: [FormsModule,CommonModule],
-  templateUrl: './add-photo.component.html',
-  styleUrl: './add-photo.component.css'
+    selector: 'app-add-photo',
+    standalone: true,
+    templateUrl: './add-photo.component.html',
+    styleUrl: './add-photo.component.css',
+    imports: [FormsModule, CommonModule, NavBarComponent]
 })
 export class AddPhotoComponent implements OnInit {
   hotelId!: number;

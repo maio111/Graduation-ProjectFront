@@ -5,13 +5,15 @@ import { HotelService } from '../../../../../Services/hotel.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FeaturesService } from '../../../../../Services/features.service';
+import { NavBarComponent } from "../../../../nav-bar/nav-bar.component";
 
 @Component({
-  selector: 'app-add-feature',
-  standalone: true,
-  imports: [FormsModule, CommonModule],
-  templateUrl: './add-feature.component.html',
-  styleUrls: ['./add-feature.component.css'] // Corrected here
+    selector: 'app-add-feature',
+    standalone: true,
+    templateUrl: './add-feature.component.html',
+    styleUrls: ['./add-feature.component.css'] // Corrected here
+    ,
+    imports: [FormsModule, CommonModule, NavBarComponent]
 })
 export class AddFeatureComponent implements OnInit {
   selectedFeatureID!: number;

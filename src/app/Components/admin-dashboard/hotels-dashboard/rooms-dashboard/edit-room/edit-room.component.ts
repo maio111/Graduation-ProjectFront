@@ -8,13 +8,14 @@ import { RoomTypeService } from '../../../../../Services/room-type.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { getViewsValues } from '../../../../../utilities/getViews';
+import { NavBarComponent } from "../../../../nav-bar/nav-bar.component";
 
 @Component({
-  selector: 'app-edit-room',
-  standalone: true,
-  imports: [FormsModule, CommonModule],
-  templateUrl: './edit-room.component.html',
-  styleUrls: ['./edit-room.component.css']
+    selector: 'app-edit-room',
+    standalone: true,
+    templateUrl: './edit-room.component.html',
+    styleUrls: ['./edit-room.component.css'],
+    imports: [FormsModule, CommonModule, NavBarComponent]
 })
 export class EditRoomComponent implements OnInit {
   @ViewChild('hotelForm') hotelForm!: NgForm;

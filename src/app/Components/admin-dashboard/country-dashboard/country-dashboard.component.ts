@@ -5,13 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CountryService } from '../../../Services/country.service';
+import { NavBarComponent } from "../../nav-bar/nav-bar.component";
 
 @Component({
-  selector: 'app-country-dashboard',
-  standalone: true,
-  imports: [FormsModule, CommonModule , NgxPaginationModule],
-  templateUrl: './country-dashboard.component.html',
-  styleUrl: './country-dashboard.component.css'
+    selector: 'app-country-dashboard',
+    standalone: true,
+    templateUrl: './country-dashboard.component.html',
+    styleUrl: './country-dashboard.component.css',
+    imports: [FormsModule, CommonModule, NgxPaginationModule, NavBarComponent]
 })
 export class CountryDashboardComponent {
   

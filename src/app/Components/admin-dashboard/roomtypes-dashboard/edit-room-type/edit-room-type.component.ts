@@ -5,13 +5,14 @@ import { RoomTypeService } from '../../../../Services/room-type.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgForm } from '@angular/forms';
+import { NavBarComponent } from "../../../nav-bar/nav-bar.component";
 
 @Component({
-  selector: 'app-edit-room-type',
-  standalone: true,
-  imports: [FormsModule,CommonModule],
-  templateUrl: './edit-room-type.component.html',
-  styleUrl: './edit-room-type.component.css'
+    selector: 'app-edit-room-type',
+    standalone: true,
+    templateUrl: './edit-room-type.component.html',
+    styleUrl: './edit-room-type.component.css',
+    imports: [FormsModule, CommonModule, NavBarComponent]
 })
 export class EditRoomTypeComponent implements OnInit{
   roomType: IRoomType = {

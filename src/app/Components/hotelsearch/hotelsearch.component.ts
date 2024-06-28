@@ -15,14 +15,15 @@ import { IFeature } from '../../models/IFeature';
 import { HotelService } from '../../Services/hotel.service';
 import { environment } from '../../../environments/environment';
 import { IHotelPhotoF } from '../../models/Hotel/IHotelPhotoF';
+import { BookingHeaderComponent } from "../booking-header/booking-header.component";
 
 declare var $: any;
 @Component({
-  selector: 'app-hotelsearch',
-  standalone: true,
-  imports: [FormsModule, CommonModule],
-  templateUrl: './hotelsearch.component.html',
-  styleUrl: './hotelsearch.component.css'
+    selector: 'app-hotelsearch',
+    standalone: true,
+    templateUrl: './hotelsearch.component.html',
+    styleUrl: './hotelsearch.component.css',
+    imports: [FormsModule, CommonModule, BookingHeaderComponent]
 })
 export class HotelsearchComponent implements OnInit {
   filteredHotels: IFilteredHotel[] = [] as IFilteredHotel[];

@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { GoogleMap, GoogleMapsModule} from '@angular/google-maps';
+import { NavBarComponent } from "../../../nav-bar/nav-bar.component";
 
 @Component({
-  selector: 'app-hotel-map',
-  standalone: true,
-  imports: [GoogleMap, GoogleMapsModule,CommonModule],
-  templateUrl: './hotel-map.component.html',
-  styleUrls: ['./hotel-map.component.css']
+    selector: 'app-hotel-map',
+    standalone: true,
+    templateUrl: './hotel-map.component.html',
+    styleUrls: ['./hotel-map.component.css'],
+    imports: [GoogleMap, GoogleMapsModule, CommonModule, NavBarComponent]
 })
 export class HotelMapComponent implements OnInit {
   @Input() hotel!: { latitude: number; longitude: number };

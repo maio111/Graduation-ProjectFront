@@ -5,13 +5,14 @@ import { Router } from '@angular/router';
 import { FeaturesService } from '../../../../Services/features.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NavBarComponent } from "../../../nav-bar/nav-bar.component";
 
 @Component({
-  selector: 'app-add-feature-general',
-  standalone: true,
-  imports: [FormsModule,CommonModule],
-  templateUrl: './add-feature-general.component.html',
-  styleUrl: './add-feature-general.component.css'
+    selector: 'app-add-feature-general',
+    standalone: true,
+    templateUrl: './add-feature-general.component.html',
+    styleUrl: './add-feature-general.component.css',
+    imports: [FormsModule, CommonModule, NavBarComponent]
 })
 export class AddFeatureGeneralComponent {
   feature: IFeature = {} as IFeature;
