@@ -4,13 +4,14 @@ import { CountryService } from '../../../../Services/country.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NavBarComponent } from "../../../nav-bar/nav-bar.component";
 
 @Component({
-  selector: 'app-edit-country',
-  standalone: true,
-  imports: [FormsModule, CommonModule],
-  templateUrl: './edit-country.component.html',
-  styleUrls: ['./edit-country.component.css']
+    selector: 'app-edit-country',
+    standalone: true,
+    templateUrl: './edit-country.component.html',
+    styleUrls: ['./edit-country.component.css'],
+    imports: [FormsModule, CommonModule, NavBarComponent]
 })
 export class EditCountryComponent implements OnInit {
   country: ICountry = {

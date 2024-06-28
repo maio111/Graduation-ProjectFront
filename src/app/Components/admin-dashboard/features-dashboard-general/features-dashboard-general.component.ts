@@ -5,13 +5,14 @@ import { FeaturesService } from '../../../Services/features.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NavBarComponent } from "../../nav-bar/nav-bar.component";
 
 @Component({
-  selector: 'app-features-dashboard-general',
-  standalone: true,
-  imports: [FormsModule,CommonModule, NgxPaginationModule],
-  templateUrl: './features-dashboard-general.component.html',
-  styleUrl: './features-dashboard-general.component.css'
+    selector: 'app-features-dashboard-general',
+    standalone: true,
+    templateUrl: './features-dashboard-general.component.html',
+    styleUrl: './features-dashboard-general.component.css',
+    imports: [FormsModule, CommonModule, NgxPaginationModule, NavBarComponent]
 })
 export class FeaturesDashboardGeneralComponent {
   features: IFeature[] = [] as IFeature[]

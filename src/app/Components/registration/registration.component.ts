@@ -8,15 +8,16 @@ import { NgModule } from '@angular/core';
 import { User } from '../../models/user';
 import { CityService } from '../../Services/city.service';
 import { ICity } from '../../models/City/ICity';
+import { NavBarComponent } from "../nav-bar/nav-bar.component";
 
 
 
 @Component({
-  selector: 'app-registration',
-  standalone: true,
-  imports: [FormsModule,ReactiveFormsModule,CommonModule],
-  templateUrl: './registration.component.html',
-  styleUrl: './registration.component.css'
+    selector: 'app-registration',
+    standalone: true,
+    templateUrl: './registration.component.html',
+    styleUrl: './registration.component.css',
+    imports: [FormsModule, ReactiveFormsModule, CommonModule, NavBarComponent]
 })
 export class RegistrationComponent implements OnInit{
   cities: ICity[] = [] as ICity[];

@@ -54,7 +54,7 @@ export const routes: Routes = [
             { path: '', component: AdminDashboardComponent },
             { path: 'adminDashboard', component: AdminDashboardComponent },
             { path: 'addAdmin', component: AddAdminComponent },
-            { path: 'editAdmin', component: EditAdminComponent },
+            { path: 'editAdmin/:userName', component: EditAdminComponent },
             { path: 'hotelsDashboard', component: HotelsDashboardComponent },
             { path: 'addHotel', component: AddHotelComponent },
             { path: 'editHotel/:Id', component: EditHotelComponent },

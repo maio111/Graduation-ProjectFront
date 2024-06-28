@@ -4,13 +4,14 @@ import { CityService } from '../../../../../Services/city.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NavBarComponent } from "../../../../nav-bar/nav-bar.component";
 
 @Component({
-  selector: 'app-add-city',
-  standalone: true,
-  imports: [CommonModule,FormsModule],
-  templateUrl: './add-city.component.html',
-  styleUrl: './add-city.component.css'
+    selector: 'app-add-city',
+    standalone: true,
+    templateUrl: './add-city.component.html',
+    styleUrl: './add-city.component.css',
+    imports: [CommonModule, FormsModule, NavBarComponent]
 })
 export class AddCityComponent {
   countryId!: number;

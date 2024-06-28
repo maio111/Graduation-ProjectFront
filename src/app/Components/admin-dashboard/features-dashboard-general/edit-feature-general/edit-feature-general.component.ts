@@ -5,13 +5,14 @@ import { FeaturesService } from '../../../../Services/features.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgForm } from '@angular/forms';
+import { NavBarComponent } from "../../../nav-bar/nav-bar.component";
 
 @Component({
-  selector: 'app-edit-feature-general',
-  standalone: true,
-  imports: [FormsModule,CommonModule],
-  templateUrl: './edit-feature-general.component.html',
-  styleUrl: './edit-feature-general.component.css'
+    selector: 'app-edit-feature-general',
+    standalone: true,
+    templateUrl: './edit-feature-general.component.html',
+    styleUrl: './edit-feature-general.component.css',
+    imports: [FormsModule, CommonModule, NavBarComponent]
 })
 export class EditFeatureGeneralComponent {
   @ViewChild('typeForm') typeForm!: NgForm;

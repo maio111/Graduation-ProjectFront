@@ -4,13 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { ICountry } from '../../../../models/ICountry';
 import { Router } from '@angular/router';
 import { CountryService } from '../../../../Services/country.service';
+import { NavBarComponent } from "../../../nav-bar/nav-bar.component";
 
 @Component({
-  selector: 'app-add-country',
-  standalone: true,
-  imports: [FormsModule, CommonModule],
-  templateUrl: './add-country.component.html',
-  styleUrls: ['./add-country.component.css']
+    selector: 'app-add-country',
+    standalone: true,
+    templateUrl: './add-country.component.html',
+    styleUrls: ['./add-country.component.css'],
+    imports: [FormsModule, CommonModule, NavBarComponent]
 })
 export class AddCountryComponent {
   country: ICountry = {

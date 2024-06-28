@@ -1,61 +1,61 @@
 <div class="container">
   <div class="left">
-    <div class="header">
-      <h2 class="animation a1">Welcome</h2>
-    </div>
     <div class="form" [formGroup]="registrationForm">
-      <input type="text" class="form-field animation a3" placeholder="User Name" formControlName="userName">
+      <div class="header">
+        <h2 class="animation a1">Welcome</h2>
+      </div>
+      <label class="labels animation a3">Username</label>
+      <input type="text" class="form-field animation a3" formControlName="userName">
       <div *ngIf="registrationForm.get('userName')?.invalid && (registrationForm.get('userName')?.dirty || registrationForm.get('userName')?.touched)">
         <small *ngIf="registrationForm.get('userName')?.errors?.['required']">User Name is required</small>
         <small *ngIf="registrationForm.get('userName')?.errors?.['minlength']">User Name must be at least 3 characters</small>
       </div>
-
-      <input type="text" class="form-field animation a3" placeholder="First Name" formControlName="firstName">
+      <label class="labels animation a3">First Name</label>
+      <input type="text" class="form-field animation a3" formControlName="firstName">
       <div *ngIf="registrationForm.get('firstName')?.invalid && (registrationForm.get('firstName')?.dirty || registrationForm.get('firstName')?.touched)">
         <small *ngIf="registrationForm.get('firstName')?.errors?.['required']">First Name is required</small>
       </div>
-
-      <input type="text" class="form-field animation a3" placeholder="Last Name" formControlName="lastName">
+      <label class="labels animation a3">Last Name</label>
+      <input type="text" class="form-field animation a3" formControlName="lastName">
       <div *ngIf="registrationForm.get('lastName')?.invalid && (registrationForm.get('lastName')?.dirty || registrationForm.get('lastName')?.touched)">
         <small *ngIf="registrationForm.get('lastName')?.errors?.['required']">Last Name is required</small>
       </div>
-
-      <input type="email" class="form-field animation a3" placeholder="Email Address" formControlName="email">
+      <label class="labels animation a3">Email Address</label>
+      <input type="email" class="form-field animation a3" formControlName="email">
       <div *ngIf="registrationForm.get('email')?.invalid && (registrationForm.get('email')?.dirty || registrationForm.get('email')?.touched)">
         <small *ngIf="registrationForm.get('email')?.errors?.['required']">Email Address is required</small>
         <small *ngIf="registrationForm.get('email')?.errors?.['email']">Enter a valid Email Address</small>
       </div>
-
-      <input type="password" class="form-field animation a4" placeholder="Password" formControlName="password">
+      <label class="labels animation a3">Password</label>
+      <input type="password" class="form-field animation a4" formControlName="password">
       <div *ngIf="registrationForm.get('password')?.invalid && (registrationForm.get('password')?.dirty || registrationForm.get('password')?.touched)">
         <small *ngIf="registrationForm.get('password')?.errors?.['required']">Password is required</small>
         <small *ngIf="registrationForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters</small>
       </div>
-
-      <input type="password" class="form-field animation a4" placeholder="Confirm Password" formControlName="confirmPassword">
+      <label class="labels animation a3">Confirm Password</label>
+      <input type="password" class="form-field animation a4" formControlName="confirmPassword">
       <div *ngIf="registrationForm.get('confirmPassword')?.invalid && (registrationForm.get('confirmPassword')?.dirty || registrationForm.get('confirmPassword')?.touched)">
         <small *ngIf="registrationForm.get('confirmPassword')?.errors?.['required']">Confirm Password is required</small>
         <small *ngIf="registrationForm.errors?.['mismatch']">Passwords do not match</small>
       </div>
-
+      <label class="labels animation a3">Address</label>
       <select class="form-select form-field animation a4" formControlName="address">
         <option value="" disabled selected hidden>Select a City</option>
-        <option value= "{{city.name}}" *ngFor="let city of cities">{{city.name}}</option>
+        <option value="{{city.name}}" *ngFor="let city of cities">{{city.name}}</option>
       </select>
       <div *ngIf="registrationForm.get('address')?.invalid && (registrationForm.get('address')?.dirty || registrationForm.get('address')?.touched)">
         <small *ngIf="registrationForm.get('address')?.errors?.['required']">City is required</small>
       </div>
-
+      <label class="labels animation a3">Birth Date</label>
       <input type="date" class="form-field animation a3" placeholder="Birth Date" formControlName="birthDate">
       <div *ngIf="registrationForm.get('birthDate')?.invalid && (registrationForm.get('birthDate')?.dirty || registrationForm.get('birthDate')?.touched)">
         <small *ngIf="registrationForm.get('birthDate')?.errors?.['required']">Birth Date is required</small>
       </div>
-
       <button (click)="register()" class="animation a6" [disabled]="registrationForm.invalid">Sign Up</button>
-    </div>
-    <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
-      {{ successMessage }}
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ successMessage }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
     </div>
   </div>
   <div class="right"></div>

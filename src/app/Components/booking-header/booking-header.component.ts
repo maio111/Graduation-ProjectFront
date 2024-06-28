@@ -19,26 +19,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Observable, map, of, startWith } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { json } from 'stream/consumers';
-import { BookingHeaderComponent } from "../booking-header/booking-header.component";
 
 gsap.registerPlugin(ScrollTrigger);
 
-
 @Component({
-    selector: 'app-hotel-booking',
-    standalone: true,
-    templateUrl: './hotel-booking.component.html',
-    styleUrl: './hotel-booking.component.css',
-    imports: [NavBarComponent,
-        CalendarModule,
-        FormsModule,
-        FooterComponent,
-        CommonModule,
-        ReactiveFormsModule,
-        MatAutocompleteModule,
-        MatInputModule, BookingHeaderComponent]
+  selector: 'app-booking-header',
+  standalone: true,
+  imports: [NavBarComponent,
+    CalendarModule,
+    FormsModule,
+    FooterComponent,
+    CommonModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatInputModule],
+  templateUrl: './booking-header.component.html',
+  styleUrl: './booking-header.component.css'
 })
-export class HotelBookingComponent {
+export class BookingHeaderComponent {
   cities: ICity[] = [] as ICity[];
   filteredCities$: Observable<ICity[]> | undefined;
   showDropdown: boolean = false;

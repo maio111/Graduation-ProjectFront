@@ -7,13 +7,14 @@ import { CommonModule } from '@angular/common';
 import { Base64ToImagePipe } from '../../../../../Pipes/base64-to-image.pipe';
 import { environment } from '../../../../../environments/environment';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NavBarComponent } from "../../../nav-bar/nav-bar.component";
 
 @Component({
-  selector: 'app-photos-dashboard',
-  standalone: true,
-  imports: [FormsModule,CommonModule,Base64ToImagePipe , NgxPaginationModule],
-  templateUrl: './photos-dashboard.component.html',
-  styleUrl: './photos-dashboard.component.css'
+    selector: 'app-photos-dashboard',
+    standalone: true,
+    templateUrl: './photos-dashboard.component.html',
+    styleUrl: './photos-dashboard.component.css',
+    imports: [FormsModule, CommonModule, Base64ToImagePipe, NgxPaginationModule, NavBarComponent]
 })
 export class PhotosDashboardComponent implements OnInit,OnChanges{
   hotelPhotos: IHotelPhoto[] = [];

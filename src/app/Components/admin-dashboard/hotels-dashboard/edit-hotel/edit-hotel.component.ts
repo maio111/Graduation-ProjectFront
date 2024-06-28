@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HotelMapComponent } from "../hotel-map/hotel-map.component";
+<<<<<<< HEAD
 import { ICity } from '../../../../models/City/ICity';
 import { CityService } from '../../../../Services/city.service';
 @Component({
@@ -14,6 +15,15 @@ import { CityService } from '../../../../Services/city.service';
   templateUrl: './edit-hotel.component.html',
   styleUrl: './edit-hotel.component.css',
   imports: [FormsModule, CommonModule, HotelMapComponent]
+=======
+import { NavBarComponent } from "../../../nav-bar/nav-bar.component";
+@Component({
+    selector: 'app-edit-hotel',
+    standalone: true,
+    templateUrl: './edit-hotel.component.html',
+    styleUrl: './edit-hotel.component.css',
+    imports: [FormsModule, CommonModule, HotelMapComponent, NavBarComponent]
+>>>>>>> df1f1e146533ad8e6673fb4bcd52077828a9126c
 })
 export class EditHotelComponent {
   hotel: Ihotel = {
