@@ -35,10 +35,13 @@
                 </div>
               </div>
               <div class="form-group mb-3">
-                <label for="rating" class="form-label">Rate:</label>
-                <input type="number" id="rating" name="rating" [(ngModel)]="hotel.rating" #rating="ngModel" class="form-control" required min="0" max="5" (blur)="rating.control.markAsTouched()">
-                <div class="invalid-feedback" *ngIf="rating.invalid && rating.touched">
-                  Please enter a valid rate between 0 and 5.
+                <label for="city" class="form-label">City:</label>
+                <select id="city" name="city" [(ngModel)]="hotel.cityId" #city="ngModel" class="form-control" required
+                  (blur)="city.control.markAsTouched()">
+                  <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
+                </select>
+                <div class="invalid-feedback" *ngIf="city.invalid && city.touched">
+                  Please select a city.
                 </div>
               </div>
             </div>

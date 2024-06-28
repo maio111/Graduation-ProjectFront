@@ -1,5 +1,4 @@
-
-export interface Ihotel {
+export interface HotelView {
     id: number;
     name: string;
     description: string;
@@ -8,5 +7,6 @@ export interface Ihotel {
     webSiteURL: string;
     latitude: number;
     longitude: number;
+    cityName: string;
     cityId: number;
 }

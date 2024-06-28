@@ -26,7 +26,10 @@ export class HotelPhotoService {
   }
 
   addHotelPhoto(hotelId: number, photo: FormData): Observable<GeneralResponse<any>> {
-    return this.http.post<GeneralResponse<any>>(`${this.apiUrl}/api/HotelPhoto/${hotelId}`, photo);
+    return this.http.post<GeneralResponse<any>>(`${this.apiUrl}/api/PostHotelPhoto/${hotelId}`, photo);
+  }
+  addHotelPhotos(hotelId: number, photos: any): Observable<GeneralResponse<any>> {
+    return this.http.post<GeneralResponse<any>>(`${this.apiUrl}/api/PostBulkHotelPhotos/${hotelId}`, photos);
   }
 
   updateHotelPhoto(photoId: number, photo: FormData): Observable<GeneralResponse<IHotelPhoto>> {

@@ -6,28 +6,31 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HotelMapComponent } from "../hotel-map/hotel-map.component";
+import { ICity } from '../../../../models/City/ICity';
+import { CityService } from '../../../../Services/city.service';
 @Component({
-    selector: 'app-edit-hotel',
-    standalone: true,
-    templateUrl: './edit-hotel.component.html',
-    styleUrl: './edit-hotel.component.css',
-    imports: [FormsModule, CommonModule, HotelMapComponent]
+  selector: 'app-edit-hotel',
+  standalone: true,
+  templateUrl: './edit-hotel.component.html',
+  styleUrl: './edit-hotel.component.css',
+  imports: [FormsModule, CommonModule, HotelMapComponent]
 })
 export class EditHotelComponent {
   hotel: Ihotel = {
     id: 0,
     name: '',
     description: '',
-    rating: 0,
     phoneNumber: '',
+    cityId: 0,
     email: '',
     webSiteURL: '',
     latitude: 0,
     longitude: 0
   };
   hotelId!: number;
-
-  constructor(private router: Router, private hotelService: HotelService, private route: ActivatedRoute) { }
+  cities: ICity[] = [] as ICity[]
+  currentCity!: string;
+  constructor(private router: Router, private hotelService: HotelService, private route: ActivatedRoute, private cityService: CityService) { }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -36,6 +39,7 @@ export class EditHotelComponent {
         this.hotel = JSON.parse(params['hotel']);
       });
     });
+    this.getCities()
   }
 
   onSubmit(hotelForm: NgForm) {
@@ -61,5 +65,17 @@ export class EditHotelComponent {
   onCoordinatesChange(newCoordinates: { latitude: number; longitude: number }) {
     this.hotel.latitude = newCoordinates.latitude;
     this.hotel.longitude = newCoordinates.longitude;
+  }
+  getCities() {
+    this.cityService.getAllCities().subscribe({
+      next: (res) => {
+        this.cities = res.data;
+        console.log(res)
+      },
+      error: error => {
+        console.error('Error', error);
+      }
+
+    })
   }
 }

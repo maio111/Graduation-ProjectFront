@@ -15,7 +15,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   templateUrl: './photos-dashboard.component.html',
   styleUrl: './photos-dashboard.component.css'
 })
-export class PhotosDashboardComponent implements OnInit{
+export class PhotosDashboardComponent implements OnInit,OnChanges{
   hotelPhotos: IHotelPhoto[] = [];
   hotelId!: number;
   page:any;
@@ -26,6 +26,9 @@ export class PhotosDashboardComponent implements OnInit{
     private hotelPhotoService: HotelPhotoService,
     private router: Router
   ) { }
+  ngOnChanges(changes: SimpleChanges): void {
+    this.loadHotelPhotos();
+  }
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.hotelId = +params['hotelId'];

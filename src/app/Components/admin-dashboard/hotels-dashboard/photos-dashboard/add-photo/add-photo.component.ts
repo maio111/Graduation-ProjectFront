@@ -1,28 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { IHotelPhoto } from '../../../../../models/IHotelPhoto';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HotelPhotoService } from '../../../../../Services/hotel-photo.service';
-import { GeneralResponse } from '../../../../../models/GeneralResponse';
-import { error } from 'console';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { addPhoto } from '../../../../../models/addPhoto';
-import { NgForm } from '@angular/forms';
+import { PhotoCategory } from '../../../../../models/Enums/PhotoCategory'; // Adjust the path as necessary
+import { BulkHotelPhotoDTO } from '../../../../../models/HotelPhoto/BulkHotelPhotoDTO';
 
 @Component({
   selector: 'app-add-photo',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './add-photo.component.html',
   styleUrl: './add-photo.component.css'
 })
 export class AddPhotoComponent implements OnInit {
   hotelId!: number;
-  hotelPhoto: addPhoto = {} as addPhoto;
-  selectedFile: File | null = null;
+  hotelPhotos: BulkHotelPhotoDTO = { photos: [], category: PhotoCategory.FrontView };
+  selectedFiles: File[] = [];
   fileValidationError: boolean = false;
+  categories = Object.values(PhotoCategory).filter(value => typeof value === 'number') as number[];
 
-  constructor(private route: ActivatedRoute, private router: Router, private hotelPhotoService: HotelPhotoService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private hotelPhotoService: HotelPhotoService,
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -30,40 +32,50 @@ export class AddPhotoComponent implements OnInit {
     });
   }
 
-  onSubmit(photoForm: NgForm) {
-    if (photoForm.valid && this.selectedFile) {
+  getCategoryName(categoryId: number): string {
+    return PhotoCategory[categoryId];
+  }
+
+  onSubmit() {
+    if (this.selectedFiles.length > 0) {
       const formData = new FormData();
-      formData.append('name', this.hotelPhoto.name);
-      formData.append('description', this.hotelPhoto.description);
-      formData.append('photo', this.selectedFile);
+      formData.append('category', this.hotelPhotos.category.toString());
 
-      this.addHotelPhoto(formData);
+      this.selectedFiles.forEach(file => {
+        formData.append('photos', file, file.name);
+      });
+
+      this.addHotelPhotos(formData);
     } else {
-      console.error('Form is invalid or no file selected.');
-      photoForm.form.markAllAsTouched(); // Mark all fields as touched to trigger validation messages
-
-      if (!this.selectedFile) {
-        this.fileValidationError = true;
-      }
+      console.error('No files selected.');
+      this.fileValidationError = true;
     }
   }
 
-  addHotelPhoto(formData: FormData) {
-    this.hotelPhotoService.addHotelPhoto(this.hotelId, formData).subscribe(response => {
-      if (response.success) {
-        console.log('Photo added successfully');
-        this.router.navigate(['dashboard/photosDashboard/', this.hotelId]);
-      } else {
-        console.error('Error adding photo:', response.message);
+  addHotelPhotos(formData: FormData) {
+    this.hotelPhotoService.addHotelPhotos(this.hotelId, formData).subscribe(
+      response => {
+        console.log('Response from server:', response);
+        if (response.success) {
+          console.log('Photos added successfully');
+          this.router.navigate(['dashboard/photosDashboard/', this.hotelId]);
+        } else {
+          console.error('Server returned error:', response.message);
+          // Handle error condition, show message to user or retry logic
+        }
+      },
+      error => {
+        console.error('Error adding photos:', error);
+        // Handle network or other errors, show message to user or retry logic
       }
-    });
+    );
   }
 
-  onFileSelected(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      this.selectedFile = file;
-      this.fileValidationError = false; // Reset the validation error when a file is selected
+  onFilesSelected(event: any) {
+    const files = event.target.files;
+    if (files.length > 0) {
+      this.selectedFiles = Array.from(files);
+      this.fileValidationError = false; // Reset the validation error when files are selected
     } else {
       this.fileValidationError = true;
     }

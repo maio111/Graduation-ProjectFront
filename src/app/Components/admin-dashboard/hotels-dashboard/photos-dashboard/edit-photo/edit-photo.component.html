@@ -3,35 +3,29 @@
         <div class="col-md-8">
             <form (ngSubmit)="onSubmit()" #photoForm="ngForm" class="needs-validation" novalidate>
                 <div class="mb-3">
-                    <label for="name" class="form-label" style="font-size: 20px; font-weight: bold;">Name:</label>
-                    <input type="text" id="name" name="name" [(ngModel)]="hotelPhoto.name" class="form-control"
-                        required>
-                    <div class="invalid-feedback"
-                        *ngIf="photoForm.controls['name'].invalid && (photoForm.controls['name'].dirty || photoForm.controls['name'].touched)">
-                        Please enter the photo name.
+                    <label for="category" class="form-label" style="font-size: 20px; font-weight: bold;">Category:</label>
+                    <select id="category" name="category" [(ngModel)]="hotelPhoto.category" class="form-control" required
+                        #category="ngModel">
+                        <option *ngFor="let cat of categories" [value]="cat">{{ getCategoryName(cat) }}</option>
+                    </select>
+                    <div class="invalid-feedback" *ngIf="category.invalid && (category.dirty || category.touched)">
+                        Please select a category.
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="description" class="form-label"
-                        style="font-size: 20px; font-weight: bold;">Description:</label>
-                    <textarea id="description" name="description" [(ngModel)]="hotelPhoto.description"
-                        class="form-control" rows="3" required></textarea>
-                    <div class="invalid-feedback"
-                        *ngIf="photoForm.controls['description'].invalid && (photoForm.controls['description'].dirty || photoForm.controls['description'].touched)">
-                        Please enter a description.
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="photo" class="form-label" style="font-size: 20px; font-weight: bold;">Photo:</label><br>
-                    <input type="file" id="photo" name="photo" (change)="onFileSelected($event)"
-                        class="form-control-file visually-hidden" required>
-                    <label for="photo" class="btn btn-secondary">
-                        Choose Photo
+                    <label for="photos" class="form-label" style="font-size: 20px; font-weight: bold;">Photos:</label><br>
+                    <input type="file" id="photos" name="photos" (change)="onFileSelected($event)"
+                        class="form-control-file visually-hidden" required multiple>
+                    <label for="photos" class="btn btn-secondary">
+                        Choose Photos
                     </label>
-                    <div class="invalid-feedback"
-                        *ngIf="photoForm.controls['photo'].invalid && (photoForm.controls['photo'].dirty || photoForm.controls['photo'].touched)">
-                        Please select a photo.
+                    <div class="invalid-feedback" *ngIf="fileValidationError">
+                        Please select at least one photo.
                     </div>
+                        <strong>Selected Files:</strong>
+                        <ul class="list-unstyled">
+                                {{ selectedFile?.name }}
+                        </ul>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-md-4">

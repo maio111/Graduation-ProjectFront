@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HotelPhotoService } from '../../../../../Services/hotel-photo.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { IHotelPhoto } from '../../../../../models/IHotelPhoto';
+import { PhotoCategory } from '../../../../../models/Enums/PhotoCategory';
 
 @Component({
   selector: 'app-edit-photo',
@@ -15,8 +15,11 @@ import { IHotelPhoto } from '../../../../../models/IHotelPhoto';
 })
 export class EditPhotoComponent {
   hotelId!: number;
-  hotelPhoto!: IHotelPhoto;
+  hotelPhoto: addPhoto = {} as addPhoto;
   selectedFile: File | null = null;
+  selectedFiles: File[] = [];
+  fileValidationError: boolean = false;
+  categories = Object.values(PhotoCategory).filter(value => typeof value === 'number') as number[];
 
   constructor(private route: ActivatedRoute, private router: Router, private hotelPhotoService: HotelPhotoService) {
     this.route.params.subscribe(params => {
@@ -25,21 +28,23 @@ export class EditPhotoComponent {
     this.route.queryParams.subscribe(params => {
       this.hotelPhoto = JSON.parse(params['photo']);
     });
-   }
+  }
 
   ngOnInit(): void {
-    
+  }
+
+  getCategoryName(categoryId: number): string { 
+    return PhotoCategory[categoryId];
   }
 
   onSubmit() {
     if (this.selectedFile) {
       const formData = new FormData();
-      formData.append('id',this.hotelPhoto.id.toString())
-      formData.append('name', this.hotelPhoto.name);
-      formData.append('description', this.hotelPhoto.description);
+      formData.append('id', this.hotelPhoto.id.toString());
+      formData.append('category', this.hotelPhoto.category.toString());
       formData.append('photo', new Blob([this.selectedFile], { type: 'application/octet-stream' }));
 
-      this.UpdatePhoto(formData);
+      this.updatePhoto(formData);
       this.router.navigate(["dashboard/photosDashboard", this.hotelId]);
 
     } else {
@@ -47,7 +52,7 @@ export class EditPhotoComponent {
     }
   }
 
-  UpdatePhoto(formData: FormData) {
+  updatePhoto(formData: FormData) {
     this.hotelPhotoService.updateHotelPhoto(this.hotelId, formData).subscribe((response) => {
       if (response.success) {
         console.log('Photo Updated successfully');
@@ -61,6 +66,7 @@ export class EditPhotoComponent {
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
   }
+
   back() {
     this.router.navigate(["dashboard/photosDashboard", this.hotelId]);
   }

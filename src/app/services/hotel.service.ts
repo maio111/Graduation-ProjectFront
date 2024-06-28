@@ -13,8 +13,19 @@ export class HotelService {
 
   constructor(private httpclient: HttpClient) { }
 
-  getAllHotels(): Observable<any[]> {
-    return this.httpclient.get<any[]>(`${this.baseUrl}/api/Hotel`);
+  // getAllHotels(filterParams: IHotelFilteredParams | null): Observable<any[]> {
+  //   let params = this.buildFilterParams(filterParams!);
+  //   return this.httpclient.get<any[]>(`${this.baseUrl}/api/Hotel`,{params});
+  // }
+  getAllHotels(includeProperties?: string[]): Observable<any> {
+    let params = new HttpParams();
+    if (includeProperties) {
+      includeProperties.forEach(prop => {
+        params = params.append('includeProperties', prop);
+      });
+    }
+
+    return this.httpclient.get<any[]>(`${this.baseUrl}/api/Hotel`, { params });
   }
   getHotelById(id: number): Observable<any> {
     return this.httpclient.get<any[]>(`${this.baseUrl}/api/Hotel/${id}`);

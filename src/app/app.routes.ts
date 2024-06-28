@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { HotelBookingComponent } from './Components/hotel-booking/hotel-booking.component';
 import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
-import { AdminsDashboardComponent } from './Components/admin-dashboard/admins-dashboard/admins-dashboard.component';
 import { HotelsDashboardComponent } from './Components/admin-dashboard/hotels-dashboard/hotels-dashboard.component';
 import { DashboardLayoutComponent } from './Components/admin-dashboard/dashboard-layout/dashboard-layout.component';
 import { LoginComponent } from './Components/login/login.component';
@@ -33,15 +32,12 @@ import { RegistrationComponent } from './Components/registration/registration.co
 import { AllcomponenetComponent } from './Components/admin-dashboard/HotelBooking-dashboard/allcomponenet/allcomponenet.component';
 import { HotelsearchComponent } from './Components/hotelsearch/hotelsearch.component';
 import { HoteldetailsComponent } from './Components/hoteldetails/hoteldetails.component';
-<<<<<<< HEAD
-import { PaymentComponent } from './Components/payment/payment.component';
-import { HotelReservationComponent } from './Components/hotel-reservation/hotel-reservation.component';
-=======
 import { ConfirmEmailComponent } from './Components/confirm-email/confirm-email.component';
 import { AdminDashboardComponent } from './Components/admin-dashboard/admin-dashboard/admin-dashboard.component';
 import { AddAdminComponent } from './Components/admin-dashboard/admin-dashboard/add-admin/add-admin.component';
 import { EditAdminComponent } from './Components/admin-dashboard/admin-dashboard/edit-admin/edit-admin.component';
->>>>>>> 3cd6cb38cc6a61295787c07ee9b146cd3f602883
+import { PaymentComponent } from './Components/payment/payment.component';
+import { HotelReservationComponent } from './Components/hotel-reservation/hotel-reservation.component';
 
 export const routes: Routes = [
     { path: '', component: HotelBookingComponent }, 
@@ -55,7 +51,7 @@ export const routes: Routes = [
         path: 'dashboard',
         component: DashboardLayoutComponent,
         children: [
-            { path: '', component: AdminsDashboardComponent },
+            { path: '', component: AdminDashboardComponent },
             { path: 'adminDashboard', component: AdminDashboardComponent },
             { path: 'addAdmin', component: AddAdminComponent },
             { path: 'editAdmin', component: EditAdminComponent },

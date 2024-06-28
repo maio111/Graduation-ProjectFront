@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CityService } from '../../../Services/city.service';
+import { HotelView } from '../../../models/Hotel/HotelView';
 
 @Component({
   selector: 'app-hotels-dashboard',
@@ -15,7 +17,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   styleUrls: ['./hotels-dashboard.component.css']
 })
 export class HotelsDashboardComponent {
-  hotels!: Ihotel[];
+  hotels!: HotelView[];
   deletedItemId!: number;
   currentHotelId!: number;
   message?: string;
@@ -32,7 +34,7 @@ export class HotelsDashboardComponent {
   }
 
   getallhotels() {
-    this.hotelService.getAllHotels().subscribe({
+    this.hotelService.getAllHotels(["City"]).subscribe({
       next: (res: any) => {
         console.log(res);
         this.hotels = res.data;
@@ -47,7 +49,7 @@ export class HotelsDashboardComponent {
     });
   }
 
-  navigateToEdit(Id: number, hotel:Ihotel) {
+  navigateToEdit(Id: number, hotel:HotelView) {
     this.currentHotelId = Id;
     this.router.navigate(['dashboard/editHotel', this.currentHotelId], {
       queryParams: { hotel: JSON.stringify(hotel) }
@@ -88,5 +90,8 @@ export class HotelsDashboardComponent {
 
   changePage(event:any){
     this.page=event
+  }
+  getHotelCity() {
+    
   }
 }
