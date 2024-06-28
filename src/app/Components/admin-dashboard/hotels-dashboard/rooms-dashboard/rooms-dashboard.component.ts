@@ -9,13 +9,14 @@ import { Ihotel } from '../../../../models/Hotel/Ihotel';
 import { AddRoomDTO } from '../../../../models/Room/AddRoomDTO';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { getViewLabel } from '../../../../utilities/getViews';
+import { NavBarComponent } from "../../../nav-bar/nav-bar.component";
 
 @Component({
-  selector: 'app-rooms-dashboard',
-  standalone: true,
-  imports: [FormsModule, CommonModule, NgxPaginationModule],
-  templateUrl: './rooms-dashboard.component.html',
-  styleUrl: './rooms-dashboard.component.css'
+    selector: 'app-rooms-dashboard',
+    standalone: true,
+    templateUrl: './rooms-dashboard.component.html',
+    styleUrl: './rooms-dashboard.component.css',
+    imports: [FormsModule, CommonModule, NgxPaginationModule, NavBarComponent]
 })
 export class RoomsDashboardComponent {
   room: RoomsViewDTO = {} as RoomsViewDTO;

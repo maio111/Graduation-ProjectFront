@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FeaturesService } from '../../../../Services/features.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NavBarComponent } from "../../../nav-bar/nav-bar.component";
 
 @Component({
   selector: 'app-add-feature-general',

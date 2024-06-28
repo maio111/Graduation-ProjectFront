@@ -4,13 +4,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HotelService } from '../../../../../Services/hotel.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NavBarComponent } from "../../../../nav-bar/nav-bar.component";
 
 @Component({
-  selector: 'app-edit-feature',
-  standalone: true,
-  imports: [FormsModule,CommonModule],
-  templateUrl: './edit-feature.component.html',
-  styleUrl: './edit-feature.component.css'
+    selector: 'app-edit-feature',
+    standalone: true,
+    templateUrl: './edit-feature.component.html',
+    styleUrl: './edit-feature.component.css',
+    imports: [FormsModule, CommonModule, NavBarComponent]
 })
 export class EditFeatureComponent {
   feature!: IHotelFeature;

@@ -1,53 +1,110 @@
-nav {
-  position: absolute; /* or 'absolute' depending on your layout needs */
-  top: 0;
-  left: 0;
-  width: 100%;
+/* styles.css */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  backdrop-filter: blur;
-  z-index: 100; /* Ensure this is higher than any other z-index values in your layout */
-  padding: -1rem -1rem; /* Optional: add padding for better appearance */
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+
 }
 
-.nav__logo img {
-  max-width: 100px;
+.navbar-logo {
+  font-size: 24px;
+  font-weight: bold;
 }
 
-.nav__links {
+.navbar-links {
   list-style: none;
   display: flex;
-  align-items: center;
-  gap: 2rem;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+}
+.navbar-logo img {
+  width: 50px;
+  height: 60px;
+}
+.navbar-links li {
+  position: relative;
 }
 
-.link a {
+.navbar-links a {
   text-decoration: none;
-  font-weight: 600;
-  color: white;
+  color: #333;
+  font-weight: normal;
 }
 
-.login {
-  padding: 0.5rem 1rem;
+.navbar-links a:hover {
+  color: #000;
+}
+
+.navbar-icons {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  font-weight: 600;
-  color: white;
-  background-color: rgba(0, 96, 95, 0.7); /* Semi-transparent background */
-  border-radius: 2rem;
+  gap: 15px;
+}
+
+.navbar-icons a {
+  text-decoration: none;
+  color: #333;
+}
+
+.navbar-icons img {
+  width: 20px;
+  height: 20px;
+}
+
+.cart {
+  position: relative;
+}
+
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 50%;
+  padding: 2px 5px;
+  font-size: 12px;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background-color: transparent;
+  border: none;
   cursor: pointer;
-  transition: 0.3s;
 }
 
-.login:hover {
-  background-color: rgba(1, 116, 121, 0.7);
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
 }
 
-/* Ensure the header image or video does not overlap the nav bar */
-.header__image__container,
-.header__video__container {
-  margin-top: 5rem; /* Adjust this value as needed to avoid overlap */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
 }
+
+.dropdown-content a:hover { background-color: #f1f1f1 }
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+

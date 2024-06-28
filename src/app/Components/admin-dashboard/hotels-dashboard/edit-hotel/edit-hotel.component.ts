@@ -6,12 +6,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HotelMapComponent } from "../hotel-map/hotel-map.component";
+import { NavBarComponent } from "../../../nav-bar/nav-bar.component";
 @Component({
     selector: 'app-edit-hotel',
     standalone: true,
     templateUrl: './edit-hotel.component.html',
     styleUrl: './edit-hotel.component.css',
-    imports: [FormsModule, CommonModule, HotelMapComponent]
+    imports: [FormsModule, CommonModule, HotelMapComponent, NavBarComponent]
 })
 export class EditHotelComponent {
   hotel: Ihotel = {

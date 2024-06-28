@@ -10,15 +10,21 @@ import { environment } from '../../../environments/environment';
 import { CountryService } from '../../Services/country.service';
 import { HotelMapComponent } from "../admin-dashboard/hotels-dashboard/hotel-map/hotel-map.component";
 import { getViewLabel, getViewsValues } from '../../utilities/getViews';
+import { NavBarComponent } from "../nav-bar/nav-bar.component";
+import { IRoomType } from '../../models/IRoomType';
+import { RoomTypeService } from '../../Services/room-type.service';
+
 
 @Component({
     selector: 'app-hoteldetails',
     standalone: true,
     templateUrl: './hoteldetails.component.html',
     styleUrl: './hoteldetails.component.css',
-    imports: [FormsModule, CommonModule, HoteldetailsimgComponent, KnobModule, HotelMapComponent]
+    imports: [FormsModule, CommonModule, HoteldetailsimgComponent, KnobModule,HotelMapComponent, NavBarComponent]
 })
 export class HoteldetailsComponent implements OnInit {
+  roomTypes: IRoomType[] = [] as IRoomType[];
+  views!: { label: string, value: number }[];
   filteredHotel: IFilteredHotel = {} as IFilteredHotel;
   baseUrl: string = environment.baseUrl;
   hotelCoordinates = { latitude: 0, longitude: 0 };
@@ -28,11 +34,23 @@ export class HoteldetailsComponent implements OnInit {
     warehouse: 'fa-warehouse',
     pool: 'fa-swimming-pool',
     gym: 'fa-dumbbell',
+    Wifi: 'fa-solid fa-wifi',
+    spa:'fa-solid fa-spa',
+    parking :'fa-solid fa-square-parking',
+    bathroom :'fa-solid fa-bath',
+    shuttle: 'fa-solid fa-van-shuttle',
+    balcony : 'fa-solid fa-torii-gate',
+    bar :'fa-solid fa-martini-glass-citrus',
+    'kids area': 'fa-solid fa-children',
+    'Facilities for disabled guests': 'fa-solid fa-wheelchair',
+    'wellness care':'fa-solid fa-staff-snake'
+   
   };
   constructor(
     private route: ActivatedRoute,
   ) { }
   ngOnInit(): void {
+    this.views = getViewsValues();
     this.route.queryParams.subscribe(params => {
       const filterHotelJson = params['filterHotel'];
       if (filterHotelJson) {
@@ -70,6 +88,6 @@ export class HoteldetailsComponent implements OnInit {
   getCategory2Photos() {
     return this.filteredHotel.photos
       .filter((photo: any) => photo.category === 2)
-      .slice(0, 5);
+      .slice(0, 6);
   }
 }

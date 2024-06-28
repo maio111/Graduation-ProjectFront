@@ -6,13 +6,14 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NavBarComponent } from "../../nav-bar/nav-bar.component";
 
 @Component({
-  selector: 'app-hotels-dashboard',
-  standalone: true,
-  imports: [EditHotelComponent, FormsModule, CommonModule ,NgxPaginationModule],
-  templateUrl: './hotels-dashboard.component.html',
-  styleUrls: ['./hotels-dashboard.component.css']
+    selector: 'app-hotels-dashboard',
+    standalone: true,
+    templateUrl: './hotels-dashboard.component.html',
+    styleUrls: ['./hotels-dashboard.component.css'],
+    imports: [EditHotelComponent, FormsModule, CommonModule, NgxPaginationModule, NavBarComponent]
 })
 export class HotelsDashboardComponent {
   hotels!: Ihotel[];

@@ -1,69 +1,6 @@
 <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<header class="section__container header__container">
-    <div class="header__image__container">
-        <video autoplay muted loop playsinline class="header__background__video">
-            <source src="../../../assets/img/hotelvideo1.1.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="header__content">
-            <h1>Enjoy Your Dream Vacation</h1>
-        </div>
-        <div class="booking__container">
-            <form [formGroup]="bookingForm">
-                <div class="form__group">
-                    <div class="input__group">
-                        <input type="text" name="cityId" formControlName="cityId" (focus)="onCityFocus()" (blur)="onCityBlur()"
-                            (input)="onCityInput()"/>
-                        <label [class.filled]="bookingForm.get('cityId')?.value">Location</label>
-                        <i class="fa-solid fa-location-dot"></i>
-                        <ul *ngIf="showDropdown" class="autocomplete-list">
-                            <li *ngFor="let city of filteredCities$ | async" (click)="selectCity(city)">
-                                {{ city.name }}
-                            </li>
-                        </ul>
-                    </div>
-                    <p>Where are you going?</p>
-                </div>
-                <div class="form__group">
-                    <div class="input__group">
-                        <input type="text" id="checkin" formControlName="checkInDate" (focus)="onFocus($event)"
-                            (blur)="onBlur($event)" [(ngModel)]="parmas.checkInDate"/>
-                        <label [class.filled]="bookingForm.get('checkInDate')?.value">Check In</label>
-                    </div>
-                    <p *ngIf="bookingForm.get('checkInDate')?.hasError('invalidCheckInDate')">Check-in date cannot be in
-                        the past.
-                    </p>
-                </div>
-                <div class="form__group">
-                    <div class="input__group">
-                        <input type="text" id="checkout" formControlName="checkOutDate" (focus)="onFocus($event)"
-                            (blur)="onBlur($event)" [(ngModel)]="parmas.checkOutDate"/>
-                        <label [class.filled]="bookingForm.get('checkOutDate')?.value">Check Out</label>
-                    </div>
-                    <p *ngIf="bookingForm.get('checkOutDate')?.hasError('invalidCheckOutDate')">Check-out date must be
-                        after
-                        check-in date.</p>
-                </div>
-                <div class="form__group">
-                    <div class="input__group">
-                        <input type="number" name="roomCapacity" formControlName="roomCapacity"
-                            (focus)="onFocus($event)" (blur)="onBlur($event)" min="1" max="10" [(ngModel)]="parmas.roomCapacity"/>
-                        <label [class.filled]="bookingForm.get('roomCapacity')?.value">Guests</label>
-                    </div>
-                    <p *ngIf="bookingForm.get('roomCapacity')?.hasError('min')">Minimum number of guests is 1.</p>
-                    <p *ngIf="bookingForm.get('roomCapacity')?.hasError('max')">Maximum number of guests is 10.</p>
-                    <p *ngIf="bookingForm.get('roomCapacity')?.hasError('required')">Number of guests is required.</p>
-                </div>
-            </form>
-
-            <button class="btn" (click)="onSearch()"><i class="ri-search-line"></i></button>
-        </div>
-
-
-
-    </div>
-</header>
+<app-booking-header class="booking-header"></app-booking-header>
 <section class="destinations">
     <h4 class="label"> Best Destinations</h4>
     <div class="container">
@@ -143,10 +80,10 @@
 </section>
 <section class="feedback">
     <div class="container">
-        <h4 class="label">adventure's voices</h4>
-        <h2 class="heading">adventurer's voices</h2>
+        <h4 class="label">Our Guests Review </h4>
+        <h2 class="heading">Our Loyal Guests</h2>
         <p class="paragraph">
-            real stories from our sdenturours community
+            real stories from our BookyBoo community
         </p>
     </div>
 

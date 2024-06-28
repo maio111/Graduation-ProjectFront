@@ -5,13 +5,14 @@ import { CityService } from '../../../../Services/city.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NavBarComponent } from "../../../nav-bar/nav-bar.component";
 
 @Component({
-  selector: 'app-city-dashboard',
-  standalone: true,
-  imports: [FormsModule,CommonModule,NgxPaginationModule],
-  templateUrl: './city-dashboard.component.html',
-  styleUrl: './city-dashboard.component.css'
+    selector: 'app-city-dashboard',
+    standalone: true,
+    templateUrl: './city-dashboard.component.html',
+    styleUrl: './city-dashboard.component.css',
+    imports: [FormsModule, CommonModule, NgxPaginationModule, NavBarComponent]
 })
 export class CityDashboardComponent {
   countryId!: number;

@@ -1,3 +1,4 @@
+<app-booking-header class="booking_header"></app-booking-header>
 <div class="container">
   <div class="sidebar">
     <header>
@@ -45,11 +46,11 @@
       </select>
     </div><br>
     <div class="filters">
-      <label class="form-label">Features:</label>
+      <label class="form-label head">Features:</label>
       <div *ngFor="let feature of features" class="form-check">
         <input type="checkbox" id="feature{{ feature.id }}" [checked]="isSelectedFeature(feature.id)"
           (change)="featureCheckboxChanged($event.target)">
-        <label for="feature{{ feature.id }}" class="form-check-label">{{ feature.name }}</label>
+        <label for="feature{{ feature.id }}" class="form-check-label child">{{ feature.name }}</label>
       </div>
     </div>
 
@@ -61,13 +62,14 @@
         <img [src]="baseUrl+mainPhoto.photoUrl" [alt]="hotel.name">
       </div>
       <div class="hotel-info">
-        <h3>{{ hotel.name }}</h3>
-        <p>{{ hotel.cityName }}</p>
+        <h3>{{ hotel.name }} </h3>
+        <p class="city">{{ hotel.cityName }}</p>
         <p class="rating">Rating: <span>{{ hotel.rating }}</span></p>
-        <p class="comfort">Comfort: <span>{{ hotel.description }}</span></p>
-        <p class="price">{{ hotel.price }}</p>
-        <p>Includes taxes and charges</p>
-        <button (click)="goHotelDetails(hotel)">See availability</button>
+        <p class="comfort">Description: <span>{{ hotel.description }}</span></p>
+        <div class="price-container">
+          <span class="price">Start from {{ hotel.price }}</span>
+          <button (click)="goHotelDetails(hotel)">See availability</button>
+        </div>
       </div>
       <div class="con-like" (click)="toggleWishlist(hotel)">
         <input class="like" type="checkbox" title="like">

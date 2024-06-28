@@ -11,7 +11,7 @@
   .slider:hover {
     opacity: 1;
   }
-  
+
 
   
   .slider:hover::-webkit-slider-thumb,
@@ -57,7 +57,8 @@
 
 .hotel-card img {
     width: 350px;
-    height: 250px;
+    height: 355px;
+    
     object-fit: cover;
 }
 
@@ -68,19 +69,29 @@
 
 .hotel-info h3 {
     margin: 0;
-    font-size: 18px;
+    font-size: 30px;
+    padding-bottom: 3px;
+    font-weight: 700;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .hotel-info p {
     margin: 5px 0;
 }
+.hotel-info .city{
+  font-weight: 700;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 15px;
+}
 
 .hotel-info .rating {
     font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
-
-.hotel-info .comfort {
-    font-weight: bold;
+.hotel-info .price1{
+  font-size: 20px;
+  color: #d9534f;
+  font-weight: bold;
 }
 
 .hotel-info .price {
@@ -96,6 +107,19 @@ button {
     padding: 10px 20px;
     cursor: pointer;
     margin-top: 10px;
+    margin-left: 250px;
+}
+.price-container {
+  display: flex;
+  align-items: center;
+}
+
+.price-container .price {
+  margin-right: 110px; /* Adjust as needed for spacing */
+}
+
+.price-container button {
+  margin-left: 12px; /* Reset any margin if needed */
 }
 
 button:hover {
@@ -210,6 +234,7 @@ button:hover {
     right: 10px; /* Changed from left to right */
     position: absolute;
     top: 10px;
+    margin-top: 6px;
     width: 20px;
     height: 20px;
    
@@ -263,7 +288,19 @@ button:hover {
 .con-like .like:checked ~ .checkmark .celebrate {
     display: block;
 }
-
+.filters .head{
+   font-size: 20px;
+   font-weight: 500;
+}
+.filters .form-check {
+  display: flex;
+  align-items: center;
+}
+.filters .form-check-label {
+  margin-left: 8px; 
+  margin-bottom: 2px;
+ padding-left: 2px;
+}
 @keyframes kfr-filled {
     0% {
         opacity: 0;

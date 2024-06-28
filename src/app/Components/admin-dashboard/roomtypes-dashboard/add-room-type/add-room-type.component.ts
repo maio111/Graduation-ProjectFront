@@ -5,13 +5,14 @@ import { RoomTypeService } from '../../../../Services/room-type.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgForm } from '@angular/forms';
+import { NavBarComponent } from "../../../nav-bar/nav-bar.component";
 
 @Component({
-  selector: 'app-add-room-type',
-  standalone: true,
-  imports: [FormsModule, CommonModule],
-  templateUrl: './add-room-type.component.html',
-  styleUrl: './add-room-type.component.css'
+    selector: 'app-add-room-type',
+    standalone: true,
+    templateUrl: './add-room-type.component.html',
+    styleUrl: './add-room-type.component.css',
+    imports: [FormsModule, CommonModule, NavBarComponent]
 })
 export class AddRoomTypeComponent {
 

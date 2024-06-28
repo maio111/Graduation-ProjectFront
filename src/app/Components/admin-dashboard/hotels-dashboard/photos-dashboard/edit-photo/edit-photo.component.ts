@@ -5,13 +5,14 @@ import { HotelPhotoService } from '../../../../../Services/hotel-photo.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { IHotelPhoto } from '../../../../../models/IHotelPhoto';
+import { NavBarComponent } from "../../../../nav-bar/nav-bar.component";
 
 @Component({
-  selector: 'app-edit-photo',
-  standalone: true,
-  imports: [FormsModule,CommonModule],
-  templateUrl: './edit-photo.component.html',
-  styleUrl: './edit-photo.component.css'
+    selector: 'app-edit-photo',
+    standalone: true,
+    templateUrl: './edit-photo.component.html',
+    styleUrl: './edit-photo.component.css',
+    imports: [FormsModule, CommonModule, NavBarComponent]
 })
 export class EditPhotoComponent {
   hotelId!: number;

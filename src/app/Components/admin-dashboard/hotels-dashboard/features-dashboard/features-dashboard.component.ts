@@ -5,13 +5,14 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HotelService } from '../../../../Services/hotel.service';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NavBarComponent } from "../../../nav-bar/nav-bar.component";
 
 @Component({
-  selector: 'app-features-dashboard',
-  standalone: true,
-  imports: [FormsModule,CommonModule ,NgxPaginationModule],
-  templateUrl: './features-dashboard.component.html',
-  styleUrl: './features-dashboard.component.css'
+    selector: 'app-features-dashboard',
+    standalone: true,
+    templateUrl: './features-dashboard.component.html',
+    styleUrl: './features-dashboard.component.css',
+    imports: [FormsModule, CommonModule, NgxPaginationModule, NavBarComponent]
 })
 export class FeaturesDashboardComponent implements OnInit {
   Features!: IHotelFeature[];

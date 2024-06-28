@@ -5,13 +5,14 @@ import { IRoomType } from '../../../models/IRoomType';
 import { Router } from '@angular/router';
 import { RoomTypeService } from '../../../Services/room-type.service';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NavBarComponent } from "../../nav-bar/nav-bar.component";
 
 @Component({
-  selector: 'app-roomtypes-dashboard',
-  standalone: true,
-  imports: [FormsModule,CommonModule,NgxPaginationModule],
-  templateUrl: './roomtypes-dashboard.component.html',
-  styleUrl: './roomtypes-dashboard.component.css'
+    selector: 'app-roomtypes-dashboard',
+    standalone: true,
+    templateUrl: './roomtypes-dashboard.component.html',
+    styleUrl: './roomtypes-dashboard.component.css',
+    imports: [FormsModule, CommonModule, NgxPaginationModule, NavBarComponent]
 })
 export class RoomtypesDashboardComponent implements OnInit{
   roomTypes!: IRoomType[];
