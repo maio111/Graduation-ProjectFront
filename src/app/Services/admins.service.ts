@@ -21,18 +21,18 @@ export class AdminsService {
   }
 
   
-  deleteUserByEmail(email: string): Observable<any> {
-    return this.httpclient.delete<any>(`${this.baseUrl}/api/Account/remove-user/${email}`);
+  deleteUserByEmail(userName: string): Observable<any> {
+    return this.httpclient.delete<any>(`${this.baseUrl}/api/Admin/DeleteAdminByUserName/${userName}`);
   }
 
 
-  updateAdmin(email: string, admin: IAdminPatch): Observable<void> {
-    return this.httpclient.patch<void>(`${this.baseUrl}/api/Admin/UpdateAdminByEmail/${email}`, admin);
+  updateAdmin(userName: string, admin: IAdminPatch): Observable<void> {
+    return this.httpclient.patch<void>(`${this.baseUrl}/api/Admin/UpdateAdminByUserName/${userName}`, admin);
   }
 
   addAdmin(admin: IAdminDTO): Observable<any> {
     console.log(admin)
-    return this.httpclient.post<any>(`${this.baseUrl}/api/Account/register/admin`, admin);
+    return this.httpclient.post<any>(`${this.baseUrl}/api/Admin/AddAdmin`, admin);
   }
   
 }

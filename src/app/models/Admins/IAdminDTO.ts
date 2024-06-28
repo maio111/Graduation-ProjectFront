@@ -5,6 +5,5 @@ export interface IAdminDTO {
     email: string;
     password: string;
     gender: string;
-    address: string;
-    birthDate: string;
+    
 }

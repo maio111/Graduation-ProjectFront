@@ -22,8 +22,7 @@ export class EditAdminComponent implements OnInit {
     email: '',
     password: '',
     gender: '',
-    address: '',
-    birthDate: ''
+    
   };
 
   constructor(private router: Router, private route: ActivatedRoute, private adminService: AdminsService) {}
@@ -33,6 +32,8 @@ export class EditAdminComponent implements OnInit {
       this.admin.email = params['email'];
       this.route.queryParams.subscribe(params => {
         this.admin = JSON.parse(params['admin']);
+        this.admin.userName = JSON.parse(params['userName']);
+
       });
     });
   }

@@ -43,13 +43,7 @@
                                 Please select a gender.
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="birthDate" class="form-label">Birth Date:</label>
-                            <input type="date" id="birthDate" name="birthDate" [(ngModel)]="admin.birthDate" #birthDate="ngModel" class="form-control" required>
-                            <div class="invalid-feedback" *ngIf="birthDate.invalid && (birthDate.dirty || birthDate.touched)">
-                                Please enter a valid birth date.
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="row justify-content-center">

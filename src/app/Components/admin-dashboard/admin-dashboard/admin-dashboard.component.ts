@@ -16,11 +16,12 @@ import { IAdminDTO } from '../../../models/Admins/IAdminDTO';
 })
 export class AdminDashboardComponent implements OnInit {
   admins!: IAdminDTO[];
-  currentAdminEmail!: string;
+  currentAdminUserName!: string;
   page: any;
   total: any;
 
   constructor(private router: Router, private adminService: AdminsService
+    
 
   ) {
     this.getAllAdmins();
@@ -35,16 +36,16 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
-  navigateToEdit(email: string, admin: IAdminDTO) {
-    this.currentAdminEmail = email;
-    this.router.navigate(['dashboard/editAdmin', this.currentAdminEmail], {
+  navigateToEdit(userName: string, admin: IAdminDTO) {
+    this.currentAdminUserName = userName;
+    this.router.navigate(['dashboard/editAdmin', this.currentAdminUserName], {
       queryParams: { admin: JSON.stringify(admin) }
     });
   }
 
-  deleteAdmin(email: string) {
-    this.currentAdminEmail = email;
-    this.adminService.deleteUserByEmail(this.currentAdminEmail).subscribe({
+  deleteAdmin(userName: string) {
+    this.currentAdminUserName = userName;
+    this.adminService.deleteUserByEmail(this.currentAdminUserName).subscribe({
       next: (res) => { console.log(res.data); },
       error: (res) => { console.log(res.error); },
       complete: () => { console.log("complete"); }

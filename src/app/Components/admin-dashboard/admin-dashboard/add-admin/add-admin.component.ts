@@ -1,42 +1,55 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminsService } from '../../../../Services/admins.service';
 import { IAdminDTO } from '../../../../models/Admins/IAdminDTO';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { NgForm } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-add-admin',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './add-admin.component.html',
   styleUrls: ['./add-admin.component.css']
 })
-export class AddAdminComponent {
+export class AddAdminComponent implements OnInit {
 
-  admin: IAdminDTO = {
-    userName: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    gender: '',
-    address: '',
-    birthDate: ''
-  };
+  adminForm!: FormGroup;
+  successMessage: string = '';
+  errorMessage: string = '';
 
-  constructor(private router: Router, private adminService: AdminsService) {}
+  constructor(private fb: FormBuilder, private router: Router, private adminService: AdminsService) {}
 
-  onSubmit(adminForm: NgForm) {
-    if (adminForm.valid) {
-      this.adminService.addAdmin(this.admin).subscribe({
+  ngOnInit(): void {
+    this.adminForm = this.fb.group({
+      userName: ['', [Validators.required, Validators.minLength(3)]],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required],
+      gender: ['', Validators.required],
+    }, { validator: this.passwordMatchValidator });
+  }
+
+  passwordMatchValidator(form: FormGroup) {
+    return form.get('password')?.value === form.get('confirmPassword')?.value ? null : { mismatch: true };
+  }
+
+  onSubmit() {
+    if (this.adminForm.valid) {
+      this.adminService.addAdmin(this.adminForm.value).subscribe({
         next: (res) => {
           console.log(res);
+          this.successMessage = 'Admin successfully added.';
+          this.errorMessage = ''; // Clear any previous error messages
           this.router.navigate(['/dashboard/adminDashboard']);
         },
         error: (error) => {
           console.error('Error adding admin:', error);
+          this.successMessage = ''; // Clear any previous success messages
+          this.errorMessage = error.error?.message || 'An error occurred while adding the admin.';
         }
       });
     }
