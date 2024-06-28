@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IFeature } from '../../../../models/IFeature';
-import { IfStmt } from '@angular/compiler';
 import { Router } from '@angular/router';
 import { FeaturesService } from '../../../../Services/features.service';
 import { FormsModule, NgForm } from '@angular/forms';
@@ -8,30 +7,37 @@ import { CommonModule } from '@angular/common';
 import { NavBarComponent } from "../../../nav-bar/nav-bar.component";
 
 @Component({
-    selector: 'app-add-feature-general',
-    standalone: true,
-    templateUrl: './add-feature-general.component.html',
-    styleUrl: './add-feature-general.component.css',
-    imports: [FormsModule, CommonModule, NavBarComponent]
+  selector: 'app-add-feature-general',
+  standalone: true,
+  imports: [FormsModule, CommonModule],
+  templateUrl: './add-feature-general.component.html',
+  styleUrls: ['./add-feature-general.component.css']
 })
 export class AddFeatureGeneralComponent {
   feature: IFeature = {} as IFeature;
-  constructor(private router: Router, private featureService: FeaturesService) {
-  }
+  errorMessage: string | null = null;
+  successMessage: string | null = null;
+
+  constructor(private router: Router, private featureService: FeaturesService) {}
 
   onSubmit(featureform: NgForm) {
     if (featureform.valid) {
       this.featureService.addFeature(this.feature).subscribe({
         next: (res) => {
           console.log(res);
-          this.router.navigate(['/dashboard/featuresDashboardGeneral']);
+          this.successMessage = 'Feature added successfully!';
+          this.errorMessage = null;
+          setTimeout(() => {
+            this.router.navigate(['/dashboard/featuresDashboardGeneral']);
+          }, 2000);
         },
         error: (error) => {
           console.error('Error adding feature:', error);
+          this.successMessage = null;
+          this.errorMessage = error.error.message || 'An error occurred while adding the feature.';
         }
       });
-    }
-    else{
+    } else {
       this.markFormGroupTouched(featureform);
     }
   }
@@ -39,6 +45,7 @@ export class AddFeatureGeneralComponent {
   back(): void {
     this.router.navigate(['/dashboard/featuresDashboardGeneral']);
   }
+
   private markFormGroupTouched(formGroup: NgForm) {
     Object.keys(formGroup.controls).forEach(field => {
       const control = formGroup.control.get(field);

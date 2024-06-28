@@ -1,60 +1,68 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AdminsService } from '../../../../Services/admins.service';
-import { IAdminDTO } from '../../../../models/Admins/IAdminDTO';
 import { IAdminPatch } from '../../../../models/Admins/IAdminPatch';
-import { FormsModule } from '@angular/forms';
+import { IAdminDTO } from '../../../../models/Admins/IAdminDTO';
+import { AdminsService } from '../../../../Services/admins.service';
 import { CommonModule } from '@angular/common';
-import { NgForm } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+
+
 
 @Component({
-  selector: 'app-edit-admin',
+
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [ CommonModule,FormsModule],
+  selector: 'app-edit-admin',
   templateUrl: './edit-admin.component.html',
   styleUrls: ['./edit-admin.component.css']
+  
 })
 export class EditAdminComponent implements OnInit {
-  admin: IAdminDTO = {
+  currentAdminUserName!: string;
+  adminPatch: IAdminPatch = {
     userName: '',
     firstName: '',
     lastName: '',
     email: '',
-    password: '',
-    gender: '',
-    address: '',
-    birthDate: ''
+    currentPassword: '',
+    newPassword: '',
+    gender: ''
   };
 
-  constructor(private router: Router, private route: ActivatedRoute, private adminService: AdminsService) {}
+  constructor(private router: Router, private route: ActivatedRoute, private adminService:AdminsService) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      this.admin.email = params['email'];
-      this.route.queryParams.subscribe(params => {
-        this.admin = JSON.parse(params['admin']);
-      });
+    this.route.params.subscribe(params => {
+      this.currentAdminUserName = params['userName'];
+    });
+
+    this.route.queryParams.subscribe(params => {
+      const adminDTO: IAdminDTO = JSON.parse(params['admin']);
+      this.adminPatch = {
+        userName: adminDTO.userName,
+        firstName: adminDTO.firstName,
+        lastName: adminDTO.lastName,
+        email: adminDTO.email,
+        currentPassword: '', 
+        newPassword: '', 
+        gender: adminDTO.gender
+      };
     });
   }
 
-  onSubmit(adminForm: NgForm) {
-    if (adminForm.valid) {
-      const adminPatch: IAdminPatch = {
-        userName: this.admin.userName,
-        currentPassword: this.admin.password,
-        newPassword: '' // Add logic if needed to update password
-      };
-
-      this.adminService.updateAdmin(this.admin.email, adminPatch).subscribe({
-        next: (res) => {
-          console.log(res);
-          this.router.navigate(['/dashboard/adminDashboard']);
-        },
-        error: (error) => {
-          console.error('Error updating admin:', error);
-        }
-      });
-    }
+  onSubmit(): void {
+    
+    console.log('Form submitted:', this.adminPatch);
+    
+    this.adminService.updateAdmin(this.currentAdminUserName,this.adminPatch).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.router.navigate(['/dashboard/adminDashboard']);
+      },
+      error: (error) => {
+        console.error('Error updating admin:', error);
+      }
+    });
   }
 
   back(): void {
