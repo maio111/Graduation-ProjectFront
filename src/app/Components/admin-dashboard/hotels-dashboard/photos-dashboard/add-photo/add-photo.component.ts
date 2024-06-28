@@ -3,20 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HotelPhotoService } from '../../../../../Services/hotel-photo.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-<<<<<<< HEAD
-import { PhotoCategory } from '../../../../../models/Enums/PhotoCategory'; // Adjust the path as necessary
-import { BulkHotelPhotoDTO } from '../../../../../models/HotelPhoto/BulkHotelPhotoDTO';
-
-@Component({
-  selector: 'app-add-photo',
-  standalone: true,
-  imports: [FormsModule, CommonModule],
-  templateUrl: './add-photo.component.html',
-  styleUrl: './add-photo.component.css'
-=======
 import { addPhoto } from '../../../../../models/addPhoto';
 import { NgForm } from '@angular/forms';
 import { NavBarComponent } from "../../../../nav-bar/nav-bar.component";
+import { BulkHotelPhotoDTO } from '../../../../../models/HotelPhoto/BulkHotelPhotoDTO';
+import { PhotoCategory } from '../../../../../models/Enums/PhotoCategory';
 
 @Component({
     selector: 'app-add-photo',
@@ -24,7 +15,6 @@ import { NavBarComponent } from "../../../../nav-bar/nav-bar.component";
     templateUrl: './add-photo.component.html',
     styleUrl: './add-photo.component.css',
     imports: [FormsModule, CommonModule, NavBarComponent]
->>>>>>> df1f1e146533ad8e6673fb4bcd52077828a9126c
 })
 export class AddPhotoComponent implements OnInit {
   hotelId!: number;

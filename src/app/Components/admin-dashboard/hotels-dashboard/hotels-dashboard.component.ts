@@ -6,12 +6,8 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
-<<<<<<< HEAD
-import { CityService } from '../../../Services/city.service';
-import { HotelView } from '../../../models/Hotel/HotelView';
-=======
 import { NavBarComponent } from "../../nav-bar/nav-bar.component";
->>>>>>> df1f1e146533ad8e6673fb4bcd52077828a9126c
+import { HotelView } from '../../../models/Hotel/HotelView';
 
 @Component({
     selector: 'app-hotels-dashboard',

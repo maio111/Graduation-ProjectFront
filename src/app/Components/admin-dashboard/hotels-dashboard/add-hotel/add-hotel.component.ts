@@ -6,18 +6,9 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { HotelService } from '../../../../Services/hotel.service';
 import { HotelMapComponent } from "../hotel-map/hotel-map.component";
-<<<<<<< HEAD
-import { CityService } from '../../../../Services/city.service';
-import { ICity } from '../../../../models/City/ICity';
-
-@Component({
-  selector: 'app-add-hotel',
-  standalone: true,
-  templateUrl: './add-hotel.component.html',
-  styleUrls: ['./add-hotel.component.css'],
-  imports: [FormsModule, CommonModule, HotelMapComponent]
-=======
 import { NavBarComponent } from "../../../nav-bar/nav-bar.component";
+import { ICity } from '../../../../models/City/ICity';
+import { CityService } from '../../../../Services/city.service';
 
 @Component({
     selector: 'app-add-hotel',
@@ -25,7 +16,6 @@ import { NavBarComponent } from "../../../nav-bar/nav-bar.component";
     templateUrl: './add-hotel.component.html',
     styleUrls: ['./add-hotel.component.css'],
     imports: [FormsModule, CommonModule, HotelMapComponent, NavBarComponent]
->>>>>>> df1f1e146533ad8e6673fb4bcd52077828a9126c
 })
 export class AddHotelComponent {
   hotel: Ihotel = {

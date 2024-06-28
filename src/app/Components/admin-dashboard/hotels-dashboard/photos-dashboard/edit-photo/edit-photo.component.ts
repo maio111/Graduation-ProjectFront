@@ -4,12 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HotelPhotoService } from '../../../../../Services/hotel-photo.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-<<<<<<< HEAD
-import { PhotoCategory } from '../../../../../models/Enums/PhotoCategory';
-=======
 import { IHotelPhoto } from '../../../../../models/IHotelPhoto';
 import { NavBarComponent } from "../../../../nav-bar/nav-bar.component";
->>>>>>> df1f1e146533ad8e6673fb4bcd52077828a9126c
+import { PhotoCategory } from '../../../../../models/Enums/PhotoCategory';
 
 @Component({
     selector: 'app-edit-photo',
