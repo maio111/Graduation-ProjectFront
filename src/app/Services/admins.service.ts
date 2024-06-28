@@ -21,7 +21,7 @@ export class AdminsService {
   }
 
   
-  deleteUserByEmail(userName: string): Observable<any> {
+  deleteUserByUserName(userName: string): Observable<any> {
     return this.httpclient.delete<any>(`${this.baseUrl}/api/Admin/DeleteAdminByUserName/${userName}`);
   }
 

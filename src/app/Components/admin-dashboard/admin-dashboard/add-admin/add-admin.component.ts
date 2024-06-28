@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminsService } from '../../../../Services/admins.service';
 import { IAdminDTO } from '../../../../models/Admins/IAdminDTO';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-add-admin',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule,FormsModule],
   templateUrl: './add-admin.component.html',
   styleUrls: ['./add-admin.component.css']
 })
@@ -19,8 +19,11 @@ export class AddAdminComponent implements OnInit {
   successMessage: string = '';
   errorMessage: string = '';
 
-  constructor(private fb: FormBuilder, private router: Router, private adminService: AdminsService) {}
+  constructor(private fb: FormBuilder, private router: Router, private adminService: AdminsService) {
+    
+  }
 
+  
   ngOnInit(): void {
     this.adminForm = this.fb.group({
       userName: ['', [Validators.required, Validators.minLength(3)]],
@@ -29,8 +32,8 @@ export class AddAdminComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required],
-      gender: ['', Validators.required],
-    }, { validator: this.passwordMatchValidator });
+      gender: ['', Validators.required]
+    }, { validators: this.passwordMatchValidator });
   }
 
   passwordMatchValidator(form: FormGroup) {

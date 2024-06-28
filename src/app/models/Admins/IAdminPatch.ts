@@ -1,6 +1,10 @@
 export interface IAdminPatch {
-    userName: string;
+    firstName: string;
+    lastName: string;
+    email: string;
     currentPassword: string;
     newPassword: string;
-    
+    userName: string;
+    gender: string;
 }
+

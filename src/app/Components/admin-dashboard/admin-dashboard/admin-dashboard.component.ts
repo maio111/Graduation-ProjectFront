@@ -42,10 +42,11 @@ export class AdminDashboardComponent implements OnInit {
       queryParams: { admin: JSON.stringify(admin) }
     });
   }
+  
 
   deleteAdmin(userName: string) {
     this.currentAdminUserName = userName;
-    this.adminService.deleteUserByEmail(this.currentAdminUserName).subscribe({
+    this.adminService.deleteUserByUserName(this.currentAdminUserName).subscribe({
       next: (res) => { console.log(res.data); },
       error: (res) => { console.log(res.error); },
       complete: () => { console.log("complete"); }
