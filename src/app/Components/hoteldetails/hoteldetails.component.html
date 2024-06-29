@@ -115,12 +115,8 @@
             <div class="col col-2" data-label="Customer Name">{{ getViewLabel(room.view) }}</div>
             <div class="col col-3" data-label="Amount">{{ room.typeName }}</div>
             <div class="col col-4" data-label="Payment Status">${{ room.pricePerNight }}</div>
-            <div><button class="check-dates">Reserve</button></div>
+            <div><button class="check-dates" (click)="createBooking(room)" >Reserve</button></div>
           </li>
-    
-    
-    
-    
         </ul>
       </div>
     </section>

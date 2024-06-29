@@ -7,12 +7,5 @@ export interface IFilteredRoomHotel {
     typeName: string;
     hotelId: number;
     roomTypeId: number;
-    hotelBookingId: number;
-
-   
-    
-    
-   
-    
-    
+    hotelBookingId: number;   
 }

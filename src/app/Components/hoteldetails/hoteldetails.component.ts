@@ -3,7 +3,7 @@ import { Component, OnInit, numberAttribute } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { KnobModule } from 'primeng/knob';
 import { HoteldetailsimgComponent } from '../hoteldetailsimg/hoteldetailsimg.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IFilteredHotel } from '../../models/Hotel/IFilteredHotel';
 import { IHotelPhotoF } from '../../models/Hotel/IHotelPhotoF';
 import { environment } from '../../../environments/environment';
@@ -13,6 +13,10 @@ import { getViewLabel, getViewsValues } from '../../utilities/getViews';
 import { NavBarComponent } from "../nav-bar/nav-bar.component";
 import { IRoomType } from '../../models/IRoomType';
 import { RoomTypeService } from '../../Services/room-type.service';
+import { CreateBookingDTO } from '../../models/HotelBooking/CreateBookingDTO';
+import { IRoom } from '../../models/IRoom';
+import { IFilteredRoomHotel } from '../../models/Hotel/IFilteredRoomHotel';
+import { json } from 'stream/consumers';
 
 
 @Component({
@@ -28,6 +32,7 @@ export class HoteldetailsComponent implements OnInit {
   filteredHotel: IFilteredHotel = {} as IFilteredHotel;
   baseUrl: string = environment.baseUrl;
   hotelCoordinates = { latitude: 0, longitude: 0 };
+  booking!: CreateBookingDTO;
   getViewsValues = getViewsValues;
   getViewLabel = getViewLabel;
   featureIcons: { [key: string]: string } = {
@@ -48,6 +53,7 @@ export class HoteldetailsComponent implements OnInit {
   };
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
   ) { }
   ngOnInit(): void {
     this.views = getViewsValues();
@@ -89,5 +95,10 @@ export class HoteldetailsComponent implements OnInit {
     return this.filteredHotel.photos
       .filter((photo: any) => photo.category === 2)
       .slice(0, 6);
+  }
+  createBooking(room: IFilteredRoomHotel) {
+    this.router.navigate(['reservationDetails'], {
+      queryParams: { room: JSON.stringify(room) }
+    });
   }
 }

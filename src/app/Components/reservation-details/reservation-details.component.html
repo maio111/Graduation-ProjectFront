@@ -1,0 +1,139 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <!-- Progress Steps -->
+            <ul class="nav nav-pills mb-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Your selection</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Your details</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Final step</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <!-- Hotel Details Card -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Beach Albatros The Club - Aqua Park</h5>
+                    <p class="card-text">Hurghada - Safaga Road, 99988 Hurghada, Egypt</p>
+                    <p class="card-text text-success">Excellent location – 9.5</p>
+                    <p class="card-text"><strong>9.3</strong> Superb – 683 reviews</p>
+                    <ul class="list-inline">
+                        <li class="list-inline-item">Free WiFi</li>
+                        <li class="list-inline-item">Airport shuttle</li>
+                        <li class="list-inline-item">Parking</li>
+                        <li class="list-inline-item">Restaurant</li>
+                        <li class="list-inline-item">Swimming Pool</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Booking Details Card -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Your booking details</h5>
+                    <p>Check-in: <strong>Wed 31 Jul 2024</strong> From 14:00</p>
+                    <p>Check-out: <strong>Thu 1 Aug 2024</strong> Until 12:00</p>
+                    <p>Total length of stay: 1 night</p>
+                    <p>You selected: 2 rooms for 2 adults</p>
+                    <a href="#" class="card-link">Change your selection</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <!-- User Details Form -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Enter your details</h5>
+                    <form>
+                        <div class="alert alert-info" role="alert">
+                            Almost done! Just fill in the <span class="text-danger">*</span> required info
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="firstName">First name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="firstName" placeholder="First name" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="lastName">Last name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="lastName" placeholder="Last name" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="email">Email address <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" id="email" placeholder="Email address" required>
+                                <small class="form-text text-muted">Confirmation email goes to this address</small>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="country">Country/region <span class="text-danger">*</span></label>
+                                <select id="country" class="form-control" required>
+                                    <option selected>Egypt</option>
+                                    <!-- Add more options as needed -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="phone">Telephone (mobile number preferred) <span class="text-danger">*</span></label>
+                                <input type="tel" class="form-control" id="phone" placeholder="+20" required>
+                                <small class="form-text text-muted">So the accommodation can reach you</small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="checkInDate">Check-in date <span class="text-danger">*</span></label>
+                                <input type="date" name="checkInDate" class="form-control" id="checkInDate" placeholder="Select check-in date"
+                                    [(ngModel)]="booking.checkInDate" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="checkOutDate">Check-out date <span class="text-danger">*</span></label>
+                                <input type="date" name="checkOutDate" class="form-control" id="checkOutDate" placeholder="Select check-out date"
+                                    [(ngModel)]="booking.checkOutDate" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="notes">Notes</label>
+                            <textarea class="form-control" id="notes" rows="3" name="notes"
+                                placeholder="Add any notes or special requests here" [(ngModel)]="booking.notes"></textarea>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" id="confirmation">
+                                <label class="form-check-label" for="confirmation">
+                                    Yes, I'd like free paperless confirmation (recommended)
+                                </label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3" (click)="submitBooking()">Submit</button>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap Datepicker CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
+    rel="stylesheet">
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+<!-- Bootstrap Datepicker JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>

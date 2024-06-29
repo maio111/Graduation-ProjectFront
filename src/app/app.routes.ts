@@ -38,12 +38,14 @@ import { EditAdminComponent } from './Components/admin-dashboard/admin-dashboard
 import { PaymentComponent } from './Components/payment/payment.component';
 import { HotelReservationComponent } from './Components/hotel-reservation/hotel-reservation.component';
 import { HotelBookingsComponent } from './Components/admin-dashboard/hotel-bookings/hotel-bookings.component';
+import { ReservationDetailsComponent } from './Components/reservation-details/reservation-details.component';
 
 export const routes: Routes = [
     { path: '', component: HotelBookingComponent }, 
     { path:'hotelBooking',component:HotelBookingComponent},
     { path: 'filterhotels', component:HotelsearchComponent},
     { path: 'hoteldetails', component:HoteldetailsComponent},
+    { path: 'reservationDetails', component: ReservationDetailsComponent},
     { path: 'login', component: LoginComponent ,pathMatch: 'full'},
     { path: 'register', component: RegistrationComponent },
     { path: 'confirm-email', component: ConfirmEmailComponent },

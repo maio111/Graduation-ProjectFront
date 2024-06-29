@@ -7,5 +7,4 @@ export interface User {
     confirmPassword: string;
     address: string;
     birthDate: string;
-    
 }

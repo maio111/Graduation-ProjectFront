@@ -5,6 +5,7 @@ import { HotelBookingViewDTO } from '../models/HotelBooking/HotelBookingViewDTO 
 import { Observable } from 'rxjs';
 import { HotelBookingFilterDTO } from '../models/HotelBooking/HotelBookingFilterDTO ';
 import { GeneralResponse } from '../models/GeneralResponse';
+import { CreateBookingDTO } from '../models/HotelBooking/CreateBookingDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +22,9 @@ export class HotelBookingService {
   //   return this.http.get<HotelBookingViewDTO>(`${this.apiUrl}/${id}`);
   // }
 
-  // createBooking(booking: HotelBookingViewDTO): Observable<HotelBookingViewDTO> {
-  //   return this.http.post<HotelBookingViewDTO>(this.apiUrl, booking);
-  // }
+  createBooking(booking: CreateBookingDTO): Observable<CreateBookingDTO> {
+    return this.http.post<CreateBookingDTO>(`${this.apiUrl}/api/HotelBooking`, booking);
+  }
 
   // updateBooking(id: number, booking: HotelBookingViewDTO): Observable<HotelBookingViewDTO> {
   //   return this.http.put<HotelBookingViewDTO>(`${this.apiUrl}/${id}`, booking);
