@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BraintreeService {
-  private apiUrl = `${environment.baseUrl}/api/payment`;
+  private apiUrl = `${environment.baseUrl}/api/HotelBooking`;
 
   constructor(private http: HttpClient) { }
 

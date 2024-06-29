@@ -12,12 +12,12 @@ declare var braintree: any;
   styleUrl: './hotel-reservation.component.css'
 })
 export class HotelReservationComponent {
-  bookingDate = new Date();  // Replace with actual data
-  status = 'Confirmed';  // Replace with actual data
-  totalPrice = 100.00;  // Replace with actual data
-  notes = 'Some notes';  // Replace with actual data
-  checkInDate = new Date();  // Replace with actual data
-  checkOutDate = new Date();  // Replace with actual data
+  bookingDate = new Date();
+  status = 'Confirmed';
+  totalPrice = 100.00;
+  notes = 'Some notes';
+  checkInDate = new Date();
+  checkOutDate = new Date();
   paymentMethod = 'cash';
   private dropinInstance: any;
   constructor(private braintreeService: BraintreeService) { }

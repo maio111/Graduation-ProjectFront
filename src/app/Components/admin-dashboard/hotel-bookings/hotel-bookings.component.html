@@ -1,0 +1,66 @@
+<!-- hotel-bookings.component.html -->
+<div class="container mt-5">
+    <h2>Hotel Bookings</h2>
+
+    <!-- Search Filters -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <input type="test" class="form-control" placeholder="Hotel Name" [(ngModel)]="filter.hotelName">
+        </div>
+        <div class="col-md-3">
+            <input type="date" class="form-control" placeholder="Check In" [(ngModel)]="filter.checkIn">
+        </div>
+        <div class="col-md-3">
+            <input type="date" class="form-control" placeholder="Check Out" [(ngModel)]="filter.checkOut">
+        </div>
+        <div class="col-md-3">
+            <input type="number" class="form-control" placeholder="Room Number" [(ngModel)]="filter.roomNumber">
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <input type="text" class="form-control" placeholder="User Name" [(ngModel)]="filter.userName">
+        </div>
+        <div class="col-md-3">
+            <input type="number" step="0.01" min = "0" class="form-control" placeholder="Price" [(ngModel)]="filter.price">
+        </div>
+        <div class="col-md-3">
+            <select id="status" name="status" [(ngModel)]="bookingStatuses" class="form-control" class="form-select">
+                <option [selected]="true" disabled>Select Status</option>
+                <option *ngFor="let status of bookingStatuses" [value]="status.value">{{ status.label }}</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-primary w-100" (click)="applyFilter()">Search</button>
+        </div>
+    </div>
+    <!-- Bookings Table -->
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Hotel Name</th>
+                <th>User Name</th>
+                <th>Room Number</th>
+                <th>Check In</th>
+                <th>Check Out</th>
+                <th>Status</th>
+                <th>Total Price</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let booking of bookings">
+                <td>{{ booking.id }}</td>
+                <td>{{ booking.hotelName }}</td>
+                <td>{{ booking.userFirstName }} {{ booking.userLastName }}</td>
+                <td>{{ booking.roomNumber }}</td>
+                <td>{{ booking.checkIn | date }}</td>
+                <td>{{ booking.checkOut | date }}</td>
+                <td>{{ getBookingStatusLabel(booking.status) }}</td>
+                <td>{{ booking.totalPrice }}</td>
+                <td>{{ booking?.notes}} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

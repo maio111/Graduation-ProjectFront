@@ -29,7 +29,6 @@ import { CityDashboardComponent } from './Components/admin-dashboard/country-das
 import { AddCityComponent } from './Components/admin-dashboard/country-dashboard/city-dashboard/add-city/add-city.component';
 import { EditCityComponent } from './Components/admin-dashboard/country-dashboard/city-dashboard/edit-city/edit-city.component';
 import { RegistrationComponent } from './Components/registration/registration.component';
-import { AllcomponenetComponent } from './Components/admin-dashboard/HotelBooking-dashboard/allcomponenet/allcomponenet.component';
 import { HotelsearchComponent } from './Components/hotelsearch/hotelsearch.component';
 import { HoteldetailsComponent } from './Components/hoteldetails/hoteldetails.component';
 import { ConfirmEmailComponent } from './Components/confirm-email/confirm-email.component';
@@ -38,6 +37,7 @@ import { AddAdminComponent } from './Components/admin-dashboard/admin-dashboard/
 import { EditAdminComponent } from './Components/admin-dashboard/admin-dashboard/edit-admin/edit-admin.component';
 import { PaymentComponent } from './Components/payment/payment.component';
 import { HotelReservationComponent } from './Components/hotel-reservation/hotel-reservation.component';
+import { HotelBookingsComponent } from './Components/admin-dashboard/hotel-bookings/hotel-bookings.component';
 
 export const routes: Routes = [
     { path: '', component: HotelBookingComponent }, 
@@ -80,7 +80,7 @@ export const routes: Routes = [
             { path: 'featuresDashboardGeneral', component: FeaturesDashboardGeneralComponent },
             { path: 'addFeatureGeneral', component: AddFeatureGeneralComponent },
             { path: 'editFeatureGeneral/:Id', component: EditFeatureGeneralComponent },
-            {path:'hotelbooking', component:AllcomponenetComponent}
+            { path: 'hotelsBookingsDashboard', component: HotelBookingsComponent },
 
         ]
     },

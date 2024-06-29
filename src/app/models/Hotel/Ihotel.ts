@@ -1,4 +1,3 @@
-
 export interface Ihotel {
     id: number;
     name: string;
