@@ -4,12 +4,12 @@
             <div class="card-header">Booking Details</div>
             <div class="card-body">
                 <h5 class="card-title">Booking Information</h5>
-                <p class="card-text"><strong>Booking Date:</strong> {{ bookingDate | date:'medium' }}</p>
-                <p class="card-text"><strong>Status:</strong> {{ status }}</p>
-                <p class="card-text"><strong>Total Price:</strong> ${{ totalPrice }}</p>
-                <p class="card-text"><strong>Notes:</strong> {{ notes }}</p>
-                <p class="card-text"><strong>Check-In Date:</strong> {{ checkInDate | date:'medium' }}</p>
-                <p class="card-text"><strong>Check-Out Date:</strong> {{ checkOutDate | date:'medium' }}</p>
+                <p class="card-text"><strong>Booking Date:</strong> {{ bookingData.bookingDate| date:'medium' }}</p>
+                <p class="card-text"><strong>Status:</strong> {{ bookingData.status }}</p>
+                <p class="card-text"><strong>Total Price:</strong> ${{ bookingData.totalPrice }}</p>
+                <p class="card-text"><strong>Notes:</strong> {{ bookingData.notes }}</p>
+                <p class="card-text"><strong>Check-In Date:</strong> {{ bookingData.checkInDate| date:'medium' }}</p>
+                <p class="card-text"><strong>Check-Out Date:</strong> {{ bookingData.checkOutDate| date:'medium' }}</p>
 
                 <div class="payment-method-toggle mt-4">
                     <label class="form-check-label me-3">

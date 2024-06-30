@@ -47,4 +47,9 @@ export class LoginService {
     }
     return 0;
   }
+
+  getUserById() {
+    const Id = localStorage.getItem('userId');
+    return this.http.get<any>(`${this.baseUrl}/api/Account/get-user/${Id}`);
+  }
 }

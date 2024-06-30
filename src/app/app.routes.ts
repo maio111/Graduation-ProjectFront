@@ -35,10 +35,9 @@ import { ConfirmEmailComponent } from './Components/confirm-email/confirm-email.
 import { AdminDashboardComponent } from './Components/admin-dashboard/admin-dashboard/admin-dashboard.component';
 import { AddAdminComponent } from './Components/admin-dashboard/admin-dashboard/add-admin/add-admin.component';
 import { EditAdminComponent } from './Components/admin-dashboard/admin-dashboard/edit-admin/edit-admin.component';
-import { PaymentComponent } from './Components/payment/payment.component';
-import { HotelReservationComponent } from './Components/hotel-reservation/hotel-reservation.component';
 import { HotelBookingsComponent } from './Components/admin-dashboard/hotel-bookings/hotel-bookings.component';
 import { ReservationDetailsComponent } from './Components/reservation-details/reservation-details.component';
+import { HotelPaymentComponent } from './Components/hotel-payment/hotel-payment.component';
 
 export const routes: Routes = [
     { path: '', component: HotelBookingComponent }, 
@@ -86,7 +85,6 @@ export const routes: Routes = [
 
         ]
     },
-    { path: 'payment', component: PaymentComponent },
-    { path: 'hotelreservation', component: HotelReservationComponent },
+    { path: 'hotelPayment', component: HotelPaymentComponent },
     { path: '**', component: PageNotFoundComponent },
 ];

@@ -20,16 +20,16 @@
             <!-- Hotel Details Card -->
             <div class="card mb-4">
                 <div class="card-body">
-                    <h5 class="card-title">Beach Albatros The Club - Aqua Park</h5>
-                    <p class="card-text">Hurghada - Safaga Road, 99988 Hurghada, Egypt</p>
-                    <p class="card-text text-success">Excellent location – 9.5</p>
-                    <p class="card-text"><strong>9.3</strong> Superb – 683 reviews</p>
+                    <h5 class="card-title">{{hotel.name}}</h5>
+                    <p class="card-text">{{hotel.cityName}}</p>
+                    <p class="card-text text-success">Excellent location</p>
+                    <p class="card-text"><strong>{{hotel.rating}}</strong><span class="rating">
+                        <ng-container *ngFor="let star of getStars(hotel.rating)">
+                            {{star}}
+                        </ng-container>
+                    </span></p>
                     <ul class="list-inline">
-                        <li class="list-inline-item">Free WiFi</li>
-                        <li class="list-inline-item">Airport shuttle</li>
-                        <li class="list-inline-item">Parking</li>
-                        <li class="list-inline-item">Restaurant</li>
-                        <li class="list-inline-item">Swimming Pool</li>
+                        <li class="list-inline-item" *ngFor="let item of hotel.features">{{item.name}}</li>
                     </ul>
                 </div>
             </div>
@@ -37,10 +37,10 @@
             <div class="card mb-4">
                 <div class="card-body">
                     <h5 class="card-title">Your booking details</h5>
-                    <p>Check-in: <strong>Wed 31 Jul 2024</strong> From 14:00</p>
-                    <p>Check-out: <strong>Thu 1 Aug 2024</strong> Until 12:00</p>
-                    <p>Total length of stay: 1 night</p>
-                    <p>You selected: 2 rooms for 2 adults</p>
+                    <p>Check-in: <strong>{{booking.checkInDate | date}}</strong> From 12:00</p>
+                    <p>Check-out: <strong>{{booking.checkOutDate | date}}</strong> Until 12:00</p>
+                    <p>Total length of stay: {{totalNights}}</p>
+                    <p>You selected: rooms with capacity : {{room.capacity}}</p>
                     <a href="#" class="card-link">Change your selection</a>
                 </div>
             </div>
@@ -57,17 +57,17 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="firstName">First name <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="firstName" placeholder="First name" required>
+                                <input type="text" class="form-control" id="firstName" placeholder="First name" required [value]="user.firstName">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="lastName">Last name <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="lastName" placeholder="Last name" required>
+                                <input type="text" class="form-control" id="lastName" placeholder="Last name" required [value]="user.lastName">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="email">Email address <span class="text-danger">*</span></label>
-                                <input type="email" class="form-control" id="email" placeholder="Email address" required>
+                                <input type="email" class="form-control" id="email" placeholder="Email address" required [value]="user.email">
                                 <small class="form-text text-muted">Confirmation email goes to this address</small>
                             </div>
                             <div class="form-group col-md-6">
@@ -89,12 +89,12 @@
                             <div class="form-group col-md-6">
                                 <label for="checkInDate">Check-in date <span class="text-danger">*</span></label>
                                 <input type="date" name="checkInDate" class="form-control" id="checkInDate" placeholder="Select check-in date"
-                                    [(ngModel)]="booking.checkInDate" required>
+                                    [(ngModel)]="booking.checkInDate" required (change)="updateDays()">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="checkOutDate">Check-out date <span class="text-danger">*</span></label>
                                 <input type="date" name="checkOutDate" class="form-control" id="checkOutDate" placeholder="Select check-out date"
-                                    [(ngModel)]="booking.checkOutDate" required>
+                                    [(ngModel)]="booking.checkOutDate" required (change)="updateDays()">
                             </div>
                         </div>
                         <div class="form-group">

@@ -98,7 +98,7 @@ export class HoteldetailsComponent implements OnInit {
   }
   createBooking(room: IFilteredRoomHotel) {
     this.router.navigate(['reservationDetails'], {
-      queryParams: { room: JSON.stringify(room) }
+      queryParams: { room: JSON.stringify(room), hotel: JSON.stringify(this.filteredHotel) }
     });
   }
 }

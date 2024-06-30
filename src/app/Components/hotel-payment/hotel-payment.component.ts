@@ -2,27 +2,40 @@ import { Component } from '@angular/core';
 import { BraintreeService } from '../../Services/braintree.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CreateBookingDTO } from '../../models/HotelBooking/CreateBookingDTO';
+import { BookingStatus } from '../../models/Enums/BookingStatus';
 declare var braintree: any;
-
 @Component({
-  selector: 'app-hotel-reservation',
+  selector: 'app-hotel-payment',
   standalone: true,
   imports: [FormsModule,CommonModule],
-  templateUrl: './hotel-reservation.component.html',
-  styleUrl: './hotel-reservation.component.css'
+  templateUrl: './hotel-payment.component.html',
+  styleUrl: './hotel-payment.component.css'
 })
-export class HotelReservationComponent {
+export class HotelPaymentComponent {
+  bookingData: CreateBookingDTO = {} as CreateBookingDTO;
   bookingDate = new Date();
-  status = 'Confirmed';
-  totalPrice = 100.00;
-  notes = 'Some notes';
-  checkInDate = new Date();
-  checkOutDate = new Date();
   paymentMethod = 'cash';
   private dropinInstance: any;
-  constructor(private braintreeService: BraintreeService) { }
+  constructor(
+    private braintreeService: BraintreeService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      const filterJson = params['booking'];
+      if (filterJson) {
+        try {
+          this.bookingData = JSON.parse(decodeURIComponent(filterJson));
+          console.log(this.bookingData)
+        } catch (e) {
+          console.error('Error parsing booking data JSON', e);
+        }
+      }
+    });
     if (this.paymentMethod === 'paypal') {
       this.initializeBraintree();
     }
@@ -60,10 +73,10 @@ export class HotelReservationComponent {
           console.error('Error requesting payment method:', err);
           return;
         }
-
-        this.braintreeService.checkout(payload.nonce, this.totalPrice).subscribe({
+        this.braintreeService.checkout(payload.nonce, this.bookingData.totalPrice, this.bookingData).subscribe({
           next: (response: any) => {
             console.log('Payment successful:', response);
+            this.router.navigate(['']);
           },
           error: (error: any) => {
             console.error('Payment error:', error);

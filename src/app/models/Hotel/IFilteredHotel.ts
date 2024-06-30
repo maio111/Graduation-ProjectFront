@@ -14,5 +14,4 @@ export interface IFilteredHotel {
     photos: IHotelPhotoF[];
     rooms: IFilteredRoomHotel[];
     features: IFeature[];
-
 }
