@@ -101,4 +101,19 @@ export class HoteldetailsComponent implements OnInit {
       queryParams: { room: JSON.stringify(room), hotel: JSON.stringify(this.filteredHotel) }
     });
   }
+  reviews = [
+    { name: 'Rob Davis', text: 'Near to the city and public transport, friendly staff, clean and calm place, good breakfast. Everything was well. I\'ll be back again!' },
+    { name: 'Rob Davis', text: 'It was a lovely hotel with excellent facilities and also very helpful staff. We look forward to coming back once again.' },
+    { name: 'Rob Davis', text: 'Staff is very professional, polite, and genuinely friendly. Hotel is very well located for getting to my meetings. Railway and bus station are close, not too noisy and easily reachable.' }
+  ];
+  
+  newComment: string = '';
+
+
+  addComment() {
+    if (this.newComment.trim()) {
+      this.reviews.push({ name: 'New User', text: this.newComment });
+      this.newComment = '';
+    }
+  }
 }

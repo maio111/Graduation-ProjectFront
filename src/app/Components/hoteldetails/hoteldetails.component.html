@@ -1,12 +1,10 @@
-
-
 <div class="all">
   <main class="main">
     <div class="details">
       <div class="header">
         <h1>{{filteredHotel.name}}</h1>
         <div class="price-container">
-          <p class="price">Starts From {{filteredHotel.price}}/Pesron</p> 
+          <p class="price">Starts From {{filteredHotel.price}}/Pesron</p>
           <div class="con-like">
             <input class="like" type="checkbox" title="like">
             <div class="checkmark">
@@ -34,7 +32,7 @@
       </div>
       <p class="location">
         <span class="icon"> <i class="fa-solid fa-location-dot"></i></span>
-        
+
         {{filteredHotel.cityName}}
         <span class="rating">
           <ng-container *ngFor="let star of getStars(filteredHotel.rating)">
@@ -44,48 +42,44 @@
       </p>
     </div>
     <div class="row">
-      <div class="col-9">  <section class="hero">
-        <div class="images">
-    <ng-container *ngFor="let photo of getCategory2Photos()">
-          <img [src]="baseUrl + photo.photoUrl" [alt]="filteredHotel.name" (click)="openModal(baseUrl + photo.photoUrl)">
-       </ng-container>    
-    </div>
-        <div class="main-image" *ngIf="getMainPhoto(filteredHotel) as mainPhoto">
-          <img [src]="baseUrl+mainPhoto.photoUrl" [alt]="filteredHotel.name">
-        </div>
-      </section></div>
-      <div class="col-3">    
+      <div class="col-9">
+        <section class="hero">
+          <div class="images">
+            <ng-container *ngFor="let photo of getCategory2Photos()">
+              <img [src]="baseUrl + photo.photoUrl" [alt]="filteredHotel.name" (click)="openModal(baseUrl + photo.photoUrl)">
+            </ng-container>
+          </div>
+          <div class="main-image" *ngIf="getMainPhoto(filteredHotel) as mainPhoto">
+            <img [src]="baseUrl+mainPhoto.photoUrl" [alt]="filteredHotel.name">
+          </div>
+        </section>
+      </div>
+      <div class="col-3">
         <div class="col-md-3 reviewSection">
-        <div class="col-md-12">
-          <h5 class="mb-4">Popular Reviews</h5>
-          <div class="list-group">
-            <div class="list-group-item d-flex align-items-start">
-              <img src="../../../assets/img/peron3.jpg" class="rounded-circle mr-3 imgReview" alt="Reviewer Image">
-              <div>
-                <h6 class="mb-1">Rob Davis</h6>
-                <p class="mb-1 pReview">Near to the city and public transport, friendly staff, clean and calm place, good breakfast. Everything was well. I'll be back again!</p>
+          <div class="col-md-12">
+            <h5 class="mb-4">Popular Reviews</h5>
+            <div class="review-list">
+              <div class="list-group">
+                <div class="list-group-item d-flex align-items-start" *ngFor="let review of reviews">
+                  <img src="../../../assets/img/person3.jpg" class="rounded-circle mr-3 imgReview" alt="Reviewer Image">
+                  <div>
+                    <h6 class="mb-1">{{review.name}}</h6>
+                    <p class="mb-1 pReview">{{review.text}}</p>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="list-group-item d-flex align-items-start">
-              <img src="../../../assets/img/peron5.jpg" class="rounded-circle mr-3 imgReview" alt="Reviewer Image">
-              <div>
-                <h6 class="mb-1">Rob Davis</h6>
-                <p class="mb-1 pReview">It was a lovely hotel with excellent facilities and also very helpful staff. We look forward to coming back once again.</p>
-              </div>
+            <div class="add-comment">
+              <input [(ngModel)]="newComment" placeholder="Add your comment...">
+              <button (click)="addComment()">Submit</button>
             </div>
-            <div class="list-group-item d-flex align-items-start">
-              <img src="../../../assets/img/person4.jpg" class="rounded-circle mr-3 imgReview" alt="Reviewer Image">
-              <div>
-                <h6 class="mb-1">Rob Davis</h6>
-                <p class="mb-1 pReview">Staff is very professional, polite, and genuinely friendly. Hotel is very well located for getting to my meetings. Railway and bus station are close, not too noisy and easily reachable.</p>
-              </div>
-            </div>
-    
           </div>
         </div>
-      </div></div>
+      </div>
     </div>
     
+    
+
     <section class="details">
       <div class="tags">
         <div class="facilities-container">
@@ -115,7 +109,7 @@
             <div class="col col-2" data-label="Customer Name">{{ getViewLabel(room.view) }}</div>
             <div class="col col-3" data-label="Amount">{{ room.typeName }}</div>
             <div class="col col-4" data-label="Payment Status">${{ room.pricePerNight }}</div>
-            <div><button class="check-dates" (click)="createBooking(room)" >Reserve</button></div>
+            <div><button class="check-dates" (click)="createBooking(room)">Reserve</button></div>
           </li>
         </ul>
       </div>
@@ -131,7 +125,7 @@
             <p>{{filteredHotel.description}}</p>
           </div>
         </div>
-  
+
       </div>
     </div>
   </main>
