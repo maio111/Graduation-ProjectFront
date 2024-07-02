@@ -28,12 +28,9 @@ export class HotelBookingsComponent {
   }
 
   getFilteredBookings(): void {
-    this.bookingService.getFilteredBookings(this.filter).subscribe((response) => {
-      if (response.success) {
-        this.bookings = response.data;
-      } else {
-        console.error(response.message);
-      }
+    this.bookingService.getFilteredBookings(this.filter).subscribe({
+      next: (res) => this.bookings = res.data,
+      error: (err) => console.log(err)
     });
   }
 
