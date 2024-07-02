@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, input } from '@angular/core';
 import { NavBarComponent } from "../nav-bar/nav-bar.component";
 import { CalendarModule } from 'primeng/calendar';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -42,7 +42,7 @@ export class BookingHeaderComponent {
   showDropdown: boolean = false;
   filteredHotels: IFilteredHotel [] = [] as IFilteredHotel[];
   bookingForm!: FormGroup;
-  parmas: IHotelFilteredParams = {} as IHotelFilteredParams;
+  @Input() parmas: IHotelFilteredParams = {} as IHotelFilteredParams;
   constructor(
     private citiesService: CityService,
     private hotelService: HotelService,

@@ -9,6 +9,7 @@ import { User } from '../../models/user';
 import { CityService } from '../../Services/city.service';
 import { ICity } from '../../models/City/ICity';
 import { NavBarComponent } from "../nav-bar/nav-bar.component";
+import { AuthenticationService } from '../../Services/Authentication/authentication.service';
 
 
 
@@ -28,7 +29,8 @@ export class RegistrationComponent implements OnInit{
     private fb: FormBuilder,
     private registrationService: RegistrationService,
     private router: Router,
-    private citiesService:CityService
+    private citiesService: CityService,
+    private auth:AuthenticationService
   ) {
     this.registrationForm = this.fb.group({
       userName: ['', [Validators.required, Validators.minLength(3)]],

@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { LoginDTO } from '../../models/Authentication/LoginDTO';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { jwtDecode } from 'jwt-decode';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +13,14 @@ import { LoginDTO } from '../../models/Authentication/LoginDTO';
 export class AuthenticationService {
   private baseUrl: string = environment.baseUrl;
   private apiUrl = `${this.baseUrl}/api/Account/login`;
-  private currentUserSubject: BehaviorSubject<any>;
-  public currentUser: Observable<any>;
+  private jwtHelper: JwtHelperService
 
   constructor(private http: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser') ?? 'null'));
-    this.currentUser = this.currentUserSubject.asObservable();
+    this.jwtHelper = new JwtHelperService();
+  }
+
+  getUserById(id: number) : any{
+    return this.http.get<any>(`${this.baseUrl}/api/Account/GetUserById/${id}`);
   }
 
   login(loginData: LoginDTO): Observable<any> {
@@ -25,41 +30,58 @@ export class AuthenticationService {
 
     return this.http.post<any>(this.apiUrl, loginData, { headers }).pipe(
       tap(res => {
-        console.log('Login successful. User:', res);
-        this.setCurrentUser(res.user, res.token, res.roles);
-
-        // Store user data in localStorage
-        localStorage.setItem('currentUser', JSON.stringify(res.user));
         localStorage.setItem('token', res.token);
-        localStorage.setItem('roles', JSON.stringify(res.roles));
       }),
       catchError(this.handleError)
     );
   }
 
   logout(): void {
-    localStorage.removeItem('currentUser');
     localStorage.removeItem('token');
-    localStorage.removeItem('roles');
-    this.currentUserSubject.next(null);
   }
 
-  getToken(): string | null {
-    return localStorage.getItem('token') ?? null;
+  getToken(): string {
+    return localStorage.getItem('token') ?? '';
   }
 
   getRoles(): string[] {
-    const roles = localStorage.getItem('roles');
-    return roles ? JSON.parse(roles) : [];
-  }
-  hasRole(role: string): boolean {
-    const userRoles = this.getRoles();
-    return userRoles.includes(role);
+    const token = this.getToken();
+    if (token) {
+      const decodedToken = this.decodeToken(token);
+      return this.getRolesFromDecodedToken(decodedToken);
+    }
+    return [];
   }
 
-  private setCurrentUser(user: any, token: string, roles: string[]): void {
-    this.currentUserSubject.next(user);
+  hasRole(role: string): boolean {
+    const token = this.getToken();
+    if (token) {
+      const decoded = this.decodeToken(token);
+      const userRoles = this.getRolesFromDecodedToken(decoded);
+      return userRoles.includes(role);
+    }
+    return false;
   }
+
+  decodeToken(token: string): any {
+    try {
+      const decoded = this.jwtHelper.decodeToken(token);
+      return decoded;
+    } catch (error) {
+      console.error('Error decoding token:', error);
+      return null;
+    }
+  }
+
+  getUserIdFromToken(decodedToken: any): number {
+    const userId = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+    return Number(userId);
+  }
+  getRolesFromDecodedToken(decodedToken: any): string[] {
+    const roles = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+    return Array.isArray(roles) ? roles : [roles];
+  }
+  
 
   private handleError(error: HttpErrorResponse): Observable<never> {
     let errorMessage = 'An unknown error occurred!';

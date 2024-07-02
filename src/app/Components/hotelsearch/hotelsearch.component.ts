@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, NgModule, ViewChild, ElementRef, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, NgModule, ViewChild, ElementRef, OnInit, OnChanges, SimpleChanges, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IFilteredHotel } from '../../models/Hotel/IFilteredHotel';
 import { ActivatedRoute, Router } from '@angular/router';

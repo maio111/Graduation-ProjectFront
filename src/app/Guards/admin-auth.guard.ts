@@ -6,16 +6,16 @@ import { TokenValidationService } from '../Services/Authentication/token-validat
 export const adminAuthGuard: CanActivateFn = (route, state) => {
   let router = inject(Router);
   let authService = inject(AuthenticationService);
-  let tokenService = inject(TokenValidationService)
-
-  if (
-    !authService.getToken() != null ||
-    !authService.hasRole('ADMIN') ||
-    !tokenService.isValidToken(authService.getToken()) ||
-    !tokenService.isTokenExpired(authService.getToken())
-  ) {
+  let tokenService = inject(TokenValidationService);
+  let token = tokenService.getToken();
+  if (!token || !tokenService.isValidToken(token) || tokenService.isTokenExpired(token)) {
     router.navigate(['/login']);
     return false;
   }
+  if (!authService.hasRole('ADMIN')) {
+    router.navigate(['/notFound']); // or any unauthorized route
+    return false;
+  }
+
   return true;
 };

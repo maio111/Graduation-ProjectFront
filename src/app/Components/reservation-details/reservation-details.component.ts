@@ -9,6 +9,7 @@ import { LoginService } from '../../Services/Login/login.service';
 import { IFilteredHotel } from '../../models/Hotel/IFilteredHotel';
 import { error } from 'console';
 import { IHotelFilteredParams } from '../../models/Hotel/IHotelFilteredParams';
+import { AuthenticationService } from '../../Services/Authentication/authentication.service';
 
 @Component({
   selector: 'app-reservation-details',
@@ -28,7 +29,7 @@ export class ReservationDetailsComponent implements OnInit{
     private route: ActivatedRoute,
     private router: Router,
     private hotelBookingService: HotelBookingService,
-    private auth: LoginService) {
+    private auth: AuthenticationService) {
   }
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -55,19 +56,23 @@ export class ReservationDetailsComponent implements OnInit{
         }
       }
     });
-    this.auth.getUserById().subscribe({
-      next: (res) => {
-        this.user = res.data,
-        console.log(this.user)
+
+    let token = this.auth.getToken();
+    let decoded = this.auth.decodeToken(token)
+    let userId = this.auth.getUserIdFromToken(decoded);
+    this.auth.getUserById(userId).subscribe({
+      next: (res: { data: any; }) => {
+        this.user = res.data;
       },
-      error : (err) => console.log(err)
+      error: (err: any) => console.log(err)
     })
+    this.booking.userId = this.user.id;
     this.booking.roomId = this.room.id;
     this.booking.hotelId = this.room.hotelId;
     this.booking.totalPrice = this.room.pricePerNight;
     this.booking.bookingDate = new Date(Date.now());
     console.log(this.user)
-    this.booking.userId = this.auth.getUserIdFromLocalStorage();
+    this.booking.userId = this.user.Id;
   }
   submitBooking() {
     this.router.navigate(['hotelPayment'], {

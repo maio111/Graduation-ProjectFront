@@ -4,6 +4,7 @@ import { LoginService } from '../../Services/Login/login.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NavBarComponent } from "../nav-bar/nav-bar.component";
+import { AuthenticationService } from '../../Services/Authentication/authentication.service';
 
 @Component({
     selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent {
     password: string = '';
     errorMessage: string = '';
   
-    constructor(private loginService: LoginService, private router: Router) {}
+    constructor(private loginService: LoginService, private router: Router, private authService: AuthenticationService) {}
   
     onLogin() {
       const loginData = {
@@ -26,7 +27,7 @@ export class LoginComponent {
         password: this.password
       };
   
-      this.loginService.login(loginData).subscribe(
+      this.authService.login(loginData).subscribe(
         response => {
           if (response.ispass) {
             localStorage.setItem('token', response.token);

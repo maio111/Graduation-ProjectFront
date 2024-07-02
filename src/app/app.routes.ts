@@ -38,13 +38,15 @@ import { EditAdminComponent } from './Components/admin-dashboard/admin-dashboard
 import { HotelBookingsComponent } from './Components/admin-dashboard/hotel-bookings/hotel-bookings.component';
 import { ReservationDetailsComponent } from './Components/reservation-details/reservation-details.component';
 import { HotelPaymentComponent } from './Components/hotel-payment/hotel-payment.component';
+import { adminAuthGuard } from './Guards/admin-auth.guard';
+import { userAuthGuard } from './Guards/user-auth.guard';
 
 export const routes: Routes = [
     { path: '', component: HotelBookingComponent }, 
     { path:'hotelBooking',component:HotelBookingComponent},
     { path: 'filterhotels', component:HotelsearchComponent},
     { path: 'hoteldetails', component:HoteldetailsComponent},
-    { path: 'reservationDetails', component: ReservationDetailsComponent},
+    { path: 'reservationDetails', component: ReservationDetailsComponent, canActivate: [userAuthGuard]},
     { path: 'login', component: LoginComponent ,pathMatch: 'full'},
     { path: 'register', component: RegistrationComponent },
     { path: 'confirm-email', component: ConfirmEmailComponent },
@@ -83,8 +85,10 @@ export const routes: Routes = [
             { path: 'editFeatureGeneral/:Id', component: EditFeatureGeneralComponent },
             { path: 'hotelsBookingsDashboard', component: HotelBookingsComponent },
 
-        ]
+        ],
+        canActivate: [adminAuthGuard]
     },
-    { path: 'hotelPayment', component: HotelPaymentComponent },
+    { path: 'hotelPayment', component: HotelPaymentComponent , canActivate: [userAuthGuard]},
     { path: '**', component: PageNotFoundComponent },
+    { path: 'notFound', component: PageNotFoundComponent },
 ];

@@ -6,7 +6,10 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class TokenValidationService {
   constructor(private jwtHelper: JwtHelperService) { }
-
+  
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
   isTokenExpired(token: string | null): boolean {
     return this.jwtHelper.isTokenExpired(token);
   }
