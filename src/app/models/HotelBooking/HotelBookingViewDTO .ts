@@ -10,7 +10,7 @@ export interface HotelBookingViewDTO {
     userFirstName: string;
     userLastName: string;
     hotelName: string;
-    roomNumber: number;
+    roomNumbers: number[];
     userId: number;
     roomId: number;
     hotelId: number;

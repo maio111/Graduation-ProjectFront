@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { LoginService } from '../../Services/Login/login.service';
 import { IFilteredHotel } from '../../models/Hotel/IFilteredHotel';
 import { error } from 'console';
+import { IHotelFilteredParams } from '../../models/Hotel/IHotelFilteredParams';
 
 @Component({
   selector: 'app-reservation-details',
@@ -19,6 +20,7 @@ import { error } from 'console';
 export class ReservationDetailsComponent implements OnInit{
   booking: CreateBookingDTO = {} as CreateBookingDTO;
   room: IFilteredRoomHotel = {} as IFilteredRoomHotel;
+  filterParams: IHotelFilteredParams = {} as IHotelFilteredParams
   hotel: IFilteredHotel = {} as IFilteredHotel;
   user: any;
   totalNights: number = 0;
@@ -31,9 +33,15 @@ export class ReservationDetailsComponent implements OnInit{
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       const roomJson = params['room'];
+      const filterParams = params['filterParams'];
+      console.log(this.filterParams)
       if (roomJson) {
         try {
           this.room = JSON.parse(decodeURIComponent(roomJson));
+          this.filterParams = JSON.parse(decodeURIComponent(filterParams));
+          this.booking.checkInDate = new Date(this.filterParams.checkInDate);
+          this.booking.checkOutDate = new Date(this.filterParams.checkOutDate);
+          this.calculateTotalNights();
         } catch (e) {
           console.error('Error parsing room JSON', e);
         }

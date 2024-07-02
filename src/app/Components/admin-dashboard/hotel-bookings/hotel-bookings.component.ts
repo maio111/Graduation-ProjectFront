@@ -24,6 +24,7 @@ export class HotelBookingsComponent {
   ngOnInit(): void {
     this.bookingStatuses = getBookingStatusesValues();
     this.getFilteredBookings();
+    console.log(this.bookings)
   }
 
   getFilteredBookings(): void {

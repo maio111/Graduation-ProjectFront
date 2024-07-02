@@ -201,9 +201,7 @@ export class HotelBookingComponent {
     if (this.bookingForm.valid) {
       this.hotelService.getFilteredHotels(this.parmas).subscribe({
         next: (res) => {
-          this.filteredHotels = res.data
-          console.log(res.data)
-          
+          this.filteredHotels = res.data          
           const filteredHotels = JSON.stringify(this.filteredHotels);
           const filterParams = JSON.stringify(this.parmas);
           this.router.navigate(['filterhotels'], {

@@ -17,6 +17,7 @@ import { CreateBookingDTO } from '../../models/HotelBooking/CreateBookingDTO';
 import { IRoom } from '../../models/IRoom';
 import { IFilteredRoomHotel } from '../../models/Hotel/IFilteredRoomHotel';
 import { json } from 'stream/consumers';
+import { IHotelFilteredParams } from '../../models/Hotel/IHotelFilteredParams';
 
 
 @Component({
@@ -30,6 +31,7 @@ export class HoteldetailsComponent implements OnInit {
   roomTypes: IRoomType[] = [] as IRoomType[];
   views!: { label: string, value: number }[];
   filteredHotel: IFilteredHotel = {} as IFilteredHotel;
+  filterParams: IHotelFilteredParams = {} as IHotelFilteredParams
   baseUrl: string = environment.baseUrl;
   hotelCoordinates = { latitude: 0, longitude: 0 };
   booking!: CreateBookingDTO;
@@ -59,11 +61,14 @@ export class HoteldetailsComponent implements OnInit {
     this.views = getViewsValues();
     this.route.queryParams.subscribe(params => {
       const filterHotelJson = params['filterHotel'];
+      const filterParams = params['filterParams'];
       if (filterHotelJson) {
         try {
           this.filteredHotel = JSON.parse(decodeURIComponent(filterHotelJson));
           this.hotelCoordinates.latitude = this.filteredHotel.latitude;
           this.hotelCoordinates.longitude = this.filteredHotel.longitude;
+          this.filterParams = JSON.parse(decodeURIComponent(filterParams));
+          console.log(this.filterParams)
         } catch (e) {
           console.error('Error parsing hotels JSON', e);
         }
@@ -98,7 +103,11 @@ export class HoteldetailsComponent implements OnInit {
   }
   createBooking(room: IFilteredRoomHotel) {
     this.router.navigate(['reservationDetails'], {
-      queryParams: { room: JSON.stringify(room), hotel: JSON.stringify(this.filteredHotel) }
+      queryParams: {
+        room: JSON.stringify(room),
+        hotel: JSON.stringify(this.filteredHotel),
+        filterParams: JSON.stringify(this.filterParams)
+      }
     });
   }
 }

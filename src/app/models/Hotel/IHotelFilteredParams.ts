@@ -1,7 +1,7 @@
 export interface IHotelFilteredParams {
     cityId?: number;
-    checkInDate?: string;
-    checkOutDate?: string;
+    checkInDate: string;
+    checkOutDate: string;
     roomTypeId?: number;
     minPrice?: number;
     maxPrice?: number;

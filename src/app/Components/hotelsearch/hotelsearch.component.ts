@@ -16,11 +16,11 @@ import { BookingHeaderComponent } from "../booking-header/booking-header.compone
 
 declare var $: any;
 @Component({
-    selector: 'app-hotelsearch',
-    standalone: true,
-    templateUrl: './hotelsearch.component.html',
-    styleUrl: './hotelsearch.component.css',
-    imports: [FormsModule, CommonModule, BookingHeaderComponent]
+  selector: 'app-hotelsearch',
+  standalone: true,
+  templateUrl: './hotelsearch.component.html',
+  styleUrl: './hotelsearch.component.css',
+  imports: [FormsModule, CommonModule, BookingHeaderComponent]
 })
 export class HotelsearchComponent implements OnInit {
   filteredHotels: IFilteredHotel[] = [] as IFilteredHotel[];
@@ -53,6 +53,7 @@ export class HotelsearchComponent implements OnInit {
         try {
           this.filteredHotels = JSON.parse(decodeURIComponent(hotelsJson));
           this.filterParams = JSON.parse(decodeURIComponent(filterParams));
+          console.log(this.filterParams)
         } catch (e) {
           console.error('Error parsing hotels JSON', e);
         }
@@ -181,7 +182,7 @@ export class HotelsearchComponent implements OnInit {
   }
 
 
-  
+
   isSelectedFeature(featureId: number): boolean {
     return this.selectedFeatureIds.includes(featureId);
   }
@@ -202,10 +203,13 @@ export class HotelsearchComponent implements OnInit {
   }
 
   goHotelDetails(hotel: IFilteredHotel) {
-    const filterHotel = JSON.stringify(hotel);
     this.router.navigate(['hoteldetails'],
-      { queryParams: { filterHotel: filterHotel }
-  })
+      {
+        queryParams: {
+          filterHotel: encodeURIComponent(JSON.stringify(hotel)),
+          filterParams: encodeURIComponent(JSON.stringify(this.filterParams))
+        }
+      })
   }
 }
-  
+
