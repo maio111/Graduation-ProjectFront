@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { HotelBookingFilterDTO } from '../models/HotelBooking/HotelBookingFilterDTO ';
 import { GeneralResponse } from '../models/GeneralResponse';
 import { CreateBookingDTO } from '../models/HotelBooking/CreateBookingDTO';
+import { UserBookingsViewDTO } from '../models/HotelBooking/UserBookingsViewDTO';
+import { UserBookingsFilter } from '../models/HotelBooking/UserBookingsFilter';
 
 @Injectable({
   providedIn: 'root'
@@ -45,5 +47,19 @@ export class HotelBookingService {
     if (filter.price !== undefined) params = params.set('price', filter.price.toString());
 
     return this.http.get<GeneralResponse<HotelBookingViewDTO[]>>(`${this.apiUrl}/api/HotelBooking/filtered`, { params });
+  }
+
+  getFilteredUserBookings(filter: UserBookingsFilter): Observable<any> {
+    let params = new HttpParams();
+    if (filter.UserId) params = params.set('UserId', filter.UserId.toString());
+    if (filter.CheckIn) params = params.set('CheckIn', filter.CheckIn.toISOString());
+    if (filter.CheckOut) params = params.set('CheckOut', filter.CheckOut.toISOString());
+    if (filter.RoomNumber !== undefined) params = params.set('RoomNumber', filter.RoomNumber.toString());
+    if (filter.UserName !== undefined) params = params.set('UserName', filter.UserName.toString());
+    if (filter.HotelName !== undefined) params = params.set('HotelName', filter.HotelName.toString());
+    if (filter.Status !== undefined) params = params.set('Status', filter.Status.toString());
+    if (filter.Price !== undefined) params = params.set('Price', filter.Price.toString());
+
+    return this.http.post<any>(`${this.apiUrl}/api/HotelBooking/GetFilteredUserBookings`, null, { params });
   }
 }

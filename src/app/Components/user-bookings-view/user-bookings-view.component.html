@@ -1,0 +1,67 @@
+<div class="container mt-5">
+    <h2>Your Bookings</h2>
+
+    <!-- Search Filters -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <input type="text" class="form-control" placeholder="Hotel Name" [(ngModel)]="filter.HotelName">
+        </div>
+        <div class="col-md-3">
+            <input type="date" class="form-control" placeholder="Check In" [(ngModel)]="filter.CheckIn">
+        </div>
+        <div class="col-md-3">
+            <input type="date" class="form-control" placeholder="Check Out" [(ngModel)]="filter.CheckOut">
+        </div>
+        <div class="col-md-3">
+            <input type="number" class="form-control" placeholder="Room Number" [(ngModel)]="filter.RoomNumber">
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <input type="number" step="0.01" min="0" class="form-control" placeholder="Price"
+                [(ngModel)]="filter.Price">
+        </div>
+        <div class="col-md-3">
+            <select id="status" name="status" [(ngModel)]="filter.Status" class="form-control">
+                <option [selected]="true" disabled>Select Status</option>
+                <option *ngFor="let status of bookingStatuses" [value]="status.value">{{ status.label }}</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-primary w-100" (click)="applyFilter()">Search</button>
+        </div>
+    </div>
+    <!-- Bookings Table -->
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Hotel Name</th>
+                <th>Room Numbers</th>
+                <th>Check In</th>
+                <th>Check Out</th>
+                <th>Status</th>
+                <th>Total Price</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let booking of bookings | paginate: { id: 'ad', itemsPerPage: 3, currentPage: page, totalItems: total }; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ booking.hotelName }}</td>
+                <td>{{ booking.roomNumbers.join(', ') }}</td>
+                <td>{{ booking.checkIn | date }}</td>
+                <td>{{ booking.checkOut | date }}</td>
+                <td>{{ getBookingStatusLabel(booking.status) }}</td>
+                <td>{{ booking.totalPrice }}</td>
+                <td>{{ booking.notes }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-center">
+        <pagination-controls (pageChange)="changePage($event)" id="ad"></pagination-controls>
+    </div>
+</div>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large
+    modal</button>
