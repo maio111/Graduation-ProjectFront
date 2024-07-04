@@ -1,0 +1,46 @@
+<h2 class="mb-4 text-center">Car Agency Dashboard</h2>
+<div class="btn-toolbar mb-3 justify-content-end">
+  <div class="btn-group">
+    <button class="btn btn-outline-primary" (click)="goToAddPage()">Add New Car Agency</button>
+  </div>
+</div>
+<div class="table-responsive">
+  <table class="table table-striped table-hover table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Logo URL</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Website URL</th>
+        <th scope="col">Email</th>
+        <th scope="col">Longitude</th>
+        <th scope="col">Latitude</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of caragencies | paginate: { id: 'coun', itemsPerPage: 3, currentPage: page, totalItems: total }; let i = index">
+        <td>{{i + 1}}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.address }}</td>
+        <td>{{ item.logoURL }}</td>
+        <td>{{ item.phoneNumber }}</td>
+        <td>{{ item.websiteURL }}</td>
+        <td>{{ item.email }}</td>
+        <td>{{ item.longitude }}</td>
+        <td>{{ item.latitude }}</td>
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-outline-primary mx-2" (click)="navigateToEdit(item.id)">Edit</button>
+            <button type="button" class="btn btn-sm btn-outline-danger mx-2" (click)="deleteCarAgency(item.id)">Delete</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-center">
+    <pagination-controls (pageChange)="changePage($event)" id="coun"></pagination-controls>
+</div>
+</div>
