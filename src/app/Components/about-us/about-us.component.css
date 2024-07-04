@@ -1,0 +1,212 @@
+.about_area {
+    padding: 60px 0;
+}
+
+.about_info {
+    background: #fff;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+   
+
+}
+
+.about_thumb {
+    display: flex;
+}
+
+.about_thumb .img_1,
+.about_thumb .img_2 {
+    width: 50%;
+}
+
+.about_thumb .img_1 img,
+.about_thumb .img_2 img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.about_main_info {
+    padding: 80px 0;
+}
+
+.Cards {
+    border:rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.Cards:hover {
+    transform: translateY(-20px); /* Lift the card slightly on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+}
+
+.card-body {
+    padding: 20px;
+
+}
+
+.card-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #3aacd8;
+    margin-bottom: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.card-text {
+    font-size: 20px;
+    color: #000000;
+    line-height: 2;
+    ;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+@media (max-width: 768px) {
+    .Cards {
+        margin-bottom: 30px; /* Adjust spacing for smaller screens */
+    }
+}
+
+.about_info_area .single_slider {
+    height: 600px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    margin-left: 95px;
+    margin-right: 95px;
+}
+
+.instragram_area {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 20px;
+}
+
+.single_instagram {
+    flex: 0 0 auto;
+}
+
+.card {
+    position: relative;
+    width: 300px; /* Adjust the width of the card */
+    height: 450px; /* Adjust the height of the card */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the entire card */
+    transition: transform 0.3s ease;
+}
+
+.card:hover .overlay {
+    opacity: 1;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.overlay a {
+    color: #fff;
+    font-size: 24px;
+}
+
+.overlay a:hover {
+    text-decoration: none;
+    color: #ffd700; /* Change to your preferred hover color */
+}
+
+.carousel-inner{
+    width: 70% !important;
+}
+.carousel{
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 50px;
+}
+
+.about_area {
+    padding: 80px 0;
+    background-color: #f8f9fa; /* Light gray background color */
+}
+
+.section_title {
+    text-align: left;
+    margin-bottom: 20px;
+    ;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.section_title span {
+    font-size: 40px;
+    text-align: center;
+    color: #3aacd8; /* Blue color for the span */
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.section_title h3 {
+    font-size: 30px;
+    font-weight: bold;
+    color: #333; /* Dark color for the heading */
+    margin-top: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.about_info {
+    padding-right: 30px; /* Adjust padding for better spacing */
+}
+
+.about_info p {
+    font-size: 20px;
+    color: #192b2b; /* Slightly darker gray color for paragraphs */
+    line-height: 2;
+    margin-bottom: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.about_info .btn {
+    background-color:  #3aacd8; /* Blue button background color */
+    color: #fff; /* White text color */
+    padding: 10px 20px;
+    border-radius: 30px; /* Rounded corners */
+    text-transform: uppercase; /* Uppercase text */
+    font-weight: bold;
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.about_info .btn:hover {
+    background-color: #224549; /* Darker blue on hover */
+}
+
+.about_image img {
+    border-radius: 10px; /* Rounded corners for the image */
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    max-width: 90%;
+    height: auto;
+}
+
+@media (max-width: 992px) {
+    .about_info {
+        padding-right: 0; /* Remove right padding on smaller screens */
+        text-align: center; /* Center align content */
+    }
+}
