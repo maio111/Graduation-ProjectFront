@@ -16,6 +16,10 @@ import { IRoom } from '../../models/IRoom';
 import { IFilteredRoomHotel } from '../../models/Hotel/IFilteredRoomHotel';
 import { json } from 'stream/consumers';
 import { IHotelFilteredParams } from '../../models/Hotel/IHotelFilteredParams';
+import { ReviewService } from '../../Services/review.service';
+import { IDisplayHotelReviewDTO } from '../../models/Review/IDisplayHotelReviewDTO';
+import { AuthenticationService } from '../../Services/Authentication/authentication.service';
+import { IAddHotelReviewDTO } from '../../models/Review/IAddHotelReviewDTO';
 
 
 @Component({
@@ -26,6 +30,9 @@ import { IHotelFilteredParams } from '../../models/Hotel/IHotelFilteredParams';
     imports: [FormsModule, CommonModule, HoteldetailsimgComponent, KnobModule,HotelMapComponent, NavBarComponent]
 })
 export class HoteldetailsComponent implements OnInit {
+  
+  reviews: IDisplayHotelReviewDTO[] = [] as IDisplayHotelReviewDTO[];
+
   roomTypes: IRoomType[] = [] as IRoomType[];
   views!: { label: string, value: number }[];
   filteredHotel: IFilteredHotel = {} as IFilteredHotel;
@@ -51,11 +58,21 @@ export class HoteldetailsComponent implements OnInit {
     'wellness care':'fa-solid fa-staff-snake'
    
   };
+  
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private reviewService: ReviewService,
+    private auth:AuthenticationService
   ) { }
+
+  userId : number=0;
   ngOnInit(): void {
+    const token = this.auth.getToken();
+    const decoded = this.auth.decodeToken(token);
+    this.userId = this.auth.getUserIdFromToken(decoded);
+    
+
     this.views = getViewsValues();
     this.route.queryParams.subscribe(params => {
       const filterHotelJson = params['filterHotel'];
@@ -66,10 +83,26 @@ export class HoteldetailsComponent implements OnInit {
           this.hotelCoordinates.latitude = this.filteredHotel.latitude;
           this.hotelCoordinates.longitude = this.filteredHotel.longitude;
           this.filterParams = JSON.parse(decodeURIComponent(filterParams));
-          console.log(this.filterParams)
+          console.log(this.filterParams);
+          this.getHotelReviews(this.filteredHotel.id);
         } catch (e) {
           console.error('Error parsing hotels JSON', e);
         }
+      }
+      
+    });
+
+    console.log(this.reviews)
+    
+  }
+  getHotelReviews(hotelId: number): void {
+    this.reviewService.getAllReviewsByHotelId(hotelId).subscribe({
+      next: (res) => {
+        this.reviews = res.data;
+        console.log(res)
+      },
+      error: (err) => {
+        console.error('Error fetching reviews', err);
       }
     });
   }
@@ -108,19 +141,30 @@ export class HoteldetailsComponent implements OnInit {
       }
     });
   }
-  reviews = [
-    { name: 'Rob Davis', text: 'Near to the city and public transport, friendly staff, clean and calm place, good breakfast. Everything was well. I\'ll be back again!' },
-    { name: 'Rob Davis', text: 'It was a lovely hotel with excellent facilities and also very helpful staff. We look forward to coming back once again.' },
-    { name: 'Rob Davis', text: 'Staff is very professional, polite, and genuinely friendly. Hotel is very well located for getting to my meetings. Railway and bus station are close, not too noisy and easily reachable.' }
-  ];
+  
   
   newComment: string = '';
 
 
+  // addComment() {
+  //   if (this.newComment.trim()) {
+  //     this.reviews.push({ name: 'New User', text: this.newComment });
+  //     this.newComment = '';
+  //   }
+  // }
   addComment() {
     if (this.newComment.trim()) {
-      this.reviews.push({ name: 'New User', text: this.newComment });
-      this.newComment = '';
+      const newReview: IAddHotelReviewDTO = {
+        userId: this.userId, // replace with actual user ID
+        comment: this.newComment,
+        hotelId: this.filteredHotel.id,
+        reviewDate: new Date()
+      };
+      this.reviewService.addReview(newReview).subscribe(response => {
+        this.getHotelReviews(this.filteredHotel.id);
+        this.newComment = '';
+      });
     }
   }
+  
 }
