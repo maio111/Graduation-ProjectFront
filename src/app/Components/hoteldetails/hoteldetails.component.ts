@@ -146,12 +146,7 @@ export class HoteldetailsComponent implements OnInit {
   newComment: string = '';
 
 
-  // addComment() {
-  //   if (this.newComment.trim()) {
-  //     this.reviews.push({ name: 'New User', text: this.newComment });
-  //     this.newComment = '';
-  //   }
-  // }
+  
   addComment() {
     if (this.newComment.trim()) {
       const newReview: IAddHotelReviewDTO = {
@@ -166,5 +161,8 @@ export class HoteldetailsComponent implements OnInit {
       });
     }
   }
+
+  defaultPhotoUrl: string = 'https://www.seekpng.com/png/detail/966-9665493_my-profile-icon-blank-profile-image-circle.png';
+
   
 }
