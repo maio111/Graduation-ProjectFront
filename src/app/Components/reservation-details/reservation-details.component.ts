@@ -21,64 +21,85 @@ import { AuthenticationService } from '../../Services/Authentication/authenticat
 export class ReservationDetailsComponent implements OnInit{
   booking: CreateBookingDTO = {} as CreateBookingDTO;
   room: IFilteredRoomHotel = {} as IFilteredRoomHotel;
-  filterParams: IHotelFilteredParams = {} as IHotelFilteredParams
+  filterParams: IHotelFilteredParams = {} as IHotelFilteredParams;
   hotel: IFilteredHotel = {} as IFilteredHotel;
-  user: any;
+  user: any = {};
   totalNights: number = 0;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private hotelBookingService: HotelBookingService,
-    private auth: AuthenticationService) {
-  }
+    private auth: AuthenticationService
+  ) { }
+
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      const roomJson = params['room'];
-      const filterParams = params['filterParams'];
-      console.log(this.filterParams)
-      if (roomJson) {
-        try {
-          this.room = JSON.parse(decodeURIComponent(roomJson));
-          this.filterParams = JSON.parse(decodeURIComponent(filterParams));
-          this.booking.checkInDate = new Date(this.filterParams.checkInDate);
-          this.booking.checkOutDate = new Date(this.filterParams.checkOutDate);
-          this.calculateTotalNights();
-        } catch (e) {
-          console.error('Error parsing room JSON', e);
-        }
-      }
-      const hotelJson = params['hotel'];
-      if (roomJson) {
-        try {
-          this.hotel = JSON.parse(decodeURIComponent(hotelJson));
-        } catch (e) {
-          console.error('Error parsing hotel JSON', e);
-        }
-      }
+      this.parseQueryParams(params);
     });
 
-    let token = this.auth.getToken();
-    let decoded = this.auth.decodeToken(token)
-    let userId = this.auth.getUserIdFromToken(decoded);
+    this.loadUserDetails();
+  }
+
+  parseQueryParams(params: any): void {
+    const roomJson = params['room'];
+    const filterParamsJson = params['filterParams'];
+    const hotelJson = params['hotel'];
+
+    if (roomJson) {
+      try {
+        this.room = JSON.parse(decodeURIComponent(roomJson));
+        this.filterParams = JSON.parse(decodeURIComponent(filterParamsJson));
+        this.booking.checkInDate = new Date(this.filterParams.checkInDate);
+        this.booking.checkOutDate = new Date(this.filterParams.checkOutDate);
+        this.calculateTotalNights();
+      } catch (e) {
+        console.error('Error parsing room or filterParams JSON', e);
+      }
+    }
+
+    if (hotelJson) {
+      try {
+        this.hotel = JSON.parse(decodeURIComponent(hotelJson));
+      } catch (e) {
+        console.error('Error parsing hotel JSON', e);
+      }
+    }
+  }
+
+  loadUserDetails(): void {
+    const token = this.auth.getToken();
+    const decoded = this.auth.decodeToken(token);
+    const userId = this.auth.getUserIdFromToken(decoded);
+
     this.auth.getUserById(userId).subscribe({
       next: (res: { data: any; }) => {
         this.user = res.data;
+        this.initializeBooking();
       },
       error: (err: any) => console.log(err)
-    })
+    });
+  }
+
+  initializeBooking(): void {
+    if (!this.user) {
+      console.error('User data is not available');
+      return;
+    }
+
     this.booking.userId = this.user.id;
     this.booking.roomId = this.room.id;
     this.booking.hotelId = this.room.hotelId;
-    this.booking.totalPrice = this.room.pricePerNight;
-    this.booking.bookingDate = new Date(Date.now());
-    console.log(this.user)
-    this.booking.userId = this.user.Id;
+    this.booking.totalPrice = this.room.pricePerNight * this.totalNights;
+    this.booking.bookingDate = new Date();
   }
-  submitBooking() {
+
+  submitBooking(): void {
     this.router.navigate(['hotelPayment'], {
-      queryParams: { booking: JSON.stringify(this.booking)}
+      queryParams: { booking: JSON.stringify(this.booking) }
     });
   }
+
   getStars(rating: number = 0): string[] {
     const fullStars = Math.floor(rating);
     const halfStar = rating % 1 !== 0;
@@ -88,12 +109,14 @@ export class ReservationDetailsComponent implements OnInit{
       ...Array(emptyStars).fill('☆')
     ];
   }
-  calculateTotalNights() {
+
+  calculateTotalNights(): void {
     const checkIn = new Date(this.booking.checkInDate);
     const checkOut = new Date(this.booking.checkOutDate);
-    this.totalNights = Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24)) | 0;
+    this.totalNights = Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24));
   }
-  updateDays() {
+
+  updateDays(): void {
     this.calculateTotalNights();
   }
 }

@@ -60,15 +60,20 @@
             <h5 class="mb-4">Popular Reviews</h5>
             <div class="review-list">
               <div class="list-group">
-                <div class="list-group-item d-flex align-items-start" *ngFor="let review of reviews">
+                <div *ngFor="let review of reviews" class="list-group-item d-flex align-items-start">
                   <img src="../../../assets/img/person3.jpg" class="rounded-circle mr-3 imgReview" alt="Reviewer Image">
                   <div>
-                    <h6 class="mb-1">{{review.name}}</h6>
-                    <p class="mb-1 pReview">{{review.text}}</p>
+                    <h6 class="mb-1">{{ review.userName }}</h6>
+                    <p class="mb-1 pReview">{{ review.comment }}</p>
                   </div>
                 </div>
-              </div>
             </div>
+            </div>
+            <!-- <div class="add-comment">
+              <input [(ngModel)]="newComment" placeholder="Add your comment...">
+              <button (click)="addComment()">Submit</button>
+            </div> -->
+
             <div class="add-comment">
               <input [(ngModel)]="newComment" placeholder="Add your comment...">
               <button (click)="addComment()">Submit</button>

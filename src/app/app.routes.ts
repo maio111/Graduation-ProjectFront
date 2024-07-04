@@ -42,6 +42,8 @@ import { adminAuthGuard } from './Guards/admin-auth.guard';
 import { userAuthGuard } from './Guards/user-auth.guard';
 import { ContactUsComponent } from './Components/contact-us/contact-us.component';
 import { AboutUsComponent } from './Components/about-us/about-us.component';
+import { UserBookingsViewComponent } from './Components/user-bookings-view/user-bookings-view.component';
+import { HotelsInvoicesComponent } from './Components/admin-dashboard/hotels-invoices/hotels-invoices.component';
 
 export const routes: Routes = [
     { path: '', component: HotelBookingComponent }, 
@@ -54,6 +56,7 @@ export const routes: Routes = [
     { path: 'contact-us', component: ContactUsComponent },
     { path: 'about-us', component: AboutUsComponent },
     { path: 'confirm-email', component: ConfirmEmailComponent },
+    { path: 'userBookingsView', component: UserBookingsViewComponent, canActivate: [userAuthGuard]},
     {
         path: 'dashboard',
         component: DashboardLayoutComponent,
@@ -88,6 +91,7 @@ export const routes: Routes = [
             { path: 'addFeatureGeneral', component: AddFeatureGeneralComponent },
             { path: 'editFeatureGeneral/:Id', component: EditFeatureGeneralComponent },
             { path: 'hotelsBookingsDashboard', component: HotelBookingsComponent },
+            { path: 'hotelInvoices', component: HotelsInvoicesComponent },
 
         ],
         canActivate: [adminAuthGuard]
