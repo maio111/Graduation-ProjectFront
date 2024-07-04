@@ -15,6 +15,8 @@ import { HotelsearchComponent } from "./Components/hotelsearch/hotelsearch.compo
 import { HoteldetailsComponent } from "./Components/hoteldetails/hoteldetails.component";
 import { HoteldetailsimgComponent } from './Components/hoteldetailsimg/hoteldetailsimg.component';
 import { HotelMapComponent } from './Components/admin-dashboard/hotels-dashboard/hotel-map/hotel-map.component';
+import { ContactUsComponent } from './Components/contact-us/contact-us.component';
+import { AboutUsComponent } from './Components/about-us/about-us.component';
 
 @Component({
   selector: 'app-root',
@@ -30,6 +32,8 @@ import { HotelMapComponent } from './Components/admin-dashboard/hotels-dashboard
     RegistrationComponent,
     HotelBookingComponent,
     HotelMapComponent,
+    ContactUsComponent,
+    AboutUsComponent,
     FooterComponent,
     HotelBookingComponent,
     CountryDashboardComponent,

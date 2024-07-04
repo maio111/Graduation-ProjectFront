@@ -1,0 +1,91 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.bg-hero {
+    
+    background-size: cover;
+    background-position: center;
+}
+
+.info-wrap, .contact-wrap {
+    background: rgba(226, 236, 237, 0.4); /* Add transparency */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-bottom: 40px;
+    padding: 20px; /* Ensure enough padding inside the boxes */
+    width: 80%; /* Ensure both have the same width */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.btn-primary {
+    background: #3498db;
+    border-color: #3498db;
+}
+
+.btn-primary:hover {
+    background: #2980b9;
+    border-color: #2980b9;
+}
+
+.alert {
+    margin-top: 20px;
+}
+
+.submitting {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.h3 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Icon and Text Styling */
+.dbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.icon {
+    font-size: 30px; /* Increase icon size */
+    color: #3498db;
+    margin-right: 15px;
+}
+
+.text p {
+    margin: 0;
+}
+
+.text span {
+    display: block;
+    font-weight: bold;
+    font-size: 14px; /* Ensure span text is bold and slightly larger */
+    margin-bottom: 5px;
+}
+
+.text a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.text a:hover {
+    text-decoration: underline;
+}
+
+.text {
+    flex: 1;
+}
+
+.address, .phone, .email, .website {
+    margin-bottom: 15px;
+}
