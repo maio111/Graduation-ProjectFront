@@ -19,4 +19,8 @@ export class BraintreeService {
   checkout(nonce: string, amount: number, bookingData :CreateBookingDTO): Observable<any> {
     return this.http.post(`${this.apiUrl}/checkout`, { nonce, amount, bookingData });
   }
+
+  checkoutCash(amount: number, bookingData: CreateBookingDTO): Observable<any> {
+    return this.http.post(`${this.apiUrl}/checkout/cash`, { amount, bookingData });
+  }
 }

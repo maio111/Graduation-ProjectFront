@@ -41,7 +41,7 @@ import { HotelMapComponent } from './Components/admin-dashboard/hotels-dashboard
     NgxPaginationModule,
     HotelsearchComponent,
     HoteldetailsComponent,
-    HoteldetailsimgComponent]
+    HoteldetailsimgComponent,]
 })
 export class AppComponent {
   title = 'Booking Boo';

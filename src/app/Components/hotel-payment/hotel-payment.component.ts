@@ -84,8 +84,15 @@ export class HotelPaymentComponent {
         });
       });
     } else {
-      console.log('Cash payment selected.');
-      // Handle cash payment logic here
+      this.braintreeService.checkoutCash(this.bookingData.totalPrice, this.bookingData).subscribe({
+        next: (response: any) => {
+          console.log('successful:', response);
+          this.router.navigate(['']);
+        },
+        error: (error: any) => {
+          console.error('error:', error);
+        }
+      });
     }
   }
 }

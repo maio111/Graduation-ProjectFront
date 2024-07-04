@@ -37,6 +37,16 @@ export class HotelInvoicesServiceService {
     return this.http.get<any>(`${this.apiUrl}/${id}`, { params });
   }
 
+  getInvoiceByBookingId(bookingId: number, includeProperties: string[] = []): Observable<any> {
+    let params = new HttpParams();
+    includeProperties.forEach(property => {
+      params = params.append('includeProperties', property);
+    });
+
+    return this.http.get<any>(`${this.apiUrl}/GetInvoiceByBookingId/${bookingId}`, { params });
+  }
+
+
   postHotelBookingInvoice(invoice: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, invoice);
   }

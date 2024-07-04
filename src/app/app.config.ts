@@ -6,6 +6,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 import { JwtInterceptor } from './Interceptors/jwt-interceptor';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
+import { BsModalService } from 'ngx-bootstrap/modal';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,6 +19,7 @@ export const appConfig: ApplicationConfig = {
       multi: true,
     },
     JwtHelperService,
-    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    BsModalService
   ]
 };

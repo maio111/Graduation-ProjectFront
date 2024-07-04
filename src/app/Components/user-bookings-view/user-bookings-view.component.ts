@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import { UserBookingsFilter } from '../../models/HotelBooking/UserBookingsFilter';
 import { UserBookingsViewDTO } from '../../models/HotelBooking/UserBookingsViewDTO';
 import { HotelBookingService } from '../../Services/hotel-booking.service';
@@ -8,6 +8,11 @@ import { BookingStatus } from '../../models/Enums/BookingStatus';
 import { BookingStatusLabels, getBookingStatusesValues } from '../../utilities/BookingStatus';
 import { AuthenticationService } from '../../Services/Authentication/authentication.service';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { HotelInvoicesServiceService } from '../../Services/hotel-invoices-service.service';
+import { ViewInvoiceDTO } from '../../models/Invoices/ViewInvoiceDTO';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { PaymentMethod } from '../../models/Enums/PaymentMethod';
+import { getPaymentMethodLabel } from '../../utilities/PaymentMethod';
 
 @Component({
   selector: 'app-user-bookings-view',
@@ -20,10 +25,19 @@ export class UserBookingsViewComponent {
   filter: UserBookingsFilter = {} as UserBookingsFilter;
   bookings: UserBookingsViewDTO[] = [] as UserBookingsViewDTO[];
   bookingStatuses!: { label: string, value: number }[];
+  paymentMethods = PaymentMethod;
+
   userId!: number;
+  selectedInvoice: ViewInvoiceDTO = {} as ViewInvoiceDTO;
+  modalRef?: BsModalRef;
   page: any;
   total: any;
-  constructor(private bookingService: HotelBookingService, private auth: AuthenticationService) {
+  constructor(
+    private bookingService: HotelBookingService,
+    private auth: AuthenticationService,
+    private invoiceService: HotelInvoicesServiceService,
+    private modalService: BsModalService
+  ) {
     this.bookingStatuses = getBookingStatusesValues();
   }
 
@@ -52,5 +66,22 @@ export class UserBookingsViewComponent {
   }
   changePage(event: any) {
     this.page = event;
+  }
+
+  getInvoiceById(id: number) {
+    this.invoiceService.getInvoiceByBookingId(id).subscribe({
+      next: (res) => {
+        this.selectedInvoice = res.data
+      },
+      error: (err) => console.log(err)
+    })
+  }
+  openModal(id: number, template: TemplateRef<void>) {
+    this.getInvoiceById(id);
+    console.log(this.selectedInvoice)
+    this.modalRef = this.modalService.show(template);
+  }
+  getPaymentMethodLabel(method: number): string {
+    return getPaymentMethodLabel(method);
   }
 }

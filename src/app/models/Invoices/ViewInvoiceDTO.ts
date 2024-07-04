@@ -1,3 +1,5 @@
+import { PaymentMethod } from "../Enums/PaymentMethod";
+
 export interface ViewInvoiceDTO {
     id: number;
     number: number;
@@ -5,5 +7,5 @@ export interface ViewInvoiceDTO {
     amount: number;
     paymentStatus: string;
     transactionId?: string;
-    paymentMethod: string;
+    paymentMethod: PaymentMethod;
 }

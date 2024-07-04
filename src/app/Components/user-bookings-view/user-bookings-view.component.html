@@ -1,7 +1,8 @@
 <div class="container mt-5">
+<div class="mt-5 text-center">
     <h2>Your Bookings</h2>
-
-    <!-- Search Filters -->
+</div>
+    <!-- Search Filters
     <div class="row mb-4">
         <div class="col-md-3">
             <input type="text" class="form-control" placeholder="Hotel Name" [(ngModel)]="filter.HotelName">
@@ -30,7 +31,7 @@
         <div class="col-md-3">
             <button class="btn btn-primary w-100" (click)="applyFilter()">Search</button>
         </div>
-    </div>
+    </div> -->
     <!-- Bookings Table -->
     <table class="table table-bordered table-striped">
         <thead>
@@ -43,10 +44,12 @@
                 <th>Status</th>
                 <th>Total Price</th>
                 <th>Notes</th>
+                <th>Invoices</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let booking of bookings | paginate: { id: 'ad', itemsPerPage: 3, currentPage: page, totalItems: total }; let i = index">
+            <tr
+                *ngFor="let booking of bookings | paginate: { id: 'ad', itemsPerPage: 3, currentPage: page, totalItems: total }; let i = index">
                 <td>{{ i + 1 }}</td>
                 <td>{{ booking.hotelName }}</td>
                 <td>{{ booking.roomNumbers.join(', ') }}</td>
@@ -55,6 +58,7 @@
                 <td>{{ getBookingStatusLabel(booking.status) }}</td>
                 <td>{{ booking.totalPrice }}</td>
                 <td>{{ booking.notes }}</td>
+                <td><button type="button" class="btn btn-primary" (click)="openModal(booking.id,template)">Invoice</button></td>
             </tr>
         </tbody>
     </table>
@@ -62,6 +66,20 @@
         <pagination-controls (pageChange)="changePage($event)" id="ad"></pagination-controls>
     </div>
 </div>
-
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large
-    modal</button>
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Invoice</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div *ngIf="selectedInvoice">
+            <p><strong>Number:</strong> {{ selectedInvoice.number }}</p>
+            <p><strong>Date:</strong> {{ selectedInvoice.date | date }}</p>
+            <p><strong>Amount:</strong>$ {{ selectedInvoice.amount }}</p>
+            <p><strong>Transaction ID:</strong> {{ selectedInvoice.transactionId }}</p>
+            <p><strong>Payment Method:</strong> {{ getPaymentMethodLabel(selectedInvoice.paymentMethod) }}</p>
+        </div>
+    </div>
+</ng-template>
