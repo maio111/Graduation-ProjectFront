@@ -44,6 +44,9 @@ import { ContactUsComponent } from './Components/contact-us/contact-us.component
 import { AboutUsComponent } from './Components/about-us/about-us.component';
 import { UserBookingsViewComponent } from './Components/user-bookings-view/user-bookings-view.component';
 import { HotelsInvoicesComponent } from './Components/admin-dashboard/hotels-invoices/hotels-invoices.component';
+import { CaragencyComponent } from './Components/admin-dashboard/caragency/car-agency/car-agency.component';
+import { EditcaragencyComponent } from './Components/admin-dashboard/caragency/edit/editcaragency/editcaragency.component';
+import { AddcaragencyComponent } from './Components/admin-dashboard/caragency/add-caragency/components/dashboard/addcaragency/addcaragency.component';
 
 export const routes: Routes = [
     { path: '', component: HotelBookingComponent }, 
@@ -92,6 +95,10 @@ export const routes: Routes = [
             { path: 'editFeatureGeneral/:Id', component: EditFeatureGeneralComponent },
             { path: 'hotelsBookingsDashboard', component: HotelBookingsComponent },
             { path: 'hotelInvoices', component: HotelsInvoicesComponent },
+            { path: 'caragency', component:CaragencyComponent},
+            {path:'editcaragency/:id',component: EditcaragencyComponent},
+            {path:'addcaragency',component: AddcaragencyComponent}
+
 
         ],
         canActivate: [adminAuthGuard]
