@@ -48,6 +48,12 @@ import { CarRentalComponent } from './Components/car-rental/car-rental.component
 import { CarSearchComponent } from './Components/car-search/car-search.component';
 import { CarDetailsComponent } from './Components/car-details/car-details.component';
 import { WishlistComponent } from './Components/wishlist/wishlist.component';
+import { AccountSettingComponent } from './Components/account-setting/account-setting.component';
+import { SideBarComponent } from './Components/account-setting/side-bar/side-bar.component';
+import { PersonalDetailsComponent } from './Components/account-setting/personal-details/personal-details.component';
+import { PreferencesComponent } from './Components/account-setting/preferences/preferences.component';
+import { SecurityComponent } from './Components/account-setting/security/security.component';
+import { PrivacyComponent } from './Components/account-setting/privacy/privacy.component';
 
 export const routes: Routes = [
     { path: '', component: HotelBookingComponent }, 
@@ -64,7 +70,13 @@ export const routes: Routes = [
     { path: 'about-us', component: AboutUsComponent },
     { path: 'confirm-email', component: ConfirmEmailComponent },
     { path: 'userBookingsView', component: UserBookingsViewComponent, canActivate: [userAuthGuard]},
-    {path: 'wishlist', component: WishlistComponent},
+    { path: 'wishlist', component: WishlistComponent },
+    { path: 'account-settings', component: AccountSettingComponent },
+    { path: 'side-bar', component: SideBarComponent },
+    { path: 'personal-details', component: PersonalDetailsComponent },
+    { path: 'preferences', component: PreferencesComponent },
+    { path: 'security', component: SecurityComponent },
+    { path: 'privacy', component: PrivacyComponent },
     {
         path: 'dashboard',
         component: DashboardLayoutComponent,

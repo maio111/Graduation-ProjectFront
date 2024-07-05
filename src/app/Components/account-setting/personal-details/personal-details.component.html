@@ -1,0 +1,23 @@
+<div class="main-content">
+    <app-side-bar></app-side-bar>
+    <div class="content-container">
+      <div class="content">
+        <h1>Personal details</h1>
+        <p>Update your info and find out how it's used.</p>
+        <div class="details">
+          <div class="detail" *ngFor="let item of details">
+            <label><i [ngClass]="item.icon"></i> {{item.label}}</label>
+            <span>{{item.value}}</span>
+            <i *ngIf="item.isVerified" class="fas fa-check-circle verified-icon"></i>
+            
+            <a href="#">Edit</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer>
+    <!-- Your footer content here -->
+  </footer>
+  
