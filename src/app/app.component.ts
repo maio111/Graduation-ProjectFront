@@ -20,35 +20,36 @@ import { AboutUsComponent } from './Components/about-us/about-us.component';
 import { CarRentalComponent } from './Components/car-rental/car-rental.component';
 import { CarSearchComponent } from './Components/car-search/car-search.component';
 import { CarDetailsComponent } from './Components/car-details/car-details.component';
+import { WishlistComponent } from "./Components/wishlist/wishlist.component";
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
-  imports: [RouterModule,
-    RouterOutlet,
-    RouterLink,
-    RouterLinkActive,
-    LoginComponent,
-    NavBarComponent,
-    RegistrationComponent,
-    HotelBookingComponent,
-    HotelMapComponent,
-    ContactUsComponent,
-    AboutUsComponent,
-    FooterComponent,
-    HotelBookingComponent,
-    CountryDashboardComponent,
-    GoogleMapsModule,
-    GoogleMap,
-    ReactiveFormsModule,
-    FormsModule,
-    CommonModule,
-    NgxPaginationModule,
-    HotelsearchComponent,
-    HoteldetailsComponent,
-    HoteldetailsimgComponent,CarRentalComponent,CarSearchComponent,CarDetailsComponent]
+    selector: 'app-root',
+    standalone: true,
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css',
+    imports: [RouterModule,
+        RouterOutlet,
+        RouterLink,
+        RouterLinkActive,
+        LoginComponent,
+        NavBarComponent,
+        RegistrationComponent,
+        HotelBookingComponent,
+        HotelMapComponent,
+        ContactUsComponent,
+        AboutUsComponent,
+        FooterComponent,
+        HotelBookingComponent,
+        CountryDashboardComponent,
+        GoogleMapsModule,
+        GoogleMap,
+        ReactiveFormsModule,
+        FormsModule,
+        CommonModule,
+        NgxPaginationModule,
+        HotelsearchComponent,
+        HoteldetailsComponent,
+        HoteldetailsimgComponent, CarRentalComponent, CarSearchComponent, CarDetailsComponent, WishlistComponent]
 })
 export class AppComponent {
   title = 'Booking Boo';
