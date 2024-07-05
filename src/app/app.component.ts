@@ -18,6 +18,7 @@ import { HotelMapComponent } from './Components/admin-dashboard/hotels-dashboard
 import { ContactUsComponent } from './Components/contact-us/contact-us.component';
 import { AboutUsComponent } from './Components/about-us/about-us.component';
 import { CarRentalComponent } from './Components/car-rental/car-rental.component';
+import { CarSearchComponent } from './Components/car-search/car-search.component';
 
 @Component({
   selector: 'app-root',
@@ -46,7 +47,7 @@ import { CarRentalComponent } from './Components/car-rental/car-rental.component
     NgxPaginationModule,
     HotelsearchComponent,
     HoteldetailsComponent,
-    HoteldetailsimgComponent,CarRentalComponent]
+    HoteldetailsimgComponent,CarRentalComponent,CarSearchComponent]
 })
 export class AppComponent {
   title = 'Booking Boo';

@@ -3,13 +3,14 @@ import { NavBarComponent } from "../nav-bar/nav-bar.component";
 import flatpickr from 'flatpickr';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CarRentalHeaderComponent } from "../car-rental-header/car-rental-header.component";
 
 @Component({
     selector: 'app-car-rental',
     standalone: true,
     templateUrl: './car-rental.component.html',
     styleUrl: './car-rental.component.css',
-    imports: [NavBarComponent,CommonModule, FormsModule]
+    imports: [NavBarComponent, CommonModule, FormsModule, CarRentalHeaderComponent]
 })
 export class CarRentalComponent {
     @ViewChild('checkInInput') checkInInput!: ElementRef;
