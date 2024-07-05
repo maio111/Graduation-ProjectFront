@@ -69,10 +69,7 @@
                 </div>
               </div>
             </div>
-            
-            
-
-            <div class="add-comment">
+            <div class="add-comment" *ngIf="userId">
               <input [(ngModel)]="newComment" placeholder="Add your comment...">
               <button (click)="addComment()">Submit</button>
             </div>
