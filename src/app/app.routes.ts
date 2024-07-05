@@ -44,10 +44,12 @@ import { ContactUsComponent } from './Components/contact-us/contact-us.component
 import { AboutUsComponent } from './Components/about-us/about-us.component';
 import { UserBookingsViewComponent } from './Components/user-bookings-view/user-bookings-view.component';
 import { HotelsInvoicesComponent } from './Components/admin-dashboard/hotels-invoices/hotels-invoices.component';
+import { CarRentalComponent } from './Components/car-rental/car-rental.component';
 
 export const routes: Routes = [
     { path: '', component: HotelBookingComponent }, 
     { path:'hotelBooking',component:HotelBookingComponent},
+    {path:'car',component:CarRentalComponent},
     { path: 'filterhotels', component:HotelsearchComponent},
     { path: 'hoteldetails', component:HoteldetailsComponent},
     { path: 'reservationDetails', component: ReservationDetailsComponent, canActivate: [userAuthGuard]},
