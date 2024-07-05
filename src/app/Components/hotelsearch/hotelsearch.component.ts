@@ -13,6 +13,8 @@ import { HotelService } from '../../Services/hotel.service';
 import { environment } from '../../../environments/environment';
 import { IHotelPhotoF } from '../../models/Hotel/IHotelPhotoF';
 import { BookingHeaderComponent } from "../booking-header/booking-header.component";
+import { AuthenticationService } from '../../Services/Authentication/authentication.service';
+import { WishListHotelService } from '../../Services/wish-list-hotel.service';
 
 declare var $: any;
 @Component({
@@ -34,17 +36,26 @@ export class HotelsearchComponent implements OnInit {
   selectedFeatureIds: number[] = [];
   baseUrl: string = environment.baseUrl;
 
+  userId : number=0;
+  isWashlist : boolean = false
+
   constructor(private route: ActivatedRoute,
     private roomTypeService: RoomTypeService,
     private featuresService: FeaturesService,
     private hotelService: HotelService,
-    private router: Router
+    private router: Router,
+    private auth: AuthenticationService,
+    private wishListService: WishListHotelService,
   ) { }
   ngOnInit(): void {
+    const token = this.auth.getToken();
+      const decoded = this.auth.decodeToken(token);
+      this.userId = this.auth.getUserIdFromToken(decoded);
     this.selectedRoomTypeId = this.roomTypes[0]?.id;
     this.getRoomTypes();
     this.getAllFeatures();
     this.views = getViewsValues();
+
 
     this.route.queryParams.subscribe(params => {
       const hotelsJson = params['filteredHotels'];
@@ -132,8 +143,22 @@ export class HotelsearchComponent implements OnInit {
     this.range.nativeElement.style.right = `${rightPercentage}%`;
   }
 
-  toggleWishlist(hotel: any): void {
-    console.log(`Toggling wishlist status for hotel: ${hotel.name}`);
+  toggleWishlist(hotel: IFilteredHotel): void {
+    if (this.isWashlist) {
+      this.wishListService.removeHotelFromWishList(this.userId, hotel.id).subscribe({
+        next: () => {
+          this.isWashlist = false;
+        },
+        error: err => console.error(err)
+      });
+    } else {
+      this.wishListService.addHotelToWishList(this.userId, hotel.id).subscribe({
+        next: () => {
+          this.isWashlist = true;
+        },
+        error: err => console.error(err)
+      });
+    }
   }
 
   getRoomTypes() {
