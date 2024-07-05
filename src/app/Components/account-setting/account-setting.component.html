@@ -1,0 +1,22 @@
+<div class="account-settings">
+    
+    <div class="content">
+      <div class="container mt-5">
+        <h1 class="mb-3">Account settings</h1>
+        <p class="mb-4">Manage your BookyBoo experience</p>
+        <div class="row">
+          <div class="col-md-6 mb-4" *ngFor="let section of sections">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <i class="fas icon" [ngClass]="section.icon"></i>
+                <h5 class="card-title">{{ section.title }}</h5>
+                <p class="card-text">{{ section.description }}</p>
+                <a [routerLink]="['/', section.manage]" class="stretched-link">Manage {{ section.manage }}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,10 @@
+<div class="sidebar">
+  <ul>
+    <li *ngFor="let item of menuItems" [class.active]="isActive(item)">
+      <a [routerLink]="item.route" (click)="setActive(item)">
+        <i class="fas" [ngClass]="item.icon"></i>
+        <span>{{ item.label }}</span>
+      </a>
+    </li>
+  </ul>
+</div>

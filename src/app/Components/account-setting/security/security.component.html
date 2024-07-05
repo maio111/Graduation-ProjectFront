@@ -1,0 +1,27 @@
+<div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-3">
+        <app-side-bar></app-side-bar>
+      </div>
+  
+      <!-- Main Content -->
+      <div class="col-md-9">
+        <div class="container mt-4">
+          <h1>Security</h1>
+          <hr>
+          
+          <!-- Loop through sections -->
+          <div *ngFor="let section of sections" class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fas" [ngClass]="section.icon"></i> {{ section.title }}</h5>
+              <p class="card-text">{{ section.description }}</p>
+              <a [routerLink]="[section.route]" class="link-underline-light edit-link">{{ section.name}}</a>
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+  
