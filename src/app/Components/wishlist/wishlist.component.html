@@ -1,21 +1,25 @@
 <main>
-    <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
-        <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
-            <div class="col" *ngFor="let card of cards; let i = index">
-                <div class="card h-100 shadow-sm" *ngIf="card.visible"> 
-                    <img src="{{card.image}}" class="card-img-top" alt="...">
-                    <div class="label-top shadow-sm" (click)="removeCard(i)">X</div>
-                    <div class="card-body">
-                        <div class="clearfix mb-3">
-                            <h3>{{card.name}} <span class="float-end price-hp">{{card.price}}&euro;</span></h3>
-                        </div>
-                        <h5 class="card-title">{{card.description}}</h5>
-                        <div class="d-grid gap-2 my-4">
-                            <a href="#" class="btn btn-warning">Explore Now</a>
-                        </div>
-                    </div>
-                </div>
+    <div class="container-fluid bg-transparent my-4 p-3" style="position: relative;">
+      <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
+        <div class="col" *ngFor="let hotel of wishListHotels">
+          <div class="card h-100 shadow-sm">
+            <div *ngIf="getMainPhoto(hotel) as mainPhoto">
+                <img [src]="baseUrl + mainPhoto.photoUrl" [alt]="hotel.name" class="card-img-top">
+              </div>
+            <div class="label-top shadow-sm" (click)="removeHotelFromWishList(hotel.id)">X</div>
+            <div class="card-body">
+              <div class="clearfix mb-3">
+                <h3>{{ hotel.name }}</h3>
+                <span class="float-end price-hp">{{ hotel.price | currency:'EUR' }}</span>
+              </div>
+              <h5 class="card-title">{{ hotel.description }}</h5>
+              <div class="d-grid gap-2 my-4">
+                <a href="#" class="btn btn-warning">Explore Now</a>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</main>
+  </main>
+  

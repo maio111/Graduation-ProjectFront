@@ -47,6 +47,7 @@ import { HotelsInvoicesComponent } from './Components/admin-dashboard/hotels-inv
 import { CarRentalComponent } from './Components/car-rental/car-rental.component';
 import { CarSearchComponent } from './Components/car-search/car-search.component';
 import { CarDetailsComponent } from './Components/car-details/car-details.component';
+import { WishlistComponent } from './Components/wishlist/wishlist.component';
 
 export const routes: Routes = [
     { path: '', component: HotelBookingComponent }, 
@@ -63,6 +64,7 @@ export const routes: Routes = [
     { path: 'about-us', component: AboutUsComponent },
     { path: 'confirm-email', component: ConfirmEmailComponent },
     { path: 'userBookingsView', component: UserBookingsViewComponent, canActivate: [userAuthGuard]},
+    {path: 'wishlist', component: WishlistComponent},
     {
         path: 'dashboard',
         component: DashboardLayoutComponent,
