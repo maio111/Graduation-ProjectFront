@@ -46,12 +46,14 @@ import { UserBookingsViewComponent } from './Components/user-bookings-view/user-
 import { HotelsInvoicesComponent } from './Components/admin-dashboard/hotels-invoices/hotels-invoices.component';
 import { CarRentalComponent } from './Components/car-rental/car-rental.component';
 import { CarSearchComponent } from './Components/car-search/car-search.component';
+import { CarDetailsComponent } from './Components/car-details/car-details.component';
 
 export const routes: Routes = [
     { path: '', component: HotelBookingComponent }, 
     { path:'hotelBooking',component:HotelBookingComponent},
     {path:'car',component:CarRentalComponent},
     {path:'filterCar',component:CarSearchComponent},
+    {path:'cardetails',component:CarDetailsComponent},
     { path: 'filterhotels', component:HotelsearchComponent},
     { path: 'hoteldetails', component:HoteldetailsComponent},
     { path: 'reservationDetails', component: ReservationDetailsComponent, canActivate: [userAuthGuard]},

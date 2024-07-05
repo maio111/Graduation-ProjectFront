@@ -1,0 +1,16 @@
+.custom-modal-content {
+    width: 80%; /* Adjust the width as needed */
+    height: 80%; /* Adjust the height as needed */
+  }
+  
+  .modal-img {
+    width: 100%;
+    height: auto; 
+  }
+  
+  @media (min-width: 768px) {
+    .modal-dialog {
+      max-width: 80%; 
+    }
+  }
+  
