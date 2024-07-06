@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap");
 
-:root {
+:host {
   --primary-color: #00605f;
   --secondary-color: #017479;
   --text-dark: #0f172a;
@@ -15,16 +15,16 @@
   box-sizing: border-box;
 }
 
-body {
+.body {
   font-family: "Montserrat", sans-serif;
   background: linear-gradient(
-      to right,
+      to bottom,
       rgba(2, 82, 89, 0.9),
       rgba(255, 255, 255, 0)
     ),
     url("../../../assets/img/hotel3.jpg");
   background-position: center center;
-  background-size: cover;
+  /* background-size: cover; */
   background-repeat: no-repeat;
 }
 
@@ -146,20 +146,19 @@ nav {
 
 .destination__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
 
 .destination__card {
     position: relative;  /* Add relative positioning to the card */
-    height: 100%; 
+    height: 70%; 
     background-color: white;
     box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.7);
     overflow: hidden; 
 }
 
 .destination__card img {
-  width: 100%;
   width: 100%;
   height: 100%;  /* Make the image take up the full height of the card */
   object-fit: cover;

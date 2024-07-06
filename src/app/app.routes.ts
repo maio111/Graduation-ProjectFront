@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { Routes ,RouterModule } from '@angular/router';
 import { HotelBookingComponent } from './Components/hotel-booking/hotel-booking.component';
 import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
 import { HotelsDashboardComponent } from './Components/admin-dashboard/hotels-dashboard/hotels-dashboard.component';
@@ -60,9 +60,11 @@ import { AddcaragencyComponent } from './Components/admin-dashboard/carAgency-da
 import { CarComponent } from './Components/admin-dashboard/car-dashboard/car/car.component';
 import { addCarComponent } from './Components/admin-dashboard/car-dashboard/addcar/car/addcar.component';
 import { EditcarComponent } from './Components/admin-dashboard/car-dashboard/editcar/editcar/editcar.component';
+import { HomeComponent } from './Components/home/home.component';
 
 export const routes: Routes = [
-    { path: '', component: HotelBookingComponent }, 
+    { path: '', component: HomeComponent },
+    {path:'home',component:HomeComponent} ,
     { path:'hotelBooking',component:HotelBookingComponent},
     {path:'car',component:CarRentalComponent},
     {path:'filterCar',component:CarSearchComponent},
