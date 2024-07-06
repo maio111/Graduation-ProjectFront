@@ -23,4 +23,9 @@ export class WishListHotelService {
   removeHotelFromWishList(userId: number, hotelId: number): Observable<any> {
     return this.httpclient.delete<any>(`${this.baseUrl}/api/WishList/user/${userId}/${hotelId}`);
   }
+
+  checkHotelsInUserWishList(userId: number, hotelIds: number[]): Observable<{ data: boolean[] }> {
+    const url = `${this.baseUrl}/api/WishList/user/${userId}`;
+    return this.httpclient.post<{ data: boolean[] }>(url, hotelIds);
+  }
 }

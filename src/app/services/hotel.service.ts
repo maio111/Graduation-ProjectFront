@@ -27,8 +27,8 @@ export class HotelService {
 
     return this.httpclient.get<any[]>(`${this.baseUrl}/api/Hotel`, { params });
   }
-  getHotelById(id: number): Observable<any> {
-    return this.httpclient.get<any[]>(`${this.baseUrl}/api/Hotel/${id}`);
+  getHotelById(id: number): Observable<{ data: Ihotel }> {
+    return this.httpclient.get<{ data: Ihotel }>(`${this.baseUrl}/api/Hotel/${id}`);
   }
   addHotel(hotel: any): Observable<any> {
     return this.httpclient.post<any>(`${this.baseUrl}/api/Hotel`, hotel);
