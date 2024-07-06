@@ -30,6 +30,7 @@ export class PersonalDetailsComponent {
   showErrorAlert: boolean = false;
   cities: ICity[] = [] as ICity[];
   userCity: ICity = {} as ICity;
+  birthDate!: Date;
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
@@ -52,24 +53,16 @@ export class PersonalDetailsComponent {
 
   ngOnInit(): void {
     this.getUserData();
-    this.getallcities();
+    this.getAllCities();
   }
-  getallcities() {
+
+  getAllCities() {
     this.citiesService.getAllCities().subscribe({
-      next: (res) => {
-        this.cities = res.data
-      },
-      error:(err) => console.log(err)
-    })
+      next: (res) => this.cities = res.data,
+      error: (err) => console.log(err)
+    });
   }
-  getCityById() {
-    this.citiesService.getCityById(this.user.cityId).subscribe({
-      next: (res) => {
-        this.userCity = res.data
-      },
-      error:(err) => console.log(err)
-    })
-  }
+
   getUserData() {
     const token = this.auth.getToken();
     const decoded = this.auth.decodeToken(token);
@@ -80,7 +73,8 @@ export class PersonalDetailsComponent {
         this.user = res.data;
         this.userData = { ...this.user };
         this.userUpdateForm.patchValue(this.userData);
-        this.userName = res.data.userName; // Ensure userName is correctly assigned
+        this.userName = res.data.userName;
+        this.userData.birthDate = res.data.birthDate;
       },
       error: (err: any) => console.error(err)
     });
@@ -89,9 +83,7 @@ export class PersonalDetailsComponent {
   onFileChange(event: any): void {
     const file = event.target.files[0];
     if (file) {
-      this.userUpdateForm.patchValue({
-        photo: file
-      });
+      this.userUpdateForm.patchValue({ photo: file });
     }
   }
 
@@ -125,6 +117,7 @@ export class PersonalDetailsComponent {
     this.showSuccessAlert = false;
     this.showErrorAlert = false;
   }
+
   showInput(): void {
     this.showFileInput = true;
   }

@@ -15,7 +15,7 @@ import { AuthenticationService } from '../../../Services/Authentication/authenti
 })
 export class PrivacyComponent {
   passportUpdateForm!: FormGroup;
-  passport: Passport;
+  passport: Passport = {} as Passport;
   user: any = {};
   showSuccessAlert = false;
   showErrorAlert = false;
@@ -26,15 +26,6 @@ export class PrivacyComponent {
     private passportService: PassportService,
     private auth: AuthenticationService
   ) {
-    this.passport = {
-      id: 1,
-      nid: '',
-      passportNumber: '',
-      expiryDate: '',
-      firstName: '',
-      lastName: '',
-      issuingCountry: ''
-    };
   }
 
   ngOnInit(): void {

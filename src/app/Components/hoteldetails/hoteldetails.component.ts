@@ -41,7 +41,7 @@ export class HoteldetailsComponent implements OnInit {
   newComment: string = '';
 
   userId: number = 0;
-  isWishlist : boolean=false;
+  isWishlist: boolean = false;
 
   getViewsValues = getViewsValues;
   getViewLabel = getViewLabel;
@@ -70,7 +70,7 @@ export class HoteldetailsComponent implements OnInit {
   ) { }
 
 
-  
+
   ngOnInit(): void {
     if (this.auth.getToken() != '') {
       const token = this.auth.getToken();
@@ -165,22 +165,21 @@ export class HoteldetailsComponent implements OnInit {
   }
   defaultPhotoUrl: string = 'https://www.seekpng.com/png/detail/966-9665493_my-profile-icon-blank-profile-image-circle.png';
 
-  toggleWishlist(hotel: IFilteredHotel ): void {
+  toggleWishlist(hotel: IFilteredHotel): void {
     if (this.isWishlist) {
       this.wishListService.removeHotelFromWishList(this.userId, hotel.id).subscribe({
         next: () => {
           this.isWishlist = false;
         },
-        error: err => console.error(err)
+        error: (err: any) => console.error(err)
       });
     } else {
       this.wishListService.addHotelToWishList(this.userId, hotel.id).subscribe({
         next: () => {
           this.isWishlist = true;
         },
-        error: err => console.error(err)
+        error: (err: any) => console.error(err)
       });
     }
   }
-
 }

@@ -67,8 +67,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                   <label for="birthDate" class="form-label"><i class="fas fa-calendar"></i> Birth Date</label>
-                  <input id="birthDate" formControlName="birthDate" type="date" class="form-control"
-                    [(ngModel)]="userData.birthDate" [value]="user.birthDate">
+                  <input id="birthDate" formControlName="birthDate" type="date" class="form-control" [ngModel]="userData.birthDate" [value]="userData.birthDate | date">
                 </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">

@@ -81,9 +81,9 @@ export class HotelPaymentComponent implements OnInit {
   }
 
   submitPayment(): void {
-    if (!this.validatePayment()) {
-      return;
-    }
+    // if (!this.validatePayment()) {
+    //   return;
+    // }
 
     if (this.paymentMethod === 'paypal') {
       if (!this.dropinInstance) {
