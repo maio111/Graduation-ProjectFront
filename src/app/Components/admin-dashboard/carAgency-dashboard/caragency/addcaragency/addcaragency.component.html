@@ -33,6 +33,9 @@
         <label for="latitude" class="form-label">Latitude:</label>
         <input type="number" id="latitude" class="form-control" [(ngModel)]="carAgency.latitude" name="latitude">
       </div>
+      <div class="mb-3">
+        <app-hotel-map [hotel]="carAgency" (coordinatesChange)="onCoordinatesChange($event)"></app-hotel-map>
+      </div>
       <div class="row justify-content-center">
         <div class="col-2">
           <button type="submit" class="btn btn-outline-primary rounded-pill m-2">Add</button>

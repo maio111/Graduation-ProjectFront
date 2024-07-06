@@ -4,11 +4,14 @@
   import { CaragencyService } from '../../../../../Services/caragency.service';
   import { CommonModule } from '@angular/common';
   import { NavBarComponent } from '../../../../nav-bar/nav-bar.component';
+import { CityService } from '../../../../../Services/city.service';
+import { ICity } from '../../../../../models/City/ICity';
+import { HotelMapComponent } from '../../../hotels-dashboard/hotel-map/hotel-map.component';
   
   @Component({
     selector: 'app-editcaragency',
     standalone: true,
-    imports:[FormsModule,CommonModule,NavBarComponent],
+    imports:[FormsModule,CommonModule,NavBarComponent,HotelMapComponent],
   templateUrl: './editcaragency.component.html',
   styleUrl: './editcaragency.component.css'
 })
@@ -26,11 +29,15 @@ export class EditcaragencyComponent {
       latitude: 0
     };
     carAgencyId!: number;
+    cities: ICity[] = [] as ICity[]
+
   
     constructor(
       private route: ActivatedRoute,
       private router: Router,
-      private carAgencyService: CaragencyService
+      private carAgencyService: CaragencyService,
+      private cityService:CityService
+
     ) {}
   
     ngOnInit(): void {
@@ -65,6 +72,22 @@ export class EditcaragencyComponent {
     
     onCancel() {
       this.router.navigate(['/dashboard/caragency']); 
+    }
+    onCoordinatesChange(newCoordinates: { latitude: number; longitude: number }) {
+      this.carAgency.latitude = newCoordinates.latitude;
+      this.carAgency.longitude = newCoordinates.longitude;
+    }
+    getCities() {
+      this.cityService.getAllCities().subscribe({
+        next: (res) => {
+          this.cities = res.data;
+          console.log(res)
+        },
+        error: error => {
+          console.error('Error', error);
+        }
+  
+      })
     }
   }
   
