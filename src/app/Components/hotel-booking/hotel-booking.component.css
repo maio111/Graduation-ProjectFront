@@ -216,6 +216,7 @@ nav {
   max-width: 30rem;
   transform: translate(0, 100px);
   opacity: 0;
+  line-height: 20px;
 }
 
 .travel .container .box img {
