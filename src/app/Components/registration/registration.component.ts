@@ -63,7 +63,7 @@ export class RegistrationComponent implements OnInit{
           this.successMessage = 'Registration successful!';
           setTimeout(() => {
             this.successMessage = null;
-           // Navigate to home after registration success
+            this.router.navigate([""]);
           }, 5000); // Navigate to home after 3 seconds
         },
         error => {

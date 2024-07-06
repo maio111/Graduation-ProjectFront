@@ -8,8 +8,7 @@
     <li><a routerLink="/car">Car Rental</a></li>
     <li><a routerLink="/contact-us">Contact</a></li>
     <li><a routerLink="/about-us">About Us</a></li>
-    <li><a routerLink="/wishlist">My Wishlist</a></li>
-    <li *ngIf="isLoggedIn()"><a rrouterLink="/dashboard" href="/dashboard">Admin</a></li>
+    <li *ngIf="isLoggedIn()&&isAdmin"><a routerLink="/dashboard" href="/dashboard" *ngIf="isAdmin">Admin</a></li>
   </ul>
   <div class="navbar-icons">
     <!-- Conditionally show icons based on login status -->
@@ -19,8 +18,10 @@
           <i class="fa-regular fa-user"></i>
         </button>
         <div class="dropdown-content" [hidden]="!showDropdown">
-          <a href="#">Review</a>
-          <a href="#">Booking</a>
+          <a routerLink="/account-settings">Profile</a>
+          <a href="/userBookingsView">Hotels Bookings</a>
+          <a href="/userBookingsView">Cars Rents</a>
+          <a href="/wishlist">Hotels Wishlist</a>
           <a (click)="logout()">Log out</a>
         </div>
       </div>
