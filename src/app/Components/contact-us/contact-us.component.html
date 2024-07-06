@@ -1,4 +1,3 @@
-<!-- contact-us.component.html -->
 <section class="ftco-section img bg-hero" style="background-image: url('assets/img/3.jpg'); background-size: cover; background-position: center;">
     <div class="container">
         <div class="row justify-content-center">
@@ -12,13 +11,13 @@
                     <div class="row no-gutters justify-content-between">
                         <div class="col-lg-6 d-flex align-items-stretch">
                             <div class="info-wrap w-100 p-5">
-                                <h3 class="mb-4 h3" >Contact us</h3>
+                                <h3 class="mb-4 h3">Contact us</h3>
                                 <div class="dbox w-100 d-flex align-items-start">
                                     <div class="icon d-flex align-items-center justify-content-center">
                                         <span class="fa fa-map-marker"></span>
                                     </div>
                                     <div class="text pl-4">
-                                        <p><span>Address:</span>  Cairo, Maadi 721 NIU 10016</p>
+                                        <p><span>Address:</span> Cairo, Maadi 721 NIU 10016</p>
                                     </div>
                                 </div>
                                 <div class="dbox w-100 d-flex align-items-start">
@@ -26,7 +25,7 @@
                                         <span class="fa fa-phone"></span>
                                     </div>
                                     <div class="text pl-4">
-                                        <p><span>Phone:</span> <a href="tel://1234567920"> +01152364987</a></p>
+                                        <p><span>Phone:</span> <a href="tel://1234567920">+01152364987</a></p>
                                     </div>
                                 </div>
                                 <div class="dbox w-100 d-flex align-items-start">
@@ -42,7 +41,7 @@
                                         <span class="fa fa-globe"></span>
                                     </div>
                                     <div class="text pl-4">
-                                        <p><span>Website</span> <a href="#">BookyBoo.com</a></p>
+                                        <p><span>Website:</span> <a href="#">BookyBoo.com</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -55,26 +54,39 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <input type="text" class="form-control" formControlName="name" placeholder="Name">
+                                                <div *ngIf="f['name'].invalid && (f['name'].dirty || f['name'].touched)" class="alert alert-info">
+                                                    <div *ngIf="f['name'].errors?.['required']">Name is required.</div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <input type="email" class="form-control" formControlName="email" placeholder="Email">
+                                                <div *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched)" class="alert alert-info">
+                                                    <div *ngIf="f['email'].errors?.['required']">Email is required.</div>
+                                                    <div *ngIf="f['email'].errors?.['email']">Email must be a valid email address.</div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <input type="text" class="form-control" formControlName="subject" placeholder="Subject">
+                                                <div *ngIf="f['subject'].invalid && (f['subject'].dirty || f['subject'].touched)" class="alert alert-info">
+                                                    <div *ngIf="f['subject'].errors?.['required']">Subject is required.</div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <textarea class="form-control" formControlName="message" rows="5" placeholder="Message"></textarea>
+                                                <div *ngIf="f['message'].invalid && (f['message'].dirty || f['message'].touched)" class="alert alert-info">
+                                                    <div *ngIf="f['message'].errors?.['required']">Message is required.</div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-primary">Send Message</button>
+                                                <button type="submit" class="btn btn-primary" [disabled]="submitting">Send Message</button>
                                                 <div *ngIf="submitting" class="submitting"></div>
                                             </div>
                                         </div>
@@ -83,7 +95,7 @@
                                 <div *ngIf="messageSuccess" class="alert alert-success">
                                     Your message was sent, thank you!
                                 </div>
-                                <div *ngIf="messageError" class="alert alert-danger">
+                                <div *ngIf="messageError" class="alert alert-info">
                                     There was an error sending your message. Please try again.
                                 </div>
                             </div>

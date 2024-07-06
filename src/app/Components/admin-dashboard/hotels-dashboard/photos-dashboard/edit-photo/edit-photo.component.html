@@ -1,4 +1,5 @@
 <app-nav-bar></app-nav-bar>
+
 <div class="container-fluid mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -9,8 +10,8 @@
                         #category="ngModel">
                         <option *ngFor="let cat of categories" [value]="cat">{{ getCategoryName(cat) }}</option>
                     </select>
-                    <div class="invalid-feedback" *ngIf="category.invalid && (category.dirty || category.touched)">
-                        Please select a category.
+                    <div  *ngIf="category.invalid && (category.dirty || category.touched)">
+                        <small class="text-danger">Please select a category.</small>
                     </div>
                 </div>
                 <div class="mb-3">
@@ -20,13 +21,15 @@
                     <label for="photos" class="btn btn-secondary">
                         Choose Photos
                     </label>
-                    <div class="invalid-feedback" *ngIf="fileValidationError">
-                        Please select at least one photo.
+                    <div  *ngIf="fileValidationError">
+                        <small class="text-danger">Please select at least one photo.</small>
                     </div>
+                    <div *ngIf="selectedFile" class="mt-2">
                         <strong>Selected Files:</strong>
                         <ul class="list-unstyled">
-                                {{ selectedFile?.name }}
+                            <li>{{ selectedFile.name }}</li>
                         </ul>
+                    </div>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-md-4">

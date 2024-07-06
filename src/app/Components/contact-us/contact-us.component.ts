@@ -24,6 +24,8 @@ export class ContactUsComponent {
     });
   }
 
+  get f() { return this.contactForm.controls; }
+
   onSubmit() {
     if (this.contactForm.valid) {
       this.submitting = true;

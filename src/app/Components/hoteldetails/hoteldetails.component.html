@@ -6,7 +6,7 @@
         <div class="price-container">
           <p class="price">Starts From {{filteredHotel.price}}/Pesron</p>
           <div class="con-like">
-            <input class="like" type="checkbox" title="like">
+            <input class="like" type="checkbox" title="like" [checked]="isWishlist" (change)="toggleWishlist(filteredHotel)">
             <div class="checkmark">
               <svg xmlns="http://www.w3.org/2000/svg" class="outline" viewBox="0 0 24 24">
                 <path

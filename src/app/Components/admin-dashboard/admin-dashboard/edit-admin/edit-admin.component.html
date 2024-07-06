@@ -1,74 +1,106 @@
-<div class="container-fluid mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-10">
-        <form (ngSubmit)="onSubmit()" #adminForm="ngForm" class="needs-validation" novalidate>
-          <div class="row">
-            <div class="col-md-4">
-              <div class="mb-3">
-                <label for="userName" class="form-label">User Name:</label>
-                <input type="text" id="userName" name="userName" [(ngModel)]="adminPatch.userName" #userName="ngModel" class="form-control" required>
-                <div class="invalid-feedback" *ngIf="userName.invalid && (userName.dirty || userName.touched)">
-                  Please enter the user name.
-                </div>
-              </div>
-              <div class="mb-3">
-                <label for="firstName" class="form-label">First Name:</label>
-                <input type="text" id="firstName" name="firstName" [(ngModel)]="adminPatch.firstName" #firstName="ngModel" class="form-control" required>
-                <div class="invalid-feedback" *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
-                  Please enter the first name.
-                </div>
-              </div>
-              <div class="mb-3">
-                <label for="lastName" class="form-label">Last Name:</label>
-                <input type="text" id="lastName" name="lastName" [(ngModel)]="adminPatch.lastName" #lastName="ngModel" class="form-control" required>
-                <div class="invalid-feedback" *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
-                  Please enter the last name.
-                </div>
-              </div>
-              <div class="mb-3">
-                <label for="email" class="form-label">Email:</label>
-                <input type="email" id="email" name="email" [(ngModel)]="adminPatch.email" #email="ngModel" class="form-control" required readonly>
-                <div class="invalid-feedback" *ngIf="email.invalid && (email.dirty || email.touched)">
-                  Please enter a valid email.
-                </div>
-              </div>
-              <div class="mb-3">
-                <label for="currentPassword" class="form-label">Current Password:</label>
-                <input type="password" id="currentPassword" name="currentPassword" [(ngModel)]="adminPatch.currentPassword" #currentPassword="ngModel" class="form-control" required>
-                <div class="invalid-feedback" *ngIf="currentPassword.invalid && (currentPassword.dirty || currentPassword.touched)">
-                  Please enter the current password.
-                </div>
-              </div>
-              <div class="mb-3">
-                <label for="newPassword" class="form-label">New Password:</label>
-                <input type="password" id="newPassword" name="newPassword" [(ngModel)]="adminPatch.newPassword" #newPassword="ngModel" class="form-control" required>
-                <div class="invalid-feedback" *ngIf="newPassword.invalid && (newPassword.dirty || newPassword.touched)">
-                  Please enter a new password.
-                </div>
-              </div>
-              <div class="mb-3">
-                <label for="gender" class="form-label">Gender:</label>
-                <select id="gender" name="gender" [(ngModel)]="adminPatch.gender" #gender="ngModel" class="form-control" required>
-                  <option value="" disabled>Select Gender</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
-                <div class="invalid-feedback" *ngIf="gender.invalid && (gender.dirty || gender.touched)">
-                  Please select a gender.
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row justify-content-center">
-            <div class="col-md-3">
-              <button type="submit" [disabled]="adminForm.invalid" class="btn btn-outline-primary m-2">Update Admin</button>
-            </div>
-            <div class="col-md-3">
-              <a class="btn btn-outline-danger m-2" (click)="back()">Back</a>
-            </div>
-          </div>
-        </form>
+<form (ngSubmit)="onSubmit()" #adminForm="ngForm" class="needs-validation" novalidate>
+
+  <!-- User Name -->
+  <div class="mb-3">
+    <label for="userName" class="form-label">User Name:</label>
+    <input type="text" id="userName" name="userName" [(ngModel)]="adminPatch.userName" #userName="ngModel" class="form-control" required minlength="5" maxlength="20">
+    <div class=" text-danger" *ngIf="userName.invalid && (userName.dirty || userName.touched)">
+      <span *ngIf="userName.errors?.['required']">
+        User name is required.
+      </span>
+      <span *ngIf="userName.errors?.['minlength']">
+        User name must be at least 5 characters long.
+      </span>
+      <span *ngIf="userName.errors?.['maxlength']">
+        User name cannot exceed 20 characters.
+      </span>
+    </div>
+  </div>
+
+  <!-- First Name -->
+  <div class="mb-3">
+    <label for="firstName" class="form-label">First Name:</label>
+    <input type="text" id="firstName" name="firstName" [(ngModel)]="adminPatch.firstName" #firstName="ngModel" class="form-control" required>
+    <div class=" text-danger" *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+      <span *ngIf="firstName.errors?.['required']">
+        First name is required.
+      </span>
+    </div>
+  </div>
+
+  <!-- Last Name -->
+  <div class="mb-3">
+    <label for="lastName" class="form-label">Last Name:</label>
+    <input type="text" id="lastName" name="lastName" [(ngModel)]="adminPatch.lastName" #lastName="ngModel" class="form-control" required>
+    <div class="text-danger" *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+      <span *ngIf="lastName.errors?.['required']">
+        Last name is required.
+      </span>
+    </div>
+  </div>
+
+  <!-- Email -->
+  <div class="mb-3">
+    <label for="email" class="form-label">Email:</label>
+    <input type="email" id="email" name="email" [(ngModel)]="adminPatch.email" #email="ngModel" class="form-control" required readonly>
+    <div class=" text-danger" *ngIf="email.invalid && (email.dirty || userName.touched)">
+      <span *ngIf="email.errors?.['required']">
+        Email is required.
+      </span>
+      <span *ngIf="email.errors?.['email']">
+        Please enter a valid email address.
+      </span>
+    </div>
+  </div>
+
+  <!-- Current Password -->
+  <div class="mb-3">
+    <label for="currentPassword" class="form-label">Current Password:</label>
+    <input type="password" id="currentPassword" name="currentPassword" [(ngModel)]="adminPatch.currentPassword" #currentPassword="ngModel" class="form-control" required minlength="8">
+    <div class=" text-danger" *ngIf="currentPassword.invalid && (currentPassword.dirty || currentPassword.touched)">
+      <span *ngIf="currentPassword.errors?.['required']">
+        Current password is required.
+      </span>
+      <span *ngIf="currentPassword.errors?.['minlength']">
+        Current password must be at least 8 characters long.
+      </span>
+    </div>
+  </div>
+
+  <!-- New Password -->
+  <div class="mb-3">
+    <label for="newPassword" class="form-label">New Password:</label>
+    <input type="password" id="newPassword" name="newPassword" [(ngModel)]="adminPatch.newPassword" #newPassword="ngModel" class="form-control" required minlength="8">
+    <div class=" text-danger" *ngIf="newPassword.invalid && (newPassword.dirty || newPassword.touched)">
+      <div *ngIf="newPassword.errors?.['required']">
+        Please enter a new password.
+      </div>
+      <div *ngIf="newPassword.errors?.['minlength']">
+        Password must be at least 8 characters long.
       </div>
     </div>
   </div>
-  
+
+  <!-- Gender -->
+  <div class="mb-3">
+    <label for="gender" class="form-label">Gender:</label>
+    <select id="gender" name="gender" [(ngModel)]="adminPatch.gender" #gender="ngModel" class="form-control" required>
+      <option value="" disabled>Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+    <div class=" text-danger" *ngIf="gender.invalid && (gender.dirty || gender.touched)">
+      Please select a gender.
+    </div>
+  </div>
+
+  <!-- Submit and Back Buttons -->
+  <div class="row justify-content-center">
+    <div class="col-md-3">
+      <button type="submit" [disabled]="adminForm.invalid" class="btn btn-outline-primary m-2">Update Admin</button>
+    </div>
+    <div class="col-md-3">
+      <a class="btn btn-outline-danger m-2" (click)="back()">Back</a>
+    </div>
+  </div>
+</form>

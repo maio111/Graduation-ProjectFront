@@ -5,6 +5,10 @@ import { IWishlistHotelDTO } from '../../models/Hotel/IWishlistHotelDTO';
 import { AuthenticationService } from '../../Services/Authentication/authentication.service';
 import { IHotelPhotoF } from '../../models/Hotel/IHotelPhotoF';
 import { environment } from '../../../environments/environment';
+import { Router } from '@angular/router';
+import { IFilteredHotel } from '../../models/Hotel/IFilteredHotel';
+import { Ihotel } from '../../models/Hotel/Ihotel';
+import { HotelService } from '../../Services/hotel.service';
 
 @Component({
   selector: 'app-wishlist',
@@ -15,14 +19,17 @@ import { environment } from '../../../environments/environment';
 })
 export class WishlistComponent {
   wishListHotels: IWishlistHotelDTO[] = [];
+  HotelDB: Ihotel = {} as Ihotel
   userId: number = 0; // Initialize with appropriate default value
   baseUrl: string = environment.baseUrl;
+  filteredHotel: IFilteredHotel = {} as IFilteredHotel;
   constructor(private wishListHotelService: WishListHotelService
-    ,private auth:AuthenticationService
+    ,private auth:AuthenticationService,
+    private router: Router,
+    private hotelService : HotelService 
   ) { }
 
   ngOnInit(): void {
-    
     const token = this.auth.getToken();
     const decoded = this.auth.decodeToken(token);
     this.userId = this.auth.getUserIdFromToken(decoded);
@@ -60,4 +67,37 @@ export class WishlistComponent {
   getMainPhoto(hotel: IWishlistHotelDTO): IHotelPhotoF | undefined {
     return hotel.photos?.find((photo: IHotelPhotoF) => photo.category === 1);
   }
+
+  // goHotelDetails(hotel: IWishlistHotelDTO): void {
+  //   this.hotelService.getHotelById(hotel.id).subscribe(
+  //     (res: any) => {
+  //       this.HotelDB = res.data;
+  //       console.log(this.HotelDB)
+  //       // Map IHotel to IFilteredHotel
+  //       this.filteredHotel = {
+  //         id: this.HotelDB.id,
+  //         name: this.HotelDB.name,
+  //         description: this.HotelDB.description,
+  //         rating: undefined, // Ensure rating is properly assigned
+  //         cityName: '', // Assign cityName if available
+  //         price: undefined, // Assign price if available
+  //         longitude: this.HotelDB.longitude,
+  //         latitude: this.HotelDB.latitude,
+  //         photos: [], // Populate photos array with proper data
+  //         rooms: [], // Populate rooms array with proper data
+  //         features: [] // Populate features array with proper data
+  //       };
+  //       // Navigate to hotel details with filteredHotel as query parameter
+  //       this.router.navigate(['hoteldetails'], {
+  //         queryParams: {
+  //           filterHotel: encodeURIComponent(JSON.stringify(this.filteredHotel)),
+  //         }
+  //       });debugger
+  //     },
+  //     error => {
+  //       console.error('Error fetching hotel:', error);
+  //       // Handle error as needed
+  //     }
+  //   );
+  // }
 }
