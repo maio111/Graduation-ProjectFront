@@ -65,16 +65,9 @@ export class HoteldetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private reviewService: ReviewService,
-<<<<<<< HEAD
-    private auth: AuthenticationService
-  ) {
-
-   }
-=======
     private auth: AuthenticationService,
     private wishListService: WishListHotelService,
   ) { }
->>>>>>> 600b3b8d6aba3dbbb17428ce247061c65ea35180
 
 
   
@@ -188,8 +181,6 @@ export class HoteldetailsComponent implements OnInit {
         error: err => console.error(err)
       });
     }
-
-   
   }
 
 }
