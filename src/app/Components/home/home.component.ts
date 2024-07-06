@@ -15,12 +15,10 @@ import { CommonModule } from '@angular/common';
 export class HomeComponent {
    constructor(private router:Router){}
    toHotel(){
-    this.router.navigate(['/hotelBooking']);debugger;
+    this.router.navigate(['/hotelBooking']);
    }
    toCar(){
-    this.router.navigate(['/car']); debugger
+    this.router.navigate(['/car']);
    }
-   navigateToRegister() {
-    this.router.navigate(['/register']) ;debugger 
-  }
+ 
 }

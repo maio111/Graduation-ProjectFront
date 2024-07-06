@@ -15,7 +15,7 @@
   box-sizing: border-box;
 }
 
-body {
+.body {
   font-family: "Montserrat", sans-serif;
   background: linear-gradient(
       to bottom,
