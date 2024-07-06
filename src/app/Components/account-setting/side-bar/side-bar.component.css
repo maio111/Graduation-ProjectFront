@@ -1,0 +1,49 @@
+.sidebar {
+    width: 300px;
+    height: 400px;
+   
+    background-color: #fff;
+
+    border-right: 1px solid #ddd;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    margin-top: 200px;
+    margin-right: 60px;
+    margin-left: 70px;
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar ul li {
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+  }
+  
+  .sidebar ul li a i {
+    margin-right: 10px; /* Adjust spacing between icon and text */
+    width: 20px; /* Set a fixed width for icons */
+    text-align: center; /* Center icon */
+  }
+  
+  .sidebar ul li.active {
+    background-color: #007bff; /* Blue color for active item */
+  }
+  
+  .sidebar ul li.active a {
+    color: #fff; /* White text color for active item */
+    font-weight: bold;
+  }

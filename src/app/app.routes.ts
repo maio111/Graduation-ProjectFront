@@ -47,6 +47,19 @@ import { HotelsInvoicesComponent } from './Components/admin-dashboard/hotels-inv
 import { CarRentalComponent } from './Components/car-rental/car-rental.component';
 import { CarSearchComponent } from './Components/car-search/car-search.component';
 import { CarDetailsComponent } from './Components/car-details/car-details.component';
+import { WishlistComponent } from './Components/wishlist/wishlist.component';
+import { AccountSettingComponent } from './Components/account-setting/account-setting.component';
+import { SideBarComponent } from './Components/account-setting/side-bar/side-bar.component';
+import { PersonalDetailsComponent } from './Components/account-setting/personal-details/personal-details.component';
+import { PreferencesComponent } from './Components/account-setting/preferences/preferences.component';
+import { SecurityComponent } from './Components/account-setting/security/security.component';
+import { PrivacyComponent } from './Components/account-setting/privacy/privacy.component';
+import { CaragencyComponent } from './Components/admin-dashboard/carAgency-dashboard/caragency/caragency.component';
+import { EditcaragencyComponent } from './Components/admin-dashboard/carAgency-dashboard/edit/editcaragency/editcaragency.component';
+import { AddcaragencyComponent } from './Components/admin-dashboard/carAgency-dashboard/caragency/addcaragency/addcaragency.component';
+import { CarComponent } from './Components/admin-dashboard/car-dashboard/car/car.component';
+import { addCarComponent } from './Components/admin-dashboard/car-dashboard/addcar/car/addcar.component';
+import { EditcarComponent } from './Components/admin-dashboard/car-dashboard/editcar/editcar/editcar.component';
 import { HomeComponent } from './Components/home/home.component';
 
 export const routes: Routes = [
@@ -65,6 +78,13 @@ export const routes: Routes = [
     { path: 'about-us', component: AboutUsComponent },
     { path: 'confirm-email', component: ConfirmEmailComponent },
     { path: 'userBookingsView', component: UserBookingsViewComponent, canActivate: [userAuthGuard]},
+    { path: 'wishlist', component: WishlistComponent },
+    { path: 'account-settings', component: AccountSettingComponent },
+    { path: 'side-bar', component: SideBarComponent },
+    { path: 'personal-details', component: PersonalDetailsComponent },
+    { path: 'preferences', component: PreferencesComponent },
+    { path: 'security', component: SecurityComponent },
+    { path: 'privacy', component: PrivacyComponent },
     {
         path: 'dashboard',
         component: DashboardLayoutComponent,
@@ -100,6 +120,14 @@ export const routes: Routes = [
             { path: 'editFeatureGeneral/:Id', component: EditFeatureGeneralComponent },
             { path: 'hotelsBookingsDashboard', component: HotelBookingsComponent },
             { path: 'hotelInvoices', component: HotelsInvoicesComponent },
+            { path: 'caragency', component: CaragencyComponent },
+            { path: 'editcaragency/:id', component: EditcaragencyComponent},
+            { path: 'addcaragency', component: AddcaragencyComponent},
+            { path: 'car', component: CarComponent},
+            {path:'addcar', component:addCarComponent},
+            {path:'editcar/:id',component:EditcarComponent}
+
+
 
         ],
         canActivate: [adminAuthGuard]
