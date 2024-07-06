@@ -61,7 +61,7 @@
             <div class="review-list">
               <div class="list-group">
                 <div class="list-group-item d-flex align-items-start" *ngFor="let review of reviews">
-                  <img src="{{ review.photoUrl || defaultPhotoUrl }}" class="rounded-circle mr-3 imgReview" alt="Reviewer Image">
+                  <img [src]="review.photoUrl ? baseUrl + review.photoUrl : defaultPhotoUrl" class="rounded-circle mr-3 imgReview" alt="Reviewer Image">
                   <div>
                     <h6 class="mb-1">{{ review.userName }}</h6>
                     <p class="mb-1 pReview">{{ review.comment }}</p>
