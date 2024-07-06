@@ -576,3 +576,10 @@ nav {
  .autocomplete-list li:hover {
    background-color: #f0f0f0;
  }
+
+ .has-error .input__group input {
+  border-color: rgb(77, 195, 216);
+}
+.has-error .input__group label {
+  color:rgb(77, 195, 216);
+}

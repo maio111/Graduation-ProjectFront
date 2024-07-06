@@ -1,42 +1,128 @@
-/*======================
-    404 page
-=======================*/
-
-
-.page_404 {
-    padding: 40px 0;
-    background: #fff;
-    font-family: 'Arvo', serif;
+* {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
-.page_404 img {
+body {
+    padding: 0;
+    margin: 0;
+}
+
+#notfound {
+    position: relative;
+    height: 100vh;
+    overflow: hidden; /* Ensure overflow is hidden to prevent content spilling */
+}
+
+.back {
+    position: absolute;
     width: 100%;
+    height: 100%;
+    background-size: cover;
+    animation: fadeIn 1s ease forwards; /* Fade-in animation for the background */
 }
 
-.four_zero_four_bg {
+/* @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% {  }
+} */
 
-    background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
-    height: 400px;
-    background-position: center;
+#notfound .notfound-bg:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(4, 220, 239,);
+}
+
+#notfound .notfound {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0; /* Initial opacity for fade-in animation */
+    animation: slideIn 1s ease forwards 1s; /* Slide-in animation for the content */
+}
+
+@keyframes slideIn {
+    0% { transform: translate(-50%, -60%); opacity: 0; }
+    100% { transform: translate(-50%, -50%); opacity: 1; }
+}
+
+#notfound .notfound:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 600px;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0px 0px 0px 30px rgba(255, 255, 255, 0.7) inset;
+    z-index: -1;
+}
+
+.notfound {
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    padding: 30px;
+    line-height: 1.4;
+}
+
+.notfound .notfound-404 {
+    position: relative;
+    height: 200px;
+    opacity: 0; /* Initial opacity for fade-in animation */
+    animation: fadeInText 1s ease forwards 1s; /* Fade-in animation for the text */
+}
+
+@keyframes fadeInText {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.notfound .notfound-404 h1 {
+    font-family: 'Passion One', cursive;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 220px;
+    margin: 0;
+    color: #4cc8e0;
+    text-transform: uppercase;
+}
+
+.notfound h2 {
+    font-family: 'Muli', sans-serif;
+    font-size: 26px;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #222225;
+    margin-top: 26px;
+    margin-bottom: 20px;
+    opacity: 0; /* Initial opacity for fade-in animation */
+    animation: fadeInText 1s ease forwards 1s; /* Fade-in animation for the text */
 }
 
 
-.four_zero_four_bg h1 {
-    font-size: 80px;
-}
 
-.four_zero_four_bg h3 {
-    font-size: 80px;
-}
+@media only screen and (max-width: 480px) {
+    .notfound .notfound-404 {
+        height: 146px;
+    }
 
-.link_404 {
-    color: #fff !important;
-    padding: 10px 20px;
-    background: #39ac31;
-    margin: 20px 0;
-    display: inline-block;
-}
+    .notfound .notfound-404 h1 {
+        font-size: 140px;
+    }
 
-.contant_box_404 {
-    margin-top: -50px;
+    .notfound h2 {
+        font-size: 30px;
+    }
+}
+.btn.btn-info.b a{
+  color: #fff !important;
+  text-decoration: none;
+  
 }
