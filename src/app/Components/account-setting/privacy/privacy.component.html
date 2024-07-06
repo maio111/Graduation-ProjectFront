@@ -8,37 +8,93 @@
     <!-- Main Content -->
     <div class="col-md-9">
       <div class="container mt-4">
-        <h1>Privacy</h1>
+        <h1>Update Passport Details</h1>
         <hr>
-        
         <!-- Privacy Sections -->
         <div class="card mb-4">
-          <div class="card-body">
-            <h5 class="card-title"><i class="fas fa-user-shield"></i> Exercise your privacy rights</h5>
-            <p class="card-text">Control how your data is used.</p>
-            <a href="#" class="link-underline-light edit-link">Manage Privacy Settings</a>
+          <div class="container">
+            <form [formGroup]="passportUpdateForm" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-md-6 form-group mb-3">
+                  <label for="firstName">First Name</label>
+                  <input id="firstName" formControlName="firstName" type="text" class="form-control">
+                  <div
+                    *ngIf="passportUpdateForm.get('firstName')?.invalid && (passportUpdateForm.get('firstName')?.dirty || passportUpdateForm.get('firstName')?.touched)">
+                    <div *ngIf="passportUpdateForm.get('firstName')?.errors?.['maxlength']">
+                      First Name cannot be more than 50 characters.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 form-group mb-3">
+                  <label for="lastName">Last Name</label>
+                  <input id="lastName" formControlName="lastName" type="text" class="form-control">
+                  <div
+                    *ngIf="passportUpdateForm.get('lastName')?.invalid && (passportUpdateForm.get('lastName')?.dirty || passportUpdateForm.get('lastName')?.touched)">
+                    <div *ngIf="passportUpdateForm.get('lastName')?.errors?.['maxlength']">
+                      Last Name cannot be more than 50 characters.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 form-group mb-3">
+                  <label for="nationalId">National ID</label>
+                  <input id="nationalId" formControlName="nationalId" type="text" class="form-control">
+                  <div
+                    *ngIf="passportUpdateForm.get('nationalId')?.invalid && (passportUpdateForm.get('nationalId')?.dirty || passportUpdateForm.get('nationalId')?.touched)">
+                    <div *ngIf="passportUpdateForm.get('nationalId')?.errors?.['required']">
+                      National ID is required.
+                    </div>
+                    <div *ngIf="passportUpdateForm.get('nationalId')?.errors?.['minlength']">
+                      National ID must be at least 14 characters long.
+                    </div>
+                    <div *ngIf="passportUpdateForm.get('nationalId')?.errors?.['maxlength']">
+                      National ID cannot be more than 14 characters long.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 form-group mb-3">
+                  <label for="passportNumber">Passport Number</label>
+                  <input id="passportNumber" formControlName="passportNumber" type="text" class="form-control">
+                  <div
+                    *ngIf="passportUpdateForm.get('passportNumber')?.invalid && (passportUpdateForm.get('passportNumber')?.dirty || passportUpdateForm.get('passportNumber')?.touched)">
+                    <div *ngIf="passportUpdateForm.get('passportNumber')?.errors?.['required']">
+                      Passport Number is required.
+                    </div>
+                    <div *ngIf="passportUpdateForm.get('passportNumber')?.errors?.['maxlength']">
+                      Passport Number cannot be more than 20 characters long.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 form-group mb-3">
+                  <label for="issuingCountry">Issuing Country</label>
+                  <input id="issuingCountry" formControlName="issuingCountry" type="text" class="form-control">
+                  <div
+                    *ngIf="passportUpdateForm.get('issuingCountry')?.invalid && (passportUpdateForm.get('issuingCountry')?.dirty || passportUpdateForm.get('issuingCountry')?.touched)">
+                    <div *ngIf="passportUpdateForm.get('issuingCountry')?.errors?.['maxlength']">
+                      Issuing Country cannot be more than 100 characters.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 form-group mb-3">
+                  <label for="expiryDate">Expiry Date</label>
+                  <input id="expiryDate" formControlName="expiryDate" type="date" class="form-control">
+                  <div
+                    *ngIf="passportUpdateForm.get('expiryDate')?.invalid && (passportUpdateForm.get('expiryDate')?.dirty || passportUpdateForm.get('expiryDate')?.touched)">
+                    <div *ngIf="passportUpdateForm.get('expiryDate')?.errors?.['required']">
+                      Expiry Date is required.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="text-center mt-3">
+                <button type="submit" class="btn btn-primary">Update Passport Details</button>
+              </div>
+            </form>
           </div>
         </div>
-        
-        <!-- Additional Privacy Settings
-        <div class="card mb-4">
-          <div class="card-body">
-            <h5 class="card-title"><i class="fas fa-lock"></i> Privacy Setting 1</h5>
-            <p class="card-text">Description of Privacy Setting 1.</p>
-            <a href="#" class="link-underline-light edit-link">Manage Setting 1</a>
-          </div>
-        </div> -->
-        
-        <div class="card mb-4">
-          <div class="card-body">
-            <h5 class="card-title"><i class="fas fa-lock"></i> Location Information</h5>
-            <p class="card-text">Manage Your Location Information</p>
-            <a href="#" class="link-underline-light edit-link">Manage </a>
-          </div>
-        </div>
-        
-        <!-- Add more privacy settings as needed -->
-      
       </div>
     </div>
   </div>

@@ -13,13 +13,6 @@ import { RouterLink } from '@angular/router';
 export class SecurityComponent {
   sections = [
     {
-      title: 'Change Security Settings',
-      description: 'Modify your security preferences.',
-      route: 'change-settings',
-      name:'Reset Setting',
-      icon: 'fa-lock' // Example icon class from Font Awesome
-    },
-    {
       title: 'Secure Authentication',
       description: 'Set up two-factor authentication.',
       route: 'secure-authentication',

@@ -181,8 +181,6 @@ export class HoteldetailsComponent implements OnInit {
         error: err => console.error(err)
       });
     }
-
-   
   }
 
 }
