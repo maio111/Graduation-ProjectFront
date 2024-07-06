@@ -1,12 +1,25 @@
-
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <form (ngSubmit)="onSubmit()" #countryForm="ngForm" class="needs-validation" novalidate>
                 <div class="mb-3">
                     <label for="name" class="form-label">Country Name:</label>
-                    <input type="text" id="name" name="name" [(ngModel)]="country.name" class="form-control" required>
-                    <div class="invalid-feedback">Please enter the country name.</div>
+                    <input type="text" id="name" name="name" [(ngModel)]="country.name" #name="ngModel"
+                        class="form-control" required minlength="3" maxlength="50">
+                        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+                            <div *ngIf="name.errors?.['required']">
+                              A country name is required.
+                            </div>
+                            <div *ngIf="name.errors?.['minlength']" class="text-danger">
+                              Country names must be at least 3 characters long. You entered {{ name.value.length }} characters.
+                            </div>
+                            <div *ngIf="name.errors?.['maxlength']" class="text-danger">
+                              Country names cannot exceed 50 characters. You entered {{ name.value.length }} characters.
+                            </div>
+                            <div *ngIf="name.errors?.['invalidCountryName']" class="text-danger">
+                              Country names can only contain letters and spaces.
+                            </div>
+                          </div>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-2">

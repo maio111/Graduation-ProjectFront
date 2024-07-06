@@ -31,4 +31,7 @@ export class UserService {
     return this.httpclient.patch<any[]>(`${this.baseUrl}/api/Admin/UpdateAdmin/${id}`, user);
   }
 
+  updateUserInfo(id: number ,formData: FormData): Observable<any> {
+    return this.httpclient.put(`${this.baseUrl}/api/Account/UpdateUser/${id}`, formData);
+  }
 }

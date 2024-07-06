@@ -20,22 +20,16 @@ export class AccountSettingComponent {
       manage: 'personal-details'
     },
     {
-      icon: 'fa-cogs',
-      title: 'Preferences',
-      description: "Change your language, currency, and accessibility requirements.",
-      manage: 'preferences'
-    },
-    {
       icon: 'fa-shield-alt',
       title: 'Security',
       description: "Change your security settings, set up secure authentication, or delete your account.",
       manage: 'security'
     },
     {
-      icon: 'fa-user-secret',
-      title: 'Privacy',
+      icon: 'fas fa-user-secret',
+      title: 'Passport',
       description: "Exercise your privacy rights and control how your data is used.",
-      manage: 'privacy'
+      manage: 'Passport'
     }
   ];
 

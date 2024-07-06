@@ -1,4 +1,3 @@
-
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -8,15 +7,19 @@
                         <div class="mb-3">
                             <label for="capacity" class="form-label">Capacity:</label>
                             <input type="number" id="capacity" name="capacity" [(ngModel)]="room.capacity"
-                                class="form-control" required min="1" max="8">
-                            <div class="invalid-feedback">Please enter a valid Capacity.</div>
+                                class="form-control" required min="1" max="8" #capacity="ngModel">
+                            <div *ngIf="capacity.invalid && (capacity.dirty || capacity.touched)"
+                                class="invalid-feedback">Please enter a valid Capacity.</div>
                         </div>
                         <div class="mb-3">
                             <label for="view" class="form-label">View:</label>
-                            <select id="view" name="view" [(ngModel)]="room.view" class="form-control" class="form-select" required>
+                            <select id="view" name="view" [(ngModel)]="room.view" class="form-control" required
+                                #view="ngModel">
                                 <option *ngFor="let view of views" [value]="view.value">{{ view.label }}</option>
                             </select>
-                            <div class="invalid-feedback">Please select a valid view.</div>
+                            <div *ngIf="view.invalid && (view.dirty || view.touched)" ]>
+                                Please select a valid view.
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label for="roomType" class="form-label">Room Type:</label>
@@ -25,10 +28,12 @@
                                 <option *ngFor="let roomType of roomTypes" [value]="roomType.id">{{ roomType.name }}
                                 </option>
                             </select>
-                            <div *ngIf="roomType.invalid && roomType.touched" class="invalid-feedback">Please select a valid Room Type.</div>
+                            <div *ngIf="roomType.invalid && roomType.touched" class="invalid-feedback">Please
+                                select a valid Room Type.</div>
                         </div>
                         <div class="mb-3 form-check">
-                            <input type="checkbox" id="isBooked" name="isBooked" [(ngModel)]="room.isBooked" class="form-check-input">
+                            <input type="checkbox" id="isBooked" name="isBooked" [(ngModel)]="room.isBooked"
+                                class="form-check-input">
                             <label class="form-check-label" for="isBooked">Is Booked?</label>
                         </div>
                         <div class="mb-3 form-check">

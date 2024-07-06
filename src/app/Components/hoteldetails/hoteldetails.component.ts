@@ -18,6 +18,7 @@ import { ReviewService } from '../../Services/review.service';
 import { IDisplayHotelReviewDTO } from '../../models/Review/IDisplayHotelReviewDTO';
 import { AuthenticationService } from '../../Services/Authentication/authentication.service';
 import { IAddHotelReviewDTO } from '../../models/Review/IAddHotelReviewDTO';
+import { WishListHotelService } from '../../Services/wish-list-hotel.service';
 
 
 @Component({
@@ -38,6 +39,10 @@ export class HoteldetailsComponent implements OnInit {
   hotelCoordinates = { latitude: 0, longitude: 0 };
   booking!: CreateBookingDTO;
   newComment: string = '';
+
+  userId: number = 0;
+  isWishlist: boolean = false;
+
   getViewsValues = getViewsValues;
   getViewLabel = getViewLabel;
   featureIcons: { [key: string]: string } = {
@@ -60,10 +65,12 @@ export class HoteldetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private reviewService: ReviewService,
-    private auth: AuthenticationService
+    private auth: AuthenticationService,
+    private wishListService: WishListHotelService,
   ) { }
 
-  userId: number = 0;
+
+
   ngOnInit(): void {
     if (this.auth.getToken() != '') {
       const token = this.auth.getToken();
@@ -74,11 +81,15 @@ export class HoteldetailsComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       const filterHotelJson = params['filterHotel'];
       const filterParams = params['filterParams'];
+      const isInWishlist = params['isInWishlist'];
       if (filterHotelJson) {
         try {
           this.filteredHotel = JSON.parse(decodeURIComponent(filterHotelJson));
           this.hotelCoordinates.latitude = this.filteredHotel.latitude;
           this.hotelCoordinates.longitude = this.filteredHotel.longitude;
+
+          this.isWishlist = JSON.parse(decodeURIComponent(isInWishlist));
+
           this.filterParams = JSON.parse(decodeURIComponent(filterParams));
           console.log(this.filterParams);
           this.getHotelReviews(this.filteredHotel.id);
@@ -154,5 +165,21 @@ export class HoteldetailsComponent implements OnInit {
   }
   defaultPhotoUrl: string = 'https://www.seekpng.com/png/detail/966-9665493_my-profile-icon-blank-profile-image-circle.png';
 
-
+  toggleWishlist(hotel: IFilteredHotel): void {
+    if (this.isWishlist) {
+      this.wishListService.removeHotelFromWishList(this.userId, hotel.id).subscribe({
+        next: () => {
+          this.isWishlist = false;
+        },
+        error: (err: any) => console.error(err)
+      });
+    } else {
+      this.wishListService.addHotelToWishList(this.userId, hotel.id).subscribe({
+        next: () => {
+          this.isWishlist = true;
+        },
+        error: (err: any) => console.error(err)
+      });
+    }
+  }
 }

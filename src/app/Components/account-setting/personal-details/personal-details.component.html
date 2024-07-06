@@ -1,23 +1,84 @@
 <div class="main-content">
-    <app-side-bar></app-side-bar>
-    <div class="content-container">
-      <div class="content">
-        <h1>Personal details</h1>
-        <p>Update your info and find out how it's used.</p>
+  <app-side-bar></app-side-bar>
+  <div class="content-container">
+    <div class="content">
+      <h1>Personal details</h1>
+      <p>Update your info and find out how it's used.</p>
+      <form [formGroup]="userUpdateForm" (ngSubmit)="onSubmit()">
         <div class="details">
-          <div class="detail" *ngFor="let item of details">
-            <label><i [ngClass]="item.icon"></i> {{item.label}}</label>
-            <span>{{item.value}}</span>
-            <i *ngIf="item.isVerified" class="fas fa-check-circle verified-icon"></i>
-            
-            <a href="#">Edit</a>
+          <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="showSuccessAlert">
+            User updated successfully!
+            <button type="button" class="btn-close" aria-label="Close" (click)="closeAlert()"></button>
+          </div>
+
+          <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="showErrorAlert">
+            Error updating user. Please try again.
+            <button type="button" class="btn-close" aria-label="Close" (click)="closeAlert()"></button>
+          </div>
+          <div class="col-md-10 text-center">
+            <div class="photo-container" (mouseenter)="showInput()" (mouseleave)="hideInput()">
+              <img [src]="user.photoUrl ? baseUrl + user.photoUrl : 'assets/img/a.png'"
+                class="rounded-circle img-thumbnail img-review" alt="Reviewer Image">
+              <input id="photo" type="file" class="form-control-file" (change)="onFileChange($event)"
+                *ngIf="showFileInput">
+            </div>
+          </div>
+          <div class="row align-items-center mt-3"> <!-- Added margin top here -->
+            <div class="col-md-10">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="userName" class="form-label"><i class="fas fa-user"></i> User Name</label>
+                  <input readonly id="userName" formControlName="userName" type="text" class="form-control"
+                    [value]="userName" [disabled]="true">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="firstName" class="form-label"><i class="fas fa-user"></i> First Name</label>
+                  <input id="firstName" formControlName="firstName" type="text" class="form-control"
+                    [(ngModel)]="userData.firstName">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="lastName" class="form-label"><i class="fas fa-user"></i> Last Name</label>
+                  <input id="lastName" formControlName="lastName" type="text" class="form-control"
+                    [(ngModel)]="userData.lastName">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="email" class="form-label"><i class="fas fa-envelope"></i> Email</label>
+                  <input id="email" formControlName="email" type="email" class="form-control"
+                    [(ngModel)]="userData.email">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="phoneNumber" class="form-label"><i class="fas fa-phone"></i> Phone Number</label>
+                  <input id="phoneNumber" formControlName="phoneNumber" type="text" class="form-control"
+                    [(ngModel)]="userData.phoneNumber">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="gender" class="form-label"><i class="fas fa-venus-mars"></i> Gender</label>
+                  <select id="gender" formControlName="gender" class="form-select" [(ngModel)]="userData.gender">
+                    <option value="" disabled selected>Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="address" class="form-label"><i class="fas fa-home"></i> Address</label>
+                  <select id="address" formControlName="address" class="form-select" [(ngModel)]="userData.address">
+                    <option *ngFor="let city of cities" [value]="city.name">{{ city.name }}</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="birthDate" class="form-label"><i class="fas fa-calendar"></i> Birth Date</label>
+                  <input id="birthDate" formControlName="birthDate" type="date" class="form-control" [ngModel]="userData.birthDate" [value]="userData.birthDate | date">
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary">
+                    Update User
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   </div>
-  
-  <footer>
-    <!-- Your footer content here -->
-  </footer>
-  
+</div>

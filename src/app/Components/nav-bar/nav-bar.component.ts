@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthenticationService } from '../../Services/Authentication/authentication.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -12,14 +13,14 @@ import { CommonModule } from '@angular/common';
 })
 export class NavBarComponent {
   showDropdown: boolean = false; // Track dropdown visibility
-
-  constructor(private router: Router) { }
+  isAdmin: boolean = false;
+  constructor(private router: Router, private auth:AuthenticationService) { }
 
   ngOnInit(): void {
+    this.getRole()
   }
 
   isLoggedIn(): boolean {
-    // Implement your actual authentication check here
     return !!localStorage.getItem('token');
   }
 
@@ -35,8 +36,9 @@ export class NavBarComponent {
     this.router.navigate(['/register']);
   }
   logout(): void {
-    // Implement logout functionality here (clear token, redirect, etc.)
     localStorage.removeItem('token');
-    // Additional logic for logout like clearing other data or navigating to a specific page
+  }
+  getRole() {
+    this.isAdmin = this.auth.hasRole("ADMIN");
   }
 }

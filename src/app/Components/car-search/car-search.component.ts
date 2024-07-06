@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef ,ViewChild} from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CarRentalHeaderComponent } from "../car-rental-header/car-rental-header.component";
 
 @Component({
-    selector: 'app-car-search',
-    standalone: true,
-    templateUrl: './car-search.component.html',
-    styleUrl: './car-search.component.css',
-    imports: [CommonModule, FormsModule, CarRentalHeaderComponent]
+  selector: 'app-car-search',
+  standalone: true,
+  templateUrl: './car-search.component.html',
+  styleUrls: ['./car-search.component.css'],
+  imports: [CommonModule, FormsModule, CarRentalHeaderComponent]
 })
 export class CarSearchComponent {
   minPrice: number = 100;
@@ -60,6 +60,21 @@ export class CarSearchComponent {
   getProgressRight() {
     return ((5000 - this.maxPrice) / (5000 - 100)) * 100 + '%';
   }
+
+  validateMinPrice(): string | null {
+    if (this.minPrice < 100 || this.minPrice > this.maxPrice) {
+      return 'Minimum price should be at least 100 and less than or equal to the maximum price';
+    }
+    return null;
+  }
+
+  validateMaxPrice(): string | null {
+    if (this.maxPrice < this.minPrice || this.maxPrice > 5000) {
+      return 'Maximum price should be greater than or equal to the minimum price and less than or equal to 5000';
+    }
+    return null;
+  }
+
   cards = [
     {
       image: '../../../assets/img/ca2.jpg',

@@ -10,7 +10,7 @@
                         required #category="ngModel">
                         <option *ngFor="let cat of categories" [value]="cat">{{ getCategoryName(cat) }}</option>
                     </select>
-                    <div class="invalid-feedback" *ngIf="category.invalid && (category.dirty || category.touched)">
+                    <div class="text-danger" *ngIf="category.invalid && (category.dirty || category.touched)">
                         Please select a category.
                     </div>
                 </div>
