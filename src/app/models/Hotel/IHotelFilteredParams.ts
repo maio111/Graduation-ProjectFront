@@ -8,4 +8,5 @@ export interface IHotelFilteredParams {
     roomView?: number;
     roomCapacity?: number;
     featureIds?: number[];
+    
 }
