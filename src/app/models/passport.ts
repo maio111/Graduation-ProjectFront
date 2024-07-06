@@ -5,5 +5,5 @@ export interface Passport {
     nid: string;
     passportNumber: string;
     issuingCountry?: string;
-    expiryDate: string;
+    expiryDate: Date;
 }

@@ -24,7 +24,7 @@ export class HotelBookingsComponent implements OnInit {
     roomNumber: undefined,
     userName: '',
     price: undefined,
-    status: 0
+    status: 1
   };
   bookingStatuses!: { label: string, value: number }[];
 
@@ -52,9 +52,11 @@ export class HotelBookingsComponent implements OnInit {
   }
 
   isFormValid(): boolean {
-    return !!this.filter.hotelName && !!this.filter.checkIn && !!this.filter.checkOut &&
-           this.filter.roomNumber !== null && this.filter.roomNumber !== undefined && 
-           !!this.filter.userName && this.filter.price !== null && this.filter.price !== undefined &&
-           this.filter.price >= 0 && this.filter.status !== null && this.filter.status !== undefined;
+    //   return !!this.filter.hotelName && !!this.filter.checkIn && !!this.filter.checkOut &&
+    //          this.filter.roomNumber !== null && this.filter.roomNumber !== undefined && 
+    //          !!this.filter.userName && this.filter.price !== null && this.filter.price !== undefined &&
+    //          this.filter.price >= 0 && this.filter.status !== null && this.filter.status !== undefined;
+    // }
+    return true;
   }
 }

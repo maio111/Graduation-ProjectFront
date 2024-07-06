@@ -50,6 +50,7 @@ export class ReservationDetailsComponent implements OnInit{
       try {
         this.room = JSON.parse(decodeURIComponent(roomJson));
         this.filterParams = JSON.parse(decodeURIComponent(filterParamsJson));
+        console.log(this.filterParams)
         this.booking.checkInDate = new Date(this.filterParams.checkInDate);
         this.booking.checkOutDate = new Date(this.filterParams.checkOutDate);
         this.calculateTotalNights();
