@@ -20,6 +20,7 @@ import { AboutUsComponent } from './Components/about-us/about-us.component';
 import { CarRentalComponent } from './Components/car-rental/car-rental.component';
 import { CarSearchComponent } from './Components/car-search/car-search.component';
 import { CarDetailsComponent } from './Components/car-details/car-details.component';
+import { HomeComponent } from './Components/home/home.component';
 
 @Component({
   selector: 'app-root',
@@ -48,7 +49,7 @@ import { CarDetailsComponent } from './Components/car-details/car-details.compon
     NgxPaginationModule,
     HotelsearchComponent,
     HoteldetailsComponent,
-    HoteldetailsimgComponent,CarRentalComponent,CarSearchComponent,CarDetailsComponent]
+    HoteldetailsimgComponent,CarRentalComponent,CarSearchComponent,CarDetailsComponent,HomeComponent]
 })
 export class AppComponent {
   title = 'Booking Boo';

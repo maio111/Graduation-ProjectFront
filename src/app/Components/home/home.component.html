@@ -4,7 +4,6 @@ rel="stylesheet"
 />
 <body>
     <div class="container">
-    <app-nav-bar></app-nav-bar>
       <div class="destination__container">
         <div class="socials">
           <span><i class="ri-twitter-fill"></i></span>
@@ -20,24 +19,18 @@ rel="stylesheet"
             <br />
             <br/><span>DESTINATION</span></h1>
           <p>
-            It encourages exploration of unfamiliar territories, embracing
-            diverse cultures and landscapes, while pursuing the desired
-            destination that captivates the heart and ignites a sense of wonder.
+            Now you can explore your desired destination that captivates the heart and ignites a sense of wonder and now you can go  whereever you want with any car you can choose
           </p>
-          <button class="btn">BOOK NOW</button>
         </div>
         <div class="destination__grid">
           <div class="destination__card">
-            <img src="../../../assets/img/login1.jpg" alt="destination" />
-              <button class="btngird">Hotels</button>
+            <img src="../../../assets/img/hotel4.jpg" alt="destination" />
+              <button class="btngird"><a (click)="toHotel();"></a>Hotels</button>
           </div>
+
           <div class="destination__card">
-            <img src="../../../assets/img/plan2.jpg" alt="destination" />
-              <button class="btngird">Flights</button>
-          </div>
-          <div class="destination__card">
-            <img src="../../../assets/img/home3.jpg" alt="destination" />
-              <button class="btngird">Cars </button>
+            <img src="../../../assets/img/car7.jpg" alt="destination" />
+              <button class="btngird" ><a (click)="toCar();"></a>Cars </button>
           </div>
         </div>
       </div>

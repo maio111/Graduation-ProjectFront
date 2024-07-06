@@ -47,9 +47,11 @@ import { HotelsInvoicesComponent } from './Components/admin-dashboard/hotels-inv
 import { CarRentalComponent } from './Components/car-rental/car-rental.component';
 import { CarSearchComponent } from './Components/car-search/car-search.component';
 import { CarDetailsComponent } from './Components/car-details/car-details.component';
+import { HomeComponent } from './Components/home/home.component';
 
 export const routes: Routes = [
-    { path: '', component: HotelBookingComponent }, 
+    { path: '', component: HotelBookingComponent },
+    {path:'home',component:HomeComponent} ,
     { path:'hotelBooking',component:HotelBookingComponent},
     {path:'car',component:CarRentalComponent},
     {path:'filterCar',component:CarSearchComponent},
