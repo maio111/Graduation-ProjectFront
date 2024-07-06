@@ -277,4 +277,8 @@
       display: none;
     }
   }
+  .error-message {
+    color: red;
+    font-size: 0.9em;
+  }
   
