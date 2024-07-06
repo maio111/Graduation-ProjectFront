@@ -35,9 +35,12 @@ export class HotelsearchComponent implements OnInit {
   maxPriceVal: number = 0;
   selectedFeatureIds: number[] = [];
   baseUrl: string = environment.baseUrl;
+  hotelIds: number[] = [];
+  isWishlisted: boolean[] = [];
+
 
   userId : number=0;
-  isWashlist : boolean = false
+  // isWashlist : boolean = false
 
   constructor(private route: ActivatedRoute,
     private roomTypeService: RoomTypeService,
@@ -55,7 +58,8 @@ export class HotelsearchComponent implements OnInit {
     this.getRoomTypes();
     this.getAllFeatures();
     this.views = getViewsValues();
-
+    
+    
 
     this.route.queryParams.subscribe(params => {
       const hotelsJson = params['filteredHotels'];
@@ -70,6 +74,10 @@ export class HotelsearchComponent implements OnInit {
         }
       }
     });
+
+    this.hotelIds = this.filteredHotels.map(hotel => hotel.id);
+    this.checkHotelsInUserWishList();
+    console.log(this.isWishlisted)
   }
 
   minPrice: number = 100;
@@ -88,7 +96,9 @@ export class HotelsearchComponent implements OnInit {
     this.priceMin.nativeElement.addEventListener('input', () => this.updateInputs());
     this.priceMax.nativeElement.addEventListener('input', () => this.updateInputs());
     this.updateSlider();
+    
   }
+  
 
   updateSlider(): void {
     let minVal = Number(this.rangeMin.nativeElement.value);
@@ -143,22 +153,26 @@ export class HotelsearchComponent implements OnInit {
     this.range.nativeElement.style.right = `${rightPercentage}%`;
   }
 
-  toggleWishlist(hotel: IFilteredHotel): void {
-    if (this.isWashlist) {
+  toggleWishlist(hotel: IFilteredHotel, i : number ): void {
+
+
+    if (this.isWishlisted[i]) {
       this.wishListService.removeHotelFromWishList(this.userId, hotel.id).subscribe({
         next: () => {
-          this.isWashlist = false;
+          this.isWishlisted[i] = false;
         },
         error: err => console.error(err)
       });
     } else {
       this.wishListService.addHotelToWishList(this.userId, hotel.id).subscribe({
         next: () => {
-          this.isWashlist = true;
+          this.isWishlisted[i] = true;
         },
         error: err => console.error(err)
       });
     }
+
+    
   }
 
   getRoomTypes() {
@@ -182,6 +196,8 @@ export class HotelsearchComponent implements OnInit {
     this.filterParams.maxPrice = this.maxPriceVal;
     this.filterParams.roomTypeId = this.selectedRoomTypeId;
     this.filterParams.featureIds = this.selectedFeatureIds;
+    
+
     console.log(this.filterParams)
     this.hotelService.getFilteredHotels(this.filterParams).subscribe({
       next: (res) => {
@@ -227,14 +243,26 @@ export class HotelsearchComponent implements OnInit {
     return hotel.photos.find((photo: IHotelPhotoF) => photo.category === 1);
   }
 
-  goHotelDetails(hotel: IFilteredHotel) {
+  goHotelDetails(hotel: IFilteredHotel,isInWishlist : boolean) {
+
     this.router.navigate(['hoteldetails'],
       {
         queryParams: {
           filterHotel: encodeURIComponent(JSON.stringify(hotel)),
-          filterParams: encodeURIComponent(JSON.stringify(this.filterParams))
+          filterParams: encodeURIComponent(JSON.stringify(this.filterParams)),
+          isInWishlist: encodeURIComponent(JSON.stringify(isInWishlist))
         }
       })
+  }
+
+  checkHotelsInUserWishList() {
+    this.wishListService.checkHotelsInUserWishList(this.userId, this.hotelIds)
+      .subscribe(response => {
+        this.isWishlisted = response.data;
+        console.log('Check results:', this.isWishlisted);
+      }, error => {
+        console.error('Error checking hotels in user wishlist:', error);
+      });
   }
 }
 
