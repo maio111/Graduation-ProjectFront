@@ -12,9 +12,8 @@ import { RouterLink } from '@angular/router';
 export class SideBarComponent {
   menuItems = [
     { icon: 'fa-user', label: ' Personal details', route: '/personal-details' },
-    { icon: 'fa-sliders-h', label: ' Preferences', route: '/preferences' },
     { icon: 'fa-lock', label: ' Security', route: '/security' },
-    { icon: 'fa-user-shield', label: ' Privacy', route: '/privacy' }
+    { icon: 'fas fa-user-secret', label: ' Passport', route: '/privacy' }
   ];
 
   activeItem: any = null; // Initially no item is active

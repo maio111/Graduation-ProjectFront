@@ -61,7 +61,9 @@ export class HoteldetailsComponent implements OnInit {
     private router: Router,
     private reviewService: ReviewService,
     private auth: AuthenticationService
-  ) { }
+  ) {
+
+   }
 
   userId: number = 0;
   ngOnInit(): void {
