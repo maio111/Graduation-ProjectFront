@@ -6,7 +6,7 @@
         <div class="price-container">
           <p class="price">Starts From {{filteredHotel.price}}/Pesron</p>
           <div class="con-like">
-            <input class="like" type="checkbox" title="like">
+            <input class="like" type="checkbox" title="like" [checked]="isWishlist" (change)="toggleWishlist(filteredHotel)">
             <div class="checkmark">
               <svg xmlns="http://www.w3.org/2000/svg" class="outline" viewBox="0 0 24 24">
                 <path
@@ -54,14 +54,16 @@
           </div>
         </section>
       </div>
-      <div class="col-3">
+      <div class="col-3 re">
         <div class="col-md-3 reviewSection">
           <div class="col-md-12">
             <h5 class="mb-4">Popular Reviews</h5>
             <div class="review-list">
               <div class="list-group">
                 <div class="list-group-item d-flex align-items-start" *ngFor="let review of reviews">
-                  <img src="{{ review.photoUrl || defaultPhotoUrl }}" class="rounded-circle mr-3 imgReview" alt="Reviewer Image">
+
+                  <img [src]="review.photoUrl ? baseUrl + review.photoUrl : defaultPhotoUrl" class="rounded-circle mr-3 imgReview" alt="Reviewer Image">
+
                   <div>
                     <h6 class="mb-1">{{ review.userName }}</h6>
                     <p class="mb-1 pReview">{{ review.comment }}</p>
@@ -102,10 +104,10 @@
             <div class="col col-4"><i class="fa-solid fa-calendar-alt"></i> Reservation</div>
           </li>
           <li class="table-row" *ngFor="let room of filteredHotel.rooms">
-            <div class="col col-1" data-label="Job Id">{{ room.capacity }}</div>
-            <div class="col col-2" data-label="Customer Name">{{ getViewLabel(room.view) }}</div>
-            <div class="col col-3" data-label="Amount">{{ room.typeName }}</div>
-            <div class="col col-4" data-label="Payment Status">${{ room.pricePerNight }}</div>
+            <div class="col col-1" data-label="capacity">{{ room.capacity }}</div>
+            <div class="col col-2" data-label="view">{{ getViewLabel(room.view) }}</div>
+            <div class="col col-3" data-label="Room Type">{{ room.typeName }}</div>
+            <div class="col col-4" data-label="Price">${{ room.pricePerNight }}</div>
             <div><button class="check-dates" (click)="createBooking(room)">Reserve</button></div>
           </li>
         </ul>

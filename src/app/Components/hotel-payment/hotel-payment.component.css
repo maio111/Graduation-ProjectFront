@@ -1,0 +1,30 @@
+.card {
+    border: none;
+    opacity: 0.8;
+  }
+
+  .card-header {
+    background-color: #0c4141;
+    color: #fff;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .card-body {
+    font-size: 1.2rem;
+  }
+
+  .payment-method-toggle .form-check-label {
+    font-size: 1rem;
+  }
+
+  .btn-primary {
+    background-color: #0c4141;
+    border-color: #339183;
+    font-size: 1.5rem;
+  }
+
+  .btn-primary:hover {
+    background-color: #0c4141;
+    border-color: #339183;
+  }

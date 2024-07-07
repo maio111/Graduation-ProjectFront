@@ -1,100 +1,71 @@
-<app-car-rental-header></app-car-rental-header>
+<app-car-rental-header [parmas]="filterParams"></app-car-rental-header>
 <div class="container">
-    <div class="sidebar">
-        <header>
-          <h2>Price Range (per night)</h2>
-          <p>Use slider or enter min and max price</p>
-        </header>
-        <div class="price-input">
-          <div class="field">
-            <span>Min</span>
-            <input type="number" class="input-min" [(ngModel)]="minPrice" (input)="updateInputs()">
-          </div>
-          <div class="separator">-</div>
-          <div class="field">
-            <span>Max</span>
-            <input type="number" class="input-max" [(ngModel)]="maxPrice" (input)="updateInputs()">
-          </div>
-        </div>
-        <div class="slider">
-          <div class="progress" [ngStyle]="{ left: getProgressLeft(), right: getProgressRight() }"></div>
-        </div>
-        <div class="range-input">
-          <input type="range" class="range-min" min="100" max="5000" [(ngModel)]="minPrice" (input)="updateSlider()">
-          <input type="range" class="range-max" min="100" max="5000" [(ngModel)]="maxPrice" (input)="updateSlider()">
-        </div>
-      <br><br>
-      <h2>Popular features</h2>
-      <div class="filters">
-        <label for="roomType" class="form-label">Room Type:</label>
-        <select id="roomType" name="roomType"
-        class="form-select" required >
-          <option >bndbnbf</option>
-          <option >bndbnbf</option>
-          <option >bndbnbf</option>
-          
-        </select>
-      </div><br>
-      <div class="filters">
-        <label for="View" class="form-label">Views:</label>
-        <select id="View" name="View"  class="form-select" required
-          >
-          <option >fdfdfd</option>
-          <option >fdfdfd</option>
-        
-        </select>
-      </div><br>
-      <div class="filters">
-        <label class="form-label head">Features:</label>
-        <div  class="form-check">
-          <input type="checkbox" id="feature" >
-          <label for="feature" class="form-check-label child">mnm</label>
-        </div>
-        <div  class="form-check">
-          <input type="checkbox" id="feature" >
-          <label for="feature" class="form-check-label child">mnm</label>
-        </div>
+  <div class="sidebar">
+    <header>
+      <h2>Price Range (per day)</h2>
+      <p>Use slider or enter min and max price</p>
+    </header>
+    <div class="price-input">
+      <div class="field">
+        <span>Min</span>
+        <input type="number" class="input-min" [(ngModel)]="minPrice" (input)="updateInputs()"
+          (change)="updateFilteredCars()" #priceMin>
+      </div>
+      <div class="separator">-</div>
+      <div class="field">
+        <span>Max</span>
+        <input type="number" class="input-max" [(ngModel)]="maxPrice" (input)="updateInputs()"
+          (change)="updateFilteredCars()" #priceMax>
       </div>
     </div>
-    <div class="main-content">
-      <div *ngFor="let card of cards" class="hotel-card">
-        <div  class="mainPhoto">
-          <img [src]="card.image">
-        </div>
-        <div class="hotel-info">
-          <h3>{{ card.name }}</h3>
-          <p class="city">sohag</p>
-          <p class="rating">Rating: <span>####</span></p>
-          <p class="comfort">Description: <span>{{ card.description }}</span></p>
-          <div class="price-container">
-            <span class="price">Start from {{ card.price }}</span>
-            <button >See availability</button>
-          </div>
-        </div>
-        <div class="con-like" >
-          <input class="like" type="checkbox" title="like">
-          <div class="checkmark">
-            <svg xmlns="http://www.w3.org/2000/svg" class="outline" viewBox="0 0 24 24">
-              <path
-                d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z">
-              </path>
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" class="filled" viewBox="0 0 24 24">
-              <path
-                d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z">
-              </path>
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" height="100" width="100" class="celebrate">
-              <polygon class="poly" points="10,10 20,20"></polygon>
-              <polygon class="poly" points="10,50 20,50"></polygon>
-              <polygon class="poly" points="20,80 30,70"></polygon>
-              <polygon class="poly" points="90,10 80,20"></polygon>
-              <polygon class="poly" points="90,50 80,50"></polygon>
-              <polygon class="poly" points="80,80 70,70"></polygon>
-            </svg>
-          </div>
-        </div>
+    <div class="slider">
+      <div class="progress" #range></div>
+    </div>
+    <div class="range-input">
+      <input type="range" class="range-min" min="100" max="5000" [(ngModel)]="minPrice" (input)="updateSlider()"
+        #rangeMin (change)="updateFilteredCars()">
+      <input type="range" class="range-max" min="100 " max="5000" [(ngModel)]="maxPrice" (input)="updateSlider()"
+        #rangeMax (change)="updateFilteredCars()">
+    </div>
+    <br><br>
+    <h2>Filter by</h2>
+    <div class="filters">
+      <label for="GearType" class="form-label">Gear Type:</label>
+      <select id="GearType" name="GearType" [(ngModel)]="filterParams.gearType" class="form-select" required
+        (change)="updateFilteredCars()">
+        <option *ngFor="let type of gearTypes" [value]="type.value">{{ type.label }}
+        </option>
+      </select>
+    </div><br>
+    <div class="filters">
+      <label for="ModelOfYear" class="form-label">Model of Year:</label>
+      <select id="ModelOfYear" name="ModelOfYear" [(ngModel)]="filterParams.modelOfYear" class="form-select" required
+        (change)="updateFilteredCars()">
+        <option *ngFor="let year of modelYears" [value]="year">{{ year }}
+        </option>
+      </select>
+    </div><br>
+    <div class="filters">
+      <label for="Agency" class="form-label">Agency:</label>
+      <select id="Agency" name="Agency" [(ngModel)]="filterParams.agencyId" class="form-select" required
+        (change)="updateFilteredCars()">
+        <option *ngFor="let agency of agencies" [value]="agency.id">{{ agency.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="main-content">
+    <div class="car-card" *ngFor="let car of filteredCars, let i = index">
+      <div *ngIf="getMainPhoto(car) as mainPhoto">
+        <img [src]="baseUrl + mainPhoto.photoUrl" [alt]="car.description">
+      </div>
+      <div class="car-info">
+        <h3>{{ car.description }} </h3>
+        <p class="agency">{{ car.agencyName }}</p>
+        <p class="price">Price per day: <span>{{ car.rentPrice }}</span></p>
+        <p class="model-year">Model Year: <span>{{ car.modelOfYear }}</span></p>
+        <button (click)="goCarDetails(car)">See details</button>
       </div>
     </div>
   </div>
-  
+</div>

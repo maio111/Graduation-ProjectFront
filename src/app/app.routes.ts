@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { Routes ,RouterModule } from '@angular/router';
 import { HotelBookingComponent } from './Components/hotel-booking/hotel-booking.component';
 import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
 import { HotelsDashboardComponent } from './Components/admin-dashboard/hotels-dashboard/hotels-dashboard.component';
@@ -60,9 +60,14 @@ import { AddcaragencyComponent } from './Components/admin-dashboard/carAgency-da
 import { CarComponent } from './Components/admin-dashboard/car-dashboard/car/car.component';
 import { addCarComponent } from './Components/admin-dashboard/car-dashboard/addcar/car/addcar.component';
 import { EditcarComponent } from './Components/admin-dashboard/car-dashboard/editcar/editcar/editcar.component';
+import { HomeComponent } from './Components/home/home.component';
+import { CarRentsComponent } from './Components/admin-dashboard/car-rents/car-rents.component';
+import { UserRentalsViewComponent } from './Components/user-rents-view/user-rents-view.component';
+import { CarRentalInvoicesComponent } from './Components/admin-dashboard/car-rental-invoices/car-rental-invoices.component';
 
 export const routes: Routes = [
-    { path: '', component: HotelBookingComponent }, 
+    { path: '', component: HomeComponent },
+    {path:'home',component:HomeComponent} ,
     { path:'hotelBooking',component:HotelBookingComponent},
     {path:'car',component:CarRentalComponent},
     {path:'filterCar',component:CarSearchComponent},
@@ -83,6 +88,7 @@ export const routes: Routes = [
     { path: 'preferences', component: PreferencesComponent },
     { path: 'security', component: SecurityComponent },
     { path: 'privacy', component: PrivacyComponent },
+    { path: 'userRentsView', component: UserRentalsViewComponent, canActivate: [userAuthGuard]},
     {
         path: 'dashboard',
         component: DashboardLayoutComponent,
@@ -121,16 +127,22 @@ export const routes: Routes = [
             { path: 'caragency', component: CaragencyComponent },
             { path: 'editcaragency/:id', component: EditcaragencyComponent},
             { path: 'addcaragency', component: AddcaragencyComponent},
+
             { path: 'cars/:id', component: CarComponent},
             {path:'addcar/:id', component:addCarComponent},
             {path:'editcar/:id',component:EditcarComponent}
 
 
 
+            { path: 'car', component: CarComponent},
+            {path:'addcar', component:addCarComponent},
+            {path:'editcar/:id',component:EditcarComponent},
+            {path:'carrents',component:CarRentsComponent},
+            {path:'car-rental-invoices',component:CarRentalInvoicesComponent}
         ],
         canActivate: [adminAuthGuard]
     },
-    { path: 'hotelPayment', component: HotelPaymentComponent , canActivate: [userAuthGuard]},
+    { path: 'hotelPayment', component: HotelPaymentComponent },
     { path: '**', component: PageNotFoundComponent },
     { path: 'notFound', component: PageNotFoundComponent },
 ];

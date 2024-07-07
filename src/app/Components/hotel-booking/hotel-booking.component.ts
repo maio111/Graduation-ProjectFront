@@ -212,4 +212,29 @@ export class HotelBookingComponent {
       });
     }
   }
+  redirectToLonelyPlanet() {
+    window.location.href = 'https://www.lonelyplanet.com/articles/best-places-to-visit-in-japan';
+}
+redirectIndia()
+{
+  window.location.href= 'https://www.lonelyplanet.com/articles/guide-to-holi-festival-india';
+}
+redirectcrismas(){
+  window.location.href='https://timelesstravelsteps.com/fun-magical-christmas-highlights-in-london-top-72-things-to-do-in-london/'
+}
+redirectoKorea(){
+  window.location.href='https://koreandigest.substack.com/p/2024-summer-festivals-in-south-korea'
+}
+redirectoVetnamie(){
+  window.location.href='https://www.internationaltraveller.com/asia/vietnam/vietnam-airlines/'
+}
+seoul(){
+  window.location.href='https://www.thebrokebackpacker.com/best-places-to-visit-in-seoul/'
+}
+Maldives(){
+  window.location.href='https://www.lonelyplanet.com/articles/best-places-to-visit-in-maldives';
+}
+bali(){
+  window.location.href='https://www.touropia.com/best-places-to-visit-in-bali/';
+}
 }

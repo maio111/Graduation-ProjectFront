@@ -10,6 +10,7 @@ import { CityService } from '../../Services/city.service';
 import { ICity } from '../../models/City/ICity';
 import { NavBarComponent } from "../nav-bar/nav-bar.component";
 import { AuthenticationService } from '../../Services/Authentication/authentication.service';
+import { LoginDTO } from '../../models/Authentication/LoginDTO';
 
 
 
@@ -24,7 +25,6 @@ export class RegistrationComponent implements OnInit{
   cities: ICity[] = [] as ICity[];
   registrationForm: FormGroup;
   successMessage: string | null = null;
-
   constructor(
     private fb: FormBuilder,
     private registrationService: RegistrationService,
@@ -63,8 +63,9 @@ export class RegistrationComponent implements OnInit{
           this.successMessage = 'Registration successful!';
           setTimeout(() => {
             this.successMessage = null;
-           // Navigate to home after registration success
+            this.router.navigate([""]);
           }, 5000); // Navigate to home after 3 seconds
+          this.router.navigate(['/login']); 
         },
         error => {
           console.error(error);

@@ -1,30 +1,36 @@
 <ng-container>
-    <div class="row justify-content-center align-items-center g-2">
-        <div class="card bg-light mb-3" style="max-width: 40rem; margin-top: 50px;">
-            <div class="card-header">Booking Details</div>
-            <div class="card-body">
-                <h5 class="card-title">Booking Information</h5>
-                <p class="card-text"><strong>Booking Date:</strong> {{ bookingData.bookingDate| date:'medium' }}</p>
-                <p class="card-text"><strong>Status:</strong> {{ bookingData.status }}</p>
-                <p class="card-text"><strong>Total Price:</strong> ${{ bookingData.totalPrice }}</p>
-                <p class="card-text"><strong>Notes:</strong> {{ bookingData.notes }}</p>
-                <p class="card-text"><strong>Check-In Date:</strong> {{ bookingData.checkInDate| date:'medium' }}</p>
-                <p class="card-text"><strong>Check-Out Date:</strong> {{ bookingData.checkOutDate| date:'medium' }}</p>
-
-                <div class="payment-method-toggle mt-4">
-                    <label class="form-check-label me-3">
-                        <input type="radio" name="paymentMethod" value="cash" [(ngModel)]="paymentMethod"
-                            class="form-check-input me-1"> Cash
-                    </label>
-                    <label class="form-check-label">
-                        <input type="radio" name="paymentMethod" value="paypal" [(ngModel)]="paymentMethod"
-                            (click)="initializeBraintree()" class="form-check-input me-1"> PayPal
-                    </label>
-                </div>
-
-                <div class="dropin-container mt-4" *ngIf="paymentMethod === 'paypal'" id="dropin-container"></div>
-                <button class="btn btn-primary mt-4 w-100" (click)="submitPayment()">Reserve</button>
-            </div>
+  <div class="row justify-content-center align-items-center g-2" 
+  style="background-image: url('assets/img/13.jpg');  background-size: cover; background-position: center; padding: 50px 0;">
+      <div class="card bg-light mb-3" style="max-width: 40rem; margin-top: 50px;">
+        <div class="card-header">Booking Details</div>
+        <div class="card-body" >
+          <h5 class="card-title">Booking Information</h5>
+          <p class="card-text"><strong>Booking Date:</strong> {{ bookingData.bookingDate | date: 'medium' }}</p>
+          <p class="card-text"><strong>Status:</strong> {{ bookingData.status }}</p>
+          <p class="card-text"><strong>Total Price:</strong> ${{ bookingData.totalPrice }}</p>
+          <p class="card-text"><strong>Notes:</strong> {{ bookingData.notes }}</p>
+          <p class="card-text"><strong>Check-In Date:</strong> {{ bookingData.checkInDate | date: 'medium' }}</p>
+          <p class="card-text"><strong>Check-Out Date:</strong> {{ bookingData.checkOutDate | date: 'medium' }}</p>
+  
+          <div class="payment-method-toggle mt-4">
+            <label class="form-check-label me-3">
+              <input type="radio" name="paymentMethod" value="cash" [(ngModel)]="paymentMethod"
+                class="form-check-input me-1"> Cash
+            </label>
+            <label class="form-check-label">
+              <input type="radio" name="paymentMethod" value="paypal" [(ngModel)]="paymentMethod"
+                (click)="initializeBraintree()" class="form-check-input me-1"> PayPal
+            </label>
+          </div>
+  
+          <div *ngIf="paymentMethod === 'paypal'" class="dropin-container mt-4" id="dropin-container"></div>
+          
+          <!-- Add validation messages here -->
+          <div *ngIf="validationMessage" class="alert alert-danger mt-4">{{ validationMessage }}</div>
+  
+          <button class="btn btn-primary mt-4 w-100" (click)="submitPayment()">Reserve</button>
         </div>
+      </div>
     </div>
-</ng-container>
+  </ng-container>
+  

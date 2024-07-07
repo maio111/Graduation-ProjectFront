@@ -1,8 +1,9 @@
 export interface Passport {
-    fname: string;
-    lname: string;
+    id: number;
+    firstName?: string;
+    lastName?: string;
     nid: string;
     passportNumber: string;
-    issuingDate: Date;
+    issuingCountry?: string;
     expiryDate: Date;
 }
