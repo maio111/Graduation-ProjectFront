@@ -1,48 +1,58 @@
-<div class="container mt-5">
-    <h2 class="mb-4 text-center">Add New Car</h2>
-    <form (ngSubmit)="addCar()">
-      <div class="form-group">
-        <label for="modelOfYear">Model of Year</label>
-        <input type="number" class="form-control" id="modelOfYear" [(ngModel)]="car.modelOfYear" name="modelOfYear" required>
+<div class="container">
+  <h2 class="mb-4 text-center">Add New Car</h2>
+  <form (ngSubmit)="addCar()">
+    <div class="form-group mb-3">
+      <label for="brand">Brand</label>
+      <input type="text" class="form-control" id="brand" [(ngModel)]="car.brand" name="brand" required>
+    </div>
+    <div class="form-group mb-3">
+      <label for="modelOfYear">Model of Year</label>
+      <input type="number" class="form-control" id="modelOfYear" [(ngModel)]="car.modelOfYear" name="modelOfYear">
+    </div>
+    <div class="form-group mb-3">
+      <label for="rentPrice">Rent Price</label>
+      <input type="number" class="form-control" id="rentPrice" [(ngModel)]="car.rentPrice" name="rentPrice">
+    </div>
+    <div class="form-group mb-3">
+      <label for="availabilityStatus">Availability Status</label>
+      <select class="form-control" id="availabilityStatus" [(ngModel)]="car.availabilityStatus" name="availabilityStatus">
+        <option value="true">Available</option>
+        <option value="false">Not Available</option>
+      </select>
+    </div>
+    <div class="form-group mb-3">
+      <label for="plateNumber">Plate Number</label>
+      <input type="text" class="form-control" id="plateNumber" [(ngModel)]="car.plateNumber" name="plateNumber">
+    </div>
+    <div class="form-group mb-3">
+      <label for="description">Description</label>
+      <textarea class="form-control" id="description" [(ngModel)]="car.description" name="description"></textarea>
+    </div>
+    <div class="form-group mb-3">
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="insuranceIncluded" [(ngModel)]="car.insuranceIncluded" name="insuranceIncluded">
+        <label class="form-check-label" for="insuranceIncluded">Insurance Included</label>
       </div>
-      <div class="form-group">
-        <label for="brand">Brand</label>
-        <input type="text" class="form-control" id="brand" [(ngModel)]="car.brand" name="brand" required>
-      </div>
-      <div class="form-group">
-        <label for="rentPrice">Rent Price</label>
-        <input type="number" class="form-control" id="rentPrice" [(ngModel)]="car.rentPrice" name="rentPrice" required>
-      </div>
-      <div class="form-group">
-        <label for="availabilityStatus">Availability Status</label>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="availabilityStatus" [(ngModel)]="car.availabilityStatus" name="availabilityStatus">
-          <label class="form-check-label" for="availabilityStatus">Available</label>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="insuranceIncluded">Insurance Included</label>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="insuranceIncluded" [(ngModel)]="car.insuranceIncluded" name="insuranceIncluded">
-          <label class="form-check-label" for="insuranceIncluded">Included</label>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="gearType">Gear Type</label>
-        <input type="number" class="form-control" id="gearType" [(ngModel)]="car.gearType" name="gearType" required>
-      </div>
-      <div class="form-group">
-        <label for="numberOfSeats">Number of Seats</label>
-        <input type="number" class="form-control" id="numberOfSeats" [(ngModel)]="car.numberOfSeats" name="numberOfSeats" required>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-2">
-          <button type="submit" class="btn btn-outline-primary rounded-pill m-2">Add</button>
-        </div>
-        <div class="col-2">
-          <button type="button" class="btn btn-outline-danger rounded-pill m-2" (click)="onCancel()">Cancel</button>
-        </div>
-      </div>
-       </form>
-  </div>
-  
+    </div>
+    <div class="form-group mb-3">
+      <label for="gearType">Gear Type</label>
+      <select class="form-control" id="gearType" [(ngModel)]="car.gearType" name="gearType">
+        <option *ngFor="let gear of gearTypes" [ngValue]="gear.id">{{ gear.name }}</option>
+      </select>
+    </div>
+    <div class="form-group mb-3">
+      <label for="gasType">Gas Type</label>
+      <select class="form-control" id="gasType" [(ngModel)]="car.gasType" name="gasType">
+        <option *ngFor="let gas of gasTypes" [ngValue]="gas.id">{{ gas.name }}</option>
+      </select>
+    </div>
+    <div class="form-group mb-3">
+      <label for="numberOfSeats">Number of Seats</label>
+      <input type="number" class="form-control" id="numberOfSeats" [(ngModel)]="car.numberOfSeats" name="numberOfSeats">
+    </div>
+    <div class="form-group text-center">
+      <button type="submit" class="btn btn-outline-primary rounded-pill m-2">Save</button>
+      <button type="button" class="btn btn-outline-danger rounded-pill m-2" (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</div>

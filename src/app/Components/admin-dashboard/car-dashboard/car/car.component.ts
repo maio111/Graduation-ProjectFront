@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -16,31 +16,30 @@ import { CarService } from '../../../../Services/car.service';
 export class CarComponent {
 
   cars: any[] = [];
-  currentPage: number = 1;
-  itemsPerPage: number = 10;
-  totalItems: number = 0;
-  pagedItems: any[] = []; 
-  dataService: any;
-  page:any;
-  total:any;
+  agencyId!: number;
+  currentCarId!: number;
+  page: number = 1;
+  total: number = 0;
 
   constructor(
-    private carService: CarService,
     private router: Router,
-    private cdr: ChangeDetectorRef
+    private carService: CarService,
+    private route: ActivatedRoute
   ) { }
 
-  ngOnInit(): void {
-    this.getAllCars(this.currentPage, this.itemsPerPage);
+  ngOnInit() {
+    this.route.params.subscribe((params) => {
+      this.agencyId = params['id'];
+      this.getAllCars();
+    });
   }
 
-  getAllCars(currentPage: number, itemsPerPage: number) {
-    this.carService.getCars(currentPage, itemsPerPage).subscribe({
+  getAllCars() {
+    this.carService.getAgencyCars(this.agencyId).subscribe({
       next: (res: any) => {
-        console.log(res);
         this.cars = res.data;
-        this.totalItems = res.totalItems;
-        this.cdr.detectChanges(); 
+        console.log(this.cars);
+        this.total = res.totalItems;
       },
       error: (error) => {
         console.error('Error fetching cars:', error);
@@ -52,16 +51,19 @@ export class CarComponent {
   }
 
   navigateToEdit(id: number) {
-    this.router.navigate(['dashboard/editcar', id]);
+    this.currentCarId = id;
+    this.router.navigate(['dashboard/editcar', this.currentCarId]);
   }
 
+  
   deleteCar(id: number) {
-    this.carService.deleteCar(id).subscribe({
+    this.currentCarId = id;
+    this.carService.deleteCar(this.currentCarId).subscribe({
       next: () => {
-        this.getAllCars(this.currentPage, this.itemsPerPage); 
+        this.getAllCars(); 
       },
       error: (error) => {
-        console.error('Error deleting car:', error);
+        console.error('Error deleting car agency:', error);
       },
       complete: () => {
         console.log("Deletion completed.");
@@ -70,10 +72,10 @@ export class CarComponent {
   }
 
   goToAddPage() {
-    this.router.navigate(['dashboard/addcar']);
+    this.router.navigate(['dashboard/addcar', this.agencyId]);
   }
 
-  changePage(event:any){
-    this.page=event
+  changePage(event: any) {
+    this.page = event;
   }
 }

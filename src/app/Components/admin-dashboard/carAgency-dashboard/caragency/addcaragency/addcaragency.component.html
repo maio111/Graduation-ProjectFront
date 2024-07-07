@@ -13,6 +13,12 @@
         <label for="phoneNumber" class="form-label">Phone Number:</label>
         <input type="text" id="phoneNumber" class="form-control" [(ngModel)]="carAgency.phoneNumber" name="phoneNumber" required>
       </div>
+      <div class="form-group">
+        <label for="city">City</label>
+        <select class="form-control" id="city" name="cityId" [(ngModel)]="carAgency.cityId" required>
+          <option *ngFor="let city of cities" [ngValue]="city.id">{{ city.name }}</option>
+        </select>
+      </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email:</label>
         <input type="email" id="email" class="form-control" [(ngModel)]="carAgency.email" name="email" required>
@@ -20,6 +26,10 @@
       <div class="mb-3">
         <label for="logoURL" class="form-label">Logo URL:</label>
         <input type="text" id="logoURL" class="form-control" [(ngModel)]="carAgency.logoURL" name="logoURL">
+      </div>
+      <div class="form-group">
+        <label for="agencyPhoto">Agency Photo</label>
+        <input type="file" class="form-control-file" id="agencyPhoto" name="agencyPhoto" (change)="onFileSelected($event)">
       </div>
       <div class="mb-3">
         <label for="websiteURL" class="form-label">Website URL:</label>
@@ -38,7 +48,7 @@
       </div>
       <div class="row justify-content-center">
         <div class="col-2">
-          <button type="submit" class="btn btn-outline-primary rounded-pill m-2">Add</button>
+          <button type="submit"  class="btn btn-outline-primary rounded-pill m-2">Add</button>
         </div>
         <div class="col-2">
           <button type="button" class="btn btn-outline-danger rounded-pill m-2" (click)="onCancel()">Cancel</button>

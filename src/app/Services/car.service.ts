@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
@@ -8,27 +8,32 @@ import { Observable } from 'rxjs';
 })
 export class CarService {
 
-  private apiUrl: string = environment.baseUrl;
+  private baseUrl = `${environment.baseUrl}/api/car`; 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,) {}
 
-  getCars(page: number, itemsPerPage: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/api/Car?page=${page}&itemsPerPage=${itemsPerPage}`);
+  getAllCars(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}`);
   }
 
-  getCaryById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/api/Car/${id}`);
+ 
+
+  getAgencyCars(agencyId: number): Observable<any> {
+    return this.http.get<any>(`http://localhost:5285/api/GetAgencyAndCars/${agencyId}`);
+  }
+  getCarById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/${id}`);
   }
 
-  createCar(car: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/api/Car`, car);
+  addCar(car: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}`, car);
   }
 
   updateCar(id: number, car: any): Observable<any> {
-    return this.http.patch<any>(`${this.apiUrl}/api/Car/${id}`, car); 
+    return this.http.patch<any>(`${this.baseUrl}/${id}`, car);
   }
 
   deleteCar(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/api/Car/${id}`);
+    return this.http.delete<any>(`${this.baseUrl}/${id}`);
   }
 }
