@@ -74,7 +74,7 @@ export class UserRentalsViewComponent {
   }
 
   getInvoiceById(id: number) {
-    this.rentalService.getFilteredUserCarRentals(this.filter).subscribe({
+    this.rentalService.getFilteredUserCarRentals(this.filter, this.userId).subscribe({
       next: (res) => {
         this.selectedInvoice = res.data;
       },
