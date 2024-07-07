@@ -9,6 +9,8 @@ import { environment } from '../../../environments/environment';
 import { ICarPhoto } from '../../models/Car/ICarPhoto';
 import { BookingHeaderComponent } from '../booking-header/booking-header.component';
 import { CarRentalHeaderComponent } from "../car-rental-header/car-rental-header.component";
+import { CarAgencyViewDto } from '../../models/Car/CarAgencyViewDto';
+import { CaragencyService } from '../../Services/caragency.service';
 
 declare var $: any;
 @Component({
@@ -24,13 +26,14 @@ export class CarSearchComponent implements OnInit, AfterViewInit {
   minPriceVal: number = 0;
   maxPriceVal: number = 0;
   gearTypes = Object.keys(GearType).filter(k => isNaN(Number(k))).map(key => ({ label: key, value: GearType[key as keyof typeof GearType] }));
-  modelYears: number[] = [2021, 2022, 2023, 2024]; // Example years
-  agencies: any[] = []; // Populate with agency data
+
+  agencies: CarAgencyViewDto[] = [] as CarAgencyViewDto[];// Populate with agency data
   baseUrl: string = environment.baseUrl;
 
   minPrice: number = 100;
   maxPrice: number = 5000;
   priceGap: number = 50;
+  selectedAgancyId?: number;
 
   @ViewChild('rangeMin') rangeMin!: ElementRef<HTMLInputElement>;
   @ViewChild('rangeMax') rangeMax!: ElementRef<HTMLInputElement>;
@@ -41,10 +44,14 @@ export class CarSearchComponent implements OnInit, AfterViewInit {
   constructor(
     private route: ActivatedRoute,
     private carService: CarService,
-    private router: Router
+    private router: Router,
+    private carAgencySercive : CaragencyService
   ) {}
 
   ngOnInit(): void {
+    this.selectedAgancyId = this.agencies[0]?.id;
+    this.getAgancies();
+    console.log(this.agencies)
     this.route.queryParams.subscribe(params => {
       const carsJson = params['filteredCars'];
       const filterParams = params['filterParams'];
@@ -154,4 +161,17 @@ export class CarSearchComponent implements OnInit, AfterViewInit {
   }
 
 
+  modelOfYearInvalid(): boolean {
+    const year = this.filterParams.modelOfYear;
+    return year != null && (year < 1990 || year > 2024);
+  }
+
+  getAgancies() {
+    this.carAgencySercive.getAgencies().subscribe({
+      next: (res) => {
+        this.agencies = res.data;
+      },
+      error: (err) => console.log(err)
+    })
+  }
 }

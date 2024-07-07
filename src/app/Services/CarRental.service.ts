@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { CarRentalFiltered } from '../models/Car/CarRentalFiltered';
 import { CarRentalViewDto } from '../models/Car/CarRentalViewDto';
 import { UserBookingsFilter } from '../models/HotelBooking/UserBookingsFilter';
+import { CarAgencyViewDto } from '../models/Car/CarAgencyViewDto';
 @Injectable({
   providedIn: 'root'
 })
@@ -35,4 +36,6 @@ getFilteredUserCarRentals(filter: CarRentalFiltered,id :number): Observable<any>
 
     return this.httpclient.get<CarRentalViewDto[]>(`${this.apiUrl}/api/CarRental/GetFilteredUserCarRents${id}`, { params });
   }
+
+  
 }
