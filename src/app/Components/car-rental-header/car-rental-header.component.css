@@ -136,18 +136,604 @@
     font-size: 0.8rem;
     top: 0;
   }
-  @media screen and (max-width: 600px) {
+  /* ahmed */
+ .autocomplete-list {
+  position: absolute;
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: white;
+  z-index: 1000;
+  width: 100%;
+  list-style: none;
+}
+
+.autocomplete-list li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.autocomplete-list li:hover {
+  background-color: #f0f0f0;
+}
 
 
-    .header__content h1 {
-      font-size: 2rem;
-      line-height: 2.5rem;
-    }
-    .booking__container {
-      flex-direction: column;
-      bottom: -3rem;
-    }
-    .booking__container form {
-      grid-template-columns: 1fr;
-    }
+
+/* General Styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+}
+:root {
+  --dark-green: #112a34;
+  --green-color: #004047;
+  --white-color: #fff;
+}
+/* Navigation Bar */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  backdrop-filter: blur(10px); /* Adjust the blur intensity as needed */
+  -webkit-backdrop-filter: blur(10px); /* For Safari support */
+  background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent background */
+  z-index: 1000; /* Ensure this is higher than any other z-index values in your layout */
+}
+
+.nav__logo img {
+  max-width: 100px;
+}
+
+.nav__links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.link a {
+  text-decoration: none;
+  font-weight: 600;
+  color: white;
+}
+
+.login {
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 600;
+  color: white;
+  background-color: rgba(0, 96, 95, 0.7); /* Semi-transparent background */
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login:hover {
+  background-color: rgba(1, 116, 121, 0.7);
+}
+
+/* Header Styles */
+.section__container.header__container {
+  margin-bottom: 10rem; /* Adjust this value as needed */
+}
+
+.header__image__container {
+  position: relative;
+  min-height: 500px;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 2rem;
+}
+
+.header__background__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 1rem;
+  object-fit: cover; /* Ensure the video covers the container */
+  z-index: -1; /* Ensure the video stays behind other content */
+}
+
+.header__content {
+  max-width: 600px;
+  padding: 5rem 2rem;
+}
+
+.header__content h1 {
+  margin-bottom: 1rem;
+  padding-top: 5rem;
+  font-size: 3.5rem;
+  line-height: 4rem;
+  font-weight: 600;
+  color: white;
+}
+
+.header__content p {
+  color: var(--extra-light);
+}
+
+/* Booking Container */
+/* booking.component.css */
+.booking__container {
+  position: absolute;
+  bottom: -5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 6rem);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem 2rem;
+  border-radius: 2rem;
+  background-color: rgba(255, 255, 255, 0.7);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.1);
+  z-index: 1; /* Ensure the form appears above the video */
+}
+
+.booking__container form {
+  width: 100%;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.booking__container .input__group {
+  width: 100%;
+  position: relative;
+}
+
+.booking__container label {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+.booking__container input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 1rem;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px solid var(--primary-color);
+  color: var(--text-dark);
+  padding-right: 30px; /* Add padding to the right to make space for the icon */
+}
+
+.booking__container input:focus ~ label,
+.booking__container label.filled {
+  font-size: 0.8rem;
+  top: 0;
+}
+
+.booking__container .input__group i {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  color: var(--text-dark);
+}
+
+.booking__container .form__group p {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+
+.booking__container .btn {
+  padding: 0.5rem;
+  outline: none;
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  background-color: #00605f;
+  border-radius: 100%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.booking__container .btn:hover {
+  background-color: rgba(1, 116, 121, 0.7);
+}
+
+
+/* Travellers Grid */
+.travel .container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4rem;
+  padding:  5rem 0;
+}
+
+.travel .container .box {
+  padding: 0 1rem;
+  text-align: center;
+  max-width: 30rem;
+  transform: translate(0, 100px);
+  opacity: 0;
+}
+
+.travel .container .box img {
+  height: 10rem;
+}
+
+.travel .container .box h4 {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+  margin-top: 2rem;
+  font-weight: 600;
+}
+
+.travel .container .box p {
+  color: #666;
+}
+
+.label {
+  font-size: 1.1rem;
+  color:  #004047;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.heading {
+  font-size: 3rem;
+  margin-top: 1rem;
+ 
+}
+
+.destinations {
+  width: 100%;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.destinations .container {
+  width: 100%;
+}
+.destinations .label{
+  text-align: center;
+  font-weight: 600;
+  font-size: xx-large;
+  margin-top: 7px;
+}
+
+.destinations .container .container-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.destinations .container .container-box .heading {
+  max-width: 70rem;
+}
+
+.destinations .container .container-box .content {
+  max-width: 35rem;
+}
+
+.destinations .container .container-box .content p {
+  line-height: 1.7;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.destinations .container .container-box .content a {
+  color: #004047;
+  font-weight: 600;
+}
+
+.destinations .container .container-box .content a i {
+  margin-left: .5rem;
+}
+
+.destinations .container .container-box .content a:hover i {
+  margin-left: .1rem;
+}
+
+.gallery {
+  margin-top: 4rem;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.gallery .box {
+  height: 23rem;
+  flex-grow: 1;
+  overflow: hidden;
+  border-radius: .8rem;
+  position: relative;
+}
+
+.gallery .box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.gallery .box .text {
+  position: absolute;
+  bottom: 0;
+  padding: 1.5rem 2rem;
+  left: 0;
+  z-index: 1;
+}
+
+.gallery .box .text h2 {
+  font-size: 1.4rem;
+  color: white;
+  font-weight: 500;
+}
+
+.destinations .container .container-box .heading,
+.destinations .container .container-box .content {
+  transform: translate(-200px);
+  opacity: 0;
+}
+
+.destinations .gallery .box {
+  transform: translate(0, 100px);
+  opacity: 0;
+}
+/* feedback section ends here  */
+.feedback {
+  background: url("../../../assets/img/f2.jpg");
+  background-position: center;
+  background-size: cover;
+  margin-top: 6rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  
+}
+
+.feedback .container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+ margin-left: 2rem;
+ margin-right: 2rem;
+}
+
+.feedback .container h4 {
+  color: rgb(255 255 255/90%);
+}
+
+.feedback .container h2 {
+  max-width: 40rem;
+  color: white;
+  text-align: center;
+}
+
+.feedback .container p {
+  color: #eee;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.feedback .voices {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 3rem;
+  margin-left: 5rem;
+  margin-right: 5rem;
+  
+}
+
+.feedback .voices .voice {
+  flex: 1 0 320px;
+  background: white;
+  padding: 2rem;
+  border-radius: .7rem;
+}
+
+.feedback .voices .voice .profile {
+  display: flex;
+  align-items: center;
+}
+
+.feedback .voices .voice .profile img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 2rem;
+}
+
+.feedback .voices .voice .profile .detail {
+  margin-left: 1rem;
+}
+
+.feedback .voices .voice .profile .detail li {
+  list-style: none;
+}
+
+.feedback .voices .voice .profile .detail li:first-child {
+  font-size: 1.1rem;
+  color: #000;
+  font-weight: 600;
+}
+
+.feedback .voices .voice p {
+  margin-top: 1rem;
+}
+
+.feedback .container .label,
+.feedback .container .heading,
+.feedback .container .paragraph {
+  transform: translate(0, 10px);
+  opacity: 0;
+}
+
+.feedback .voices .voice {
+  transform: translate(0, 100px);
+  opacity: 0;
+}
+.article {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  margin-top: 5rem;
+}
+
+.article .container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.article .label{
+  text-align: center;
+  font-weight: 600;
+  font-size: xx-large;
+}
+.article .heading{
+  margin-left: 6rem;
+}
+.article .container .latest-article,
+.article .container .more-article {
+  width: 100%;
+  flex:  1 0 350px;
+}
+
+.article .container .latest-article img {
+  width: 100%;
+  height: 28rem;
+  border-radius: 1rem;
+  object-fit: cover;
+  object-position: center;
+}
+
+.article .container .latest-article p {
+  margin: .8rem 0;
+  color: #666;
+}
+
+.article .container .latest-article h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.article .container .latest-article .author {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+}
+
+.article .container .latest-article .author img {
+  width: 30px;
+  height: 30px;
+  border-radius: 3rem;
+}
+
+.article .container .latest-article .author p {
+  font-size: .9rem;
+}
+
+.article .container .more-article {
+  display: grid;
+  gap: 1rem;
+  overflow: hidden;
+}
+
+.article .container .more-article .box {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.article .container .more-article .box img {
+  width: 135px;
+  height: 120px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: .5rem;
+}
+
+.article .container .more-article .text h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.article .container .more-article .text li {
+  margin-top: .3rem;
+  list-style: none;
+  color: #666;
+}
+
+.article .label, .article .heading {
+  opacity: 0;
+}
+
+.article .latest-article, .article .more-article .box {
+  transform: translate(-200px, 0);
+  opacity: 0;
+  transition: all .4s ease-out;
+}
+/* Responsive Styles */
+
+@media screen and (max-width: 600px) {
+
+
+  .header__content h1 {
+    font-size: 2rem;
+    line-height: 2.5rem;
   }
+  .booking__container {
+    flex-direction: column;
+    bottom: -3rem;
+  }
+  .booking__container form {
+    grid-template-columns: 1fr;
+  }
+}
+/* ahmed */
+ .autocomplete-list {
+   position: absolute;
+   border: 1px solid #ccc;
+   max-height: 200px;
+   overflow-y: auto;
+   background-color: white;
+   z-index: 1000;
+   width: 100%;
+   list-style: none;
+ }
+
+ .autocomplete-list li {
+   padding: 8px;
+   cursor: pointer;
+ }
+
+ .autocomplete-list li:hover {
+   background-color: #f0f0f0;
+ }

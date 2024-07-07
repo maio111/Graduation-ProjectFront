@@ -40,9 +40,9 @@ export class BookingHeaderComponent {
   cities: ICity[] = [] as ICity[];
   filteredCities$: Observable<ICity[]> | undefined;
   showDropdown: boolean = false;
-  filteredHotels: IFilteredHotel [] = [] as IFilteredHotel[];
+  filteredHotels: IFilteredHotel [] = [] as IFilteredHotel[];   //coming from form 
   bookingForm!: FormGroup;
-  @Input() parmas: IHotelFilteredParams = {} as IHotelFilteredParams;
+  @Input() parmas: IHotelFilteredParams = {} as IHotelFilteredParams; //going from parent to child 
   constructor(
     private citiesService: CityService,
     private hotelService: HotelService,
