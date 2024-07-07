@@ -130,7 +130,7 @@ export const routes: Routes = [
 
             { path: 'cars/:id', component: CarComponent},
             {path:'addcar/:id', component:addCarComponent},
-            {path:'editcar/:id',component:EditcarComponent}
+            {path:'editcar/:id',component:EditcarComponent},
 
 
 
