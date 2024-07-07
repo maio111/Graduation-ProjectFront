@@ -1,0 +1,31 @@
+<div class="container">
+    <h1>Car Rental Invoices</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Number</th>
+          <th>Date</th>
+          <th>Amount</th>
+          <th>Payment Status</th>
+          <th>Transaction ID</th>
+          <th>Payment Method</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let invoice of invoices | paginate: { id: 'ad', itemsPerPage: 3, currentPage: page, totalItems: total }; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ invoice.number }}</td>
+          <td>{{ invoice.date | date }}</td>
+          <td>$ {{ invoice.amount }}</td>
+          <td>{{ invoice.paymentStatus }}</td>
+          <td>{{ invoice.transactionId }}</td>
+          <td>{{ invoice.paymentMethod }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-center">
+      <pagination-controls (pageChange)="changePage($event)" id="ad"></pagination-controls>
+    </div>
+  </div>
+  
