@@ -12,8 +12,6 @@ import { NavBarComponent } from "../nav-bar/nav-bar.component";
 import { AuthenticationService } from '../../Services/Authentication/authentication.service';
 import { LoginDTO } from '../../models/Authentication/LoginDTO';
 
-
-
 @Component({
     selector: 'app-registration',
     standalone: true,
@@ -25,12 +23,14 @@ export class RegistrationComponent implements OnInit{
   cities: ICity[] = [] as ICity[];
   registrationForm: FormGroup;
   successMessage: string | null = null;
+  errorMessage: string | null = null;
+
   constructor(
     private fb: FormBuilder,
     private registrationService: RegistrationService,
     private router: Router,
     private citiesService: CityService,
-    private auth:AuthenticationService
+    private auth: AuthenticationService
   ) {
     this.registrationForm = this.fb.group({
       userName: ['', [Validators.required, Validators.minLength(3)]],
@@ -43,11 +43,12 @@ export class RegistrationComponent implements OnInit{
       birthDate: ['', Validators.required]
     }, { validator: this.passwordMatchValidator });
   }
+
   ngOnInit(): void {
     this.citiesService.getAllCities().subscribe({
       next: (res) => this.cities = res.data,
       error: (err) => console.log(err)
-    })
+    });
   }
 
   passwordMatchValidator(form: FormGroup) {
@@ -56,18 +57,24 @@ export class RegistrationComponent implements OnInit{
 
   register() {
     if (this.registrationForm.valid) {
-      const user: User = this.registrationForm.value;
+      const user = this.registrationForm.value;
       this.registrationService.register(user).subscribe(
         response => {
           console.log(response.data);
           this.successMessage = 'Registration successful!';
+          this.errorMessage = null;
           setTimeout(() => {
             this.successMessage = null;
             this.router.navigate([""]);
-          }, 5000); // Navigate to home after 3 seconds
-          this.router.navigate(['/login']); 
+          }, 5000);
+          this.router.navigate(['/login']);
         },
         error => {
+          if (error.status === 409) {
+            this.errorMessage = 'User Name Or Email already exists';
+          } else {
+            this.errorMessage = 'An error occurred during registration';
+          }
           console.error(error);
         }
       );

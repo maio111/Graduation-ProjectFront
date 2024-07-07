@@ -36,10 +36,6 @@ export class LoginComponent {
         response => {
           if (response.ispass) {
             localStorage.setItem('token', response.token);
-<<<<<<< HEAD
-            this.router.navigate(['/home']); 
-=======
->>>>>>> c189bf41fee566cf55dd5ecaf93991347fceabd8
           } else {
             this.errorMessage = response.message;
           }

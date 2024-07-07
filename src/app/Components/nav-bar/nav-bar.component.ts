@@ -15,7 +15,7 @@ import { environment } from '../../../environments/environment';
 export class NavBarComponent {
   showDropdown: boolean = false; // Track dropdown visibility
   isAdmin: boolean = false;
-  user:any;
+  user:any = {};
   baseUrl = environment.baseUrl;
   constructor(private router: Router, private auth:AuthenticationService) { }
 
