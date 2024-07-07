@@ -1,37 +1,51 @@
 <header class="section__container header__container">
-    <div class="header__image__container">
+  <div class="header__image__container">
       <video autoplay muted loop playsinline class="header__background__video">
-        <source src="../../../assets/img/video8.mp4" type="video/mp4">
-        Your browser does not support the video tag.
+          <source src="../../../assets/img/video8.mp4" type="video/mp4">
+          Your browser does not support the video tag.
       </video>
       <div class="header__content">
+          <h1>Enjoy Your Dream Vacation</h1>
       </div>
       <div class="booking__container">
-        <form>
-          <div class="form__group">
-            <div class="input__group">
-              <input type="text" />
-              <label>Location</label>
-            </div>
-            <p>Where are you going?</p>
+          <form [formGroup]="bookingForm">
+            <div class="form__group">
+              <div class="input__group">
+                  <input type="text" name="cityId" formControlName="cityId" (focus)="onCityFocus()" (blur)="onCityBlur()"
+                      (input)="onCityInput()" />
+                  <label [class.filled]="bookingForm.get('cityId')?.value">Location</label>
+                  <i class="fa-solid fa-location-dot"></i>
+                  <ul *ngIf="showDropdown" class="autocomplete-list">
+                      <li *ngFor="let city of filteredCities$ | async" (click)="selectCity(city)">
+                          {{ city.name }}
+                      </li>
+                  </ul>
+              </div>
+              <p>Where are you going?</p>
           </div>
-          
-          <div class="form__group">
-            <div class="input__group">
-              <input type="text" #checkInInput />
-              <label class="checkin">Check In</label>
-            </div>
-            <p>Add date</p>
-          </div>
-          <div class="form__group">
-            <div class="input__group">
-              <input type="text" #checkOutInput />
-              <label class="checkout">Check Out</label>
-            </div>
-            <p>Add date</p>
-          </div>
-        </form>
-        <button class="btn"><i class="ri-search-line"></i></button>
+              <div class="form__group">
+                  <div class="input__group">
+                      <input type="text" id="checkin" formControlName="checkInDate" (focus)="onFocus($event)"
+                          (blur)="onBlur($event)" [(ngModel)]="parmas.pickUpDate" #checkInInput [ngModel]="parmas.pickUpDate"/>
+                      <label [class.filled]="bookingForm.get('checkInDate')?.value">pick-Up Date</label>
+                  </div>
+                  <p *ngIf="bookingForm.get('checkInDate')?.hasError('invalidCheckInDate')">pick-Up Date cannot be in
+                      the past.
+                  </p>
+              </div>
+              <div class="form__group">
+                  <div class="input__group">
+                      <input type="text" id="checkout" formControlName="checkOutDate" (focus)="onFocus($event)"
+                          (blur)="onBlur($event)" [(ngModel)]="parmas.dropOffDate" #checkOutInput [ngModel]="parmas.dropOffDate"/>
+                      <label [class.filled]="bookingForm.get('checkOutDate')?.value">drop-Off Date</label>
+                  </div>
+                  <p *ngIf="bookingForm.get('checkOutDate')?.hasError('invalidCheckOutDate')">drop-Off Date must be
+                      after
+                      pick-Up Date.</p>
+              </div>
+          </form>
+
+          <button class="btn" (click)="onSearch()"><i class="ri-search-line"></i></button>
       </div>
-    </div>
-  </header>
+  </div>
+</header>

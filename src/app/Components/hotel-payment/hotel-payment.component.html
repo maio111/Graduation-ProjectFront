@@ -1,8 +1,9 @@
 <ng-container>
-    <div class="row justify-content-center align-items-center g-2">
+  <div class="row justify-content-center align-items-center g-2" 
+  style="background-image: url('assets/img/13.jpg');  background-size: cover; background-position: center; padding: 50px 0;">
       <div class="card bg-light mb-3" style="max-width: 40rem; margin-top: 50px;">
         <div class="card-header">Booking Details</div>
-        <div class="card-body">
+        <div class="card-body" >
           <h5 class="card-title">Booking Information</h5>
           <p class="card-text"><strong>Booking Date:</strong> {{ bookingData.bookingDate | date: 'medium' }}</p>
           <p class="card-text"><strong>Status:</strong> {{ bookingData.status }}</p>
