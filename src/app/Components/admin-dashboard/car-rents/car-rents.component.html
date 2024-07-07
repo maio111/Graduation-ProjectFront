@@ -1,0 +1,105 @@
+<div class="container mt-5">
+    <h2>Car Rentals</h2>
+    <!-- Search Filters -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <input type="text" class="form-control" placeholder="Pick Up City" [(ngModel)]="filter.pickUpCity"
+                name="pickUpCity" #pickUpCity="ngModel">
+            <div *ngIf="pickUpCity.invalid && (pickUpCity.dirty || pickUpCity.touched)" class="text-danger">
+                <div>Pick Up City is required.</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <input type="date" class="form-control" placeholder="Pick Up Date" [(ngModel)]="filter.pickUpDate"
+                name="pickUpDate" #pickUpDate="ngModel">
+            <div *ngIf="pickUpDate.invalid && (pickUpDate.dirty || pickUpDate.touched)" class="text-danger">
+                <div>Pick Up Date is required.</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <input type="date" class="form-control" placeholder="Drop Off Date" [(ngModel)]="filter.dropOffDate"
+                name="dropOffDate" #dropOffDate="ngModel">
+            <div *ngIf="dropOffDate.invalid && (dropOffDate.dirty || dropOffDate.touched)" class="text-danger">
+                <div>Drop Off Date is required.</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <input type="number" step="0.01" min="0" class="form-control" placeholder="Min Price"
+                [(ngModel)]="filter.minPrice" name="minPrice" #minPrice="ngModel">
+            <div *ngIf="minPrice.invalid && (minPrice.dirty || minPrice.touched)" class="text-danger">
+                <div>Min Price must be at least 0.</div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <input type="number" step="0.01" min="0" class="form-control" placeholder="Max Price"
+                [(ngModel)]="filter.maxPrice" name="maxPrice" #maxPrice="ngModel">
+            <div *ngIf="maxPrice.invalid && (maxPrice.dirty || maxPrice.touched)" class="text-danger">
+                <div>Max Price must be at least 0.</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <select id="gearType" name="gearType" [(ngModel)]="filter.gearType" class="form-control"
+                #gearType="ngModel">
+                <option [selected]="true" disabled>Select Gear Type</option>
+                <option *ngFor="let gear of gearTypes" [value]="gear.value">{{ gear.label }}</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <input type="number" class="form-control" placeholder="Model Year" [(ngModel)]="filter.modelOfYear"
+                name="modelOfYear" #modelOfYear="ngModel" [min]="1886" [max]="2100">
+            <div *ngIf="modelOfYear.invalid && (modelOfYear.dirty || modelOfYear.touched)" class="text-danger">
+                <div>Year must be between 1886 and 2100.</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" placeholder="Brand" [(ngModel)]="filter.brand" name="brand"
+                #brand="ngModel">
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <input type="number" class="form-control" placeholder="Number of Seats" [(ngModel)]="filter.numberOfSeats"
+                name="numberOfSeats" #numberOfSeats="ngModel">
+        </div>
+        <div class="col-md-3">
+            <input type="number" class="form-control" placeholder="Agency ID" [(ngModel)]="filter.agencyId"
+                name="agencyId" #agencyId="ngModel">
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-primary w-100" (click)="applyFilter()" [disabled]="!isFormValid()">Search</button>
+        </div>
+    </div>
+    <!-- Car Rentals Table -->
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Pick Up City</th>
+                <th>User Name</th>
+                <th>Car Agency</th>
+                <th>Pick Up Date</th>
+                <th>Drop Off Date</th>
+                <th>Status</th>
+                <th>Total Price</th>
+                <th>Brand</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let rental of rentals">
+                <td>{{ rental.id }}</td>
+                <td>{{ rental.pickUpCity }}</td>
+                <td>{{ rental.userFirstName }} {{ rental.userLastName }}</td>
+                <td>{{ rental.carAgencyName }}</td>
+                <td>{{ rental.pickUpDate | date }}</td>
+                <td>{{ rental.dropOffDate | date }}</td>
+                <td>{{ getBookingStatusLabel(rental.status) }}</td>
+                <td>{{ rental.totalPrice }}</td>
+                <td>{{ rental.brand }}</td>
+                <td>{{ rental.notes }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
