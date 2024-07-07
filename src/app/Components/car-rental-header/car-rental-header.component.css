@@ -136,3 +136,18 @@
     font-size: 0.8rem;
     top: 0;
   }
+  @media screen and (max-width: 600px) {
+
+
+    .header__content h1 {
+      font-size: 2rem;
+      line-height: 2.5rem;
+    }
+    .booking__container {
+      flex-direction: column;
+      bottom: -3rem;
+    }
+    .booking__container form {
+      grid-template-columns: 1fr;
+    }
+  }

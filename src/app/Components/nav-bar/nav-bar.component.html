@@ -15,23 +15,28 @@
     <ng-container *ngIf="isLoggedIn(); else notLoggedIn">
       <div class="dropdown">
         <button class="dropbtn" (click)="toggleDropdown()">
-          <i class="fa-regular fa-user"></i>
+          <ng-container *ngIf="user.photoUrl; else defaultUserIcon">
+            <img [src]="user.photoUrl ? baseUrl + user.photoUrl : 'assets/img/a.png'"
+            class=" user-photo" alt="Reviewer Image">
+          </ng-container>
+          <ng-template #defaultUserIcon>
+            <i class="fa-regular fa-user"></i>
+          </ng-template>
         </button>
         <div class="dropdown-content" [hidden]="!showDropdown">
           <a routerLink="/account-settings">Profile</a>
           <a href="/userBookingsView">Hotels Bookings</a>
           <a href="/userBookingsView">Cars Rents</a>
-          <a href="/wishlist">Hotels Wishlist</a>
           <a (click)="logout()">Log out</a>
         </div>
       </div>
-      <a href="#"><i class="fa-regular fa-heart"></i></a>
+      <a routerLink="/wishlist"><i class="fa-regular fa-heart"></i></a>
     </ng-container>
     <ng-template #notLoggedIn>
       <a routerLink="/login" (click)="navigateToLogin()">Sign In</a>
     </ng-template>
     <!-- Always show gear icon -->
-    <a href="#"><i class="fa-solid fa-gear"></i></a>
+    
   </div>
 </nav>
 
