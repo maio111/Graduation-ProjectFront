@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NavBarComponent } from '../../../nav-bar/nav-bar.component';
 import { CaragencyService } from '../../../../Services/caragency.service';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-car-agency',
@@ -24,7 +25,9 @@ export class CaragencyComponent {
   dataService: any;
   page:any;
   total:any;
+  baseUrl = environment.baseUrl;
 
+ 
   constructor(
     private carAgencyService: CaragencyService,
     private router: Router,
@@ -32,11 +35,11 @@ export class CaragencyComponent {
   ) { }
 
   ngOnInit(): void {
-    this.getAllCarAgencies(this.currentPage, this.itemsPerPage);
+    this.getAllCarAgencies();
   }
 
-  getAllCarAgencies(currentPage: number, itemsPerPage: number) {
-    this.carAgencyService.getCarAgencies(currentPage, itemsPerPage).subscribe({
+  getAllCarAgencies() {
+    this.carAgencyService.getCarAgencies().subscribe({
       next: (res: any) => {
         console.log(res);
         this.caragencies = res.data;
@@ -59,7 +62,7 @@ export class CaragencyComponent {
   deleteCarAgency(id: number) {
     this.carAgencyService.deleteCarAgency(id).subscribe({
       next: () => {
-        this.getAllCarAgencies(this.currentPage, this.itemsPerPage); 
+        this.getAllCarAgencies(); 
       },
       error: (error) => {
         console.error('Error deleting car agency:', error);
@@ -73,7 +76,9 @@ export class CaragencyComponent {
   goToAddPage() {
     this.router.navigate(['dashboard/addcaragency']);
   }
-
+  navigateToCars(carAgencyId: number): void {
+    this.router.navigate(['dashboard/cars', carAgencyId]); 
+  }
   changePage(event:any){
     this.page=event
   }
