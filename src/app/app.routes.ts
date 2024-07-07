@@ -74,7 +74,7 @@ export const routes: Routes = [
     { path: 'filterhotels', component:HotelsearchComponent},
     { path: 'hoteldetails', component:HoteldetailsComponent},
     { path: 'reservationDetails', component: ReservationDetailsComponent, canActivate: [userAuthGuard]},
-    { path: 'login', component: LoginComponent ,pathMatch: 'full'},
+    { path: 'login', component: LoginComponent },
     { path: 'register', component: RegistrationComponent },
     { path: 'contact-us', component: ContactUsComponent },
     { path: 'about-us', component: AboutUsComponent },

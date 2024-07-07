@@ -15,7 +15,7 @@
     <ng-container *ngIf="isLoggedIn(); else notLoggedIn">
       <div class="dropdown">
         <button class="dropbtn" (click)="toggleDropdown()">
-          <ng-container *ngIf="user.photoUrl; else defaultUserIcon">
+          <ng-container *ngIf="user.photoUrl && isLoggedIn() ; else defaultUserIcon">
             <img [src]="user.photoUrl ? baseUrl + user.photoUrl : 'assets/img/a.png'"
             class=" user-photo" alt="Reviewer Image">
           </ng-container>

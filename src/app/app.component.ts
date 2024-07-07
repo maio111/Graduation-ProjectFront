@@ -54,4 +54,5 @@ import { CarRentalInvoicesComponent } from './Components/admin-dashboard/car-ren
 })
 export class AppComponent {
   title = 'Booking Boo';
+
 }

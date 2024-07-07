@@ -41,6 +41,7 @@ export class NavBarComponent {
   }
   logout(): void {
     localStorage.removeItem('token');
+    this.router.navigate(['/home']);
   }
   getRole() {
     this.isAdmin = this.auth.hasRole("ADMIN");
