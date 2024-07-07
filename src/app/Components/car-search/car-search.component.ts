@@ -1,22 +1,72 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, NgModule, ViewChild, ElementRef, OnInit, AfterViewInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { IFilteredCar, GearType } from '../../models/Car/IFilteredCar';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ICarFilteredParams } from '../../models/Car/ICarFilteredParams';
+import { CarService } from '../../Services/car.service';
+import { environment } from '../../../environments/environment';
+import { ICarPhoto } from '../../models/Car/ICarPhoto';
+import { BookingHeaderComponent } from '../booking-header/booking-header.component';
 import { CarRentalHeaderComponent } from "../car-rental-header/car-rental-header.component";
 
+declare var $: any;
 @Component({
-  selector: 'app-car-search',
-  standalone: true,
-  templateUrl: './car-search.component.html',
-  styleUrls: ['./car-search.component.css'],
-  imports: [CommonModule, FormsModule, CarRentalHeaderComponent]
+    selector: 'app-car-search',
+    standalone: true,
+    templateUrl: './car-search.component.html',
+    styleUrls: ['./car-search.component.css'],
+    imports: [CommonModule, FormsModule, BookingHeaderComponent, CarRentalHeaderComponent]
 })
-export class CarSearchComponent {
+export class CarSearchComponent implements OnInit, AfterViewInit {
+  filteredCars: IFilteredCar[] = [] as IFilteredCar[];
+  filterParams: ICarFilteredParams = {} as ICarFilteredParams;
+  minPriceVal: number = 0;
+  maxPriceVal: number = 0;
+  gearTypes = Object.keys(GearType).filter(k => isNaN(Number(k))).map(key => ({ label: key, value: GearType[key as keyof typeof GearType] }));
+  modelYears: number[] = [2021, 2022, 2023, 2024]; // Example years
+  agencies: any[] = []; // Populate with agency data
+  baseUrl: string = environment.baseUrl;
+
   minPrice: number = 100;
   maxPrice: number = 5000;
   priceGap: number = 50;
 
   @ViewChild('rangeMin') rangeMin!: ElementRef<HTMLInputElement>;
   @ViewChild('rangeMax') rangeMax!: ElementRef<HTMLInputElement>;
+  @ViewChild('priceMin') priceMin!: ElementRef<HTMLInputElement>;
+  @ViewChild('priceMax') priceMax!: ElementRef<HTMLInputElement>;
+  @ViewChild('range') range!: ElementRef<HTMLDivElement>;
+
+  constructor(
+    private route: ActivatedRoute,
+    private carService: CarService,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      const carsJson = params['filteredCars'];
+      const filterParams = params['filterParams'];
+      console.log(filterParams)
+      if (carsJson) {
+        try {
+          this.filteredCars = JSON.parse(decodeURIComponent(carsJson));
+          this.filterParams = JSON.parse(decodeURIComponent(filterParams));
+        } catch (e) {
+          console.error('Error parsing cars JSON', e);
+        }
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.rangeMin.nativeElement.addEventListener('input', () => this.updateSlider());
+    this.rangeMax.nativeElement.addEventListener('input', () => this.updateSlider());
+    this.priceMin.nativeElement.addEventListener('input', () => this.updateInputs());
+    this.priceMax.nativeElement.addEventListener('input', () => this.updateInputs());
+    this.updateSlider();
+  }
 
   updateSlider(): void {
     let minVal = Number(this.rangeMin.nativeElement.value);
@@ -33,14 +83,17 @@ export class CarSearchComponent {
     } else {
       this.minPrice = minVal;
       this.maxPrice = maxVal;
+      this.minPriceVal = minVal;
+      this.maxPriceVal = maxVal;
+      this.updateRangeStyles();
     }
   }
 
   updateInputs(): void {
-    let minPrice = parseInt(this.minPrice.toString());
-    let maxPrice = parseInt(this.maxPrice.toString());
+    let minPrice = parseInt(this.priceMin.nativeElement.value);
+    let maxPrice = parseInt(this.priceMax.nativeElement.value);
 
-    if (maxPrice - minPrice >= this.priceGap && maxPrice <= 5000) {
+    if (maxPrice - minPrice >= this.priceGap && maxPrice <= parseInt(this.rangeMax.nativeElement.max)) {
       if (event && (event.target instanceof HTMLInputElement)) {
         if (event.target.className === 'input-min') {
           this.rangeMin.nativeElement.value = minPrice.toString();
@@ -50,44 +103,55 @@ export class CarSearchComponent {
       }
       this.minPrice = minPrice;
       this.maxPrice = maxPrice;
+      this.minPriceVal = minPrice;
+      this.maxPriceVal = maxPrice;
+      this.updateRangeStyles();
     }
   }
 
-  getProgressLeft() {
-    return ((this.minPrice - 100) / (5000 - 100)) * 100 + '%';
+  private updateRangeStyles(): void {
+    const minValue = parseInt(this.rangeMin.nativeElement.value);
+    const maxValue = parseInt(this.rangeMax.nativeElement.value);
+
+    const rangeWidth = parseInt(this.rangeMin.nativeElement.max);
+    const leftPercentage = (minValue / rangeWidth) * 100;
+    const rightPercentage = 100 - (maxValue / rangeWidth) * 100;
+
+    this.range.nativeElement.style.left = `${leftPercentage}%`;
+    this.range.nativeElement.style.right = `${rightPercentage}%`;
   }
 
-  getProgressRight() {
-    return ((5000 - this.maxPrice) / (5000 - 100)) * 100 + '%';
+  updateFilteredCars() {
+    this.filterParams.minPrice = this.minPriceVal;
+    this.filterParams.maxPrice = this.maxPriceVal;
+
+    this.carService.getFilteredCars(this.filterParams).subscribe({
+      next: (res) => {
+        this.filteredCars = res;
+        this.router.navigate(['/filterCar'], {
+          queryParams: {
+            filteredCars: encodeURIComponent(JSON.stringify(this.filteredCars)),
+            filterParams: encodeURIComponent(JSON.stringify(this.filterParams))
+          }
+        });
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
   }
 
-  validateMinPrice(): string | null {
-    if (this.minPrice < 100 || this.minPrice > this.maxPrice) {
-      return 'Minimum price should be at least 100 and less than or equal to the maximum price';
+  getMainPhoto(car: IFilteredCar): ICarPhoto | null {
+    if (!car.carPhotos) {
+      return null;
     }
-    return null;
+    return car.carPhotos.find(photo => photo.category == 0) || null;
+  }
+  
+
+  goCarDetails(car: IFilteredCar): void {
+    this.router.navigate(['/cardetails'], { queryParams: { car: encodeURIComponent(JSON.stringify(car)) } });
   }
 
-  validateMaxPrice(): string | null {
-    if (this.maxPrice < this.minPrice || this.maxPrice > 5000) {
-      return 'Maximum price should be greater than or equal to the minimum price and less than or equal to 5000';
-    }
-    return null;
-  }
 
-  cards = [
-    {
-      image: '../../../assets/img/ca2.jpg',
-      name: 'Car Name 1',
-      price: 12354.00,
-      description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam quidem eaque ut eveniet aut quis rerum. Asperiores accusamus harum ducimus velit odit ut. Saepe, iste optio laudantium sed aliquam sequi.',
-      visible: true
-    },
-    {
-      image: '../../../assets/img/ca2.jpg',
-      name: 'Car Name 2',
-      price: 12354.00,
-      description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam quidem eaque ut eveniet aut quis rerum. Asperiores accusamus harum ducimus velit odit ut. Saepe, iste optio laudantium sed aliquam sequi.',
-    }
-  ]
 }

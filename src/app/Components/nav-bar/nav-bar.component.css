@@ -56,10 +56,7 @@ body {
   color: #333;
 }
 
-.navbar-icons img {
-  width: 20px;
-  height: 20px;
-}
+
 
 .cart {
   position: relative;
@@ -88,6 +85,8 @@ body {
 
 .dropdown-content {
   display: none;
+  right: 0;
+  margin-right: -20px; 
   position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
@@ -106,5 +105,12 @@ body {
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+.user-photo {
+  width: 30px; /* Adjust size as needed */
+  height: 30px; /* Adjust size as needed */
+  border-radius: 50%; /* Make it round */
+  margin-right: 10px; 
+  
 }
 
