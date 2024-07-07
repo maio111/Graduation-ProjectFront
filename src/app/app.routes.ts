@@ -61,6 +61,7 @@ import { CarComponent } from './Components/admin-dashboard/car-dashboard/car/car
 import { addCarComponent } from './Components/admin-dashboard/car-dashboard/addcar/car/addcar.component';
 import { EditcarComponent } from './Components/admin-dashboard/car-dashboard/editcar/editcar/editcar.component';
 import { HomeComponent } from './Components/home/home.component';
+import { CarRentsComponent } from './Components/admin-dashboard/car-rents/car-rents.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -125,10 +126,8 @@ export const routes: Routes = [
             { path: 'addcaragency', component: AddcaragencyComponent},
             { path: 'car', component: CarComponent},
             {path:'addcar', component:addCarComponent},
-            {path:'editcar/:id',component:EditcarComponent}
-
-
-
+            {path:'editcar/:id',component:EditcarComponent},
+            {path:'carrents',component:CarRentsComponent},
         ],
         canActivate: [adminAuthGuard]
     },
