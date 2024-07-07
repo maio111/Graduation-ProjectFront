@@ -136,7 +136,7 @@ export const routes: Routes = [
         ],
         canActivate: [adminAuthGuard]
     },
-    { path: 'hotelPayment', component: HotelPaymentComponent , canActivate: [userAuthGuard]},
+    { path: 'hotelPayment', component: HotelPaymentComponent },
     { path: '**', component: PageNotFoundComponent },
     { path: 'notFound', component: PageNotFoundComponent },
 ];
