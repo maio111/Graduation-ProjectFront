@@ -127,6 +127,13 @@ export const routes: Routes = [
             { path: 'caragency', component: CaragencyComponent },
             { path: 'editcaragency/:id', component: EditcaragencyComponent},
             { path: 'addcaragency', component: AddcaragencyComponent},
+
+            { path: 'cars/:id', component: CarComponent},
+            {path:'addcar/:id', component:addCarComponent},
+            {path:'editcar/:id',component:EditcarComponent}
+
+
+
             { path: 'car', component: CarComponent},
             {path:'addcar', component:addCarComponent},
             {path:'editcar/:id',component:EditcarComponent},

@@ -17,77 +17,94 @@ import { HotelMapComponent } from '../../../hotels-dashboard/hotel-map/hotel-map
 })
 export class EditcaragencyComponent {
  
-    carAgency: any = {
-      id: 0,
-      name: '',
-      address: '',
-      logoURL: '',
-      phoneNumber: '',
-      websiteURL: '',
-      email: '',
-      longitude: 0,
-      latitude: 0
-    };
-    carAgencyId!: number;
-    cities: ICity[] = [] as ICity[]
+  carAgency: any = {
+    id: '',
+    name: '',
+    address: '',
+    cityId: '',
+    phoneNumber: '',
+    websiteURL: '',
+    email: '',
+    longitude: '',
+    latitude: '',
+    agencyPhoto: null // Property to hold the selected agency photo
+  };
 
-  
-    constructor(
-      private route: ActivatedRoute,
-      private router: Router,
-      private carAgencyService: CaragencyService,
-      private cityService:CityService
+  cities: ICity[] = []; // Assuming ICity interface represents city data structure
 
-    ) {}
-  
-    ngOnInit(): void {
-      this.route.params.subscribe(params => {
-        this.carAgencyId = +params['id']; 
-        this.loadCarAgency();
-      });
-    }
-  
-    loadCarAgency() {
-      this.carAgencyService.getCarAgencyById(this.carAgencyId).subscribe({
-        next: (res: any) => {
-          this.carAgency = res.data; 
-        },
-        error: (error) => {
-          console.error('Error fetching car agency:', error);
-        }
-      });
-    }
-  
-    onSubmit() {
-      this.carAgencyService.updateCarAgency(this.carAgencyId, this.carAgency).subscribe({
-        next: (res: any) => {
-          console.log('Car agency updated successfully:', res);
-          this.router.navigate(['/dashboard/caragency']);
-        },
-        error: (error) => {
-          console.error('Error updating car agency:', error);
-        }
-      });
-    }
-    
-    onCancel() {
-      this.router.navigate(['/dashboard/caragency']); 
-    }
-    onCoordinatesChange(newCoordinates: { latitude: number; longitude: number }) {
-      this.carAgency.latitude = newCoordinates.latitude;
-      this.carAgency.longitude = newCoordinates.longitude;
-    }
-    getCities() {
-      this.cityService.getAllCities().subscribe({
-        next: (res) => {
-          this.cities = res.data;
-          console.log(res)
-        },
-        error: error => {
-          console.error('Error', error);
-        }
-  
-      })
-    }
+  constructor(
+    private route: ActivatedRoute,
+    private carAgencyService: CaragencyService,
+    private router: Router,
+    private cityService: CityService
+  ) {}
+
+  ngOnInit() {
+    // Fetch car agency details based on route parameter
+    const id = this.route.snapshot.params['id']; // Assuming id is passed in the route
+    this.getCarAgency(id);
+    this.getCities(); // Fetch cities when component initializes
+  }
+
+  getCarAgency(id: number) {
+    this.carAgencyService.getCarAgencyById(id).subscribe({
+      next: (res) => {
+        this.carAgency = res.data; // Assuming response contains agency details
+      },
+      error: error => {
+        console.error('Error fetching car agency:', error);
+        // Handle error and display to user
+      }
+    });
+  }
+
+  onSubmit() {
+    const formData = new FormData();
+    formData.append('id', this.carAgency.id);
+    formData.append('name', this.carAgency.name);
+    formData.append('address', this.carAgency.address);
+    formData.append('cityId', this.carAgency.cityId);
+    formData.append('phoneNumber', this.carAgency.phoneNumber);
+    formData.append('websiteURL', this.carAgency.websiteURL);
+    formData.append('email', this.carAgency.email);
+    formData.append('longitude', this.carAgency.longitude);
+    formData.append('latitude', this.carAgency.latitude);
+    formData.append('agencyPhoto', this.carAgency.agencyPhoto); 
+
+    this.carAgencyService.updateCarAgency(this.carAgency.id, formData).subscribe({
+      next: res => {
+        this.router.navigate(['/dashboard/caragency']);
+      },
+      error: error => {
+        console.error('Error updating car agency:', error);
+      }
+    });
+  }
+
+  onCancel() {
+    this.router.navigate(['/dashboard/caragency']);
   }
   
+  onFileSelected(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.carAgency.agencyPhoto = file; 
+    }
+  }
+
+  getCities() {
+    this.cityService.getAllCities().subscribe({
+      next: (res) => {
+        this.cities = res.data; 
+      },
+      error: error => {
+        console.error('Error fetching cities:', error);
+      }
+    });
+  }
+
+  onCoordinatesChange(newCoordinates: { latitude: number; longitude: number }) {
+    this.carAgency.latitude = newCoordinates.latitude;
+    this.carAgency.longitude = newCoordinates.longitude;
+  }
+}

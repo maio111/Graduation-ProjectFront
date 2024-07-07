@@ -21,51 +21,73 @@ export class AddcaragencyComponent {
   carAgency: any = {
     name: '',
     address: '',
-    logoURL: '',
+    cityId: '', 
     phoneNumber: '',
     websiteURL: '',
     email: '',
-    longitude: 0,
-    latitude: 0
+    longitude: '',
+    latitude: '',
+    agencyPhoto: null 
   };
-  cities: ICity[] = [] as ICity[]
+
+  cities: ICity[] = []; 
 
   constructor(
     private carAgencyService: CaragencyService,
     private router: Router,
-    private cityService:CityService
+    private cityService: CityService
   ) {}
 
+  ngOnInit() {
+    this.getCities(); 
+  }
+
   onSubmit() {
-      this.carAgencyService.createCarAgency(this.carAgency).subscribe({
-        next: res => {
-          this.router.navigate(['/dashboard/caragency']);
-        },
-        error: error => {
-          console.error('Error creating car agency:', error);
-        }
-      });
-    
+    const formData = new FormData();
+    formData.append('name', this.carAgency.name);
+    formData.append('address', this.carAgency.address);
+    formData.append('cityId', this.carAgency.cityId);
+    formData.append('phoneNumber', this.carAgency.phoneNumber);
+    formData.append('websiteURL', this.carAgency.websiteURL);
+    formData.append('email', this.carAgency.email);
+    formData.append('longitude', this.carAgency.longitude);
+    formData.append('latitude', this.carAgency.latitude);
+    formData.append('agencyPhoto', this.carAgency.agencyPhoto); // Append agency photo
+
+    this.carAgencyService.createCarAgency(formData).subscribe({
+      next: res => {
+        this.router.navigate(['/dashboard/caragency']);
+      },
+      error: error => {
+        console.error('Error creating car agency:', error);
+      }
+    });
   }
 
   onCancel() {
     this.router.navigate(['/dashboard/caragency']);
   }
   
-  onCoordinatesChange(newCoordinates: { latitude: number; longitude: number }) {
-    this.carAgency.latitude = newCoordinates.latitude;
-    this.carAgency.longitude = newCoordinates.longitude;
+  onFileSelected(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.carAgency.agencyPhoto = file; 
+    }
   }
+
   getCities() {
     this.cityService.getAllCities().subscribe({
       next: (res) => {
-        this.cities = res.data;
-        console.log(res)
+        this.cities = res.data; 
       },
       error: error => {
-        console.error('Error', error);
+        console.error('Error fetching cities:', error);
       }
+    });
+  }
 
-    })
+  onCoordinatesChange(newCoordinates: { latitude: number; longitude: number }) {
+    this.carAgency.latitude = newCoordinates.latitude;
+    this.carAgency.longitude = newCoordinates.longitude;
   }
 }
