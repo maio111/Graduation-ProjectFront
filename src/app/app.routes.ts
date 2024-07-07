@@ -61,6 +61,8 @@ import { CarComponent } from './Components/admin-dashboard/car-dashboard/car/car
 import { addCarComponent } from './Components/admin-dashboard/car-dashboard/addcar/car/addcar.component';
 import { EditcarComponent } from './Components/admin-dashboard/car-dashboard/editcar/editcar/editcar.component';
 import { HomeComponent } from './Components/home/home.component';
+import { UserRentalsViewComponent } from './Components/user-rents-view/user-rents-view.component';
+import { CarRentalInvoicesComponent } from './Components/admin-dashboard/car-rental-invoices/car-rental-invoices.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -85,6 +87,7 @@ export const routes: Routes = [
     { path: 'preferences', component: PreferencesComponent },
     { path: 'security', component: SecurityComponent },
     { path: 'privacy', component: PrivacyComponent },
+    { path: 'userRentsView', component: UserRentalsViewComponent, canActivate: [userAuthGuard]},
     {
         path: 'dashboard',
         component: DashboardLayoutComponent,
@@ -125,7 +128,8 @@ export const routes: Routes = [
             { path: 'addcaragency', component: AddcaragencyComponent},
             { path: 'car', component: CarComponent},
             {path:'addcar', component:addCarComponent},
-            {path:'editcar/:id',component:EditcarComponent}
+            {path:'editcar/:id',component:EditcarComponent},
+            {path:'car-rental-invoices',component:CarRentalInvoicesComponent}
 
 
 

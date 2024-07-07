@@ -481,3 +481,88 @@ h2 {
 .add-comment button:hover {
   background-color: #204665;
 }
+@media all and (max-width: 767px) {
+  .table-header {
+    display: none;
+  }
+
+  .responsive-table li {
+    display: block;
+    padding: 10px 0;
+  }
+
+  .col {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+  }
+
+  .col:before {
+    color: #6C7A89;
+    padding-right: 10px;
+    content: attr(data-label);
+    flex-basis: 50%;
+    text-align: right;
+  }
+
+  .details .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .details h1 {
+    font-size: 28px;
+  }
+
+  .details .location,
+  .details .price {
+    font-size: 16px;
+  }
+
+  .reviewSection {
+    padding: 10px;
+  }
+
+  .images {
+    margin-right: 0;
+  }
+
+  .images img {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 992px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .details h1 {
+    font-size: 28px;
+  }
+
+  .details .location,
+  .details .price {
+    font-size: 16px;
+  }
+
+  .reviewSection {
+    padding: 10px;
+  }
+.re{
+  padding-left: 90px;
+  display: block;
+}
+  .images {
+    margin-right: 0;
+  }
+
+  .images img {
+    margin-right: 5px;
+    margin-bottom: 10px;
+  }
+
+  
+}

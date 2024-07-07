@@ -54,7 +54,7 @@
           </div>
         </section>
       </div>
-      <div class="col-3">
+      <div class="col-3 re">
         <div class="col-md-3 reviewSection">
           <div class="col-md-12">
             <h5 class="mb-4">Popular Reviews</h5>
@@ -104,10 +104,10 @@
             <div class="col col-4"><i class="fa-solid fa-calendar-alt"></i> Reservation</div>
           </li>
           <li class="table-row" *ngFor="let room of filteredHotel.rooms">
-            <div class="col col-1" data-label="Job Id">{{ room.capacity }}</div>
-            <div class="col col-2" data-label="Customer Name">{{ getViewLabel(room.view) }}</div>
-            <div class="col col-3" data-label="Amount">{{ room.typeName }}</div>
-            <div class="col col-4" data-label="Payment Status">${{ room.pricePerNight }}</div>
+            <div class="col col-1" data-label="capacity">{{ room.capacity }}</div>
+            <div class="col col-2" data-label="view">{{ getViewLabel(room.view) }}</div>
+            <div class="col col-3" data-label="Room Type">{{ room.typeName }}</div>
+            <div class="col col-4" data-label="Price">${{ room.pricePerNight }}</div>
             <div><button class="check-dates" (click)="createBooking(room)">Reserve</button></div>
           </li>
         </ul>
