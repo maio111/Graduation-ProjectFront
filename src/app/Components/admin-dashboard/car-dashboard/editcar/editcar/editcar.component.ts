@@ -12,55 +12,58 @@ import { FormsModule } from '@angular/forms';
 })
 export class EditcarComponent {
 
+  carId!: number; // Initialize carId as a class property
+
   car: any = {
-    id: 0,
-    modelOfYear: 0,
+    modelOfYear: '',
     brand: '',
     rentPrice: 0,
     availabilityStatus: false,
+    plateNumber: '',
+    description: '',
     insuranceIncluded: false,
-    gearType: 0,
+    gearType: '',
+    gasType: '',
     numberOfSeats: 0
   };
-  carId!: number;
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
+    private route: ActivatedRoute,
     private carService: CarService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.carId = +params['id']; 
-      this.loadCarAgency();
+      this.getCarDetails(); 
     });
   }
-
-  loadCarAgency() {
-    this.carService.getCaryById(this.carId).subscribe({
+  getCarDetails() {
+    this.carService.getCarById(this.carId).subscribe({
       next: (res: any) => {
-        this.car = res.data; 
+        this.car = res.data;
+        console.log(this.car)
       },
       error: (error) => {
-        console.error('Error fetching car:', error);
+        console.error('Error fetching car details:', error);
       }
     });
   }
 
-  onSubmit() {
+  updateCar() {
     this.carService.updateCar(this.carId, this.car).subscribe({
       next: (res: any) => {
-        console.log('Car agency updated successfully:', res);
-        this.router.navigate(['/dashboard/car']);
+        console.log('Car updated successfully:', res);
+        this.router.navigate(['/dashboard/cars',this.car.agencyId ]);
       },
       error: (error) => {
         console.error('Error updating car:', error);
       }
     });
   }
-  
-  onCancel() {
-    this.router.navigate(['/dashboard/car']); 
+
+  cancel() {
+    this.router.navigate(['/dashboard/cars',this.car.agencyId ]);
   }
 }

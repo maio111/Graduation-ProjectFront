@@ -237,4 +237,7 @@ Maldives(){
 bali(){
   window.location.href='https://www.touropia.com/best-places-to-visit-in-bali/';
 }
+Rome(){
+  window.location.href='https://romesite.com/colosseum.html'
+}
 }

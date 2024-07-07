@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { LoginService } from '../../Services/Login/login.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HomeComponent } from '../home/home.component';
 import { NavBarComponent } from "../nav-bar/nav-bar.component";
 import { AuthenticationService } from '../../Services/Authentication/authentication.service';
 
@@ -11,7 +12,7 @@ import { AuthenticationService } from '../../Services/Authentication/authenticat
     standalone: true,
     templateUrl: './login.component.html',
     styleUrl: './login.component.css',
-    imports: [FormsModule, CommonModule, NavBarComponent]
+    imports: [FormsModule, CommonModule, NavBarComponent,HomeComponent]
 })
 export class LoginComponent {
   
