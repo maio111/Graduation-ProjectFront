@@ -4,6 +4,7 @@ import { NavBarComponent } from "../nav-bar/nav-bar.component";
 import { Router } from '@angular/router';
 import { FormsModule, NgModel } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { VisibilityService } from '../../Services/Visibility/visibility.service';
 
 @Component({
     selector: 'app-home',
@@ -20,5 +21,6 @@ export class HomeComponent {
    toCar(){
     this.router.navigate(['/car']);
    }
+
  
 }

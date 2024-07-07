@@ -15,7 +15,7 @@ import { environment } from '../../../environments/environment';
 export class NavBarComponent {
   showDropdown: boolean = false; // Track dropdown visibility
   isAdmin: boolean = false;
-  user:any;
+  user:any = {};
   baseUrl = environment.baseUrl;
   constructor(private router: Router, private auth:AuthenticationService) { }
 
@@ -41,6 +41,7 @@ export class NavBarComponent {
   }
   logout(): void {
     localStorage.removeItem('token');
+    this.router.navigate(['/home']);
   }
   getRole() {
     this.isAdmin = this.auth.hasRole("ADMIN");
