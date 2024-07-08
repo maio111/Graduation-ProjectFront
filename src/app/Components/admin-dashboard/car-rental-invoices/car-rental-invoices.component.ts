@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CarRentalInvoiceDTO } from '../../../models/Car/CarRentalInvoiceDTO';
+import { RentalStatus, RentalStatusLabels } from '../../../utilities/RentalStatus';
+import { getPaymentMethodLabel } from '../../../utilities/PaymentMethod';
 
 @Component({
   selector: 'app-car-rental-invoices',
@@ -38,5 +40,11 @@ export class CarRentalInvoicesComponent implements OnInit {
 
   changePage(event: number): void {
     this.page = event;
+  }
+  getPaymentMethodLabel(method: number): string {
+    return getPaymentMethodLabel(method);
+  }
+  getRentalStatusLabel(status: RentalStatus): string {
+    return RentalStatusLabels[status];
   }
 }

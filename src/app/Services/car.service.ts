@@ -35,13 +35,17 @@ export class CarService {
     return this.http.patch<any>(`${this.baseUrl}/${id}`, car);
   }
 
-  deleteCar(id: number): Observable<any> {
+  deleteCar(id: number): Observable<ICarFilteredParams> {
     return this.http.delete<any>(`${this.baseUrl}/${id}`);
   }
 
-  getFilteredCars(filterParams: ICarFilteredParams): Observable<any> {
+  getFilteredCars(filterParams: ICarFilteredParams): Observable<{ data: IFilteredCar[] }> {
     let params = this.buildFilterParams(filterParams);
-    return this.http.get<any>(`${this.apiUrl}/api/Car/GetFilteredCars`, { params });
+<<<<<<< HEAD
+    return this.http.get <{ data: IFilteredCar[] }>(`${this.baseUrl}/GetFilteredCars`, { params });
+=======
+    return this.http.get<any>(`${this.baseUrl}/api/Car/GetFilteredCars`, { params });
+>>>>>>> 3bd9b5267a7b5bdd31818cc1add0b3c0bcc54372
   }
 
   private buildFilterParams(filterParams: ICarFilteredParams): HttpParams {

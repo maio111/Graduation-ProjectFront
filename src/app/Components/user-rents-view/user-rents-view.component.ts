@@ -13,6 +13,7 @@ import { PaymentMethod } from '../../models/Enums/PaymentMethod';
 import { getPaymentMethodLabel } from '../../utilities/PaymentMethod';
 import { CarRentalService } from '../../Services/CarRental.service';
 import { getRentalStatusesValues, RentalStatus, RentalStatusLabels } from '../../utilities/RentalStatus';
+import { CarRentalInvoicesService } from '../../Services/CarRentalInvoices.service';
 
 @Component({
   selector: 'app-user-rentals-view',
@@ -36,7 +37,7 @@ export class UserRentalsViewComponent {
   constructor(
     private rentalService: CarRentalService,
     private auth: AuthenticationService,
-    private invoiceService: CarInvoicesService,
+    private invoiceService: CarRentalInvoicesService,
     private modalService: BsModalService
   ) {
     this.rentalStatuses = getRentalStatusesValues();
@@ -51,11 +52,11 @@ export class UserRentalsViewComponent {
   }
 
   getFilteredRentals(): void {
-    this.rentalService.getFilteredCarRentals(this.filter).subscribe({
+    this.rentalService.getFilteredUserCarRentals(this.filter).subscribe({
       next: (res) => {
         this.rentals = res.data;
         this.total = res.totalItems;
-        console.log(res);
+        console.log(this.rentals)
       },
       error: (err) => console.log(err)
     });
@@ -74,9 +75,9 @@ export class UserRentalsViewComponent {
   }
 
   getInvoiceById(id: number) {
-    this.rentalService.getFilteredUserCarRentals(this.filter, this.userId).subscribe({
+    this.invoiceService.getCarRentalInvoice(id).subscribe({
       next: (res) => {
-        this.selectedInvoice = res.data;
+        this.rentals = res.data;
       },
       error: (err: any) => console.log(err)
     });

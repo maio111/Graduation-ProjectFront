@@ -3,40 +3,41 @@ import { BraintreeService } from '../../Services/braintree.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CreateBookingDTO } from '../../models/HotelBooking/CreateBookingDTO';
-import { BookingStatus } from '../../models/Enums/BookingStatus';
+import { CarRentalDTO } from '../../models/CarRents/CarRentalDTO';
+import { CarPaymentService } from '../../Services/car-payment.service';
 
 declare var braintree: any;
 
 @Component({
-  selector: 'app-hotel-payment',
+  selector: 'app-car-payment',
   standalone: true,
   imports: [FormsModule, CommonModule],
-  templateUrl: './hotel-payment.component.html',
-  styleUrls: ['./hotel-payment.component.css']
+  templateUrl: './car-payment.component.html',
+  styleUrls: ['./car-payment.component.css']
 })
-export class HotelPaymentComponent implements OnInit {
-  bookingData: CreateBookingDTO = {} as CreateBookingDTO;
-  bookingDate = new Date();
+export class CarPaymentComponent implements OnInit {
+  carRentalData: CarRentalDTO = {} as CarRentalDTO;
   paymentMethod = 'cash';
   validationMessage: string = '';
   private dropinInstance: any;
 
   constructor(
-    private braintreeService: BraintreeService,
+    private braintreeService: CarPaymentService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      const filterJson = params['booking'];
-      if (filterJson) {
+      const rentalJson = params['rental'];
+      const priceJson = params['price'];
+      if (rentalJson) {
         try {
-          this.bookingData = JSON.parse(decodeURIComponent(filterJson));
-          console.log(this.bookingData)
+          this.carRentalData = JSON.parse(decodeURIComponent(rentalJson));
+          this.carRentalData.TotalPrice = JSON.parse(decodeURIComponent(priceJson));
+          console.log(this.carRentalData);
         } catch (e) {
-          console.error('Error parsing booking data JSON', e);
+          console.error('Error parsing rental data JSON', e);
         }
       }
     });
@@ -67,9 +68,8 @@ export class HotelPaymentComponent implements OnInit {
   }
 
   validatePayment(): boolean {
-    if (!this.bookingData.bookingDate || !this.bookingData.status || !this.bookingData.totalPrice ||
-        !this.bookingData.checkInDate || !this.bookingData.checkOutDate) {
-      this.validationMessage = 'All booking details must be filled out.';
+    if (!this.carRentalData.PickUpDate || !this.carRentalData.DropOffDate || !this.carRentalData.TotalPrice) {
+      this.validationMessage = 'All rental details must be filled out.';
       return false;
     }
     if (this.paymentMethod === 'paypal' && !this.dropinInstance) {
@@ -93,7 +93,10 @@ export class HotelPaymentComponent implements OnInit {
           return;
         }
 
-        this.braintreeService.checkout(payload.nonce, this.bookingData.totalPrice, this.bookingData).subscribe({
+        const nonce = payload.nonce;
+        const totalPrice = this.carRentalData.TotalPrice || 0; // Default to 0 if undefined
+
+        this.braintreeService.checkout(nonce, totalPrice, this.carRentalData).subscribe({
           next: (response: any) => {
             console.log('Payment successful:', response);
             this.router.navigate(['']);
@@ -105,7 +108,9 @@ export class HotelPaymentComponent implements OnInit {
         });
       });
     } else {
-      this.braintreeService.checkoutCash(this.bookingData.totalPrice, this.bookingData).subscribe({
+      const totalPrice = this.carRentalData.TotalPrice || 0; // Default to 0 if undefined
+
+      this.braintreeService.checkoutCash(totalPrice, this.carRentalData).subscribe({
         next: (response: any) => {
           console.log('Payment successful:', response);
           this.router.navigate(['']);

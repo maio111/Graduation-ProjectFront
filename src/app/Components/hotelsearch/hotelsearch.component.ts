@@ -52,8 +52,8 @@ export class HotelsearchComponent implements OnInit {
   ) { }
   ngOnInit(): void {
     const token = this.auth.getToken();
-      const decoded = this.auth.decodeToken(token);
-      this.userId = this.auth.getUserIdFromToken(decoded);
+    const decoded = this.auth.decodeToken(token);
+    this.userId = this.auth.getUserIdFromToken(decoded);
     this.selectedRoomTypeId = this.roomTypes[0]?.id;
     this.getRoomTypes();
     this.getAllFeatures();

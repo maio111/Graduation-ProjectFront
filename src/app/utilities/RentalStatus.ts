@@ -1,6 +1,6 @@
 
 export enum RentalStatus {
-    Pending = 1,
+    Pending = 0,
     Confirmed,
     Canceled,
     Completed
