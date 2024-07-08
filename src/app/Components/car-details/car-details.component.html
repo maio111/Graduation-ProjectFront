@@ -1,115 +1,114 @@
-
 <div class="details">
-    <div class="header">
-      <h1>{{filteredCar.agencyName}}</h1>
-      <div class="price-container">
-        <p class="price">From ${{filteredCar.rentPrice}}/Person</p>
+  <div class="header">
+    <h1>{{ filteredCar.agencyName }}</h1>
+    <div class="price-container">
+      <p class="price">From ${{ filteredCar.rentPrice }}/Person</p>
+    </div>
+  </div>
+  <p class="location">{{ filteredCar.carType?.name }}</p>
+</div>
+
+<section class="section-faq">
+  <div class="section-faq-left">
+    <section class="hero">
+      <div class="images">
+        <img *ngFor="let photo of filteredCar.carPhotos" [src]="photo.photoUrl" [alt]="photo.category"
+          (click)="openModal(photo.photoUrl)" />
+      </div>
+      <div class="main-image">
+        <img *ngIf="filteredCar.carPhotos" [src]="getMainPhoto()" alt="Main Image" />
+      </div>
+    </section>
+  </div>
+
+  <div class="section-faq-right">
+    <div class="heading">
+      <h2>Find the answer to your questions</h2>
+    </div>
+    <div class="accordion-box">
+      <div class="main-tab">
+        <input type="radio" name="tab" id="tab-1" checked />
+        <label for="tab-1">
+          <div class="icon"><i class="fas fa-chevron-right"></i></div>
+          <span>Facilities</span>
+        </label>
+
+        <div class="content">
+          <div class="row specifications">
+            <div class="col spec-item">
+              <img src="../../../assets/img/settings-gears.png" alt="Icon 1" />
+              <div>
+                <div class="spec-main">Gear Type</div>
+                <div class="spec-div">{{ filteredCar.gearType }}</div>
+              </div>
+            </div>
+            <div class="col spec-item">
+              <img src="../../../assets/img/gas-station.png" alt="Icon 3" />
+              <div>
+                <div class="spec-main">Fuel</div>
+                <div class="spec-div">Diesel</div>
+              </div>
+            </div>
+            <div class="col spec-item">
+              <img src="../../../assets/img/-car-model.png" alt="Icon 5" />
+              <div>
+                <div class="spec-main">Model</div>
+                <div class="spec-div">2022</div>
+              </div>
+            </div>
+            <div class="col spec-item">
+              <img src="../../../assets/img/car-seat.png" alt="Icon 6" />
+              <div>
+                <div class="spec-main">Capacity</div>
+                <div class="spec-div">{{ filteredCar.numberOfSeats }} Persons</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="main-tab">
+        <input type="radio" name="tab" id="tab-2" checked />
+        <label for="tab-2">
+          <div class="icon"><i class="fas fa-chevron-right"></i></div>
+          <span>Description</span>
+        </label>
+
+        <div class="content">
+          <p>{{ filteredCar.description }}</p>
+        </div>
+      </div>
+
+      <div class="main-tab">
+        <input type="radio" name="tab" id="tab-3" checked />
+        <label for="tab-3">
+          <div class="icon"><i class="fas fa-chevron-right"></i></div>
+          <span>Rent Price</span>
+        </label>
+        <div class="content">
+          <h5><i class="fa-solid fa-map-location-dot mar"></i>{{ filteredCar.rentPrice }}</h5>
+        </div>
+        <app-map-modal-for-car></app-map-modal-for-car>
+      </div>
+
+      <div class="main-tab">
+        <input type="radio" name="tab" id="tab-4" checked />
+        <label for="tab-4">
+          <div class="icon"><i class="fas fa-chevron-right"></i></div>
+          <span>Important Information</span>
+        </label>
+        <div class="content">
+          <p>
+            <i class="fa-solid fa-user mar"></i>The driver should have (Passport or national ID card & Driving licence &
+            Credit card)
+          </p>
+          <p>
+            <i class="fa-solid fa-map-location-dot mar"></i> When you pick your car up, the fuel tank will be full or
+            partly full.You will leave a deposit to cover the cost of the fuel
+          </p>
+        </div>
       </div>
     </div>
-    <p class="location">{{filteredCar.carType}}</p>
+    <button (click)="createRent()">Reserve</button>
   </div>
-  <section class="section-faq">
-    <div class="section-faq-left">
-      <section class="hero">
-        <div class="images">
-          <img src="../../../assets/img/ca2.jpg" alt="Image 1" (click)="openModal('../../../assets/imgs/hotel4.jpg')">
-          <img src="../../../assets/img/ca2.jpg" alt="Image 2" (click)="openModal('../../../assets/imgs/hotel3.jpg')">
-          <img src="../../../assets/img/ca3.jpg" alt="Image 3" (click)="openModal('../../../assets/imgs/hotel1.jpg')">
-          <img src="../../../assets/img/ca1.jpg" alt="Image 4" (click)="openModal('../../../assets/imgs/hotel2.jpg')">
-          <img src="../../../assets/img/ca3.jpg" alt="Image 3" (click)="openModal('../../../assets/imgs/hotel5.jpg')">
-          <img src="../../../assets/img/ca1.jpg" alt="Image 3" (click)="openModal('../../../assets/imgs/hotel5.jpg')">
-        </div>
-        <div class="main-image">
-          <img src="../../../assets/img/ca1.jpg" alt="Main Image">
-        </div>
-      </section>
-    </div>
-    <div class="section-faq-right">
-        <div class="heading">
-          <h2>Find the answer to your questions</h2>
-        </div>
-        <div class="accordion-box">
-            <!-- accordion box one  -->
-            <div class="main-tab">
-                <input type="radio" name="tab" id="tab-1" checked>
-                <label for="tab-1">
-                    <div class="icon"><i class="fas fa-chevron-right"></i></div>
-                    <span>Facilites  </span>
-                </label>
-  
-                <div class="content">
-                 
-                  <div class="row specifications">
-                    <div class="col spec-item">
-                        <img src="../../../assets/img/settings-gears.png" alt="Icon 1">
-                        <div>
-                            <div class="spec-main">Gear Type</div>
-                            <div class="spec-div">{{filteredCar.gearType}}</div>
-                        </div>
-                    </div>
-                    <div class="col spec-item">
-                        <img src="../../../assets/img/gas-station.png" alt="Icon 3">
-                        <div>
-                            <div class="spec-main">Fuel</div>
-                            <div class="spec-div">Diesel</div>
-                        </div>
-                    </div>
-                    <div class="col spec-item">
-                        <img src="../../../assets/img/-car-model.png" alt="Icon 5">
-                        <div>
-                            <div class="spec-main">Model</div>
-                            <div class="spec-div">2022</div>
-                        </div>
-                    </div>
-                    <div class="col spec-item">
-                        <img src="../../../assets/img/car-seat.png" alt="Icon 6">
-                        <div>
-                            <div class="spec-main">Capacity</div>
-                            <div class="spec-div">{{filteredCar.numberOfSeats}} Persons</div>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-            </div>
-            <!-- accordion box two  -->
-            <div class="main-tab">
-                <input type="radio" name="tab" id="tab-2" checked>
-                <label for="tab-2">
-                    <div class="icon"><i class="fas fa-chevron-right"></i></div>
-                    <span>Description</span>
-                </label>
-  
-                <div class="content">
-                    <p>{{filteredCar.description}}</p>
-                </div>
-            </div>
-  
-            <!-- accordion box three  -->
-            <div class="main-tab">
-                <input type="radio" name="tab" id="tab-3" checked>
-                <label for="tab-3">
-                    <div class="icon"><i class="fas fa-chevron-right"></i></div>
-                    <span>Rent Price</span>
-                </label>
-                <div class="content">
-                  <h5><i class="fa-solid fa-map-location-dot mar"></i>{{filteredCar.rentPrice}}</h5>
-                    <!-- <p (click)="openModal()" style="margin-left:14px ; color: gray; cursor: pointer;"> Click Here To check The Time And Location To Pick Up</p> -->
-                </div>
-               <app-map-modal-for-car></app-map-modal-for-car>
-            </div>
-            <!-- accordion box three  -->
-            <div class="main-tab">
-                <input type="radio" name="tab" id="tab-4" checked>
-                <label for="tab-4">
-                    <div class="icon"><i class="fas fa-chevron-right"></i></div>
-                    <span>Important Information</span>
-                </label>
-                <div class="content">
-                    <p>  <i class="fa-solid fa-user  mar"></i>the driver should have (Passport or national ID card & Driving licence & Credit card)</p>
-                    <p><i class="fa-solid fa-map-location-dot mar"></i> When you pick your car up, the fuel tank will be full or partly full.You will leave a deposit to cover the cost of the fue</p>
-                </div>
-            </div>
-        </div>
-        <button (click)="createRent()">Reserve</button>
-    </div>
-  </section>
+</section>

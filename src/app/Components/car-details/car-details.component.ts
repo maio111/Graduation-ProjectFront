@@ -8,6 +8,7 @@ import { IFilteredCar } from '../../models/Car/IFilteredCar';
 import { AuthenticationService } from '../../Services/Authentication/authentication.service';
 import { ReviewService } from '../../Services/review.service';
 import { ICarFilteredParams } from '../../models/Car/ICarFilteredParams';
+import { CarPhotoCat } from '../../models/Car/ICarPhoto';
 
 declare const bootstrap: any;
 
@@ -70,6 +71,10 @@ export class CarDetailsComponent implements OnInit {
         price: JSON.stringify(this.filteredCar.rentPrice)
       }
     });
+  }
+  getMainPhoto(): string {
+    const frontViewPhoto = this.filteredCar.carPhotos?.find(photo => photo.category === CarPhotoCat.FrontView);
+    return frontViewPhoto ? frontViewPhoto.photoUrl : this.defaultPhotoUrl;
   }
 
   defaultPhotoUrl: string = 'https://www.seekpng.com/png/detail/966-9665493_my-profile-icon-blank-profile-image-circle.png';

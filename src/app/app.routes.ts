@@ -129,33 +129,16 @@ export const routes: Routes = [
             { path: 'hotelsBookingsDashboard', component: HotelBookingsComponent },
             { path: 'hotelInvoices', component: HotelsInvoicesComponent },
             { path: 'caragency', component: CaragencyComponent },
-<<<<<<< HEAD
-            { path: 'editcaragency/:id', component: EditcaragencyComponent },
-            { path: 'addcaragency', component: AddcaragencyComponent },
-            { path: 'cars/:id', component: CarComponent },
-            { path: 'addcar/:id', component: addCarComponent },
-            { path: 'editcar/:id', component: EditcarComponent },
-            { path: 'car', component: CarComponent },
-            { path: 'addcar', component: addCarComponent },
-            { path: 'editcar/:id', component: EditcarComponent },
-            { path: 'carrents', component: CarRentsComponent },
-            { path: 'car-rental-invoices', component: CarRentalInvoicesComponent }
-=======
             { path: 'editcaragency/:id', component: EditcaragencyComponent},
             { path: 'addcaragency', component: AddcaragencyComponent},
-
             { path: 'cars/:id', component: CarComponent},
             {path:'addcar/:id', component:addCarComponent},
             {path:'editcar/:id',component:EditcarComponent},
-
-
-
             { path: 'car', component: CarComponent},
             {path:'addcar', component:addCarComponent},
             {path:'editcar/:id',component:EditcarComponent},
             {path:'carrents',component:CarRentsComponent},
             {path:'car-rental-invoices',component:CarRentalInvoicesComponent}
->>>>>>> 3bd9b5267a7b5bdd31818cc1add0b3c0bcc54372
         ],
         canActivate: [adminAuthGuard]
     },
