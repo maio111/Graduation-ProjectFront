@@ -26,7 +26,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let car of cars| paginate: { id: 'coun', itemsPerPage: 3, currentPage: page, totalItems: total }; let i = index">
+        <tr *ngFor="let car of cars | paginate: { id: 'coun', itemsPerPage: 3, currentPage: page, totalItems: total }">
           <td>{{car.modelOfYear}}</td>
           <td>{{car.brand}}</td>
           <td>{{car.rentPrice}}</td>
@@ -39,6 +39,7 @@
           <td>{{car.numberOfSeats}}</td>
           <td>
             <button class="btn btn-sm btn-info mx-3" (click)="navigateToEdit(car.id)">Edit</button>
+            <button class="btn btn-sm btn-info mx-3" (click)="navigateToPhotos(car.id)">Photos</button>
             <button class="btn btn-sm btn-danger" (click)="deleteCar(car.id)">Delete</button>
           </td>
         </tr>

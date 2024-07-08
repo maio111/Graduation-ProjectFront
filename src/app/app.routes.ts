@@ -66,6 +66,7 @@ import { UserRentalsViewComponent } from './Components/user-rents-view/user-rent
 import { CarRentalInvoicesComponent } from './Components/admin-dashboard/car-rental-invoices/car-rental-invoices.component';
 import { RentDetailsComponent } from './Components/rent-details/rent-details.component';
 import { CarPaymentComponent } from './Components/car-payment/car-payment.component';
+import { CarPhotosDashboardComponent } from './Components/admin-dashboard/car-dashboard/carphotos-dashboard/carphotos-dashboard.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -129,11 +130,31 @@ export const routes: Routes = [
             { path: 'hotelsBookingsDashboard', component: HotelBookingsComponent },
             { path: 'hotelInvoices', component: HotelsInvoicesComponent },
             { path: 'caragency', component: CaragencyComponent },
+<<<<<<< HEAD
+=======
+            { path: 'editcaragency/:id', component: EditcaragencyComponent },
+            { path: 'addcaragency', component: AddcaragencyComponent },
+            { path: 'cars/:id', component: CarComponent },
+            { path: 'addcar/:id', component: addCarComponent },
+            { path: 'editcar/:id', component: EditcarComponent },
+            { path: 'car', component: CarComponent },
+            { path: 'addcar', component: addCarComponent },
+            { path: 'editcar/:id', component: EditcarComponent },
+            { path: 'carrents', component: CarRentsComponent },
+            { path: 'car-rental-invoices', component: CarRentalInvoicesComponent },
+>>>>>>> ba7809015cea9b72ed9b962af97f25d66521dd59
             { path: 'editcaragency/:id', component: EditcaragencyComponent},
             { path: 'addcaragency', component: AddcaragencyComponent},
             { path: 'cars/:id', component: CarComponent},
             {path:'addcar/:id', component:addCarComponent},
             {path:'editcar/:id',component:EditcarComponent},
+<<<<<<< HEAD
+=======
+
+
+            { path: 'carPhotos/:carId', component: CarPhotosDashboardComponent },
+
+>>>>>>> ba7809015cea9b72ed9b962af97f25d66521dd59
             { path: 'car', component: CarComponent},
             {path:'addcar', component:addCarComponent},
             {path:'editcar/:id',component:EditcarComponent},

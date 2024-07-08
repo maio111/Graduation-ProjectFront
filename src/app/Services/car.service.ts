@@ -10,38 +10,46 @@ import { IFilteredCar } from '../models/Car/IFilteredCar';
 })
 export class CarService {
 
-  private baseUrl = `${environment.baseUrl}/api/car`; 
+  private baseUrl: string = environment.baseUrl;
 
   constructor(private http: HttpClient,) {}
 
   getAllCars(): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}`);
+    return this.http.get<any>(`${this.baseUrl}/api/Car`);
   }
 
- 
-
-  getAgencyCars(agencyId: number): Observable<any> {
-    return this.http.get<any>(`http://localhost:5285/api/GetAgencyAndCars/${agencyId}`);
+  GetCarsByAgencyId(id: number): Observable<any[]> {
+    
+    return this.http.get<any>(`${this.baseUrl}/api/Car/ByAgency/${id}`);
   }
+
+  // getAgencyCars(agencyId: number): Observable<any> {
+  //   return this.http.get<any>(`http://localhost:5285/api/GetAgencyAndCars/${agencyId}`);
+  // }
   getCarById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/${id}`);
+    return this.http.get<any>(`${this.baseUrl}/api/Car/${id}`);
   }
 
   addCar(car: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}`, car);
+    return this.http.post<any>(`${this.baseUrl}/api/Car`, car);
   }
 
   updateCar(id: number, car: any): Observable<any> {
-    return this.http.patch<any>(`${this.baseUrl}/${id}`, car);
+    return this.http.patch<any>(`${this.baseUrl}/api/Car/${id}`, car);
   }
 
   deleteCar(id: number): Observable<ICarFilteredParams> {
-    return this.http.delete<any>(`${this.baseUrl}/${id}`);
+    return this.http.delete<any>(`${this.baseUrl}/api/Car/${id}`);
   }
 
+  
   getFilteredCars(filterParams: ICarFilteredParams): Observable<{ data: IFilteredCar[] }> {
     let params = this.buildFilterParams(filterParams);
     return this.http.get <{ data: IFilteredCar[] }>(`${this.baseUrl}/GetFilteredCars`, { params });
+<<<<<<< HEAD
+=======
+    // return this.http.get<any>(`${this.baseUrl}/api/Car/GetFilteredCars`, { params });
+>>>>>>> ba7809015cea9b72ed9b962af97f25d66521dd59
   }
 
   private buildFilterParams(filterParams: ICarFilteredParams): HttpParams {
