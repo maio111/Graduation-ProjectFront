@@ -22,6 +22,7 @@ import { CarSearchComponent } from './Components/car-search/car-search.component
 import { CarDetailsComponent } from './Components/car-details/car-details.component';
 import { WishlistComponent } from "./Components/wishlist/wishlist.component";
 import { CarRentalInvoicesComponent } from './Components/admin-dashboard/car-rental-invoices/car-rental-invoices.component';
+import { CarPhotosDashboardComponent } from './Components/admin-dashboard/car-dashboard/carphotos-dashboard/carphotos-dashboard.component';
 
 @Component({
     selector: 'app-root',
@@ -50,6 +51,7 @@ import { CarRentalInvoicesComponent } from './Components/admin-dashboard/car-ren
         NgxPaginationModule,
         HotelsearchComponent,
         HoteldetailsComponent,
+        CarPhotosDashboardComponent,
         HoteldetailsimgComponent, CarRentalComponent, CarSearchComponent, CarDetailsComponent, WishlistComponent,CarRentalInvoicesComponent]
 })
 export class AppComponent {

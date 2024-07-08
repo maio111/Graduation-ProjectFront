@@ -66,6 +66,7 @@ import { UserRentalsViewComponent } from './Components/user-rents-view/user-rent
 import { CarRentalInvoicesComponent } from './Components/admin-dashboard/car-rental-invoices/car-rental-invoices.component';
 import { RentDetailsComponent } from './Components/rent-details/rent-details.component';
 import { CarPaymentComponent } from './Components/car-payment/car-payment.component';
+import { CarPhotosDashboardComponent } from './Components/admin-dashboard/car-dashboard/carphotos-dashboard/carphotos-dashboard.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -129,7 +130,6 @@ export const routes: Routes = [
             { path: 'hotelsBookingsDashboard', component: HotelBookingsComponent },
             { path: 'hotelInvoices', component: HotelsInvoicesComponent },
             { path: 'caragency', component: CaragencyComponent },
-<<<<<<< HEAD
             { path: 'editcaragency/:id', component: EditcaragencyComponent },
             { path: 'addcaragency', component: AddcaragencyComponent },
             { path: 'cars/:id', component: CarComponent },
@@ -139,8 +139,7 @@ export const routes: Routes = [
             { path: 'addcar', component: addCarComponent },
             { path: 'editcar/:id', component: EditcarComponent },
             { path: 'carrents', component: CarRentsComponent },
-            { path: 'car-rental-invoices', component: CarRentalInvoicesComponent }
-=======
+            { path: 'car-rental-invoices', component: CarRentalInvoicesComponent },
             { path: 'editcaragency/:id', component: EditcaragencyComponent},
             { path: 'addcaragency', component: AddcaragencyComponent},
 
@@ -149,13 +148,13 @@ export const routes: Routes = [
             {path:'editcar/:id',component:EditcarComponent},
 
 
+            { path: 'carPhotos/:carId', component: CarPhotosDashboardComponent },
 
             { path: 'car', component: CarComponent},
             {path:'addcar', component:addCarComponent},
             {path:'editcar/:id',component:EditcarComponent},
             {path:'carrents',component:CarRentsComponent},
             {path:'car-rental-invoices',component:CarRentalInvoicesComponent}
->>>>>>> 3bd9b5267a7b5bdd31818cc1add0b3c0bcc54372
         ],
         canActivate: [adminAuthGuard]
     },

@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NavBarComponent } from '../../../nav-bar/nav-bar.component';
 import { CarService } from '../../../../Services/car.service';
+import { IFilteredCar } from '../../../../models/Car/IFilteredCar';
 
 @Component({
   selector: 'app-car-agency',
@@ -15,7 +16,7 @@ import { CarService } from '../../../../Services/car.service';
 })
 export class CarComponent {
 
-  cars: any[] = [];
+  cars: IFilteredCar[] =[] as IFilteredCar[];
   agencyId!: number;
   currentCarId!: number;
   page: number = 1;
@@ -35,10 +36,10 @@ export class CarComponent {
   }
 
   getAllCars() {
-    this.carService.getAgencyCars(this.agencyId).subscribe({
+    this.carService.GetCarsByAgencyId(this.agencyId).subscribe({
       next: (res: any) => {
-        this.cars = res.data;
-        console.log(this.cars);
+        console.log(res);
+        this.cars = res;
         this.total = res.totalItems;
       },
       error: (error) => {
@@ -78,4 +79,10 @@ export class CarComponent {
   changePage(event: any) {
     this.page = event;
   }
+
+  navigateToPhotos(id: number) {
+    this.currentCarId = id;
+    this.router.navigate(['dashboard/carPhotos', this.currentCarId]);
+  }
+
 }
