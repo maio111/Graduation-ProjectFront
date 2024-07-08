@@ -229,13 +229,12 @@ export class CarRentalHeaderComponent {
       this.carService.getFilteredCars(this.parmas).subscribe({
         next: (res) => {
           this.filteredCars = res.data
-          console.log(res.data)
-          
           const filteredCars = JSON.stringify(this.filteredCars);
           const filterParams = JSON.stringify(this.parmas);
           this.router.navigate(['filterCar'], {
             queryParams: { filterParams: filterParams, filteredCars: filteredCars }
           });
+          console.log(res.data)
         },
         error: (error) => console.log(error)
       });

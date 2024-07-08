@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { CarAgencyViewDto } from '../models/Car/CarAgencyViewDto';
 
 @Injectable({
   providedIn: 'root'
@@ -41,5 +42,8 @@ export class CaragencyService {
 
   deleteCarAgency(id: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  }
+  getAgencies(): Observable<{ data: CarAgencyViewDto[] }> {
+    return this.http.get < { data: CarAgencyViewDto[] } >(`${this.apiUrl}`);
   }
 }

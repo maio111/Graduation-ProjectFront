@@ -1,4 +1,4 @@
-import { Routes ,RouterModule } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { HotelBookingComponent } from './Components/hotel-booking/hotel-booking.component';
 import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
 import { HotelsDashboardComponent } from './Components/admin-dashboard/hotels-dashboard/hotels-dashboard.component';
@@ -64,23 +64,27 @@ import { HomeComponent } from './Components/home/home.component';
 import { CarRentsComponent } from './Components/admin-dashboard/car-rents/car-rents.component';
 import { UserRentalsViewComponent } from './Components/user-rents-view/user-rents-view.component';
 import { CarRentalInvoicesComponent } from './Components/admin-dashboard/car-rental-invoices/car-rental-invoices.component';
+import { RentDetailsComponent } from './Components/rent-details/rent-details.component';
+import { CarPaymentComponent } from './Components/car-payment/car-payment.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
-    {path:'home',component:HomeComponent} ,
-    { path:'hotelBooking',component:HotelBookingComponent},
-    {path:'car',component:CarRentalComponent},
-    {path:'filterCar',component:CarSearchComponent},
-    {path:'cardetails',component:CarDetailsComponent},
-    { path: 'filterhotels', component:HotelsearchComponent},
-    { path: 'hoteldetails', component:HoteldetailsComponent},
-    { path: 'reservationDetails', component: ReservationDetailsComponent, canActivate: [userAuthGuard]},
+    { path: 'home', component: HomeComponent },
+    { path: 'hotelBooking', component: HotelBookingComponent },
+    { path: 'car', component: CarRentalComponent },
+    { path: 'filterCar', component: CarSearchComponent },
+    { path: 'cardetails', component: CarDetailsComponent },
+    { path: 'filterhotels', component: HotelsearchComponent },
+    { path: 'hoteldetails', component: HoteldetailsComponent },
+    { path: 'reservationDetails', component: ReservationDetailsComponent, canActivate: [userAuthGuard] },
+    { path: 'rentDetails', component: RentDetailsComponent, canActivate: [userAuthGuard] },
+    { path: 'carPayment', component: CarPaymentComponent, canActivate: [userAuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegistrationComponent },
     { path: 'contact-us', component: ContactUsComponent },
     { path: 'about-us', component: AboutUsComponent },
     { path: 'confirm-email', component: ConfirmEmailComponent },
-    { path: 'userBookingsView', component: UserBookingsViewComponent, canActivate: [userAuthGuard]},
+    { path: 'userBookingsView', component: UserBookingsViewComponent, canActivate: [userAuthGuard] },
     { path: 'wishlist', component: WishlistComponent },
     { path: 'account-settings', component: AccountSettingComponent },
     { path: 'side-bar', component: SideBarComponent },
@@ -88,7 +92,7 @@ export const routes: Routes = [
     { path: 'preferences', component: PreferencesComponent },
     { path: 'security', component: SecurityComponent },
     { path: 'privacy', component: PrivacyComponent },
-    { path: 'userRentsView', component: UserRentalsViewComponent, canActivate: [userAuthGuard]},
+    { path: 'userRentsView', component: UserRentalsViewComponent, canActivate: [userAuthGuard] },
     {
         path: 'dashboard',
         component: DashboardLayoutComponent,
@@ -125,6 +129,18 @@ export const routes: Routes = [
             { path: 'hotelsBookingsDashboard', component: HotelBookingsComponent },
             { path: 'hotelInvoices', component: HotelsInvoicesComponent },
             { path: 'caragency', component: CaragencyComponent },
+<<<<<<< HEAD
+            { path: 'editcaragency/:id', component: EditcaragencyComponent },
+            { path: 'addcaragency', component: AddcaragencyComponent },
+            { path: 'cars/:id', component: CarComponent },
+            { path: 'addcar/:id', component: addCarComponent },
+            { path: 'editcar/:id', component: EditcarComponent },
+            { path: 'car', component: CarComponent },
+            { path: 'addcar', component: addCarComponent },
+            { path: 'editcar/:id', component: EditcarComponent },
+            { path: 'carrents', component: CarRentsComponent },
+            { path: 'car-rental-invoices', component: CarRentalInvoicesComponent }
+=======
             { path: 'editcaragency/:id', component: EditcaragencyComponent},
             { path: 'addcaragency', component: AddcaragencyComponent},
 
@@ -139,6 +155,7 @@ export const routes: Routes = [
             {path:'editcar/:id',component:EditcarComponent},
             {path:'carrents',component:CarRentsComponent},
             {path:'car-rental-invoices',component:CarRentalInvoicesComponent}
+>>>>>>> 3bd9b5267a7b5bdd31818cc1add0b3c0bcc54372
         ],
         canActivate: [adminAuthGuard]
     },

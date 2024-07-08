@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { CarRentalFiltered } from '../models/Car/CarRentalFiltered';
 import { CarRentalViewDto } from '../models/Car/CarRentalViewDto';
 import { UserBookingsFilter } from '../models/HotelBooking/UserBookingsFilter';
+import { CarAgencyViewDto } from '../models/Car/CarAgencyViewDto';
 @Injectable({
   providedIn: 'root'
 })
@@ -25,14 +26,15 @@ export class CarRentalService {
     return this.httpclient.get<CarRentalViewDto[]>(`${this.apiUrl}/api/CarRental/GetFilteredCarRentals`, { params });
   }
 
-getFilteredUserCarRentals(filter: CarRentalFiltered,id :number): Observable<any> {
+getFilteredUserCarRentals(filter: CarRentalFiltered): Observable<any> {
     let params = new HttpParams();
-    if (filter.UserId) params = params.set('UserId', filter.UserId.toString());
-    if (filter.CarAgencyName) params = params.set('CarAgencyName', filter.CarAgencyName);
-    if (filter.PickUpDate) params = params.set('PickUpDate', filter.PickUpDate.toISOString());
-    if (filter.DropOffDate) params = params.set('DropOffDate', filter.DropOffDate.toISOString());
-    if (filter.Status !== undefined) params = params.set('Status', filter.Status.toString());
-
-    return this.httpclient.get<CarRentalViewDto[]>(`${this.apiUrl}/api/CarRental/GetFilteredUserCarRents${id}`, { params });
+    if (filter.UserId) params = params.set('UserId', filter.UserId);
+    // if (filter.CarAgencyName) params = params.set('CarAgencyName', filter.CarAgencyName.toString());
+    // if (filter.PickUpDate) params = params.set('PickUpDate', filter.PickUpDate.toISOString());
+    // if (filter.DropOffDate) params = params.set('DropOffDate', filter.DropOffDate.toISOString());
+    // if (filter.Status !== undefined) params = params.set('Status', filter.Status.toString());
+  return this.httpclient.get<any>(`${this.baseUrl}/api/CarRental/GetFilteredUserCarRents`, { params });
   }
+
+  
 }

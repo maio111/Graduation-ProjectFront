@@ -14,7 +14,13 @@ export class CarRentalInvoicesService {
   constructor(private httpClient: HttpClient) { }
 
   getCarRentalInvoices(): Observable<{ data: CarRentalInvoiceDTO[], totalItems: number }> {
-    return this.httpClient.get<{ data: CarRentalInvoiceDTO[], totalItems: number }>(`${this.baseUrl}/api/CarRentalInvoices`);
+    return this.httpClient.get<{ data: CarRentalInvoiceDTO[], totalItems: number }>(`${this.baseUrl}/api/CarRentalInvoice`);
+  }
+  getCarRentalInvoice(id:number): Observable<any> {
+    return this.httpClient.get<any>(`${this.baseUrl}/api/CarRentalInvoice/${id}`);
+  }
+  getUserCarRentalInvoice(userId: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.baseUrl}/GetCarUserRentalInvoiceById/${userId}`);
   }
 
 }

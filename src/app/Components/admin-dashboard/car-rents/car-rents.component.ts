@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './car-rents.component.css'
 })
 export class CarRentsComponent {
-  rentals: CarRentalViewDTO[] = [];
+  rentals: CarRentalViewDTO[] = [] as CarRentalViewDTO [];
   filter: CarRentalFilterationDTO = {
     pickUpCity: '',
     pickUpDate: undefined,

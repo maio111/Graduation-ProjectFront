@@ -1,3 +1,5 @@
+import { RentalStatus } from "../../utilities/RentalStatus";
+
 export enum PaymentStatus {
     Pending = 0,
     Completed = 1,
@@ -15,7 +17,7 @@ export enum PaymentStatus {
     number: number;
     date: Date;
     amount: number;
-    paymentStatus: PaymentStatus;
+    paymentStatus: RentalStatus;
     transactionId: number;
     paymentMethod: PaymentMethod;
     userId: number;

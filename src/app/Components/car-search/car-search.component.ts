@@ -9,6 +9,8 @@ import { environment } from '../../../environments/environment';
 import { ICarPhoto } from '../../models/Car/ICarPhoto';
 import { BookingHeaderComponent } from '../booking-header/booking-header.component';
 import { CarRentalHeaderComponent } from "../car-rental-header/car-rental-header.component";
+import { CarAgencyViewDto } from '../../models/Car/CarAgencyViewDto';
+import { CaragencyService } from '../../Services/caragency.service';
 
 declare var $: any;
 @Component({
@@ -24,13 +26,12 @@ export class CarSearchComponent implements OnInit, AfterViewInit {
   minPriceVal: number = 0;
   maxPriceVal: number = 0;
   gearTypes = Object.keys(GearType).filter(k => isNaN(Number(k))).map(key => ({ label: key, value: GearType[key as keyof typeof GearType] }));
-  modelYears: number[] = [2021, 2022, 2023, 2024]; // Example years
-  agencies: any[] = []; // Populate with agency data
+  agencies: CarAgencyViewDto[] = [] as CarAgencyViewDto[];// Populate with agency data
   baseUrl: string = environment.baseUrl;
-
   minPrice: number = 100;
   maxPrice: number = 5000;
   priceGap: number = 50;
+  selectedAgancyId?: number;
 
   @ViewChild('rangeMin') rangeMin!: ElementRef<HTMLInputElement>;
   @ViewChild('rangeMax') rangeMax!: ElementRef<HTMLInputElement>;
@@ -41,14 +42,18 @@ export class CarSearchComponent implements OnInit, AfterViewInit {
   constructor(
     private route: ActivatedRoute,
     private carService: CarService,
-    private router: Router
+    private router: Router,
+    private carAgencySercive : CaragencyService
   ) {}
 
   ngOnInit(): void {
+    this.selectedAgancyId = this.agencies[0]?.id;
+    this.getAgancies();
+    console.log(this.agencies)
     this.route.queryParams.subscribe(params => {
       const carsJson = params['filteredCars'];
+      console.log(carsJson)
       const filterParams = params['filterParams'];
-      console.log(filterParams)
       if (carsJson) {
         try {
           this.filteredCars = JSON.parse(decodeURIComponent(carsJson));
@@ -124,16 +129,17 @@ export class CarSearchComponent implements OnInit, AfterViewInit {
   updateFilteredCars() {
     this.filterParams.minPrice = this.minPriceVal;
     this.filterParams.maxPrice = this.maxPriceVal;
+    this.filterParams.agencyId = this.selectedAgancyId;
 
     this.carService.getFilteredCars(this.filterParams).subscribe({
       next: (res) => {
-        this.filteredCars = res;
-        this.router.navigate(['/filterCar'], {
-          queryParams: {
-            filteredCars: encodeURIComponent(JSON.stringify(this.filteredCars)),
-            filterParams: encodeURIComponent(JSON.stringify(this.filterParams))
-          }
-        });
+        this.filteredCars = res.data;
+        // this.router.navigate(['/filterCar'], {
+        //   queryParams: {
+        //     filteredCars: encodeURIComponent(JSON.stringify(this.filteredCars)),
+        //     filterParams: encodeURIComponent(JSON.stringify(this.filterParams))
+        //   }
+        // });
       },
       error: (err) => {
         console.log(err);
@@ -150,8 +156,26 @@ export class CarSearchComponent implements OnInit, AfterViewInit {
   
 
   goCarDetails(car: IFilteredCar): void {
-    this.router.navigate(['/cardetails'], { queryParams: { car: encodeURIComponent(JSON.stringify(car)) } });
+    this.router.navigate(['/cardetails'], {
+      queryParams: {
+        car: encodeURIComponent(JSON.stringify(car)),
+        params : encodeURIComponent(JSON.stringify(this.filterParams))
+      }
+    });
   }
 
 
+  modelOfYearInvalid(): boolean {
+    const year = this.filterParams.modelOfYear;
+    return year != null && (year < 1990 || year > 2024);
+  }
+
+  getAgancies() {
+    this.carAgencySercive.getAgencies().subscribe({
+      next: (res) => {
+        this.agencies = res.data;
+      },
+      error: (err) => console.log(err)
+    })
+  }
 }
