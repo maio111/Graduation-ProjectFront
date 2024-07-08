@@ -18,9 +18,9 @@
           <td>{{ invoice.number }}</td>
           <td>{{ invoice.date | date }}</td>
           <td>$ {{ invoice.amount }}</td>
-          <td>{{ invoice.paymentStatus }}</td>
+          <td>{{ getRentalStatusLabel(invoice.paymentStatus) }}</td>
           <td>{{ invoice.transactionId }}</td>
-          <td>{{ invoice.paymentMethod }}</td>
+          <td>{{ getPaymentMethodLabel(invoice.paymentMethod) }}</td>
         </tr>
       </tbody>
     </table>

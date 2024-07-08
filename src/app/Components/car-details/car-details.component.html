@@ -1,12 +1,12 @@
 
 <div class="details">
     <div class="header">
-      <h1>Helambu Spiritual Hike</h1>
+      <h1>{{filteredCar.agencyName}}</h1>
       <div class="price-container">
-        <p class="price">From $320/Person</p>
+        <p class="price">From ${{filteredCar.rentPrice}}/Person</p>
       </div>
     </div>
-    <p class="location">Kathmandu, Nepal</p>
+    <p class="location">{{filteredCar.carType}}</p>
   </div>
   <section class="section-faq">
     <div class="section-faq-left">
@@ -28,7 +28,6 @@
         <div class="heading">
           <h2>Find the answer to your questions</h2>
         </div>
-  
         <div class="accordion-box">
             <!-- accordion box one  -->
             <div class="main-tab">
@@ -45,7 +44,7 @@
                         <img src="../../../assets/img/settings-gears.png" alt="Icon 1">
                         <div>
                             <div class="spec-main">Gear Type</div>
-                            <div class="spec-div">Manual</div>
+                            <div class="spec-div">{{filteredCar.gearType}}</div>
                         </div>
                     </div>
                     <div class="col spec-item">
@@ -66,16 +65,12 @@
                         <img src="../../../assets/img/car-seat.png" alt="Icon 6">
                         <div>
                             <div class="spec-main">Capacity</div>
-                            <div class="spec-div">3 Persons</div>
+                            <div class="spec-div">{{filteredCar.numberOfSeats}} Persons</div>
                         </div>
                     </div>
                   </div>
-  
-                    
-                   
                 </div>
             </div>
-  
             <!-- accordion box two  -->
             <div class="main-tab">
                 <input type="radio" name="tab" id="tab-2" checked>
@@ -85,7 +80,7 @@
                 </label>
   
                 <div class="content">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing thelit. Quam, repellendus facere, id porro magnam blanditiiss quoteos dolores ratione quidem ipsam esse quos pariatur, repellat obcaecati!</p>
+                    <p>{{filteredCar.description}}</p>
                 </div>
             </div>
   
@@ -94,16 +89,14 @@
                 <input type="radio" name="tab" id="tab-3" checked>
                 <label for="tab-3">
                     <div class="icon"><i class="fas fa-chevron-right"></i></div>
-                    <span>Pick-Up and Drop off Location</span>
+                    <span>Rent Price</span>
                 </label>
-  
                 <div class="content">
-                  <h5><i class="fa-solid fa-map-location-dot mar"></i>Hurgada</h5>
-                    <p (click)="openModal1()" style="margin-left:14px ; color: gray; cursor: pointer;"> Click Here To check The Time And Location To Pick Up</p>
+                  <h5><i class="fa-solid fa-map-location-dot mar"></i>{{filteredCar.rentPrice}}</h5>
+                    <!-- <p (click)="openModal()" style="margin-left:14px ; color: gray; cursor: pointer;"> Click Here To check The Time And Location To Pick Up</p> -->
                 </div>
                <app-map-modal-for-car></app-map-modal-for-car>
             </div>
-      
             <!-- accordion box three  -->
             <div class="main-tab">
                 <input type="radio" name="tab" id="tab-4" checked>
@@ -111,14 +104,12 @@
                     <div class="icon"><i class="fas fa-chevron-right"></i></div>
                     <span>Important Information</span>
                 </label>
-  
                 <div class="content">
                     <p>  <i class="fa-solid fa-user  mar"></i>the driver should have (Passport or national ID card & Driving licence & Credit card)</p>
-                    <p> <i class="fa-solid fa-gas-pump  mar" ></i>At pick-up, the main driver will leave a refundable security deposit of US$1,000.00 on their credit card.</p>
                     <p><i class="fa-solid fa-map-location-dot mar"></i> When you pick your car up, the fuel tank will be full or partly full.You will leave a deposit to cover the cost of the fue</p>
                 </div>
             </div>
         </div>
-        <button>Reserve</button>
+        <button (click)="createRent()">Reserve</button>
     </div>
   </section>

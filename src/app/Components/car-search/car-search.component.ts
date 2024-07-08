@@ -26,10 +26,8 @@ export class CarSearchComponent implements OnInit, AfterViewInit {
   minPriceVal: number = 0;
   maxPriceVal: number = 0;
   gearTypes = Object.keys(GearType).filter(k => isNaN(Number(k))).map(key => ({ label: key, value: GearType[key as keyof typeof GearType] }));
-
   agencies: CarAgencyViewDto[] = [] as CarAgencyViewDto[];// Populate with agency data
   baseUrl: string = environment.baseUrl;
-
   minPrice: number = 100;
   maxPrice: number = 5000;
   priceGap: number = 50;
@@ -54,8 +52,8 @@ export class CarSearchComponent implements OnInit, AfterViewInit {
     console.log(this.agencies)
     this.route.queryParams.subscribe(params => {
       const carsJson = params['filteredCars'];
+      console.log(carsJson)
       const filterParams = params['filterParams'];
-      console.log(filterParams)
       if (carsJson) {
         try {
           this.filteredCars = JSON.parse(decodeURIComponent(carsJson));
@@ -131,16 +129,17 @@ export class CarSearchComponent implements OnInit, AfterViewInit {
   updateFilteredCars() {
     this.filterParams.minPrice = this.minPriceVal;
     this.filterParams.maxPrice = this.maxPriceVal;
+    this.filterParams.agencyId = this.selectedAgancyId;
 
     this.carService.getFilteredCars(this.filterParams).subscribe({
       next: (res) => {
-        this.filteredCars = res;
-        this.router.navigate(['/filterCar'], {
-          queryParams: {
-            filteredCars: encodeURIComponent(JSON.stringify(this.filteredCars)),
-            filterParams: encodeURIComponent(JSON.stringify(this.filterParams))
-          }
-        });
+        this.filteredCars = res.data;
+        // this.router.navigate(['/filterCar'], {
+        //   queryParams: {
+        //     filteredCars: encodeURIComponent(JSON.stringify(this.filteredCars)),
+        //     filterParams: encodeURIComponent(JSON.stringify(this.filterParams))
+        //   }
+        // });
       },
       error: (err) => {
         console.log(err);
@@ -157,7 +156,12 @@ export class CarSearchComponent implements OnInit, AfterViewInit {
   
 
   goCarDetails(car: IFilteredCar): void {
-    this.router.navigate(['/cardetails'], { queryParams: { car: encodeURIComponent(JSON.stringify(car)) } });
+    this.router.navigate(['/cardetails'], {
+      queryParams: {
+        car: encodeURIComponent(JSON.stringify(car)),
+        params : encodeURIComponent(JSON.stringify(this.filterParams))
+      }
+    });
   }
 
 

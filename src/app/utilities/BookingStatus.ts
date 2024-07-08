@@ -11,6 +11,6 @@ export const getBookingStatusesValues = () => {
         .filter(key => !isNaN(Number(BookingStatus[key as any])))
         .map(key => ({ label: key, value: BookingStatus[key as any] as unknown as number }));
 };
-export function getBookingStatusesLabel(value: number): string {
+export function getBookingStatusesLabel(value: number): string | null {
     return BookingStatus[value] || 'Unknown';
 }

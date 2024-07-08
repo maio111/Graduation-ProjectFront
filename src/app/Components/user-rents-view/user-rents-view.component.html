@@ -13,7 +13,6 @@
           <th>Drop Off Date</th>
           <th>Status</th>
           <th>Total Price</th>
-          <th>Notes</th>
           <th>Invoices</th>
         </tr>
       </thead>
@@ -25,10 +24,9 @@
           <td>{{ rental.carModel }}</td>
           <td>{{ rental.pickUpDate | date }}</td>
           <td>{{ rental.dropOffDate | date }}</td>
-          <td>{{ getRentalStatusLabel(rental.status) }}</td>
+          <td>{{ getRentalStatusLabel(rental.status)}}</td>
           <td>{{ rental.totalPrice }}</td>
-          <td>{{ rental.notes }}</td>
-          <td><button type="button" class="btn btn-primary" (click)="openModal(rental.id, template)">Invoice</button></td>
+          <!-- <td><button type="button" class="btn btn-primary" (click)="openModal(rental.carRentalInvoice.id, template)">Invoice</button></td> -->
         </tr>
       </tbody>
     </table>

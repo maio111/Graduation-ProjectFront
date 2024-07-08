@@ -13,14 +13,6 @@ export class CaragencyService {
 
   constructor(private http: HttpClient) {}
 
-<<<<<<< HEAD
-  getAgencies(): Observable<{ data: CarAgencyViewDto[] }> {
-    return this.http.get<{ data: CarAgencyViewDto[] }>(`${this.apiUrl}/api/CarAgency`);
-  }
-
-  getCarAgencies(page: number, itemsPerPage: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/api/CarAgency?page=${page}&itemsPerPage=${itemsPerPage}`);
-=======
   getCarAgencies(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}`);
   }
@@ -33,7 +25,6 @@ export class CaragencyService {
       }
     }
     return this.http.get<any>(`${this.apiUrl}/GetFilteredCarAgencies`, { params });
->>>>>>> 77cb2bb3b52296c692bbb9828a339bef5c2f7c3e
   }
 
   getCarAgencyById(id: number): Observable<any> {
@@ -51,5 +42,8 @@ export class CaragencyService {
 
   deleteCarAgency(id: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  }
+  getAgencies(): Observable<{ data: CarAgencyViewDto[] }> {
+    return this.http.get < { data: CarAgencyViewDto[] } >(`${this.apiUrl}`);
   }
 }
