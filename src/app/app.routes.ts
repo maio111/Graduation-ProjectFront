@@ -142,14 +142,10 @@ export const routes: Routes = [
             { path: 'car-rental-invoices', component: CarRentalInvoicesComponent },
             { path: 'editcaragency/:id', component: EditcaragencyComponent},
             { path: 'addcaragency', component: AddcaragencyComponent},
-
             { path: 'cars/:id', component: CarComponent},
             {path:'addcar/:id', component:addCarComponent},
             {path:'editcar/:id',component:EditcarComponent},
-
-
             { path: 'carPhotos/:carId', component: CarPhotosDashboardComponent },
-
             { path: 'car', component: CarComponent},
             {path:'addcar', component:addCarComponent},
             {path:'editcar/:id',component:EditcarComponent},

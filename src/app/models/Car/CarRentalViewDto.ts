@@ -8,7 +8,7 @@ export interface CarRentalViewDto {
     carModel: string;
     pickUpDate: Date;
     dropOffDate: Date;
-    status: PaymentStatus;
+    status: RentalStatus;
     totalPrice: number;
     notes: string;
     carRentalInvoice:CarRentalInvoice

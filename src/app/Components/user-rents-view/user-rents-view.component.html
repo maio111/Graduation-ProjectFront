@@ -8,12 +8,11 @@
         <tr>
           <th>ID</th>
           <th>Car Agency</th>
-          <th>Car Model</th>
+          <!-- <th>Car Model</th> -->
           <th>Pick Up Date</th>
           <th>Drop Off Date</th>
           <th>Status</th>
           <th>Total Price</th>
-          <th>Invoices</th>
         </tr>
       </thead>
       <tbody>
@@ -21,11 +20,11 @@
           *ngFor="let rental of rentals | paginate: { id: 'rentals', itemsPerPage: 3, currentPage: page, totalItems: total }; let i = index">
           <td>{{ i + 1 }}</td>
           <td>{{ rental.carAgencyName }}</td>
-          <td>{{ rental.carModel }}</td>
+          <!-- <td>{{ rental.carModel }}</td> -->
           <td>{{ rental.pickUpDate | date }}</td>
           <td>{{ rental.dropOffDate | date }}</td>
-          <!-- <td>{{ getRentalStatusLabel(rental.status)}}</td> -->
-          <td>{{ rental.totalPrice }}</td>
+          <td>{{ getRentalStatusLabel(rental.status)}}</td>
+          <td>$ {{ rental.totalPrice }}</td>
           <!-- <td><button type="button" class="btn btn-primary" (click)="openModal(rental.carRentalInvoice.id, template)">Invoice</button></td> -->
         </tr>
       </tbody>

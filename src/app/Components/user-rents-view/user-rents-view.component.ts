@@ -66,7 +66,7 @@ export class UserRentalsViewComponent {
     this.getFilteredRentals();
   }
 
-  getRentalStatusLabel(status: RentalStatus): string {
+  getRentalStatusLabel(status: RentalStatus): string | "Confirmed"{
     return RentalStatusLabels[status];
   }
 
