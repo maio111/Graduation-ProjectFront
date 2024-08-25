@@ -55,14 +55,17 @@ export class CarDetailsComponent implements OnInit {
   }
 
   modalImageSrc: string | null = null;
-  openModal(imageSrc: string) {
-    this.modalImageSrc = imageSrc;
+  openModal1(imageSrc: string) {
     const modalElement = document.getElementById('exampleModal');
     if (modalElement) {
       const modal = new bootstrap.Modal(modalElement);
       modal.show();
     }
   }
+  openModal(imageSrc: string) {
+    this.modalImageSrc = imageSrc;
+  }
+
   createRent() {
     this.router.navigate(['rentDetails'], {
       queryParams: {

@@ -57,7 +57,7 @@
   <div class="main-content">
     <div class="car-card" *ngFor="let car of filteredCars; let i = index">
       <div *ngIf="getMainPhoto(car) as mainPhoto">
-        <img [src]="baseUrl + mainPhoto.photoUrl" [alt]="car.description">
+        <img width="70%" [src]="baseUrl + mainPhoto.photoUrl" [alt]="car.description">
       </div>
       <div class="car-info">
         <h3>{{ car.brand }} </h3>

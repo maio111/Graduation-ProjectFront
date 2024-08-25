@@ -45,11 +45,7 @@ export class CarService {
   
   getFilteredCars(filterParams: ICarFilteredParams): Observable<{ data: IFilteredCar[] }> {
     let params = this.buildFilterParams(filterParams);
-    return this.http.get <{ data: IFilteredCar[] }>(`${this.baseUrl}/GetFilteredCars`, { params });
-<<<<<<< HEAD
-=======
-    // return this.http.get<any>(`${this.baseUrl}/api/Car/GetFilteredCars`, { params });
->>>>>>> ba7809015cea9b72ed9b962af97f25d66521dd59
+    return this.http.get<{ data: IFilteredCar[] }>(`${this.baseUrl}/api/Car/GetFilteredCars`, { params });
   }
 
   private buildFilterParams(filterParams: ICarFilteredParams): HttpParams {

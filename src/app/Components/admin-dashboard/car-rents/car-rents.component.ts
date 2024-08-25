@@ -6,11 +6,12 @@ import { CarRentalFilterationDTO } from '../../../models/CarRents/CarRentalFilte
 import { CarRentalService } from '../../../Services/car-rental.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-car-rents',
   standalone: true,
-  imports: [FormsModule,CommonModule,ReactiveFormsModule],
+  imports: [FormsModule,CommonModule,ReactiveFormsModule,NgxPaginationModule],
   templateUrl: './car-rents.component.html',
   styleUrl: './car-rents.component.css'
 })
@@ -33,6 +34,8 @@ export class CarRentsComponent {
     { label: 'Manual', value: 2 }
   ];
   bookingStatuses!: { label: string, value: number }[];
+  page: any
+  total: any
 
   constructor(private carRentalService: CarRentalService) { }
 
@@ -66,5 +69,8 @@ export class CarRentsComponent {
     //   !!this.filter.brand && this.filter.numberOfSeats !== null && this.filter.numberOfSeats !== undefined &&
     //   this.filter.agencyId !== null && this.filter.agencyId !== undefined;
     return true;
+  }
+  changePage(event: any) {
+    this.page = event
   }
 }

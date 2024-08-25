@@ -12,11 +12,11 @@
   <div class="section-faq-left">
     <section class="hero">
       <div class="images">
-        <img *ngFor="let photo of filteredCar.carPhotos" [src]="photo.photoUrl" [alt]="photo.category"
+        <img *ngFor="let photo of filteredCar.carPhotos" [src]="baseUrl + photo.photoUrl" [alt]="photo.category"
           (click)="openModal(photo.photoUrl)" />
       </div>
       <div class="main-image">
-        <img *ngIf="filteredCar.carPhotos" [src]="getMainPhoto()" alt="Main Image" />
+        <img *ngIf="filteredCar.carPhotos" [src]="baseUrl + getMainPhoto()" alt="Main Image" />
       </div>
     </section>
   </div>
@@ -86,7 +86,7 @@
           <span>Rent Price</span>
         </label>
         <div class="content">
-          <h5><i class="fa-solid fa-map-location-dot mar"></i>{{ filteredCar.rentPrice }}</h5>
+          <h5>Price : ${{ filteredCar.rentPrice }}</h5>
         </div>
         <app-map-modal-for-car></app-map-modal-for-car>
       </div>
