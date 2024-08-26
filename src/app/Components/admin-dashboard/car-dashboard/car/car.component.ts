@@ -6,25 +6,28 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { NavBarComponent } from '../../../nav-bar/nav-bar.component';
 import { CarService } from '../../../../Services/car.service';
 import { IFilteredCar } from '../../../../models/Car/IFilteredCar';
+import { CaragencyService } from '../../../../Services/caragency.service';
 
 @Component({
   selector: 'app-car-agency',
   standalone: true,
-  imports: [CommonModule,FormsModule,NgxPaginationModule,NavBarComponent],
+  imports: [CommonModule, FormsModule, NgxPaginationModule, NavBarComponent],
   templateUrl: './car.component.html',
   styleUrl: './car.component.css'
 })
 export class CarComponent {
 
-  cars: IFilteredCar[] =[] as IFilteredCar[];
+  cars: IFilteredCar[] = [] as IFilteredCar[];
   agencyId!: number;
   currentCarId!: number;
   page: number = 1;
   total: number = 0;
+  agencyName!: any;
 
   constructor(
     private router: Router,
     private carService: CarService,
+    private carAgencyService: CaragencyService,
     private route: ActivatedRoute
   ) { }
 
@@ -33,6 +36,18 @@ export class CarComponent {
       this.agencyId = params['id'];
       this.getAllCars();
     });
+
+    this.carAgencyService.getCarAgencyById(this.agencyId).subscribe(
+      {
+        next: (res) => {
+          this.agencyName = res.data.name
+        },
+        error: (error) => {
+          console.error('Error fetching name:', error);
+        },
+      }
+
+    );
   }
 
   getAllCars() {
@@ -56,12 +71,12 @@ export class CarComponent {
     this.router.navigate(['dashboard/editcar', this.currentCarId]);
   }
 
-  
+
   deleteCar(id: number) {
     this.currentCarId = id;
     this.carService.deleteCar(this.currentCarId).subscribe({
       next: () => {
-        this.getAllCars(); 
+        this.getAllCars();
       },
       error: (error) => {
         console.error('Error deleting car agency:', error);
