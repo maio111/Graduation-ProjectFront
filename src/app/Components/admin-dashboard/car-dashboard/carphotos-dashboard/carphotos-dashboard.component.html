@@ -1,8 +1,10 @@
+<!-- car-photos-dashboard.component.html -->
+
 <div class="container mt-2">
     <h2 class="mb-4 text-center">Car Photos Management</h2>
     <div class="btn-toolbar mb-3 justify-content-end">
         <div class="btn-group">
-            <button class="btn btn-outline-primary" (click)="navigateToAdd()">Upload Photo</button>
+            <button class="btn btn-outline-primary" (click)="navigateToAdd()">Upload Photos</button>
         </div>
     </div>
     <div class="table-responsive">
@@ -10,8 +12,7 @@
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
+                    <th scope="col">Category</th>
                     <th scope="col">Photo</th>
                     <th scope="col">Actions</th>
                 </tr>
@@ -19,11 +20,10 @@
             <tbody>
                 <tr *ngFor="let photo of carPhotos | paginate: { id: 'ca', itemsPerPage: 3, currentPage: page, totalItems: total }; let i = index">
                     <td>{{ i + 1 }}</td>
-                    <td>{{ photo.carId }}</td>
-                    <td>{{ photo.category }}</td>
+                    <td>{{ getCategoryLabel(photo.category) }}</td>
                     <td>
-                        <img [src]="photo.photoUrl| base64ToImage" alt="Hotel Photo"
-                        style="width: 100px; height: auto;" />                    </td>
+                        <img [src]="photo.photo | base64ToImage" alt="Car Photo"
+                        style="width: 100px; height: auto;"/>                    </td>
                     <td>
                         <div class="btn-group">
                             <button type="button" class="btn btn-sm btn-outline-primary" (click)="navigateToEdit(photo)">Edit</button>

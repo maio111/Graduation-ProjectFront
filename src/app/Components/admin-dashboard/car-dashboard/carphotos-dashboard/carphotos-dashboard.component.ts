@@ -1,7 +1,7 @@
 
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { CarPhotoServiceService } from '../../../../Services/car-photo-service.service';
-import { ICarPhoto } from '../../../../models/Car/ICarPhoto';
+import { CarPhotoCat, CarPhotoDTO, ICarPhoto } from '../../../../models/Car/ICarPhoto';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -18,7 +18,7 @@ import { NavBarComponent } from "../../../nav-bar/nav-bar.component";
   styleUrl: './carphotos-dashboard.component.css'
 })
 export class CarPhotosDashboardComponent implements OnInit, OnChanges {
-  carPhotos: ICarPhoto[] = [];
+  carPhotos: CarPhotoDTO[] = [];
   carId!: number;
   page: any;
   total: any;
@@ -68,7 +68,7 @@ export class CarPhotosDashboardComponent implements OnInit, OnChanges {
       this.router.navigate(["dashboard/addCarPhoto", this.carId]);
   }
 
-  navigateToEdit(photo: ICarPhoto) {
+  navigateToEdit(photo: CarPhotoDTO) {
       this.router.navigate(["dashboard/editCarPhoto", this.carId], {
           queryParams: { photo: JSON.stringify(photo) }
       });
@@ -76,5 +76,17 @@ export class CarPhotosDashboardComponent implements OnInit, OnChanges {
 
   changePage(event: any) {
       this.page = event;
-  }
+    }
+    getCategoryLabel(category: CarPhotoCat): string {
+        switch (category) {
+            case CarPhotoCat.FrontView:
+                return 'Front View';
+            case CarPhotoCat.BackView:
+                return 'Back View';
+            case CarPhotoCat.Interior:
+                return 'Interior';
+            default:
+                return 'Unknown';
+        }
+    }
 }
