@@ -17,7 +17,7 @@ import { NavBarComponent } from "../../../nav-bar/nav-bar.component";
   templateUrl: './carphotos-dashboard.component.html',
   styleUrl: './carphotos-dashboard.component.css'
 })
-export class CarPhotosDashboardComponent implements OnInit, OnChanges {
+export class CarPhotosDashboardComponent implements OnInit {
   carPhotos: CarPhotoDTO[] = [];
   carId!: number;
   page: any;
@@ -30,21 +30,21 @@ export class CarPhotosDashboardComponent implements OnInit, OnChanges {
       private router: Router
   ) { }
 
-  ngOnChanges(changes: SimpleChanges): void {
-      this.loadCarPhotos();
-  }
+//   ngOnChanges(changes: SimpleChanges): void {
+//       this.loadCarPhotos();
+//   }
 
   ngOnInit() {
       this.route.params.subscribe(params => {
           this.carId = +params['carId'];
           this.loadCarPhotos();
       });
+      this.loadCarPhotos();
   }
 
   loadCarPhotos() {
       this.carPhotoService.getCarPhotos(this.carId).subscribe({
           next: (res: any) => {
-              console.log(res);
               this.carPhotos = res.data;
               this.total = res.totalItems;
           },
@@ -57,12 +57,16 @@ export class CarPhotosDashboardComponent implements OnInit, OnChanges {
       });
   }
 
-  deletePhoto(photoId: number) {
-      this.carPhotoService.deleteCarPhoto(photoId).subscribe({
-          next: (res) => console.log(res),
-          error: (err) => console.log(err)
-      });
-  }
+    deletePhoto(photoId: number) {
+        this.carPhotoService.deleteCarPhoto(photoId).subscribe({
+            next: () => {
+                window.location.reload();
+            },
+            error: (err) => {
+                console.error('Error deleting photo:', err);
+            }
+        });
+    }
 
   navigateToAdd() {
       this.router.navigate(["dashboard/addCarPhoto", this.carId]);

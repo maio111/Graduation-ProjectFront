@@ -1,0 +1,44 @@
+<div class="container-fluid mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <form (ngSubmit)="onSubmit()" #photoForm="ngForm" class="needs-validation" novalidate>
+        <div class="mb-3">
+          <label for="category" class="form-label" style="font-size: 20px; font-weight: bold;">Category:</label>
+          <select id="category" name="category" [(ngModel)]="carPhoto.category" class="form-control" required>
+            <option *ngFor="let cat of categories" [value]="cat">{{ getCategoryName(cat) }}</option>
+          </select>
+          <div
+            *ngIf="photoForm.controls['category']?.invalid && (photoForm.controls['category']?.dirty || photoForm.controls['category']?.touched)">
+            <small class="text-danger">Please select a category.</small>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="photos" class="form-label" style="font-size: 20px; font-weight: bold;">Photos:</label><br>
+          <input type="file" id="photos" name="photos" (change)="onFileSelected($event)"
+            class="form-control-file visually-hidden" required multiple>
+          <label for="photos" class="btn btn-secondary">
+            Choose Photos
+          </label>
+          <div
+            *ngIf="photoForm.controls['photos']?.invalid && (photoForm.controls['photos']?.dirty || photoForm.controls['photos']?.touched)">
+            <small class="text-danger">Please select at least one photo.</small>
+          </div>
+          <div *ngIf="selectedFiles?.length" class="mt-2">
+            <strong>Selected Files:</strong>
+            <ul class="list-unstyled">
+              <li *ngFor="let file of selectedFiles">{{ file.name }}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-4">
+            <button type="submit" [disabled]="photoForm.invalid" class="btn btn-primary">Update Photo</button>
+          </div>
+          <div class="col-md-4">
+            <button type="button" class="btn btn-danger" (click)="back()">Back</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

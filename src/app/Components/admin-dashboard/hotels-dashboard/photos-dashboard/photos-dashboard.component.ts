@@ -16,7 +16,7 @@ import { NavBarComponent } from "../../../nav-bar/nav-bar.component";
     styleUrl: './photos-dashboard.component.css',
     imports: [FormsModule, CommonModule, Base64ToImagePipe, NgxPaginationModule, NavBarComponent]
 })
-export class PhotosDashboardComponent implements OnInit,OnChanges{
+export class PhotosDashboardComponent implements OnInit{
   hotelPhotos: IHotelPhoto[] = [];
   hotelId!: number;
   page:any;
@@ -27,14 +27,12 @@ export class PhotosDashboardComponent implements OnInit,OnChanges{
     private hotelPhotoService: HotelPhotoService,
     private router: Router
   ) { }
-  ngOnChanges(changes: SimpleChanges): void {
-    this.loadHotelPhotos();
-  }
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.hotelId = +params['hotelId'];
       this.loadHotelPhotos();
     });
+    this.loadHotelPhotos();
   }
 
   loadHotelPhotos() {
@@ -54,7 +52,6 @@ export class PhotosDashboardComponent implements OnInit,OnChanges{
     });
   }
   
-
   deletePhoto(photoId: number) {
     this.hotelPhotoService.deleteHotelPhoto(photoId).subscribe({
       next: (res) => console.log(res),
