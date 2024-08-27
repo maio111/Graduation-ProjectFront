@@ -68,6 +68,7 @@ import { RentDetailsComponent } from './Components/rent-details/rent-details.com
 import { CarPaymentComponent } from './Components/car-payment/car-payment.component';
 import { CarPhotosDashboardComponent } from './Components/admin-dashboard/car-dashboard/carphotos-dashboard/carphotos-dashboard.component';
 import { AddCarPhotoComponent } from './Components/admin-dashboard/car-dashboard/add-car-photo/add-car-photo.component';
+import { EditCarPhotoComponent } from './Components/admin-dashboard/car-dashboard/edit-car-photo/edit-car-photo.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -151,6 +152,7 @@ export const routes: Routes = [
             {path:'addcar', component:addCarComponent},
             {path:'editcar/:id',component:EditcarComponent},
             {path:'addCarPhoto/:carId',component:AddCarPhotoComponent},
+            { path:'editCarPhoto/:carId',component:EditCarPhotoComponent},
             {path:'carrents',component:CarRentsComponent},
             {path:'car-rental-invoices',component:CarRentalInvoicesComponent}
         ],
