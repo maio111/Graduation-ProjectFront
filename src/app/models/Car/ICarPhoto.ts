@@ -4,6 +4,12 @@ export interface ICarPhoto {
   category: CarPhotoCat;
   carId?: number;
 }
+export interface CarPhotoDTO {
+  id: number;
+  photo: string;
+  category: CarPhotoCat;
+  carId?: number;
+}
 
 export enum CarPhotoCat {
   FrontView = 0,

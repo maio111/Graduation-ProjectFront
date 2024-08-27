@@ -3,7 +3,7 @@
     <h2 class="mb-4 text-center">Hotel Photos Management</h2>
     <div class="btn-toolbar mb-3 justify-content-end">
         <div class="btn-group">
-            <button class="btn btn-outline-primary" (click)="navigateToAdd()">Upload Photo</button>
+            <button class="btn btn-outline-primary" (click)="navigateToAdd()">Upload Photos</button>
         </div>
     </div>
     <div class="table-responsive">
@@ -11,8 +11,7 @@
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
+                    <!-- <th scope="col">Category</th> -->
                     <th scope="col">Photo</th>
                     <th scope="col">Actions</th>
                 </tr>
@@ -23,8 +22,6 @@
                 currentPage: page,
                 totalItems: total }; let i = index">
                     <td>{{i + 1}}</td>
-                    <td>{{photo.name}}</td>
-                    <td>{{photo.description}}</td>
                     <td><img [src]="photo.photo | base64ToImage" alt="Hotel Photo"
                             style="width: 100px; height: auto;" /></td>
                     <td>
